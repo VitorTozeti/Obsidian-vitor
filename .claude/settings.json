@@ -1,0 +1,18 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "bash",
+            "async": true,
+            "timeout": 120,
+            "statusMessage": "Sincronizando o vault (1x/dia)...",
+            "command": "powershell -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File \"$CLAUDE_PROJECT_DIR/.scripts/sync-diario.ps1\""
+          }
+        ]
+      }
+    ]
+  }
+}

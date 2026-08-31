@@ -1,0 +1,18 @@
+# Obsidian workspace (config local, não precisa versionar)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.obsidian/graph.json
+
+# Sistema
+Thumbs.db
+.DS_Store
+
+# Logs do watcher
+.scripts/*.log
+
+# Config local de notificação (SENHA DE APP do Gmail) — NUNCA versionar
+.scripts/notify-config.local.ps1
+
+# Marcador de "já sincronizou hoje" (por máquina, não versionar)
+.scripts/.last-sync-date
