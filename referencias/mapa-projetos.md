@@ -2,7 +2,7 @@
 name: mapa-projetos
 description: mapa de carregamento de contexto — por projeto, o que abrir (hub, notas, refs sempre-considerar, repo real no disco)
 tags: [referencia, mapa, navegacao, sempre-considerar]
-updated: 2026-08-31
+updated: 2026-09-07
 ---
 
 # Mapa de Projetos — Carregamento de Contexto
@@ -15,7 +15,9 @@ updated: 2026-08-31
 
 | Projeto | `proj/` (cor) | Pasta | Hub (abrir 1º) | Onde os dados | Repositório real | Refs sempre-considerar |
 |---|---|---|---|---|---|---|
-| GreenFinance | `greenfinance` 🟩 #16A34A | `projetos/greenfinance/` | [[greenfinance]] | [[greenfinance-dados]] | `C:\Users\Vitor\Desktop\greenfinance` (`VitorTozeti/Vitor_finan-as`) | ⭐[[mapa-projetos]] |
+| GreenFinance | `greenfinance` 🟩 #16A34A | `projetos/greenfinance/` | [[greenfinance]] | [[greenfinance-dados]] | `C:\Users\Vitor\Desktop\projetos\greenfinance` (`VitorTozeti/Vitor_finan-as`) | ⭐[[mapa-projetos]] |
+| Nexus RPG | `nexus-rpg` 🟪 #9333EA | `projetos/nexus-rpg/` | [[nexus-rpg]] | [[nexus-rpg-dados]] | `C:\Users\Vitor\Desktop\projetos\The-One-System` (`VitorTozeti/The-One-System`) | ⭐[[mapa-projetos]] |
+| Role SP no trilho | `role-sp` 🟧 #F97316 | `projetos/role-sp/` | [[role-sp]] | [[role-sp-dados]] | `C:\Users\Vitor\Desktop\projetos\Linhas metros e pontos de interesse proj\Roles-na-linha-verde` (`VitorTozeti/Roles-na-linha-verde`) | ⭐[[mapa-projetos]] |
 
 <!-- Ao passar de um punhado de projetos, quebre em seções por área, ex.:
 ## Ecossistema A

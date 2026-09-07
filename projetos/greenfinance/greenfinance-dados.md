@@ -2,7 +2,7 @@
 name: greenfinance-dados
 description: mapa de localização de dados, repositório, APIs, worker e armazenamento do GreenFinance
 tags: [proj/greenfinance, dados, infra, integracao]
-updated: 2026-08-31
+updated: 2026-09-07
 ---
 
 # GreenFinance — Onde os Dados Vivem
@@ -11,7 +11,7 @@ Nota de localização técnica e dados de integração do projeto [[greenfinance
 
 ## Repositórios e Links
 
-- **Repositório Local no Disco:** `C:\Users\Vitor\Desktop\greenfinance`
+- **Repositório Local no Disco:** `C:\Users\Vitor\Desktop\projetos\greenfinance`
 - **Repositório GitHub:** `VitorTozeti/Vitor_finan-as` (`https://github.com/VitorTozeti/Vitor_finan-as`)
 - **Deploy / URL de Produção:** `https://vitortozeti.github.io/Vitor_finan-as/`
 - **Base path do Vite:** `/Vitor_finan-as/`
