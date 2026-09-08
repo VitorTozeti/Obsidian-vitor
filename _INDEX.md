@@ -32,6 +32,7 @@
   - [Nexus RPG — Onde os dados vivem](projetos/nexus-rpg/nexus-rpg-dados.md) — mapa de localização de dados, repositório, chaves do LocalStorage e arquitetura de arquivos do Nexus RPG
   - [Nexus RPG — Detalhamento das telas](projetos/nexus-rpg/nexus-rpg-telas.md) — auth, 17 abas do Mestre, editor de fichas (21 blocos), suíte de campanha e modo Jogador, tela a tela
   - [Nexus RPG — Arquitetura e Guia](projetos/nexus-rpg/nexus-rpg-arquitetura.md) — funcionamento interno, motores de regras/dados, canvas de fichas e guia para futuras atualizações
+  - [Nexus RPG — Planejamento](projetos/nexus-rpg/nexus-rpg-planejamento.md) — roadmap: checklist entregue vs. pendente, backlog priorizado por área e próximos passos
 - [Role SP no trilho](projetos/role-sp/role-sp.md) — mapa interativo das linhas de metrô, trem e monotrilho de SP com pontos turísticos, culturais e integração de ônibus via OpenStreetMap
   - [Role SP no trilho — Onde os dados vivem](projetos/role-sp/role-sp-dados.md) — mapa de localização de dados, repositório, APIs externas e estruturas de dados do Role SP no trilho
   - [Role SP no trilho — Detalhamento da interface](projetos/role-sp/role-sp-interface.md) — painéis, tabela das 14 linhas, ~156 POIs em 20 categorias, funções e fluxo "Quero ir aqui"

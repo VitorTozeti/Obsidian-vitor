@@ -62,3 +62,4 @@ Abas organizadas em 4 grupos (Fundação, Personagem, Mundo & Regras, Saída); v
 - [[nexus-rpg-telas]] — detalhamento tela a tela (auth, 17 abas do Mestre, editor de fichas com 21 blocos, campanha e modo Jogador, atalhos)
 - [[nexus-rpg-dados]] — onde os dados vivem (repositório real, estrutura de scripts, chaves do LocalStorage e schema)
 - [[nexus-rpg-arquitetura]] — funcionamento interno, motores de regras/dados, canvas de fichas e guia para futuras atualizações
+- [[nexus-rpg-planejamento]] — roadmap: checklist entregue vs. pendente, backlog priorizado por área e próximos passos
