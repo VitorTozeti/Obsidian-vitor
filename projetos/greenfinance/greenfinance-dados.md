@@ -11,7 +11,8 @@ Nota de localização técnica e dados de integração do projeto [[greenfinance
 
 ## Repositórios e Links
 
-- **Repositório Local no Disco:** `C:\Users\Vitor\Desktop\projetos\greenfinance`
+- **Repositório Local no Disco:** `C:\Users\Vitor\Desktop\projetos\greenfinance` (máquina original)
+  - **Nesta máquina (v.tozeti):** `C:\Users\v.tozeti\Desktop\Vitor\teste\Vitor_finan-as`
 - **Repositório GitHub:** `VitorTozeti/Vitor_finan-as` (`https://github.com/VitorTozeti/Vitor_finan-as`)
 - **Deploy / URL de Produção:** `https://vitortozeti.github.io/Vitor_finan-as/`
 - **Base path do Vite:** `/Vitor_finan-as/`

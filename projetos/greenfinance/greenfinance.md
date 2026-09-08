@@ -9,13 +9,16 @@ updated: 2026-08-31
 
 App mobile-first de controle financeiro pessoal e análise de investimentos, operando como PWA (Progressive Web App) e hospedado estaticamente no GitHub Pages. Focado em uso individual (*single-user*), sem backend próprio, persistindo os dados no `localStorage` do navegador.
 
-## Estado atual (2026-08-31)
+## Estado atual (2026-09-08)
 
 - **Localização dos dados:** consulte [[greenfinance-dados]] para repositório, URLs, variáveis e APIs.
+- **Detalhamento por página:** ver [[greenfinance-paginas]] — as 13 rotas + onboarding, tela a tela.
 - **Produção:** publicado e funcional via GitHub Pages (`https://vitortozeti.github.io/Vitor_finan-as/`).
 - **Open Finance:** integrado com Pluggy via Cloudflare Worker proxy (`https://blue-bonus-47ec.vitortozeti.workers.dev`).
-- **Conciliação de Extratos:** importador local no navegador para arquivos OFX, CSV e PDF (via `pdfjs-dist`).
+- **Conciliação de Extratos:** importador local no navegador para arquivos OFX, CSV e PDF (via `pdfjs-dist`), com tela de revisão e deduplicação por `fitid`/chave composta.
 - **Investimentos:** consulta de cotações B3 via brapi.dev e simulador de rentabilidade com perfis de risco.
+- **Extras já implementados (mapeados em 2026-09-08):** benefícios (VA/VR/etc.), programas de cashback/pontos/milhas, **conquistas/gamificação** persistidas, regras de **transação recorrente** (catch-up de até 2 meses/load), **9 temas** + paleta personalizada e contas bancárias (`bankAccounts`) vindas do Open Finance.
+- **Persistência:** `localStorage` na chave `greenfinance:v1` (debounce 400 ms) com migração de schema e backup de blob corrompido.
 
 ## Módulos e Funcionalidades
 
@@ -41,5 +44,6 @@ App mobile-first de controle financeiro pessoal e análise de investimentos, ope
 
 ## Notas detalhadas
 
+- [[greenfinance-paginas]] — detalhamento página a página (rotas, seções da UI, dados lidos/escritos e cálculos de cada tela)
 - [[greenfinance-dados]] — onde os dados vivem (repositório real, Cloudflare Worker, secrets, endpoints e armazenamento)
 - [[greenfinance-arquitetura]] — arquitetura local-first, gerenciamento de estado no useStore, conciliação bancária e guia de evolução

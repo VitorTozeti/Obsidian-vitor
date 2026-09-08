@@ -28,7 +28,7 @@ Toda a inteligência da aplicação reside em `script.js` (~1.400 linhas), organ
 ### Ciclo de Inicialização
 1. O HTML carrega a folha `styles.css` e os scripts do Leaflet e Font Awesome via CDN.
 2. A tela exibe um overlay de carregamento (`#loading`).
-3. O mapa Leaflet é instanciado centralizado na Praça da Sé (`[-23.5505, -46.6333]`).
+3. O mapa Leaflet é instanciado centralizado em `[-23.568, -46.648]` com zoom 12 (`zoomControl:false`, `preferCanvas:true`).
 4. São desenhadas as polilinhas e marcadores de todas as linhas habilitadas em `linhasTransporte`.
 5. O catálogo de POIs é processado, sanitizado e inserido no grupo de clusterização.
 6. A função `esconderLoading()` remove o overlay e `enquadrarVisiveis()` ajusta o viewport.

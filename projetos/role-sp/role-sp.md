@@ -14,6 +14,8 @@ O app funciona de forma leve no navegador, combinando dados geoespaciais em temp
 ## Estado atual (2026-09-07)
 
 - **Localização dos dados:** consulte [[role-sp-dados]] para repositório, estrutura de scripts, fontes de dados e endpoints de API.
+- **Detalhamento da interface e dos dados:** ver [[role-sp-interface]] — painéis, 14 linhas (tabela), ~156 POIs em 20 categorias e o fluxo "Quero ir aqui".
+- **Malha atual:** 14 linhas (5 Metrô, 1 Monotrilho, 8 Trem/CPTM); a Linha 6-Laranja nasce oculta (`ativarPorPadrao:false`). Mapa centralizado em `[-23.568, -46.648]` zoom 12.
 - **Produção / Hospedagem:** repositório versionado no GitHub (`VitorTozeti/Roles-na-linha-verde`) com pipeline de deploy configurado via GitHub Actions (`jekyll-docker.yml`).
 - **Otimização Mobile:** clusterização ativa de marcadores via `Leaflet.markercluster` e remoção de filtros de sombra pesados em repaint para garantir navegação fluida em celulares.
 - **Roteamento Multimodal de Ônibus:** integração funcional com a Overpass API identificando pontos de ônibus reais próximos quando a distância até a estação mais próxima supera 1,5 km.
@@ -66,5 +68,6 @@ O sistema deduplica automaticamente os registros por nome/categoria e calcula a 
 
 ## Notas detalhadas
 
+- [[role-sp-interface]] — detalhamento da interface e dos dados (painéis, tabela das 14 linhas, ~156 POIs em 20 categorias, funções e fluxo "Quero ir aqui")
 - [[role-sp-dados]] — onde os dados vivem (repositório real, estrutura de arquivos, endpoints de mapa e APIs)
 - [[role-sp-arquitetura]] — funcionamento do script.js, algoritmos de clustering, cálculo de rotas e guia de expansão de transporte

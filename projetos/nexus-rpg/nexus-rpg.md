@@ -18,11 +18,12 @@ O projeto oferece um ambiente integrado para RPGs de mesa dividido em dois perfi
 - **Sistema de Contas Local:** isolamento por conta (login local) onde o tipo do personagem selecionado (Mestre ou Jogador) define o acesso às ferramentas.
 - **Motor de Fórmulas e Dados:** interpretador de expressões matemáticas customizadas e rolador com suporte a modificadores, pools e tags dimensionais.
 - **Editor de Fichas:** canvas visual de 860px com snap magnético, 21 tipos de blocos e personalização avançada de atributos.
+- **Detalhamento por tela:** ver [[nexus-rpg-telas]] — auth, as 17 abas do Mestre, editor de fichas (21 blocos), suíte de campanha e modo Jogador, tela a tela.
 
 ## Modos de Operação
 
-### 1. 🛠️ Modo Mestre — 16 Abas de Regras
-Ambiente para desenhar sistemas de RPG do zero ou adaptar cenários existentes:
+### 1. 🛠️ Modo Mestre — 17 Abas em 4 grupos
+Abas organizadas em 4 grupos (Fundação, Personagem, Mundo & Regras, Saída); ver a tabela completa em [[nexus-rpg-telas]]. Ambiente para desenhar sistemas de RPG do zero ou adaptar cenários existentes:
 - **Campanha & Regras:** definição de limites de nível/grau, orçamento de atributos, modo de atributo (valor direto vs. modificador com fórmula customizada `(V-10)/2`) e temas visuais (10 presets).
 - **Progressão & Degraus:** tabelas de progressão lineares ou por classe com colunas configuráveis (Nível, NEX, Grau).
 - **Atributos & Recursos:** criação de atributos (FOR, AGI, etc.) e recursos de barra (Vida, Mana) ou valor (Defesa), com fórmulas dependentes e regras de recarga (descanso curto/longo).
@@ -58,5 +59,6 @@ Ambiente para desenhar sistemas de RPG do zero ou adaptar cenários existentes:
 
 ## Notas detalhadas
 
+- [[nexus-rpg-telas]] — detalhamento tela a tela (auth, 17 abas do Mestre, editor de fichas com 21 blocos, campanha e modo Jogador, atalhos)
 - [[nexus-rpg-dados]] — onde os dados vivem (repositório real, estrutura de scripts, chaves do LocalStorage e schema)
 - [[nexus-rpg-arquitetura]] — funcionamento interno, motores de regras/dados, canvas de fichas e guia para futuras atualizações
