@@ -67,3 +67,4 @@ O sistema deduplica automaticamente os registros por nome/categoria e calcula a 
 ## Notas detalhadas
 
 - [[role-sp-dados]] — onde os dados vivem (repositório real, estrutura de arquivos, endpoints de mapa e APIs)
+- [[role-sp-arquitetura]] — funcionamento do script.js, algoritmos de clustering, cálculo de rotas e guia de expansão de transporte

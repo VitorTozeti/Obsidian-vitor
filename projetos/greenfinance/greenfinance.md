@@ -42,3 +42,4 @@ App mobile-first de controle financeiro pessoal e análise de investimentos, ope
 ## Notas detalhadas
 
 - [[greenfinance-dados]] — onde os dados vivem (repositório real, Cloudflare Worker, secrets, endpoints e armazenamento)
+- [[greenfinance-arquitetura]] — arquitetura local-first, gerenciamento de estado no useStore, conciliação bancária e guia de evolução

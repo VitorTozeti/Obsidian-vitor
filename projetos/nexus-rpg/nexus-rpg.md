@@ -59,3 +59,4 @@ Ambiente para desenhar sistemas de RPG do zero ou adaptar cenários existentes:
 ## Notas detalhadas
 
 - [[nexus-rpg-dados]] — onde os dados vivem (repositório real, estrutura de scripts, chaves do LocalStorage e schema)
+- [[nexus-rpg-arquitetura]] — funcionamento interno, motores de regras/dados, canvas de fichas e guia para futuras atualizações
