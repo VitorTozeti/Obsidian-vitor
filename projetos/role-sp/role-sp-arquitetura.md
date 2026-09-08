@@ -2,7 +2,7 @@
 name: role-sp-arquitetura
 description: funcionamento do script.js, algoritmos de clustering, cálculo de rotas e guia de expansão de transporte do Role SP no trilho
 tags: [proj/role-sp, arquitetura, gis, leaflet, dev-guide]
-updated: 2026-09-07
+updated: 2026-09-08
 ---
 
 # Role SP no trilho — Arquitetura e Guia de Atualizações Futuras

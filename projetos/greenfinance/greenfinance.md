@@ -2,7 +2,7 @@
 name: greenfinance
 description: app PWA de controle financeiro pessoal, carteira de investimentos e conciliação bancária (Pluggy/extratos)
 tags: [projeto, proj/greenfinance, financeiro, pwa, react]
-updated: 2026-08-31
+updated: 2026-09-08
 ---
 
 # GreenFinance

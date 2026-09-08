@@ -2,7 +2,7 @@
 name: nexus-rpg
 description: motor e construtor de sistemas de RPG de mesa 100% offline, com editor visual de fichas e modos Mestre e Jogador
 tags: [projeto, proj/nexus-rpg, rpg, vanilla-js, offline]
-updated: 2026-09-07
+updated: 2026-09-08
 ---
 
 # Nexus RPG
@@ -11,7 +11,7 @@ Aplicação web **100% offline**, sem dependências externas, sem build e sem se
 
 O projeto oferece um ambiente integrado para RPGs de mesa dividido em dois perfis de uso: **Mestre** (criação completa de regras e desenho livre da ficha) e **Jogador** (criação guiada de personagens e ficha interativa).
 
-## Estado atual (2026-09-07)
+## Estado atual (2026-09-08)
 
 - **Localização dos dados:** consulte [[nexus-rpg-dados]] para repositório, estrutura de arquivos, chaves do `localStorage` e carregamento.
 - **Núcleo modularizado:** transição concluída de arquivo monolítico único (`nexus-rpg-prototipo.html`) para estrutura desacoplada em `src/` (`auth/`, `core/`, `data/`, `ui/`, `master/`, `player/`).

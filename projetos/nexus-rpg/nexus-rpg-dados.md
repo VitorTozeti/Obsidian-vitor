@@ -2,7 +2,7 @@
 name: nexus-rpg-dados
 description: mapa de localização de dados, repositório, chaves do LocalStorage e arquitetura de arquivos do Nexus RPG
 tags: [proj/nexus-rpg, dados, infra, arquitetura]
-updated: 2026-09-07
+updated: 2026-09-08
 ---
 
 # Nexus RPG — Onde os Dados Vivem
@@ -11,7 +11,8 @@ Nota de localização técnica e persistência do projeto [[nexus-rpg]].
 
 ## Repositórios e Links
 
-- **Repositório Local no Disco:** `C:\Users\Vitor\Desktop\projetos\The-One-System`
+- **Repositório Local no Disco:** `C:\Users\Vitor\Desktop\projetos\The-One-System` (máquina original)
+  - **Nesta máquina (v.tozeti):** `C:\Users\v.tozeti\Desktop\Vitor\teste\The-One-System`
 - **Repositório GitHub:** `VitorTozeti/The-One-System` (`https://github.com/VitorTozeti/The-One-System`)
 - **Deploy / Execução:** 100% offline, executável diretamente via navegador abrindo `index.html` (protocolo `file://`). Não requer servidor HTTP local nem etapas de build.
 

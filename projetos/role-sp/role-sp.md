@@ -2,7 +2,7 @@
 name: role-sp
 description: mapa interativo das linhas de metrô, trem e monotrilho de SP com pontos turísticos, culturais e integração de ônibus via OpenStreetMap
 tags: [projeto, proj/role-sp, mapas, mobilidade, leaflet, pwa]
-updated: 2026-09-07
+updated: 2026-09-08
 ---
 
 # Role SP no trilho
@@ -11,7 +11,7 @@ Aplicação web estática que oferece um mapa interativo consolidando todas as l
 
 O app funciona de forma leve no navegador, combinando dados geoespaciais em tempo de execução com a Overpass API do OpenStreetMap para sugerir conexões de ônibus quando o destino final está distante da malha sobre trilhos.
 
-## Estado atual (2026-09-07)
+## Estado atual (2026-09-08)
 
 - **Localização dos dados:** consulte [[role-sp-dados]] para repositório, estrutura de scripts, fontes de dados e endpoints de API.
 - **Detalhamento da interface e dos dados:** ver [[role-sp-interface]] — painéis, 14 linhas (tabela), ~156 POIs em 20 categorias e o fluxo "Quero ir aqui".
