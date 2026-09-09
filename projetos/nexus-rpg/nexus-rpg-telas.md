@@ -121,11 +121,40 @@ Canvas de largura fixa **`CANVAS_W = 860`px** (escalado para caber na tela), gri
   `.map-theme-<t>` pinta a grade em branco e tinge o grid). `newMap/curMap/totalPins`
   em `campaign-model.js`; seletor de mapas (`mapSelector`) + form de criação
   (`formNovoMapa/criarMapa`, draft em `S.ui.mapDraft`/`S.ui.novoMapa`). Imagem de fundo
-  opcional (`readMapImage`, DataURL) OU construir por cima da grade. **Locais** viraram
-  peças por categoria: paleta `PIN_ICONS` (🏰🏘️🏠⛺🗼⚓🕳️🌲⛰️🌋…) com seleção e
-  `pinToolbar` (ícone/nome/nota/excluir); tokens de criatura com `tokenToolbar`. Pins e
-  tokens arrastáveis em % (`dragMovable` agora recebe callback de clique → `S.ui.pinSel`
-  / `S.ui.tokenSel`). CSS: `.map-selector/.map-chip/.map-opt/.pin-pick/.map-theme-*`.
+  opcional (`readMapImage`, DataURL) OU construir por cima da grade.
+- **Construtor de mapas 2.0 — táticos, mundos, eras e tokens ricos (2026-09-09):**
+  o editor agora tem **dois modos** decididos por `isWorldKind(kind)`:
+  - **Tático** (Local/Interior/Masmorra) → `construtorTatico`: paleta de **peças**
+    (`PROP_CATALOG`, agrupada em Estrutura / Natureza / Perigo / Objetos) com paredes,
+    sala/piso, água, portas, árvores 🌲, mato 🌿, arbustos, pedras, **armadilhas** ⚠️
+    (nascem ocultas), fosso, fogo, gelo, baú, tocha, altar… `newProp` cria a peça;
+    `propEl` desenha em dois `shape`: **`stamp`** (ícone com tamanho/rotação) e
+    **`block`** (retângulo de parede/sala/água/vegetação/gelo com largura/altura/rotação
+    e `fill-<tipo>` no CSS). `propToolbar` edita tamanho/rotação/rótulo/oculto + duplicar.
+  - **Mundo** (Mundo/Região) → `construtorMundo`: define o **contorno do continente**
+    (`WORLD_SHAPES` via `clip-path polygon`: Pangeia, Arquipélago, Garra, Crescente,
+    Meridional), cor da terra, girar e tamanho (`continentLayer`); **reinos** coloridos
+    (`newKingdom`/`kingdomEl`/`kingdomToolbar` — zona radial arrastável com rótulo,
+    `KINGDOM_COLORS`, extensão, nota) e **pontos de interesse** reutilizando `PIN_ICONS`.
+  - **Molduras de era** (`.map-frame.frame-<tema>`): overlay decorativo por clima —
+    **rústico** = borda de papel/madeira gasta, **futurista** = HUD com cantos ciano,
+    **natural/sombrio/limpo** com vinheta própria. Não captura clique.
+  - **Tokens ricos** (`newToken` estendido: `icon`, `img`, `size`, `hp`, `hpMax`,
+    `hidden`): `tokenEl` desenha rosto circular com **anel colorido por tipo**, imagem
+    personalizada (upload via `readPhoto`) **ou ícone/emoji** (paleta em `tokenToolbar`)
+    **ou** a foto/imagem da peça referenciada (`tokenRefInfo` puxa `player.sheet.photo`,
+    `statblock.image`, `npc.image`), rótulo, **barra de HP** e estado **oculto**.
+    `tokenToolbar` edita ícone/imagem/anel/tamanho/HP/oculto.
+  - **Clique no token de JOGADOR abre a ficha no painel principal**
+    (`abrirFichaJogador` → `S.ui.verFicha` + `irMtab('jogadores')`, reusa o overlay
+    read-only de `jogadoresView`); inimigos/NPCs só selecionam para editar.
+  - `limpaSel()` zera as 4 seleções (`tokenSel/pinSel/propSel/kingSel`). Migração leve
+    em `sanitizeCampaign` preenche `props`, `world.{continent,kingdoms}` e os novos
+    campos de token. CSS novo: `.construtor/.prop-*/.map-prop/.fill-*/.map-continent/
+    .map-kingdom*/.map-frame/.frame-*/.map-token-face/.map-token-hp/.emoji-pal`.
+  **Locais** continuam como peças por categoria: paleta `PIN_ICONS`
+  (🏰🏘️🏠⛺🗼⚓🕳️🌲⛰️🌋…) com `pinToolbar` (ícone/nome/nota/excluir). Pins, peças,
+  reinos e tokens arrastáveis em % (`dragMovable` com callback de clique).
 - **Log de dados (`campaign-dice.js`):** histórico das últimas ~60 rolagens da mesa
   com data/hora e autor.
 - **Modelo (`campaign-model.js`):** estrutura de dados da campanha (carregado cedo no
