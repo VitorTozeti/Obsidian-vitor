@@ -80,17 +80,29 @@ Canvas de largura fixa **`CANVAS_W = 860`px** (escalado para caber na tela), gri
 - **Undo/Redo:** `pushUndo()` antes de cada mudança; `Ctrl+Z` / `Ctrl+Shift+Z` / `Ctrl+Y`.
 
 ## Suíte de Campanha do Mestre (`src/master/campaign/`)
-- **Dashboard (`dashboard.js`) — layout de DOIS menus laterais + DOIS painéis
+- **Dashboard (`dashboard.js`) — dois menus laterais + MÚLTIPLOS painéis
   (2026-09-09):** substituiu a antiga fita única de abas no topo. Dois *rails*
-  verticais fixos (`.mrail`): o da **esquerda (índigo)** controla o painel esquerdo
-  — `Painel`, `Sistema`, `Jogadores`, `Bestiário`, `Itens`; o da **direita (âmbar)**
-  controla o painel direito — `Mapa`, `Notas`, `Dados`. Estado separado por lado
-  (`S.mtabL` / `S.mtabR`, inicializados em `state.js`), então dá pra manter **duas
-  seções abertas ao mesmo tempo** (ex.: Jogadores + Notas). Cada painel tem cabeçalho
-  com título e botão **✕** que o fecha (`fecharPainel`), fazendo o outro ocupar a
-  largura inteira; `irMtab(k)` roteia a seção para o lado certo via `sideOf(k)`. CSS
-  em `.mdash2/.mrail/.mpane*` (responsivo: empilha abaixo de 1100px). `painelView`
-  (visão geral) e os botões de atalho do Painel seguem funcionando via `irMtab`.
+  verticais fixos (`.mrail`): **esquerda (índigo)** = `Painel`, `Sistema`,
+  `Jogadores`, `Bestiário`, `Itens`; **direita (âmbar)** = `Mapa`, `Notas`, `Dados`.
+  Estado em `S.mopen` = **lista** de seções abertas (inicializada em `state.js`):
+  clicar num item do menu faz toggle (`toggleMtab`) e **quantas seções quiser ficam
+  abertas ao mesmo tempo**; os painéis abertos se distribuem em `.mpanes`
+  (flex-wrap) e quebram em linha, reordenados por `ordemAbertos()` (esquerda antes
+  da direita). Cada painel tem cabeçalho com ✕ (`fecharPainel`); item ativo no rail
+  recebe `.mrail-dot`. Atalhos do `painelView` usam `irMtab(k)` (garante aberto). As
+  **barras de rolagem** de `.mrail` e `.mpane-body` ficam ocultas (scroll continua):
+  `scrollbar-width:none` + `::-webkit-scrollbar{display:none}`. CSS `.mdash2/.mrail/
+  .mpane*` (responsivo: empilha abaixo de 1100px).
+- **Dados (`campaign-dice.js`) — construtor visual de rolagem (2026-09-09):** além da
+  expressão livre (`rolagemRapida` → `rollExpr`), agora tem uma **paleta de dados
+  poliédricos** (`DICE_TYPES` 4/6/8/10/12/20/100) desenhados em SVG inline
+  (`diceIcon(faces,size)` com `DICE_SHAPES` + `DICE_COLOR`; d100 = forma do d10 com
+  `%`). Tocar num dado soma ao pool (`S.diceB={pool:{faces:qtd}, mod}`); cada grupo
+  aparece como **“qtd · ícone · faces”** com +/− (`diceAdd`) e há um chip de
+  modificador (`diceModAdd`). `diceBExpr()` monta a expressão exibida e
+  `diceBExprExec()` a versão p/ `rollExpr`; resultado atual em destaque
+  (`.dice-result`) lendo `diceLog[0]`. CSS novo: `.dice-palette/.dice-type/.dice-pool/
+  .dice-chip/.dice-step/.dice-expr-big/.dice-result` e `.die-ic/.die-num`.
 - **Bestiário (`bestiary.js`):** inimigos com statblocks dinâmicos gerados a partir
   dos atributos do sistema; NPCs com cards de relacionamento.
 - **Jogadores (`players.js`):** gestão dos personagens dos jogadores na campanha.
