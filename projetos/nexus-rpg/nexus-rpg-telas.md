@@ -103,13 +103,29 @@ Canvas de largura fixa **`CANVAS_W = 860`px** (escalado para caber na tela), gri
   `diceBExprExec()` a versão p/ `rollExpr`; resultado atual em destaque
   (`.dice-result`) lendo `diceLog[0]`. CSS novo: `.dice-palette/.dice-type/.dice-pool/
   .dice-chip/.dice-step/.dice-expr-big/.dice-result` e `.die-ic/.die-num`.
+  - **Didático (2026-09-09):** ganhou **atalhos por intenção** (`DICE_PRESETS`: Teste,
+    Ataque, Dano leve/pesado, Sorte %, Clássico — montam e rolam), legenda **“para que
+    serve”** em cada dado (`DICE_USOS`) e **detalhamento do resultado** carta-a-carta
+    (`resultadoDetalhado` lê `diceLog[0].detalhes`, que `logDice` agora guarda): cada
+    valor vira um `.die-face` (máximo = verde, 1 = vermelho, descartado por kh/kl =
+    riscado) e mostra `dados + mod = total`. Card “Como ler os dados” explica a notação.
 - **Bestiário (`bestiary.js`):** inimigos com statblocks dinâmicos gerados a partir
   dos atributos do sistema; NPCs com cards de relacionamento.
 - **Jogadores (`players.js`):** gestão dos personagens dos jogadores na campanha.
 - **Itens da campanha (`campaign-items.js`):** itens específicos da mesa.
-- **Mapa tático (`campaign-map.js`):** upload de imagem (DataURL), grid quadriculado
-  configurável (tamanho em px + toggle) e tokens arrastáveis em percentual relativo
-  (`xPct`/`yPct`) para manter alinhamento em qualquer tela.
+- **Mapa (`campaign-map.js`) — coleção de mapas + temas (2026-09-09):** deixou de ser
+  um mapa único. Agora `campaign.maps` é uma **lista** com `currentMapId`
+  (migração automática do `map` antigo em `sanitizeCampaign`). Cada mapa tem **tipo**
+  (`MAP_KINDS`: Mundo 🌍, Região 🗺️, Local/Cidade 🏘️, Interior/Casa 🏠, Masmorra 🕳️)
+  e **tema visual** (`MAP_THEMES`: Rústico/Natural/Futurista/Sombrio/Limpo — classe
+  `.map-theme-<t>` pinta a grade em branco e tinge o grid). `newMap/curMap/totalPins`
+  em `campaign-model.js`; seletor de mapas (`mapSelector`) + form de criação
+  (`formNovoMapa/criarMapa`, draft em `S.ui.mapDraft`/`S.ui.novoMapa`). Imagem de fundo
+  opcional (`readMapImage`, DataURL) OU construir por cima da grade. **Locais** viraram
+  peças por categoria: paleta `PIN_ICONS` (🏰🏘️🏠⛺🗼⚓🕳️🌲⛰️🌋…) com seleção e
+  `pinToolbar` (ícone/nome/nota/excluir); tokens de criatura com `tokenToolbar`. Pins e
+  tokens arrastáveis em % (`dragMovable` agora recebe callback de clique → `S.ui.pinSel`
+  / `S.ui.tokenSel`). CSS: `.map-selector/.map-chip/.map-opt/.pin-pick/.map-theme-*`.
 - **Log de dados (`campaign-dice.js`):** histórico das últimas ~60 rolagens da mesa
   com data/hora e autor.
 - **Modelo (`campaign-model.js`):** estrutura de dados da campanha (carregado cedo no
