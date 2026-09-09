@@ -2,7 +2,7 @@
 name: nexus-rpg-telas
 description: detalhamento tela a tela do Nexus RPG (auth, 17 abas do Mestre, editor de fichas com 21 blocos, campanha e modo Jogador)
 tags: [proj/nexus-rpg, telas, ui, referencia-tecnica]
-updated: 2026-09-08
+updated: 2026-09-09
 ---
 
 # Nexus RPG — Detalhamento de Todas as Telas
@@ -80,7 +80,17 @@ Canvas de largura fixa **`CANVAS_W = 860`px** (escalado para caber na tela), gri
 - **Undo/Redo:** `pushUndo()` antes de cada mudança; `Ctrl+Z` / `Ctrl+Shift+Z` / `Ctrl+Y`.
 
 ## Suíte de Campanha do Mestre (`src/master/campaign/`)
-- **Dashboard (`dashboard.js`):** visão da mesa e render de blocos de ficha em contexto.
+- **Dashboard (`dashboard.js`) — layout de DOIS menus laterais + DOIS painéis
+  (2026-09-09):** substituiu a antiga fita única de abas no topo. Dois *rails*
+  verticais fixos (`.mrail`): o da **esquerda (índigo)** controla o painel esquerdo
+  — `Painel`, `Sistema`, `Jogadores`, `Bestiário`, `Itens`; o da **direita (âmbar)**
+  controla o painel direito — `Mapa`, `Notas`, `Dados`. Estado separado por lado
+  (`S.mtabL` / `S.mtabR`, inicializados em `state.js`), então dá pra manter **duas
+  seções abertas ao mesmo tempo** (ex.: Jogadores + Notas). Cada painel tem cabeçalho
+  com título e botão **✕** que o fecha (`fecharPainel`), fazendo o outro ocupar a
+  largura inteira; `irMtab(k)` roteia a seção para o lado certo via `sideOf(k)`. CSS
+  em `.mdash2/.mrail/.mpane*` (responsivo: empilha abaixo de 1100px). `painelView`
+  (visão geral) e os botões de atalho do Painel seguem funcionando via `irMtab`.
 - **Bestiário (`bestiary.js`):** inimigos com statblocks dinâmicos gerados a partir
   dos atributos do sistema; NPCs com cards de relacionamento.
 - **Jogadores (`players.js`):** gestão dos personagens dos jogadores na campanha.
