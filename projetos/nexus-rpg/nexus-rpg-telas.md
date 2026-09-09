@@ -155,6 +155,46 @@ Canvas de largura fixa **`CANVAS_W = 860`px** (escalado para caber na tela), gri
   **Locais** continuam como peças por categoria: paleta `PIN_ICONS`
   (🏰🏘️🏠⛺🗼⚓🕳️🌲⛰️🌋…) com `pinToolbar` (ícone/nome/nota/excluir). Pins, peças,
   reinos e tokens arrastáveis em % (`dragMovable` com callback de clique).
+- **Construtor de mapas 3.0 — ferramentas, pincel de terreno e carimbo (2026-09-09):**
+  reformulou a interação do editor em torno de **ferramentas** (`S.ui.mapTool`):
+  - **`mapToolbar`** com 🖱️ **Selecionar** / 🖌️ **Pincel** / 🧽 **Borracha** +
+    **Carimbo** (armado ao escolher uma peça/token). `setTool` troca a ferramenta e
+    limpa seleção/armado.
+  - **Pincel de terreno (estilo Paint)** — o pedido central: canvas raster persistente
+    por mapa (`terrainCanvasFor` guarda `_terr={id,cv}`; migra de `m.terrain` dataURL).
+    `stampTerrain` carimba **bolhas “lumpy”** (`lumpPath`: 16 vértices com raio aleatório,
+    suavizados por curvas quadráticas → borda ondulada, **nunca reta**), preenche com a
+    cor do material, aplica **manchas escuras** (`color2`) e **granulado de ruído**
+    (`noiseTile`, 150² px, `globalCompositeOperation:'overlay'`). Ao arrastar, interpola
+    bolhas ao longo do traço (`step≈raio·0.45`) → o terreno **se conecta** sozinho e a
+    união de traços vira massa orgânica. Borracha = `destination-out`.
+    `TERRAIN_MATERIALS` (grama, mato, terra, trilha, pedra, areia, água, lava, neve,
+    sombra) + tamanho de pincel (`S.ui.brushSize`). Persistência via `toDataURL('png')`
+    no `pointerup` + `persist()` (sem `render()` durante o traço → sem flicker). Canvas
+    `TERRAIN_W×TERRAIN_H = 1000×625`, CSS-escala para caber; coordenadas ponteiro→canvas
+    por `getBoundingClientRect`.
+  - **Carimbo (posicionamento dinâmico)** — clicar numa peça/pin/reino/token **arma**
+    `S.ui.stamp={t,…}` (`armarStamp`); clicar no mapa **posiciona no ponto exato**
+    (`onAreaEmpty`→`colocarStamp`) e **mantém armado** para colocar vários. Acabou o
+    “tudo nasce no centro”. `autoNumber` numera duplicatas (2º Goblin → “Goblin 2”).
+    O canvas de terreno intercepta o clique-no-vazio e delega para `onAreaEmpty`
+    (carimba ou desmarca); peças/tokens acima param a propagação e continuam clicáveis.
+  - **Snap à grade** (`m.grid.snap`, `snapPctX/Y` convertendo célula px→%) no arrasto e
+    no carimbo; toggles **Grade / Encaixar / Nomes** na barra.
+  - **Tokens — visão melhorada:** hover amplia e traz à frente; **rótulos** ligáveis por
+    mapa (`m.showLabels`, classe `.no-labels`, reaparece no hover); **presets de tamanho**
+    (`TOKEN_SIZES`: Miúdo→Enorme) num segmentado; **HP com +/−** e barra sob o token;
+    **marcas de status** (`TOKEN_MARKS` 🩸💤😵…) em anel no canto; imagem/emoji/anel como
+    antes. Peças ganham **z-order** (⬔ frente / ⬓ trás) e duplicar no `propToolbar`.
+  - CSS novo: `.tool-wrap/.tool-bar/.tool-btn/.tool-armed/.tool-opts/.mat-*/.map-terrain/
+    .seg/.map-token-marks` + regras de hover/`.no-labels`/`.painting`. Modelo:
+    `newMap` ganhou `terrain/showLabels/grid.snap`; `newToken` ganhou `marks`; migração
+    em `sanitizeCampaign`.
+  - **Pendências mapeadas (próximos passos):** pan/zoom do canvas p/ mapas grandes;
+    alças de redimensionar/rotacionar direto na peça (hoje via sliders); multi-seleção +
+    copiar/colar + tecla Delete; camadas de terreno separadas por material (hoje é 1
+    raster) e brush “conecta com metaball”; trilha/iniciativa lateral de tokens; peso do
+    `m.terrain` PNG no localStorage (avaliar guardar traços vetoriais em vez de raster).
 - **Log de dados (`campaign-dice.js`):** histórico das últimas ~60 rolagens da mesa
   com data/hora e autor.
 - **Modelo (`campaign-model.js`):** estrutura de dados da campanha (carregado cedo no
