@@ -2,7 +2,7 @@
 name: pokedex
 description: site Pokédex completa (tipos, habilidades, movimentos, status, itens) com gerador de time avançado que analisa cobertura de tipos, sinergia e status gerais
 tags: [projeto, proj/pokedex, site, web, pokeapi, ideia]
-updated: 2026-09-14 (6ª iteração)
+updated: 2026-09-14 (7ª iteração)
 ---
 
 # Pokédex + Gerador de Time
@@ -118,6 +118,31 @@ sugere ajustes.
   clicar num golpe não fazia nada. Corrigido trocando o binding por **delegação de evento**
   no `#mvp-list` (que sobrevive aos re-renders), em vez de religar cada linha a cada
   re-render.
+- **IA local ganha perfil de "time de captura" + corrige race condition (7ª iteração,
+  entregue):** o botão "Enviar time para a IA" tinha um bug — clicar logo depois de digitar
+  a meta rodava a análise com o texto ainda não salvo (o autosave do textarea tem debounce de
+  300ms), então parecia sempre "sem meta declarada". Corrigido: o clique agora salva a meta
+  na hora, sem esperar o debounce. Além disso, `detectMetaProfile` (`js/team.js`) ganhou um
+  ramo dedicado pra **times de captura** (gatilho: "capturar", "false swipe", "investida
+  falsa" no texto da meta) — em vez de julgar por ofensivo/bulk/velocidade (irrelevante pra
+  esse estilo), a nova função `aiVerdictCapture` verifica se o time tem **Investida Falsa**
+  (chip damage sem nocautear) e um **golpe de paralisia/sono** (Paralisar, Hipnose, Esporo
+  etc.) entre os golpes escolhidos dos membros.
+- **Correção: busca de golpe não encontrava nada com espaço (7ª iteração, corrigido):** os
+  nomes de golpe na PokéAPI vêm com hífen (`false-swipe`), mas o treinador digita com espaço
+  ("false swipe") — a busca comparava direto sem normalizar, então nunca batia. Corrigido nos
+  dois lugares que buscam golpe por nome: seletor de golpes do time (`filteredMoves`) e tabela
+  de movimentos da ficha (`drawMoves`, `js/pokedex.js`), com um helper `normSearch` que trata
+  hífen e espaço como equivalentes.
+- **Mega evolução no construtor de time (7ª iteração, entregue):** Pokémon com mega evolução
+  (detectado via `species.varieties` da PokéAPI, mesma técnica das formas na ficha) ganham um
+  seletor **"💎 Mega pedra"** no editor de membro (`js/team.js: ensureMegaForms`,
+  `loadMegaForms`, `selectMega`), com as opções encontradas (ex. Mega X / Mega Y do
+  Charizard). Escolher uma mega busca os dados reais daquela forma (`window.API.getPokemon`)
+  e passa a usar o sprite, os **tipos** (Mega Charizard X vira Fogo/Dragão, não mais
+  Fogo/Voador) e os **status base** dela em tudo — card do slot, cabeçalho do editor, status
+  finais (`finalStats`) e o motor de análise (`analyze`) — via um helper `activeForm(m)` que
+  resolve pra mega escolhida (se já carregada) ou a forma normal.
 - **Pendências (próximos passos):** criar repo remoto no GitHub + deploy (Pages); item
   segurado por seleção de lista real (hoje é campo de texto livre); páginas dedicadas de
   habilidades/itens; gerador automático de time por objetivo (hoje só avalia e dá parecer
