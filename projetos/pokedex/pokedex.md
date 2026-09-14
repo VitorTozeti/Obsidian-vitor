@@ -2,7 +2,7 @@
 name: pokedex
 description: site Pokédex completa (tipos, habilidades, movimentos, status, itens) com gerador de time avançado que analisa cobertura de tipos, sinergia e status gerais
 tags: [projeto, proj/pokedex, site, web, pokeapi, ideia]
-updated: 2026-09-14 (4ª iteração)
+updated: 2026-09-14 (5ª iteração)
 ---
 
 # Pokédex + Gerador de Time
@@ -82,10 +82,32 @@ sugere ajustes.
   como uma linha de sprites clicáveis com setas indicando a condição (nível, item, troca,
   felicidade, tipo de golpe conhecido etc.) — lida com ramificações simples (ex. Eeveelutions)
   empilhando os estágios verticalmente. Clicar num estágio abre a ficha dele.
+- **Ficha com visual "hero" (5ª iteração, entregue):** o cabeçalho da ficha (modal ao clicar
+  num Pokémon) foi redesenhado — `.detail-head` virou `.detail-hero`, com nome bem maior
+  (32px), badges de tipo maiores/mais legíveis e o botão **"＋ Adicionar ao time"** destacado
+  logo abaixo do nome (antes ficava mais escondido no meio do bloco). Fundo com glow radial
+  na cor do tipo primário (`--hero-c`, via `style` inline por Pokémon).
+- **Preencher movimentos automaticamente (5ª iteração, entregue):** no editor de membro do
+  time, botão **"🎲 Preencher automaticamente"** (`js/team.js: autoFillMoves`) que escolhe
+  golpes para os slots vazios usando os dados já enriquecidos em cache (mesmo golpe de
+  dano/STAB, ordenado por poder; no máx. 1 golpe de status) — resolve a fricção de montar
+  moveset golpe a golpe manualmente. Precisa que o enriquecimento em segundo plano (que já
+  roda ao abrir o editor) tenha terminado; se não, avisa por toast pra tentar de novo.
+- **Meta do time + "IA" local gratuita para avaliar o time (5ª iteração, entregue):** cada
+  time agora tem um campo de **meta/objetivo** (`team.meta`, texto livre + atalhos rápidos:
+  ofensivo/hyper offense, defensivo/stall, balanceado, trick room, chuva, sol). Um novo
+  motor **100% client-side, sem API/chave/custo** (`detectMetaProfile` + `aiVerdict` em
+  `js/team.js`) lê a meta declarada (por palavras-chave) e cruza com os números já calculados
+  pela análise (cobertura, fraquezas compartilhadas, completude do moveset, perfil de
+  ofensivo/bulk/velocidade) para dar uma **nota 0–10** e um parecer em português (pontos
+  fortes/a melhorar) sobre se o time está bom **para a meta declarada**. É deixado claro na UI
+  que não é um LLM, é um motor de regras — daí ser "gratuito" de verdade (roda no navegador
+  do usuário, sem servidor).
 - **Pendências (próximos passos):** criar repo remoto no GitHub + deploy (Pages); item
   segurado por seleção de lista real (hoje é campo de texto livre); páginas dedicadas de
-  habilidades/itens; gerador automático de time por objetivo; layout de árvore evolutiva
-  ainda é aproximado em ramificações complexas (não desenha um grafo real).
+  habilidades/itens; gerador automático de time por objetivo (hoje só avalia e dá parecer
+  sobre a meta declarada, não monta o time sozinho); layout de árvore evolutiva ainda é
+  aproximado em ramificações complexas (não desenha um grafo real).
 
 ## Funcionalidades principais
 
