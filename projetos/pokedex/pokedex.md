@@ -2,7 +2,7 @@
 name: pokedex
 description: site Pokédex completa (tipos, habilidades, movimentos, status, itens) com gerador de time avançado que analisa cobertura de tipos, sinergia e status gerais
 tags: [projeto, proj/pokedex, site, web, pokeapi, ideia]
-updated: 2026-09-14 (5ª iteração)
+updated: 2026-09-14 (6ª iteração)
 ---
 
 # Pokédex + Gerador de Time
@@ -103,6 +103,21 @@ sugere ajustes.
   fortes/a melhorar) sobre se o time está bom **para a meta declarada**. É deixado claro na UI
   que não é um LLM, é um motor de regras — daí ser "gratuito" de verdade (roda no navegador
   do usuário, sem servidor).
+- **Análise da IA sob demanda, não automática (6ª iteração, entregue):** o parecer da "IA
+  local" deixou de recalcular sozinho a cada tecla/EV/golpe alterado — agora só roda quando
+  o treinador clica **"📤 Enviar time para a IA"** (na caixa de meta) ou **"📤 Enviar de
+  novo"** (no próprio cartão de resultado). O resultado fica cacheado por time
+  (`aiRuns[teamId]` em memória, em `js/team.js`) junto com um "snapshot" dos números da
+  análise no momento do envio; se o time mudar depois, o cartão mostra um aviso amarelo de
+  **desatualizado** (`.ai-stale-note`) até o treinador enviar de novo. Antes do primeiro
+  envio, o cartão mostra um estado vazio explicando o que fazer.
+- **Correção: clique nos golpes filtrados não funcionava (6ª iteração, corrigido):** no
+  seletor de golpes do editor de time, buscar ou filtrar por método recriava a lista
+  (`renderMoveList` via `innerHTML`) e as novas linhas ficavam **sem o listener de clique**
+  — só as linhas do primeiro render (sem filtro) tinham `onclick`, então filtrar e depois
+  clicar num golpe não fazia nada. Corrigido trocando o binding por **delegação de evento**
+  no `#mvp-list` (que sobrevive aos re-renders), em vez de religar cada linha a cada
+  re-render.
 - **Pendências (próximos passos):** criar repo remoto no GitHub + deploy (Pages); item
   segurado por seleção de lista real (hoje é campo de texto livre); páginas dedicadas de
   habilidades/itens; gerador automático de time por objetivo (hoje só avalia e dá parecer
