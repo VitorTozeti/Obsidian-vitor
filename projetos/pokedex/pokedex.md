@@ -43,6 +43,21 @@ sugere ajustes.
 - **Layout:** aba **Time** e aba **Tipos** centralizadas.
 - **Telas entregues:** **Pokédex** (grid + busca + filtro tipo/geração + ficha modal com
   movimentos filtráveis), **Tipos** (efetividade 18×18) e **Time** (construtor + análise).
+- **Redesign visual (3ª iteração, entregue):** nova paleta "Pokédex de bolso" — vermelho-cristal
+  (`--accent #ff3b5c`) como acento principal e âmbar (`--gold #ffb020`) como secundário, painéis
+  em vidro fosco com gradientes sutis, topbar com glassmorphism, botões com gradiente, barras de
+  status e EV com gradiente vermelho→âmbar, cards com glow ao hover. CSS totalmente reescrito em
+  `css/styles.css` (mesmas classes reaproveitadas onde possível).
+- **Múltiplos times (3ª iteração, entregue):** o construtor deixou de guardar 1 time único e
+  passou a guardar uma **lista de times** (`poke:teams:v1` = `{teams:[{id,name,members}], active}`,
+  com migração automática do antigo `poke:team:v2`). Seletor de times no topo da aba **Time**:
+  criar (＋), renomear (✎, via prompt) e excluir (✕, não deixa remover o último) — cada time tem
+  até 6 membros próprios, construídos e analisados independentemente.
+- **Seletor de golpes rico (3ª iteração, entregue):** os 4 slots de movimento do editor deixaram
+  de ser `<select>` simples e viraram um **popover com busca + filtro por método** (Nível/MT-HM/
+  Ovo/Tutor), listando cada golpe já com **tipo, categoria e poder** (os detalhes de todos os
+  golpes do Pokémon em edição são pré-carregados em segundo plano ao abrir o editor — cache em
+  memória por nome de Pokémon — para a lista já nascer rica, sem esperar clique a clique).
 - **Pendências (próximos passos):** criar repo remoto no GitHub + deploy (Pages); item
   segurado por seleção de lista real (hoje é campo de texto livre); páginas dedicadas de
   habilidades/itens; gerador automático de time por objetivo.
