@@ -27,14 +27,25 @@ sugere ajustes.
 - **Eficiência / fair-use resolvido:** em vez de 1 request por Pokémon só p/ saber o tipo,
   o app busca os **18 endpoints `/type` uma única vez** e monta um índice nome→tipos de
   TODOS os Pokémon; lista completa em 1 request; ficha só sob demanda. Tudo em `localStorage`.
-- **Motor de análise (o diferencial) — entregue:** cobertura ofensiva por STAB (tipos sem
-  golpe super-efetivo), fraquezas compartilhadas (tipos que ferem 2+ membros), perfil de
-  status (ofensivo/bulk/velocidade) com leitura de estilo, sugestões e matriz defensiva 18×18.
-- **Telas entregues:** aba **Pokédex** (grid + busca + filtro tipo/geração + ficha modal),
-  aba **Tipos** (tabela de efetividade 18×18) e aba **Time** (montagem até 6 + análise).
-- **Pendências (próximos passos):** criar repo remoto no GitHub + deploy (Pages); páginas
-  dedicadas de habilidades/movimentos/itens (hoje habilidades/movimentos aparecem só na
-  ficha); gerador automático de time por objetivo.
+- **Time = construtor competitivo (2ª iteração, entregue):** cada membro é montado "de
+  verdade" — **habilidade**, **nature** (25, com +10%/−10%), **nível**, **EVs (0–252, teto
+  510) e IVs (0–31)** que **calculam os status finais** (fórmula Gen 3+ em `calcStat`) e
+  **4 movimentos** escolhidos entre os que o Pokémon aprende (dropdowns agrupados por método,
+  com nível). Editor abre ao clicar no membro. Chave nova de storage: `poke:team:v2`.
+- **Motor de análise (o diferencial) — entregue e refinado:** a **cobertura ofensiva agora
+  usa os TIPOS DOS GOLPES de dano escolhidos** (fallback = STAB do Pokémon quando o membro
+  ainda não tem golpes). Mais: fraquezas compartilhadas (tipos que ferem 2+ membros), perfil
+  de status pelas **médias dos status finais**, leitura de estilo, sugestões e matriz 18×18.
+- **Pokédex — movimentos ricos (entregue):** a ficha mostra os movimentos numa **tabela**
+  com tipo, **categoria** (Físico/Especial/Status), poder, precisão, PP e **como aprende**
+  (Nível X / MT-HM / Ovo / Tutor), com **filtros** (método, tipo, categoria e busca). Detalhe
+  de cada golpe é buscado sob demanda (enxuto) e cacheado — ver [[pokedex-dados]].
+- **Layout:** aba **Time** e aba **Tipos** centralizadas.
+- **Telas entregues:** **Pokédex** (grid + busca + filtro tipo/geração + ficha modal com
+  movimentos filtráveis), **Tipos** (efetividade 18×18) e **Time** (construtor + análise).
+- **Pendências (próximos passos):** criar repo remoto no GitHub + deploy (Pages); item
+  segurado por seleção de lista real (hoje é campo de texto livre); páginas dedicadas de
+  habilidades/itens; gerador automático de time por objetivo.
 
 ## Funcionalidades principais
 

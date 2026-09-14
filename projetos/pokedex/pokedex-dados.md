@@ -15,10 +15,13 @@ Mapa de **localização** dos dados do [[pokedex]] (não é regra de negócio �
   GitHub ainda (criar depois para deploy no Pages).
 - **Estrutura:** `index.html`, `css/styles.css`, `js/{types,api,pokedex,team,app}.js`,
   `README.md`. Site 100% estático, sem dependências/build.
-  - `js/types.js` — 18 tipos (id/PT/cor) + **tabela de efetividade embutida** + faixas de geração.
-  - `js/api.js` — PokéAPI + cache; monta o índice de tipos.
-  - `js/pokedex.js` — grid, busca/filtros, ficha modal.
-  - `js/team.js` — montador de time + motor de análise.
+  - `js/types.js` — 18 tipos (id/PT/cor) + **tabela de efetividade embutida** + faixas de
+    geração + **25 naturezas** + rótulos de status + **`calcStat`** (fórmula de status Gen 3+).
+  - `js/api.js` — PokéAPI + cache; índice de tipos; **`getMove` (detalhe enxuto)**,
+    **`normalizeMoves`** (junta métodos/nível) e **`enrichMoves`** (lotes com concorrência).
+  - `js/pokedex.js` — grid, busca/filtros, ficha modal e **tabela de movimentos filtrável**.
+  - `js/team.js` — **construtor competitivo** (habilidade/nature/nível/EVs/IVs/4 golpes) +
+    motor de análise (cobertura pelos tipos dos golpes).
   - `js/app.js` — boot, abas, tela de Tipos.
 - **Rodar sem Node:** `python -m http.server 8080` na pasta, ou abrir `index.html` direto.
 
@@ -51,8 +54,11 @@ Mapa de **localização** dos dados do [[pokedex]] (não é regra de negócio �
 - `list` — lista id+nome de todos os Pokémon (1 request).
 - `typeIndex` — índice nome→tipos montado dos 18 `/type` (evita 1 request por Pokémon).
 - `type:{t}`, `pokemon:{id}`, `species:{id}`, `evo:{id}`, `ability:{id}` — respostas cruas.
-- Time do usuário: `poke:team:v1` (fora do cache da API; preservado ao "Limpar cache").
-- Ao estourar a cota, o app limpa os `pokemon:*` e tenta de novo (ver `cacheSet` em api.js).
+- `movei:{nome}` — detalhe **enxuto** do movimento (tipo, categoria, poder, precisão, PP),
+  usado na tabela de movimentos da ficha e para descobrir o tipo dos golpes do time.
+- Time do usuário: `poke:team:v2` (estrutura nova com build; fora do cache da API, preservado
+  ao "Limpar cache").
+- Ao estourar a cota, o app limpa `pokemon:*` **e `movei:*`** e tenta de novo (`cacheSet`).
 
 ## Dados embutidos no app (não vêm de API)
 
