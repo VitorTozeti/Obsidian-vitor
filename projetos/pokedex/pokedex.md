@@ -15,16 +15,26 @@ sugere ajustes.
 
 ## Estado atual (2026-09-14)
 
-- **Fase:** ideia registrada — ainda **sem repositório** no disco e sem código. Próximo
-  passo é escolher a stack e fazer a prova de conceito consumindo a [[pokedex-dados|PokéAPI]].
-- **Fonte de dados definida:** **PokéAPI** (`https://pokeapi.co/api/v2`) — gratuita, sem
-  chave, cobre 1350+ Pokémon, tipos, habilidades, movimentos, itens, cadeias de evolução e
-  sprites. Detalhes de endpoints em [[pokedex-dados]].
-- **Ponto de atenção:** a PokéAPI pede **cache** (dados estáticos, política de *fair use*).
-  O plano é cachear no cliente e/ou pré-baixar o dataset, nunca marteladas de request.
-- **Diferencial do projeto:** não é só uma Pokédex de consulta — o **motor de análise de
-  time** (matriz de fraquezas/resistências por tipo + leitura de status agregados) é o que
-  agrega valor. Ver "Motor de análise de time" abaixo.
+- **Fase:** **v1 construída, rodando e testada no navegador.** Repositório real em
+  `C:\Users\v.tozeti\Desktop\Vitor\teste\poke` (git local iniciado, **sem remoto ainda**).
+  Ver localização completa em [[pokedex-dados]].
+- **Decisão de stack:** **site estático em JS puro (zero build)**, não React+Vite. Motivo:
+  o ambiente **não tem Node/npm instalado**, e os demais projetos do vault ([[role-sp]],
+  [[greenfinance]]) já são estáticos e publicam no GitHub Pages. Abre direto no `index.html`
+  ou via `python -m http.server`. (Se um dia instalar Node, dá para migrar para React.)
+- **Fonte de dados:** **PokéAPI** (`https://pokeapi.co/api/v2`) — gratuita, sem chave.
+  Endpoints e estratégia de cache em [[pokedex-dados]].
+- **Eficiência / fair-use resolvido:** em vez de 1 request por Pokémon só p/ saber o tipo,
+  o app busca os **18 endpoints `/type` uma única vez** e monta um índice nome→tipos de
+  TODOS os Pokémon; lista completa em 1 request; ficha só sob demanda. Tudo em `localStorage`.
+- **Motor de análise (o diferencial) — entregue:** cobertura ofensiva por STAB (tipos sem
+  golpe super-efetivo), fraquezas compartilhadas (tipos que ferem 2+ membros), perfil de
+  status (ofensivo/bulk/velocidade) com leitura de estilo, sugestões e matriz defensiva 18×18.
+- **Telas entregues:** aba **Pokédex** (grid + busca + filtro tipo/geração + ficha modal),
+  aba **Tipos** (tabela de efetividade 18×18) e aba **Time** (montagem até 6 + análise).
+- **Pendências (próximos passos):** criar repo remoto no GitHub + deploy (Pages); páginas
+  dedicadas de habilidades/movimentos/itens (hoje habilidades/movimentos aparecem só na
+  ficha); gerador automático de time por objetivo.
 
 ## Funcionalidades principais
 

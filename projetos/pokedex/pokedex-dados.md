@@ -11,8 +11,16 @@ Mapa de **localização** dos dados do [[pokedex]] (não é regra de negócio �
 
 ## Repositório real no disco
 
-- **Ainda não criado.** Projeto em fase de ideia. Quando o repo nascer, registrar aqui o
-  caminho local (`C:\...`) e o repositório GitHub (`VitorTozeti/<repo>`).
+- **Local:** `C:\Users\v.tozeti\Desktop\Vitor\teste\poke` — git iniciado, **sem remoto** no
+  GitHub ainda (criar depois para deploy no Pages).
+- **Estrutura:** `index.html`, `css/styles.css`, `js/{types,api,pokedex,team,app}.js`,
+  `README.md`. Site 100% estático, sem dependências/build.
+  - `js/types.js` — 18 tipos (id/PT/cor) + **tabela de efetividade embutida** + faixas de geração.
+  - `js/api.js` — PokéAPI + cache; monta o índice de tipos.
+  - `js/pokedex.js` — grid, busca/filtros, ficha modal.
+  - `js/team.js` — montador de time + motor de análise.
+  - `js/app.js` — boot, abas, tela de Tipos.
+- **Rodar sem Node:** `python -m http.server 8080` na pasta, ou abrir `index.html` direto.
 
 ## Fonte de dados externa — PokéAPI
 
@@ -35,8 +43,16 @@ Mapa de **localização** dos dados do [[pokedex]] (não é regra de negócio �
 | Item | `/item/{id ou nome}` | itens (held items, evolutivos, etc.) |
 | Geração | `/generation/{id}` | filtrar por geração |
 
-- **Sprites:** URLs vêm dentro de `/pokemon` (`sprites.*`); há também o repositório de
-  sprites `PokeAPI/sprites` no GitHub para uso offline.
+- **Sprites (implementado):** construídos direto do ID, sem chamar a API —
+  `raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{id}.png` (grid/slots) e
+  `.../other/official-artwork/{id}.png` (artwork da ficha).
+
+### Chaves de cache usadas (localStorage, prefixo `poke:v1:`)
+- `list` — lista id+nome de todos os Pokémon (1 request).
+- `typeIndex` — índice nome→tipos montado dos 18 `/type` (evita 1 request por Pokémon).
+- `type:{t}`, `pokemon:{id}`, `species:{id}`, `evo:{id}`, `ability:{id}` — respostas cruas.
+- Time do usuário: `poke:team:v1` (fora do cache da API; preservado ao "Limpar cache").
+- Ao estourar a cota, o app limpa os `pokemon:*` e tenta de novo (ver `cacheSet` em api.js).
 
 ## Dados embutidos no app (não vêm de API)
 

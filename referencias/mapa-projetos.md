@@ -18,7 +18,7 @@ updated: 2026-09-07
 | GreenFinance | `greenfinance` 🟩 #16A34A | `projetos/greenfinance/` | [[greenfinance]] | [[greenfinance-dados]] | `C:\Users\Vitor\Desktop\projetos\greenfinance` (`VitorTozeti/Vitor_finan-as`) | ⭐[[mapa-projetos]] |
 | Nexus RPG | `nexus-rpg` 🟪 #9333EA | `projetos/nexus-rpg/` | [[nexus-rpg]] | [[nexus-rpg-dados]] | `C:\Users\Vitor\Desktop\projetos\The-One-System` (`VitorTozeti/The-One-System`) | ⭐[[mapa-projetos]] |
 | Role SP no trilho | `role-sp` 🟧 #F97316 | `projetos/role-sp/` | [[role-sp]] | [[role-sp-dados]] | `C:\Users\Vitor\Desktop\projetos\Linhas metros e pontos de interesse proj\Roles-na-linha-verde` (`VitorTozeti/Roles-na-linha-verde`) | ⭐[[mapa-projetos]] |
-| Pokédex + Time | `pokedex` 🟥 #DC2626 | `projetos/pokedex/` | [[pokedex]] | [[pokedex-dados]] | (a definir — projeto novo, sem repo ainda) | ⭐[[mapa-projetos]] |
+| Pokédex + Time | `pokedex` 🟥 #DC2626 | `projetos/pokedex/` | [[pokedex]] | [[pokedex-dados]] | `C:\Users\v.tozeti\Desktop\Vitor\teste\poke` (git local, sem remoto) | ⭐[[mapa-projetos]] |
 | Meu Spotify | `meu-spotify` 🟦 #0D9488 | `projetos/meu-spotify/` | [[meu-spotify]] | [[meu-spotify-dados]] | (a definir — projeto novo, sem repo ainda) | ⭐[[mapa-projetos]] |
 
 <!-- Ao passar de um punhado de projetos, quebre em seções por área, ex.:
