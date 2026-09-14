@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "poke-static",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8791", "--directory", "C:/Users/v.tozeti/Desktop/Vitor/teste/poke"],
+      "port": 8791
+    }
+  ]
+}

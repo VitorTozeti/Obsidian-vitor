@@ -2,7 +2,7 @@
 name: pokedex
 description: site Pokédex completa (tipos, habilidades, movimentos, status, itens) com gerador de time avançado que analisa cobertura de tipos, sinergia e status gerais
 tags: [projeto, proj/pokedex, site, web, pokeapi, ideia]
-updated: 2026-09-14
+updated: 2026-09-14 (4ª iteração)
 ---
 
 # Pokédex + Gerador de Time
@@ -58,9 +58,34 @@ sugere ajustes.
   Ovo/Tutor), listando cada golpe já com **tipo, categoria e poder** (os detalhes de todos os
   golpes do Pokémon em edição são pré-carregados em segundo plano ao abrir o editor — cache em
   memória por nome de Pokémon — para a lista já nascer rica, sem esperar clique a clique).
+- **Menu de configurações + 6 paletas de cores (4ª iteração, entregue):** botão de engrenagem
+  na topbar abre um modal (`js/settings.js`, novo módulo `window.Settings`) com **6 temas**
+  (Cristal — padrão, Oceano, Floresta, Elétrico, Sombrio, Fada), cada um um bloco
+  `:root[data-theme="id"]` em `css/styles.css` que sobrescreve as variáveis de cor (accent,
+  glow do fundo, painéis). Escolha persiste em `localStorage` (`poke:theme`) e é aplicada
+  cedo por um `<script>` inline no `<head>` do `index.html` (evita flash da cor errada).
+  Refatorei cores que estavam **hardcoded** (gradiente do fundo, `#e0264a` em botões/abas)
+  para variáveis (`--glow-1/2`, `--accent-strong`) para que os temas alcancem tudo.
+- **EVs/IVs por slider (4ª iteração, entregue):** no editor de membro, os `<input type=number>`
+  de EV (0–252, passo 4) e IV (0–31) viraram **sliders** (`<input type=range>` com estilo
+  customizado via CSS `::-webkit-slider-thumb`/`::-moz-range-thumb`, cor do tema). Arrastar
+  atualiza o valor/total ao vivo (`oninput`, sem re-render pra não perder o thumb); soltar
+  (`onchange`) recalcula o status final e a análise do time.
+- **Formas alternativas — Mega, Gigamax, regionais (4ª iteração, entregue):** a ficha de
+  Pokémon agora lê `species.varieties` da PokéAPI e mostra **chips de forma** (ex.: Charizard
+  → Padrão / Mega X / Mega Y / Gigamax) quando existe mais de uma; clicar troca a ficha
+  inteira (tipos, status, habilidades) para aquela variedade via `openDetail(nomeDaVariante)`.
+  Corrigi de quebra a espécie sempre pela `p.species.name` (antes usava `p.id`, que dava
+  errado pra formas com ID alto, ex. Mega Charizard X = #10034).
+- **Linha evolutiva na ficha (4ª iteração, entregue):** busca a `evolution_chain` da espécie
+  (`API.getEvolutionChain`, já existia e já era cacheada) e renderiza a árvore de evolução
+  como uma linha de sprites clicáveis com setas indicando a condição (nível, item, troca,
+  felicidade, tipo de golpe conhecido etc.) — lida com ramificações simples (ex. Eeveelutions)
+  empilhando os estágios verticalmente. Clicar num estágio abre a ficha dele.
 - **Pendências (próximos passos):** criar repo remoto no GitHub + deploy (Pages); item
   segurado por seleção de lista real (hoje é campo de texto livre); páginas dedicadas de
-  habilidades/itens; gerador automático de time por objetivo.
+  habilidades/itens; gerador automático de time por objetivo; layout de árvore evolutiva
+  ainda é aproximado em ramificações complexas (não desenha um grafo real).
 
 ## Funcionalidades principais
 
