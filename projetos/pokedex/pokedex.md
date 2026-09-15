@@ -2,7 +2,7 @@
 name: pokedex
 description: site Pokédex completa (tipos, habilidades, movimentos, status, itens) com gerador de time avançado que analisa cobertura de tipos, sinergia e status gerais
 tags: [projeto, proj/pokedex, site, web, pokeapi, ideia]
-updated: 2026-09-14 (7ª iteração)
+updated: 2026-09-14 (7ª iteração + registro do remoto/Pages)
 ---
 
 # Pokédex + Gerador de Time
@@ -16,7 +16,9 @@ sugere ajustes.
 ## Estado atual (2026-09-14)
 
 - **Fase:** **v1 construída, rodando e testada no navegador.** Repositório real em
-  `C:\Users\v.tozeti\Desktop\Vitor\teste\poke` (git local iniciado, **sem remoto ainda**).
+  `C:\Users\v.tozeti\Desktop\Vitor\teste\poke`, **agora com remoto no GitHub**
+  (`https://github.com/VitorTozeti/Vitor-Pokemon`) e **workflow de deploy do GitHub Pages**
+  já commitado (`.github/workflows/jekyll-gh-pages.yml`, Jekyll padrão — serve o estático).
   Ver localização completa em [[pokedex-dados]].
 - **Decisão de stack:** **site estático em JS puro (zero build)**, não React+Vite. Motivo:
   o ambiente **não tem Node/npm instalado**, e os demais projetos do vault ([[role-sp]],
@@ -143,11 +145,13 @@ sugere ajustes.
   Fogo/Voador) e os **status base** dela em tudo — card do slot, cabeçalho do editor, status
   finais (`finalStats`) e o motor de análise (`analyze`) — via um helper `activeForm(m)` que
   resolve pra mega escolhida (se já carregada) ou a forma normal.
-- **Pendências (próximos passos):** criar repo remoto no GitHub + deploy (Pages); item
-  segurado por seleção de lista real (hoje é campo de texto livre); páginas dedicadas de
-  habilidades/itens; gerador automático de time por objetivo (hoje só avalia e dá parecer
-  sobre a meta declarada, não monta o time sozinho); layout de árvore evolutiva ainda é
-  aproximado em ramificações complexas (não desenha um grafo real).
+- **Pendências (próximos passos):** ~~criar repo remoto no GitHub + deploy (Pages)~~ **feito**
+  (remoto `VitorTozeti/Vitor-Pokemon` + workflow Pages commitado 2026-09-14; falta só
+  confirmar que a página publicada está no ar e linkar a URL do Pages aqui); item segurado por
+  seleção de lista real (hoje é campo de texto livre); páginas dedicadas de habilidades/itens;
+  gerador automático de time por objetivo (hoje só avalia e dá parecer sobre a meta declarada,
+  não monta o time sozinho); layout de árvore evolutiva ainda é aproximado em ramificações
+  complexas (não desenha um grafo real).
 
 ## Funcionalidades principais
 

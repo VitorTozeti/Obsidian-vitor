@@ -11,9 +11,10 @@ Mapa de **localização** dos dados do [[pokedex]] (não é regra de negócio �
 
 ## Repositório real no disco
 
-- **Local:** `C:\Users\v.tozeti\Desktop\Vitor\teste\poke` — git iniciado, **sem remoto** no
-  GitHub ainda (criar depois para deploy no Pages).
-- **Estrutura:** `index.html`, `css/styles.css`, `js/{types,api,pokedex,team,app}.js`,
+- **Local:** `C:\Users\v.tozeti\Desktop\Vitor\teste\poke` — git com **remoto**
+  `https://github.com/VitorTozeti/Vitor-Pokemon` (branch `main`) e **workflow de Pages**
+  em `.github/workflows/jekyll-gh-pages.yml` (Jekyll padrão, publica o estático).
+- **Estrutura:** `index.html`, `css/styles.css`, `js/{types,api,pokedex,team,app,settings}.js`,
   `README.md`. Site 100% estático, sem dependências/build.
   - `js/types.js` — 18 tipos (id/PT/cor) + **tabela de efetividade embutida** + faixas de
     geração + **25 naturezas** + rótulos de status + **`calcStat`** (fórmula de status Gen 3+).
