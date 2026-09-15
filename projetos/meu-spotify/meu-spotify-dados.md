@@ -56,6 +56,15 @@ permite e como guardar offline. (Regra de negócio/decisões ficam no hub.)
   em `src/audius/client.ts`, `src/components/Player.tsx` e `src/pages/Search.tsx`. API de
   `sdk({ appName })` e `tracks.searchTracks({ query })` (retorna `{ data: Track[] }`)
   continuam iguais. Commit `120b5b2` enviado direto pra `main`.
+- **`tsc -b` falhando (5 erros) — bug encontrado e corrigido (2026-09-15, commit `49b1b81`):**
+  depois do fix do SDK, o build revelou que o método certo pra stream **não é**
+  `tracks.getTrackStreamUrl` (não existe no tipo que `sdk()` expõe) e **sim**
+  `tracks.streamTrack({ trackId })`, que retorna `{ data: string }` (a URL fica em `.data`).
+  Também corrigido: `TrackArtwork` usa a chave `_150x150` (com underscore), não `'150x150'`;
+  em `Player.tsx` o `currentTrack` precisou ser capturado numa `const` local antes do closure
+  assíncrono pro TypeScript manter o narrowing de not-null; em `Downloads.tsx` a função
+  `play()` esperava `DownloadedTrack` mas o `TrackRow` só garante passar `Track` — mudou pra
+  receber `Track` e buscar o `DownloadedTrack` correspondente na lista pelo `id`.
 
 ## APIs de música (fontes candidatas)
 
