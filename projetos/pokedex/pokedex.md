@@ -2,7 +2,7 @@
 name: pokedex
 description: site Pokédex completa (tipos, habilidades, movimentos, status, itens) com gerador de time avançado que analisa cobertura de tipos, sinergia e status gerais
 tags: [projeto, proj/pokedex, site, web, pokeapi, ideia]
-updated: 2026-09-14 (7ª iteração + registro do remoto/Pages)
+updated: 2026-09-15 (8ª iteração: itens, import/export Showdown, calc de dano, redesign+modo claro)
 ---
 
 # Pokédex + Gerador de Time
@@ -145,13 +145,50 @@ sugere ajustes.
   Fogo/Voador) e os **status base** dela em tudo — card do slot, cabeçalho do editor, status
   finais (`finalStats`) e o motor de análise (`analyze`) — via um helper `activeForm(m)` que
   resolve pra mega escolhida (se já carregada) ou a forma normal.
+- **Itens de verdade — catálogo curado + no motor de análise (8ª iteração, entregue):** o item
+  deixou de ser campo de texto livre. Novo `js/items.js` (`window.ITEMS`) traz ~43 itens
+  competitivos curados (id = slug da PokéAPI p/ o sprite em `sprites/items/{id}.png`), cada um
+  com rótulo PT, categoria, efeito e — o diferencial — anotações que o motor lê: `mod`
+  (multiplicadores de status finais: Choice Scarf ×1.5 Vel, Choice Band ×1.5 Atk, Assault Vest
+  ×1.5 Def.Esp., Eviolite ×1.5 Def/Def.Esp.), `dmg/se/phys/spec` (Life Orb, Expert Belt, Muscle
+  Band, Wise Glasses) usados pela calc de dano, e flags `locks`/`blocksStatus`/`nfeOnly`. No
+  editor do time o campo virou um **seletor rico** (busca + filtro por categoria + ícone +
+  efeito), o item aparece no card do slot, e a análise agrega os **status já ajustados pelo
+  item** (`adjustedStats`). Novo cartão de **coerência de item** nas sugestões +
+  penalização na nota da IA: Colete de Combate + golpe de status, item Choice + status/setup,
+  item ofensivo sem golpe de dano, Eviolite em mega — tudo detectado sem fetch extra.
+- **Import/Export no formato Pokémon Showdown + compartilhar por URL (8ª iteração, entregue):**
+  novo `js/tools.js` (`window.PokeTools`). **Exportar** gera o texto padrão Showdown do time
+  ativo (Species @ Item / Ability / Level / EVs / Nature / IVs / - Golpes). **Importar** parseia
+  um time colado (parser tolerante a nickname, gênero, linhas extras) e monta um **time novo**,
+  resolvendo espécie via `getPokemon`, mapeando nome→slug de item/golpe/nature e enriquecendo
+  tipo/categoria dos golpes escolhidos p/ a análise nascer correta (`Team.importSets`).
+  **Compartilhar** codifica o texto Showdown em base64 no `#hash` da URL (sem backend); ao abrir
+  um link com `#team=…` o app oferece importar. Botões na barra da aba Time.
+- **Calculadora de dano (8ª iteração, entregue):** modal `🧮 Dano` (em `js/tools.js`) com a
+  **fórmula oficial Gen 3+**: escolhe atacante, golpe de dano e alvo (todos do time ativo),
+  usa os **status finais já ajustados por item**, aplica STAB, efetividade de tipo e itens de
+  dano (Life Orb ×1.3, Expert Belt ×1.2 em SE, Muscle Band/Wise Glasses ×1.1), e mostra faixa
+  de dano mín–máx, % do HP do alvo, barra visual e leitura de nocaute (OHKO garantido / possível
+  / nº de golpes). Deixa claro que é estimativa (sem habilidades/clima/campo/telas/boosts).
+- **Redesign profissional + responsividade + MODO CLARO (8ª iteração, entregue):** o `settings.js`
+  ganhou um 2º eixo independente do acento — **modo de exibição** (Escuro / Claro / Automático =
+  segue `prefers-color-scheme`), salvo em `poke:mode` e aplicado por `data-mode` (script inline no
+  `<head>` evita flash). O CSS separou variáveis **estruturais** (fundo/painéis/texto/linha,
+  agora via `--topbar-bg`/`--overlay` também) das de **acento**: um bloco `:root[data-mode="light"]`
+  (depois das paletas, pra vencer por ordem) reescreve só as estruturais → qualquer paleta funciona
+  em claro e escuro. **+2 paletas** (Brasa, Aurora → 8 no total). Responsividade real com breakpoints
+  880/720/560/400px (topbar/abas, barra de ferramentas em grade, slots e grid adaptáveis, modais e
+  editor empilhando), `color-scheme` correto e respeito a `prefers-reduced-motion`.
 - **Pendências (próximos passos):** ~~criar repo remoto no GitHub + deploy (Pages)~~ **feito**
   (remoto `VitorTozeti/Vitor-Pokemon` + workflow Pages commitado 2026-09-14; falta só
-  confirmar que a página publicada está no ar e linkar a URL do Pages aqui); item segurado por
-  seleção de lista real (hoje é campo de texto livre); páginas dedicadas de habilidades/itens;
-  gerador automático de time por objetivo (hoje só avalia e dá parecer sobre a meta declarada,
-  não monta o time sozinho); layout de árvore evolutiva ainda é aproximado em ramificações
-  complexas (não desenha um grafo real).
+  confirmar que a página publicada está no ar e linkar a URL do Pages aqui);
+  ~~item por seleção de lista real (era campo de texto livre)~~ **feito (8ª it.)**;
+  **página dedicada de itens no menu principal** (o catálogo `items.js` já existe, falta a tela
+  de consulta) e **páginas de habilidades**; gerador automático de time por objetivo (hoje só
+  avalia e dá parecer sobre a meta declarada, não monta o time sozinho); a calc de dano ainda
+  não considera habilidades/clima/campo/telas/boosts; layout de árvore evolutiva ainda é
+  aproximado em ramificações complexas (não desenha um grafo real).
 
 ## Funcionalidades principais
 

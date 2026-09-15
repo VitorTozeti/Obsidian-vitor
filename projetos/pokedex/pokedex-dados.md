@@ -2,7 +2,7 @@
 name: pokedex-dados
 description: onde os dados vivem no projeto Pokédex — PokéAPI (endpoints usados), estratégia de cache/pré-download, tabela de tipos embutida e repositório
 tags: [projeto, proj/pokedex, dados, pokeapi, api]
-updated: 2026-09-14
+updated: 2026-09-15 (itens.js, tools.js, modo claro)
 ---
 
 # Pokédex — Onde os dados vivem
@@ -14,10 +14,18 @@ Mapa de **localização** dos dados do [[pokedex]] (não é regra de negócio �
 - **Local:** `C:\Users\v.tozeti\Desktop\Vitor\teste\poke` — git com **remoto**
   `https://github.com/VitorTozeti/Vitor-Pokemon` (branch `main`) e **workflow de Pages**
   em `.github/workflows/jekyll-gh-pages.yml` (Jekyll padrão, publica o estático).
-- **Estrutura:** `index.html`, `css/styles.css`, `js/{types,api,pokedex,team,app,settings}.js`,
-  `README.md`. Site 100% estático, sem dependências/build.
+- **Estrutura:** `index.html`, `css/styles.css`,
+  `js/{types,items,api,pokedex,team,tools,app,settings}.js`, `README.md`.
+  Site 100% estático, sem dependências/build.
   - `js/types.js` — 18 tipos (id/PT/cor) + **tabela de efetividade embutida** + faixas de
     geração + **25 naturezas** + rótulos de status + **`calcStat`** (fórmula de status Gen 3+).
+  - `js/items.js` — **catálogo curado de ~43 itens de segurar** (`window.ITEMS`/`ITEM_BY_ID`):
+    id=slug PokéAPI (p/ sprite `sprites/items/{id}.png`), PT, categoria, efeito e as anotações
+    lidas pelo motor/calc (`mod`, `dmg`, `se`, `phys`, `spec`, `locks`, `blocksStatus`, `nfeOnly`).
+    Itens NÃO vêm da API — é lista fixa embutida (como a tabela de tipos), só o sprite é remoto.
+  - `js/tools.js` — **ferramentas do teambuilder** (`window.PokeTools`): export/import no formato
+    **Pokémon Showdown**, **compartilhar por URL** (time em base64 no `#hash`, sem backend) e
+    **calculadora de dano** (fórmula oficial + itens de dano). Usa a API pública de `Team`.
   - `js/api.js` — PokéAPI + cache; índice de tipos; **`getMove` (detalhe enxuto)**,
     **`normalizeMoves`** (junta métodos/nível) e **`enrichMoves`** (lotes com concorrência).
   - `js/pokedex.js` — grid, busca/filtros, ficha modal e **tabela de movimentos filtrável**.
@@ -57,8 +65,10 @@ Mapa de **localização** dos dados do [[pokedex]] (não é regra de negócio �
 - `type:{t}`, `pokemon:{id}`, `species:{id}`, `evo:{id}`, `ability:{id}` — respostas cruas.
 - `movei:{nome}` — detalhe **enxuto** do movimento (tipo, categoria, poder, precisão, PP),
   usado na tabela de movimentos da ficha e para descobrir o tipo dos golpes do time.
-- Time do usuário: `poke:team:v2` (estrutura nova com build; fora do cache da API, preservado
-  ao "Limpar cache").
+- Time do usuário: `poke:teams:v1` (lista de times; migra do antigo `poke:team:v2`). Cada
+  membro guarda `build.item` = **id do item** do catálogo (ou texto livre antigo migrado).
+  Fora do cache da API, preservado ao "Limpar cache".
+- Preferências de UI: `poke:theme` (paleta de acento) e `poke:mode` (modo claro/escuro/auto).
 - Ao estourar a cota, o app limpa `pokemon:*` **e `movei:*`** e tenta de novo (`cacheSet`).
 
 ## Dados embutidos no app (não vêm de API)
