@@ -47,6 +47,15 @@ permite e como guardar offline. (Regra de negócio/decisões ficam no hub.)
   precisa estar em **"GitHub Actions"** (não "Deploy from a branch") pro novo workflow
   assumir a publicação — não deu pra confirmar isso automaticamente (sem `gh` CLI/sessão
   logada disponível nesta máquina).
+- **`npm install` falhando (ETARGET) — bug encontrado e corrigido (2026-09-15):** a versão
+  `@audius/sdk@^7.4.0` escrita à mão na Fase 1 **nunca existiu** no npm — o pacote pulou de
+  versões `0.x`/hotfix/beta pra `7.1.0`/`7.1.1` e depois direto pra `8.0.1`+, sem nenhum
+  `7.4.x`. **Correção:** atualizado pra `^16.0.0` (última versão estável, confirmada via
+  registry). Único breaking change relevante pro código atual: `tracks.getTrackStreamUrl()`
+  passou a ser **assíncrono** (`Promise<string>`, antes retornava `string` direto) — ajustado
+  em `src/audius/client.ts`, `src/components/Player.tsx` e `src/pages/Search.tsx`. API de
+  `sdk({ appName })` e `tracks.searchTracks({ query })` (retorna `{ data: Track[] }`)
+  continuam iguais. Commit `120b5b2` enviado direto pra `main`.
 
 ## APIs de música (fontes candidatas)
 
