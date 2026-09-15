@@ -2,7 +2,7 @@
 name: meu-spotify
 description: app pessoal de música tipo Spotify, de graça, usando APIs gratuitas, com escuta offline (salvando as faixas localmente) — só para uso próprio
 tags: [projeto, proj/meu-spotify, app, musica, offline, ideia]
-updated: 2026-09-14
+updated: 2026-09-15
 ---
 
 # Meu Spotify (player pessoal offline)
@@ -13,8 +13,13 @@ dispositivo. Uso estritamente pessoal.
 
 ## Estado atual (2026-09-14)
 
-- **Fase:** ideia registrada + **análise de viabilidade feita** (ver abaixo). Sem repo, sem
-  código ainda.
+- **Fase:** **Fase 1 (scaffold) aplicada** no repo `spotify-vitor` — PWA React+Vite+TS com
+  navegação (Buscar/Biblioteca/Baixadas/Playlist), player global (Zustand), busca e stream
+  via Audius SDK, download para IndexedDB (`idb`) e import de arquivos locais. Ainda não
+  testado rodando (Node.js não estava instalado na máquina no momento da criação — falta
+  `npm install` + `npm run dev` para validar no navegador). Faltam: Service Worker/PWA
+  installable, playlists persistidas, favoritos na UI, metadados extras (Deezer/Spotify).
+  Detalhes técnicos e plano de fases completo em [[meu-spotify-dados]].
 - **Veredito de viabilidade:** **é possível — com uma ressalva importante sobre o catálogo.**
   Um app grátis, com escuta offline, é totalmente factível **desde que a música venha de
   fontes legais e gratuitas**. O que **não** é viável (legal e tecnicamente) é baixar e
