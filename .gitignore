@@ -16,3 +16,7 @@ Thumbs.db
 
 # Marcador de "já sincronizou hoje" (por máquina, não versionar)
 .scripts/.last-sync-date
+
+# Projeto de teste com chave de API hardcoded no código (OpenRouter) — NUNCA versionar
+projetos/grok-chat-cli/
+projetos/grok-chat-cli.zip
