@@ -2,7 +2,7 @@
 name: pokedex
 description: site Pokédex completa (tipos, habilidades, movimentos, status, itens) com gerador de time avançado que analisa cobertura de tipos, sinergia e status gerais
 tags: [projeto, proj/pokedex, site, web, pokeapi, ideia]
-updated: 2026-09-15 (8ª iteração: itens, import/export Showdown, calc de dano, redesign+modo claro)
+updated: 2026-09-15 (10ª iteração: megas customizadas/fan-made — Mega Flygon, Milotic, Arcanine, Crobat, Luxray, Zoroark, Hydreigon, Togekiss, Weavile — com pedras próprias)
 ---
 
 # Pokédex + Gerador de Time
@@ -180,12 +180,55 @@ sugere ajustes.
   em claro e escuro. **+2 paletas** (Brasa, Aurora → 8 no total). Responsividade real com breakpoints
   880/720/560/400px (topbar/abas, barra de ferramentas em grade, slots e grid adaptáveis, modais e
   editor empilhando), `color-scheme` correto e respeito a `prefers-reduced-motion`.
+- **Habilidades com efeito em PT (9ª iteração, entregue):** novo `js/abilities.js` (`window.ABILITY_PT`
+  + helper `abilityInfo`/`abilityLabel`). A ficha do Pokémon deixou de listar habilidades como só
+  nomes — agora renderiza **cartões** (`.ability-card` no `pokedex.js`) com o nome em PT e **o que a
+  habilidade faz**. Origem do texto: dicionário curado de ~90 habilidades comuns/competitivas em
+  português; para as fora do dicionário, cai para a PokéAPI (`API.getAbility`, já existia) usando o
+  `short_effect` (pt-br→pt→en) e cacheia. No **editor de time** o `<select>` de habilidade ganhou uma
+  caixa `#f-ability-effect` que mostra o efeito da habilidade selecionada (atualiza ao trocar).
+- **Mega pedras reais ligadas à mega (9ª iteração, entregue):** `js/items.js` ganhou
+  `window.MEGA_STONES` (mapa variedade-mega → `{id da pedra, rótulo PT}`, ~48 megas) + `STONE_TO_MEGA`;
+  as pedras entram no catálogo de itens numa **categoria "Mega Pedras"** (com sprite oficial). No
+  editor (`team.js`): escolher uma **mega** já segura a **pedra certa** automaticamente (e mostra
+  `.mega-stone-hint` com sprite + "Segurando Charizardita X"); escolher a **pedra** no seletor de item
+  ativa a **mega** correspondente (bidirecional). O seletor de item só mostra as mega pedras que
+  **aquele** Pokémon pode usar (filtra por `megaForms`). Bônus: a mega agora **adota a habilidade da
+  forma mega** (`selectMega`/`applyMegaAbility`/`abilitiesOf` — ex. Mega Charizard X vira Garras
+  Rígidas), capturada junto com tipos/status ao carregar `megaData`.
+- **Configurações melhoradas (9ª iteração, entregue):** `settings.js` ganhou um 3º eixo —
+  **Animações** (Ligadas/Reduzidas, salvo em `poke:anim`, aplicado por `data-anim` já no `<head>`; um
+  bloco `:root[data-anim="off"]` no CSS zera transições/animações) — e um botão **↺ Restaurar padrões**
+  que volta paleta/modo/animações ao default. Modal reorganizado (seções + `.settings-footer`).
+- **Polimento visual profissional (9ª iteração, entregue):** cartões de habilidade em grid responsivo
+  com hover, caixa de efeito no editor (borda de acento à esquerda), dica de mega pedra com sprite,
+  todos usando as variáveis de tema (funcionam em todas as 8 paletas + claro/escuro).
+- **Mega evoluções customizadas / fan-made (10ª iteração, entregue):** além das megas
+  oficiais (que já vinham por `species.varieties` da PokéAPI — e o mirror deste ambiente até
+  já traz fan-megas completas como `raichu-mega-x/y`, `dragonite-mega`, `lucario-mega-z`), o
+  app agora embute um catálogo próprio de **megas não-oficiais** em `js/items.js`
+  (`window.CUSTOM_MEGAS`): **Mega Flygon** (Terra/Dragão, Levitação), Milotic (Água,
+  Competitivo), Arcanine (Fogo, Intimidação), Crobat (Venenoso/Voador, Infiltrador), Luxray
+  (Elétrico/Sombrio, Coragem), Zoroark (Sombrio, Ilusão), Hydreigon (Sombrio/Dragão,
+  Levitação), Togekiss (Fada/Voador, Graça Serena) e Weavile (Sombrio/Gelo, Garras Rígidas).
+  Cada uma traz **tipos, status base e habilidade da forma mega prontos** (não existem na API,
+  então não há fetch — os dados vêm embutidos) e reaproveita o **sprite/nº da forma base**. Só
+  adicionei megas que o mirror **não** tinha, pra não duplicar/sobrescrever as reais (por isso
+  Raichu e Dragonite ficaram de fora — já vêm do mirror). No `team.js`: `appendCustomMegas`
+  junta as customizadas ao `m.megaForms` (rótulo "Mega ✨" marca que é fan-made) e `selectMega`
+  detecta `CUSTOM_MEGAS` e usa os dados embutidos em vez de chamar `getPokemon`. Cada mega
+  ganhou também a **pedra própria** (Flygonita, Miloticita, …) registrada em `MEGA_STONES` →
+  entra no seletor de item (categoria Mega Pedras) e é segurada automaticamente, igual às
+  oficiais. Testado no navegador: selecionar a Mega Flygon troca tipos/status/habilidade e
+  segura a Flygonita, sem erros de console.
 - **Pendências (próximos passos):** ~~criar repo remoto no GitHub + deploy (Pages)~~ **feito**
   (remoto `VitorTozeti/Vitor-Pokemon` + workflow Pages commitado 2026-09-14; falta só
   confirmar que a página publicada está no ar e linkar a URL do Pages aqui);
   ~~item por seleção de lista real (era campo de texto livre)~~ **feito (8ª it.)**;
   **página dedicada de itens no menu principal** (o catálogo `items.js` já existe, falta a tela
-  de consulta) e **páginas de habilidades**; gerador automático de time por objetivo (hoje só
+  de consulta) e **página/aba dedicada de habilidades** (o efeito já aparece na ficha e no editor
+  desde a 9ª it. via `abilities.js`, mas ainda não há uma tela de enciclopédia só de habilidades);
+  gerador automático de time por objetivo (hoje só
   avalia e dá parecer sobre a meta declarada, não monta o time sozinho); a calc de dano ainda
   não considera habilidades/clima/campo/telas/boosts; layout de árvore evolutiva ainda é
   aproximado em ramificações complexas (não desenha um grafo real).
