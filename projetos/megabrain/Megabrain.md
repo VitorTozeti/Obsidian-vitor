@@ -1,44 +1,45 @@
 ---
 name: Megabrain
-description: hub de armazenamento e processamento de dados cognitivos — sistema de memória, organização e raciocínio estruturado da K.E.M.Y
-tags: [projeto, proj/megabrain, dados, cognicao, memoria, laranja]
-updated: 2026-09-24
+description: hub de conhecimento e armazenamento de dados do usuário — ponto central de acesso a todas as notas, referências e projetos do vault
+tags: [projeto, proj/megabrain, hub, conhecimento, dados]
+updated: 2026-09-23
 ---
 
-# Megabrain — Hub de Dados Cognitivos
+# Megabrain — Hub de Conhecimento e Armazenamento de Dados
 
-O **Megabrain** é o hub de armazenamento e processamento de dados
-cognitivos da K.E.M.Y. Funciona como uma **memória estruturada** para
-organizar, indexar e raciocinar sobre informações — sendo o "segundo cérebro"
-que complementa o núcleo da K.E.M.Y (KEMY_AI).
+O **Megabrain** é o hub central do vault do Obsidian-vitor, projetado para ser o
+ponto de acesso principal a todas as notas, referências e projetos do usuário.
 
-> 🟧 Cor: **#EA580C** (laranja). Todas as notas do Megabrain usam variações
-> de laranja, **evitando amarelo**.
+## Conceito
 
-## O que é o Megabrain
+O Megabrain funciona como uma **segunda mente** digital: um local onde todo
+conhecimento adquirido, ideias, referências e projetos são organizados de forma
+interconectada. Ele serve como o **hub de dados** do ecossistema Obsidian,
+sendo o primeiro ponto a ser aberto ao iniciar qualquer sessão de estudo ou
+trabalho.
 
-- **Memória estruturada:** armazena conhecimento, padrões, decisões e
-  contextos de forma organizada e recuperável.
-- **Raciocínio indexado:** permite que a K.E.M.Y "pense" sobre dados
-  anteriores de forma rápida e conectada.
-- **Camada cognitiva:** complementa o núcleo operacional (KEMY_AI) com
-  uma camada de **memória de longo prazo** e organização de conhecimento.
+## Estrutura
 
-## Estado atual (2026-09-24)
+- **Pasta:** `projetos/megabrain/`
+- **Hub:** [[Megabrain]] (esta nota)
+- **Dados:** [[Megabrain-dados]]
+- **Referências sempre-considerar:** ⭐[[mapa-projetos]]
 
-- **Fase:** 🆕 **Recém-criado** — hub estabelecido, estrutura base em construção.
-- **Localização:** `projetos/megabrain/` dentro do vault Obsidian-vitor.
-- **Nota de dados:** [[Megabrain-dados]] — onde os dados do Megabrain vivem.
-- **Cor:** laranja (#EA580C).
+## Estado atual (2026-09-23)
 
-## Como usar
+- **Fase:** Criação do hub e da estrutura inicial.
+- **Objetivo:** Consolidar todo o conhecimento do vault em um único ponto
+  de partida acessível via [[mapa-projetos]].
+- **Cor do projeto:** 🟧 #FB923C (laranja — variação distinta do `role-sp`, que já usa
+  #EA580C). Notas do Megabrain devem usar tons de laranja, evitando amarelo (reservado
+  para as notas de dados da KEMY, tag `#dados-amarelo`, #EAB308).
 
-- Crie notas dentro de `projetos/megabrain/` para novos tópicos cognitivos.
-- Use `[[Megabrain-dados]]` para consultar a arquitetura e o mapa de dados.
-- Referências cruzadas com [[KEMY_AI]] e [[KEMY_AI-dados]] são esperadas.
+## Como manter esta nota
+
+- Atualizar sempre que um novo projeto, nota ou referência for adicionada ao vault.
+- Manter as links [[...]] atualizadas para garantir a navegação eficiente.
+- Consultar [[Megabrain-dados]] para detalhes sobre onde cada tipo de dado vive.
 
 ## Relacionado
 - [[Megabrain-dados]] — onde os dados do Megabrain vivem
-- [[KEMY_AI]] — núcleo operacional da K.E.M.Y
-- [[KEMY_AI-dados]] — dados e config do núcleo
-- ⭐[[mapa-projetos]] — mapa geral de projetos
+- ⭐[[mapa-projetos]] — mapa de carregamento de contexto por projeto

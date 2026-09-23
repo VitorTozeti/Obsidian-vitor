@@ -1,7 +1,7 @@
 ---
 name: KEMY_AI-dados
 description: mapa de onde os dados do KEMY_AI vivem — pasta/código, motor Grok via OpenRouter (endpoint, modelo, parâmetros), as 4 ferramentas, variáveis de ambiente KEMY_*/GROK_* e o loop de turno
-tags: [projeto, proj/kemy-ai, dados, arquitetura, openrouter, python]
+tags: [projeto, proj/kemy-ai, dados-amarelo, dados, arquitetura, openrouter, python]
 updated: 2026-09-23 (v2: código modularizado em 4 arquivos; 20 ferramentas incl. web/documentos/e-mail/obsidian/multiagente; hub de dados ~/.kemy; modo auto/seguro; incidente de chave versionada corrigido; chave antiga revogada→rotacionada por 401 "User not found")
 ---
 
