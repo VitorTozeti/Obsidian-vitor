@@ -149,9 +149,10 @@ escolha uma cor da paleta sugerida; a cada projeto novo, pegue a próxima cor li
 Paleta sugerida para projetos novos (escolha uma cor distinta por projeto):
 azul #2563EB / 2450411 · verde #16A34A / 1483594 · laranja #F97316 / 16347926 ·
 vermelho #DC2626 / 14427686 · roxo #9333EA / 9647082 · ciano #06B6D4 / 440020 ·
-rosa #DB2777 / 14361975 · teal #0D9488 / 890512 · índigo #4F46E5 / 5195493 ·
-marrom #92400E / 9584654 · amarelo #EAB308 / 15381256 · lima #65A30D / 6660365.
-Converter hex→decimal: `int("RRGGBB", 16)`.
+rosa #DB2777 / 14362487 · teal #0D9488 / 889992 · índigo #4F46E5 / 5195493 ·
+marrom #92400E / 9584654 · amarelo #EAB308 / 15381256 · lima #65A30D / 6660877.
+Converter hex→decimal: `int("RRGGBB", 16)` (ex.: Python `int("2563EB", 16)` → 2450411).
+Confira sempre a conversão — decimal errado = cor errada no graph.
 
 ## Convenção de frontmatter
 
