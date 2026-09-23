@@ -123,9 +123,12 @@ tarefas automaticas sem voce acompanhar.
 
 - `_HARDCODED_API_KEY` (em `kemy.py`) ou variavel de ambiente `KEMY_API_KEY`
   (tem prioridade) — chave do OpenRouter (https://openrouter.ai/settings/keys).
-  A antiga `GROK_API_KEY` ainda funciona como fallback.
-- `KEMY_MODEL` — opcional, padrao `x-ai/grok-4.3`. Outros modelos Grok disponiveis
-  no OpenRouter: https://openrouter.ai/x-ai. (Fallback: `GROK_MODEL`.)
+  Tambem aceita `OPENROUTER_API_KEY` (padrao da doc do OpenRouter) e a antiga
+  `GROK_API_KEY` como fallback.
+- `KEMY_MODEL` — opcional, **padrao `inclusionai/ling-3.0-flash-fin:free` (GRATUITO**
+  no OpenRouter, escolhido para **evitar gastos**). Da para trocar por qualquer modelo
+  do OpenRouter (ex. `x-ai/grok-4.3`, pago). Lista: https://openrouter.ai/models.
+  (Fallback: `GROK_MODEL`.)
 - `KEMY_MAX_TOKENS` — opcional, padrao `1024`. O plano gratis do OpenRouter tem
   saldo limitado; se pedir `max_tokens` alto demais para o saldo, a API responde
   erro 402 (credito insuficiente). (Fallback: `GROK_MAX_TOKENS`.)

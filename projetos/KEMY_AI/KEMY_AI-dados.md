@@ -2,7 +2,7 @@
 name: KEMY_AI-dados
 description: mapa de onde os dados do KEMY_AI vivem — pasta/código, motor Grok via OpenRouter (endpoint, modelo, parâmetros), as 4 ferramentas, variáveis de ambiente KEMY_*/GROK_* e o loop de turno
 tags: [projeto, proj/kemy-ai, dados, arquitetura, openrouter, python]
-updated: 2026-09-23 (add ferramentas de busca recursiva find_files/search_text + limites KEMY_SEARCH_*)
+updated: 2026-09-23 (busca recursiva find_files/search_text; + modelo padrão trocado para o GRATUITO inclusionai/ling-3.0-flash-fin:free e chave aceita OPENROUTER_API_KEY)
 ---
 
 # KEMY_AI — Onde os dados vivem
@@ -26,7 +26,12 @@ Nota de dados/arquitetura do [[KEMY_AI]]. O que existe, onde mora e como se cone
 ## Motor de inferência (API)
 
 - **Provedor:** OpenRouter. **Endpoint:** `https://openrouter.ai/api/v1/chat/completions`.
-- **Modelo padrão:** `x-ai/grok-4.3` (Grok/xAI). Trocável por env; outros em `openrouter.ai/x-ai`.
+- **Modelo padrão:** `inclusionai/ling-3.0-flash-fin:free` — **GRATUITO** no OpenRouter
+  (escolhido em 2026-09-23 para **evitar gastos**). Trocável por env `KEMY_MODEL` (ex.
+  `x-ai/grok-4.3`, pago). Lista: `openrouter.ai/models`.
+  - ⚠️ **Ressalva:** modelos `:free` podem **não suportar tool/function-calling** ou ter
+    limites de taxa; se as ferramentas pararem de ser chamadas, é o modelo (troque para um
+    que suporte tools). O código de tools não muda.
 - **Parâmetros:** `temperature = 0.3`, `max_tokens = 1024` (default), `tool_choice = "auto"`.
 - **Auth:** header `Authorization: Bearer <API_KEY>`.
 - ⚠️ **Chave hardcoded** em `_HARDCODED_API_KEY` (dentro de `kemy.py`). Variável de ambiente
@@ -34,14 +39,15 @@ Nota de dados/arquitetura do [[KEMY_AI]]. O que existe, onde mora e como se cone
 
 ## Variáveis de ambiente (com fallback)
 
-| Nova (prioridade) | Fallback antigo | Default | Para quê |
+| Nova (prioridade) | Fallback | Default | Para quê |
 |---|---|---|---|
-| `KEMY_API_KEY` | `GROK_API_KEY` | `_HARDCODED_API_KEY` | chave do OpenRouter |
-| `KEMY_MODEL` | `GROK_MODEL` | `x-ai/grok-4.3` | modelo usado |
+| `KEMY_API_KEY` | `OPENROUTER_API_KEY` → `GROK_API_KEY` | `_HARDCODED_API_KEY` | chave do OpenRouter |
+| `KEMY_MODEL` | `GROK_MODEL` | `inclusionai/ling-3.0-flash-fin:free` (grátis) | modelo usado |
 | `KEMY_MAX_TOKENS` | `GROK_MAX_TOKENS` | `1024` | teto de tokens da resposta |
 
-Ordem de resolução no código: `KEMY_*` → `GROK_*` → default. As antigas `GROK_*` seguem
-funcionando para não quebrar setups existentes.
+Ordem de resolução da **chave**: `KEMY_API_KEY` → `OPENROUTER_API_KEY` → `GROK_API_KEY` →
+`_HARDCODED_API_KEY`. Do **modelo**: `KEMY_MODEL` → `GROK_MODEL` → default grátis. As antigas
+`GROK_*` seguem funcionando para não quebrar setups existentes.
 
 ## Ferramentas do agente (6)
 

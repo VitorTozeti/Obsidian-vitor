@@ -2,7 +2,7 @@
 name: KEMY_AI
 description: chat-bot de terminal em Python (ex grok-chat-cli) cuja persona é a K.E.M.Y — Kernel Engine for Modular Yield — assistente de engenharia de software estilo Claude Code, com ferramentas de arquivo/shell; motor Grok/OpenRouter por baixo
 tags: [projeto, proj/kemy-ai, cli, python, chatbot, agente, openrouter, grok]
-updated: 2026-09-23 (rebrand grok-chat-cli → KEMY_AI + persona fixa K.E.M.Y; depois: busca recursiva find_files/search_text com grande liberdade de acesso a pastas)
+updated: 2026-09-23 (rebrand grok-chat-cli → KEMY_AI + persona K.E.M.Y; busca recursiva find_files/search_text; modelo padrão trocado para o GRATUITO inclusionai/ling-3.0-flash-fin:free)
 ---
 
 # KEMY_AI — assistente de terminal K.E.M.Y
@@ -42,9 +42,11 @@ Leitura curta: *"o motor-núcleo modular que entrega código"*.
     com **fallback** para as antigas `GROK_*` (compatibilidade).
   - Função interna `call_grok` → `call_kemy`; README e `.env.example` refeitos; `KEMY_AI.zip`
     reempacotado (sem `.env`/`__pycache__`).
-- **Modelo/infra:** OpenRouter, endpoint `chat/completions`, modelo padrão `x-ai/grok-4.3`,
-  `temperature 0.3`, `max_tokens` 1024 (default). Loop de ferramentas com teto de 12 passos
-  por turno. Detalhes em [[KEMY_AI-dados]].
+- **Modelo/infra:** OpenRouter, endpoint `chat/completions`, **modelo padrão GRATUITO
+  `inclusionai/ling-3.0-flash-fin:free`** (trocado em 2026-09-23 para **evitar gastos**;
+  trocável por `KEMY_MODEL`), `temperature 0.3`, `max_tokens` 1024. A chave agora aceita
+  `KEMY_API_KEY` → `OPENROUTER_API_KEY` → `GROK_API_KEY`. Loop de ferramentas com teto de 12
+  passos por turno. ⚠️ modelos `:free` podem não suportar tool-calling — ver [[KEMY_AI-dados]].
 - **Ferramentas (6):** `read_file`, `write_file`, `list_dir`, `find_files`, `search_text`,
   `run_command` — todas **sem trava de pasta** (aceitam caminho absoluto, fora do projeto)
   e `run_command` roda shell real sem confirmar. Ver o aviso de segurança abaixo.
