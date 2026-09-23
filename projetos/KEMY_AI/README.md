@@ -76,15 +76,42 @@ Digite `sair` (ou Ctrl+C) para encerrar.
   referir a si mesma **sempre** como K.E.M.Y, nunca como "Grok"/"xAI".
 - Quando a K.E.M.Y decide que precisa de uma ferramenta, o script mostra no terminal
   qual ferramenta foi chamada e o resultado, antes de continuar a resposta.
-- Ferramentas: `read_file`, `write_file`, `list_dir`, `run_command`.
+- Ferramentas: `read_file`, `write_file`, `list_dir`, `find_files`, `search_text`,
+  `run_command`.
+
+## Busca livre pelas pastas (grande liberdade de acesso)
+
+A K.E.M.Y tem **liberdade ampla para procurar à vontade** em qualquer pasta que o seu
+usuário do Windows tenha permissão — não só a pasta atual:
+
+- **`find_files`** — acha arquivos por **nome** (glob, ex. `*.py`, `config*`) de forma
+  **recursiva** a partir de qualquer caminho (relativo ou absoluto).
+- **`search_text`** — busca um **texto dentro dos arquivos** (estilo `grep`), recursivo,
+  com `file_glob` opcional para limitar quais arquivos varrer. Retorna `arquivo:linha: trecho`.
+
+Ambas pulam pastas de ruído (`.git`, `node_modules`, `__pycache__`, `.venv`, `dist`,
+`build`, pastas ocultas, etc.) e têm limites configuráveis por variável de ambiente:
+
+- `KEMY_SEARCH_MAX_RESULTS` — teto de resultados (padrão `200`).
+- `KEMY_SEARCH_MAX_DEPTH` — profundidade máxima de subpastas (padrão `8`).
+
+Exemplos de conversa:
+
+```
+voce> procura todo arquivo .env no meu Desktop
+voce> onde no projeto aparece a palavra "API_KEY"?
+voce> acha os README.md em C:\Users\v.tozeti\Desktop
+```
 
 ## ⚠️ Sem trava de pasta (a pedido do usuario)
 
-`read_file`/`write_file`/`list_dir` aceitam **qualquer caminho** (relativo ou
-absoluto), inclusive fora da pasta onde o script foi iniciado — a checagem que
-bloqueava isso foi removida de proposito. Isso significa que a K.E.M.Y pode ler ou
-sobrescrever **qualquer arquivo do seu usuario no Windows** que o processo tenha
-permissao de acessar (documentos, outros projetos, etc.), nao so a pasta atual.
+`read_file`/`write_file`/`list_dir`/`find_files`/`search_text` aceitam **qualquer
+caminho** (relativo ou absoluto), inclusive fora da pasta onde o script foi iniciado —
+a checagem que bloqueava isso foi removida de proposito, e as ferramentas de busca
+recursiva (`find_files`/`search_text`) ampliam ainda mais esse alcance: a K.E.M.Y pode
+**vasculhar, ler ou sobrescrever qualquer arquivo do seu usuario no Windows** que o
+processo tenha permissao de acessar (documentos, outros projetos, etc.), nao so a pasta
+atual — inclusive achar arquivos sensiveis (`.env`, chaves) varrendo o disco.
 Some a isso o `run_command`, que ja roda comandos de shell reais sem pedir
 confirmacao — juntos, um pedido mal interpretado (ou um prompt malicioso escondido
 num arquivo que a K.E.M.Y leia) pode ler dados sensiveis ou apagar/sobrescrever coisa

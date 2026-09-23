@@ -2,7 +2,7 @@
 name: KEMY_AI
 description: chat-bot de terminal em Python (ex grok-chat-cli) cuja persona é a K.E.M.Y — Kernel Engine for Modular Yield — assistente de engenharia de software estilo Claude Code, com ferramentas de arquivo/shell; motor Grok/OpenRouter por baixo
 tags: [projeto, proj/kemy-ai, cli, python, chatbot, agente, openrouter, grok]
-updated: 2026-09-23 (rebrand: grok-chat-cli → KEMY_AI; persona fixa K.E.M.Y; env KEMY_*; README/zip refeitos)
+updated: 2026-09-23 (rebrand grok-chat-cli → KEMY_AI + persona fixa K.E.M.Y; depois: busca recursiva find_files/search_text com grande liberdade de acesso a pastas)
 ---
 
 # KEMY_AI — assistente de terminal K.E.M.Y
@@ -45,9 +45,15 @@ Leitura curta: *"o motor-núcleo modular que entrega código"*.
 - **Modelo/infra:** OpenRouter, endpoint `chat/completions`, modelo padrão `x-ai/grok-4.3`,
   `temperature 0.3`, `max_tokens` 1024 (default). Loop de ferramentas com teto de 12 passos
   por turno. Detalhes em [[KEMY_AI-dados]].
-- **Ferramentas (4):** `read_file`, `write_file`, `list_dir`, `run_command` — todas
-  **sem trava de pasta** (aceitam caminho absoluto, fora do projeto) e `run_command`
-  roda shell real sem confirmar. Ver o aviso de segurança abaixo.
+- **Ferramentas (6):** `read_file`, `write_file`, `list_dir`, `find_files`, `search_text`,
+  `run_command` — todas **sem trava de pasta** (aceitam caminho absoluto, fora do projeto)
+  e `run_command` roda shell real sem confirmar. Ver o aviso de segurança abaixo.
+- **Busca livre pelas pastas (2026-09-23, feito):** ganhou `find_files` (acha arquivo por
+  nome/glob) e `search_text` (grep dentro dos arquivos), ambos **recursivos** a partir de
+  qualquer caminho — a K.E.M.Y agora "procura à vontade" pelo disco, não só lista uma pasta.
+  Pulam pastas de ruído (`.git`, `node_modules`, etc.); limites por env `KEMY_SEARCH_MAX_RESULTS`
+  (200) e `KEMY_SEARCH_MAX_DEPTH` (8). O `SYSTEM_PROMPT` passou a instruir **procurar antes de
+  assumir/perguntar**. Detalhes em [[KEMY_AI-dados]].
 
 ## ⚠️ Segurança (dois pontos herdados, ainda válidos)
 

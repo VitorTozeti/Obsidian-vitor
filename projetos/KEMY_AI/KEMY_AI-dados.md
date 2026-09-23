@@ -2,7 +2,7 @@
 name: KEMY_AI-dados
 description: mapa de onde os dados do KEMY_AI vivem — pasta/código, motor Grok via OpenRouter (endpoint, modelo, parâmetros), as 4 ferramentas, variáveis de ambiente KEMY_*/GROK_* e o loop de turno
 tags: [projeto, proj/kemy-ai, dados, arquitetura, openrouter, python]
-updated: 2026-09-23
+updated: 2026-09-23 (add ferramentas de busca recursiva find_files/search_text + limites KEMY_SEARCH_*)
 ---
 
 # KEMY_AI — Onde os dados vivem
@@ -43,7 +43,7 @@ Nota de dados/arquitetura do [[KEMY_AI]]. O que existe, onde mora e como se cone
 Ordem de resolução no código: `KEMY_*` → `GROK_*` → default. As antigas `GROK_*` seguem
 funcionando para não quebrar setups existentes.
 
-## Ferramentas do agente (4)
+## Ferramentas do agente (6)
 
 Definidas em `TOOL_DEFINITIONS` (formato function-calling da OpenAI) e implementadas em `TOOL_IMPLS`:
 
@@ -52,10 +52,22 @@ Definidas em `TOOL_DEFINITIONS` (formato function-calling da OpenAI) e implement
 | `read_file` | lê um arquivo de texto | caminho relativo **ou absoluto** |
 | `write_file` | cria/sobrescreve arquivo | cria pastas-pai; caminho absoluto permitido |
 | `list_dir` | lista uma pasta | padrão `.` |
+| `find_files` | **acha arquivos por nome** (glob) recursivamente | `pattern`, `path`, `max_depth`; pula pastas de ruído |
+| `search_text` | **busca texto dentro dos arquivos** (grep) recursivo | `query`, `path`, `file_glob`, `max_depth`; retorna `arquivo:linha:` |
 | `run_command` | roda comando de shell | `shell=True`, timeout 60s, **sem confirmação** |
 
+### Busca recursiva (grande liberdade de acesso a pastas)
+- `find_files`/`search_text` usam o helper `_walk_limited` (os.walk com teto de profundidade
+  e skip de pastas de ruído). **Limites** por env: `KEMY_SEARCH_MAX_RESULTS` (padrão 200),
+  `KEMY_SEARCH_MAX_DEPTH` (padrão 8).
+- **Pastas ignoradas** (`SEARCH_SKIP_DIRS`): `.git`, `.hg`, `.svn`, `node_modules`,
+  `__pycache__`, `.venv`, `venv`, `.mypy_cache`, `.pytest_cache`, `.idea`, `.vscode`,
+  `dist`, `build` — além de pastas ocultas (começam com `.`).
+- `search_text` lê como UTF-8 com `errors="ignore"` (arquivo binário/ilegível é pulado).
+
 ⚠️ **Sem trava de pasta:** `_resolve_path` faz `expanduser().resolve()` sem restringir à raiz —
-por decisão do usuário — então o agente alcança qualquer arquivo que o processo tenha permissão.
+por decisão do usuário — então o agente alcança **e agora também vasculha recursivamente**
+qualquer arquivo/pasta que o processo tenha permissão (inclusive achar `.env`/chaves varrendo o disco).
 
 ## Estado da conversa e loop de turno
 
