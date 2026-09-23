@@ -1,8 +1,8 @@
 ---
 name: KEMY_AI-dados
-description: mapa de onde os dados do KEMY_AI vivem — pasta/código, motor Grok via OpenRouter (endpoint, modelo, parâmetros), as 4 ferramentas, variáveis de ambiente KEMY_*/GROK_* e o loop de turno
-tags: [projeto, proj/kemy-ai, dados-amarelo, dados, arquitetura, openrouter, python]
-updated: 2026-09-23 (v2: código modularizado em 4 arquivos; 20 ferramentas incl. web/documentos/e-mail/obsidian/multiagente; hub de dados ~/.kemy; modo auto/seguro; incidente de chave versionada corrigido; chave antiga revogada→rotacionada por 401 "User not found")
+description: mapa de onde os dados do KEMY_AI vivem — pasta/código, motor Grok via OpenRouter (endpoint, modelo, parâmetros), fallback sem ferramentas (Cohere/Replicate), as 20 ferramentas, variáveis de ambiente KEMY_*/GROK_* e o loop de turno
+tags: [projeto, proj/kemy-ai, dados-amarelo, dados, arquitetura, openrouter, cohere, replicate, python]
+updated: 2026-09-23 (adicionado fallback sem tool-calling via Cohere/Replicate quando a fila da OpenRouter esgota; script isolado de teste testar_cohere_replicate.py)
 ---
 
 # KEMY_AI — Onde os dados vivem
@@ -83,7 +83,16 @@ Nota de dados/arquitetura do [[KEMY_AI]]. O que existe, onde mora e como se cone
 
 ## Motor de inferência (API)
 
-- **Provedor:** OpenRouter. **Endpoint:** `https://openrouter.ai/api/v1/chat/completions`.
+- **Provedor:** OpenRouter. **Endpoint:** `https://openrouter.ai/api/v1/chat/completions`
+  — agora **trocável por env `KEMY_API_URL`** (`kemy_config.py`, antes era fixo).
+- **Modo Ollama LOCAL (2026-09-23, feito):** apontar `KEMY_API_URL` para
+  `http://localhost:11434/v1/chat/completions` faz a K.E.M.Y rodar 100% local, grátis e
+  offline, reusando o MESMO formato OpenAI (tool-calling funciona com `qwen2.5`/`llama3.1`/
+  `mistral`). Facilitadores na pasta: `usar_ollama.bat` (duplo-clique), `usar_ollama.ps1`,
+  guia `OLLAMA.md`. O rodízio de modelo (402/429/quota) não dispara no local (sem cota) — ok.
+  Não é "nuvem grátis": custo é o hardware do PC. Pacote distribuível `KEMY_AI_ollama.zip`
+  gerado **sem** a chave hardcoded (removida por segurança — mandar chave por Zap foi o que
+  derrubou a chave anterior; no modo Ollama a chave nem é usada).
 - **Modelo padrão:** `inclusionai/ling-3.0-flash-fin:free` — **GRATUITO** no OpenRouter
   (escolhido em 2026-09-23 para **evitar gastos**). Trocável por env `KEMY_MODEL` (ex.
   `x-ai/grok-4.3`, pago). Lista: `openrouter.ai/models`.
@@ -95,6 +104,37 @@ Nota de dados/arquitetura do [[KEMY_AI]]. O que existe, onde mora e como se cone
 - **Auth:** header `Authorization: Bearer <API_KEY>`.
 - ⚠️ **Chave hardcoded** em `_HARDCODED_API_KEY` (dentro de `kemy.py`). Variável de ambiente
   tem prioridade. Revogar/gerar em `https://openrouter.ai/settings/keys`.
+
+## Fallback sem ferramentas: Cohere / Replicate (2026-09-23)
+
+- **Motivação:** a OpenRouter caía com frequência (rate limit/quota nos modelos grátis) e
+  antes disso a K.E.M.Y simplesmente quebrava o turno. Pesquisamos alternativas no
+  [public-apis](https://github.com/public-apis/public-apis) (seção Machine Learning) — só
+  Cohere e Replicate eram provedores reais de LLM ali (Clarifai/IBM Watson são
+  visão/NLP clássico; TensorFlow Serving não é hospedado).
+- **Limitação aceita conscientemente:** nem Cohere nem Replicate falam o formato de
+  `tools`/`tool_calls` estilo OpenAI que a OpenRouter usa. Por isso **não entram na fila de
+  rodízio principal** (`MODEL_ROTATION`) — servem só de **último recurso, sem ferramentas**,
+  quando os modelos da OpenRouter esgotam todos. Se algum dia a K.E.M.Y precisar de
+  tool-calling multi-provedor de verdade, as opções compatíveis com formato OpenAI são
+  Groq, GitHub Models, Mistral e Gemini (endpoint OpenAI-compatible) — não Cohere/Replicate.
+- **Implementação (`kemy.py`):** `call_no_tools_fallback(messages)` achata o histórico num
+  prompt de texto simples (`_fallback_prompt`) e tenta **Cohere primeiro** (`api.cohere.com/v2/chat`,
+  modelo `command-r`), depois **Replicate** (`api.replicate.com/v1/models/<modelo>/predictions`
+  com `Prefer: wait`, modelo padrão `meta/meta-llama-3-8b-instruct`). `run_turn` só chama esse
+  fallback quando `call_with_fallback` (rodízio da OpenRouter) levanta `RuntimeError` (fila
+  inteira esgotada) — erros normais de tool-calling continuam propagando como antes.
+- **Config (`kemy_config.py`):** `COHERE_API_KEY`/`COHERE_MODEL`, `REPLICATE_API_TOKEN`/`REPLICATE_MODEL`
+  (env vars, sem hardcode — diferente da chave da OpenRouter). Documentadas em `.env.example`.
+  Sem nenhuma das duas chaves configuradas, o fallback simplesmente não ativa (erro original
+  volta a aparecer, como antes desta mudança).
+- **Script de teste isolado:** `testar_cohere_replicate.py` — não mexe no `kemy.py`, só valida
+  acesso/latência das duas APIs com uma pergunta simples. Útil pra checar as chaves antes de
+  confiar no fallback em produção.
+- **Não implementado:** publicar modelo próprio na Replicate (`cog login` / `cog push
+  r8.im/vitortozeti/kemy`) — isso exige login interativo na conta Replicate do usuário, fora
+  do alcance do assistente; e não era necessário pro fallback (só **consumimos** modelos
+  públicos existentes, não publicamos um).
 
 ## Variáveis de ambiente (com fallback)
 

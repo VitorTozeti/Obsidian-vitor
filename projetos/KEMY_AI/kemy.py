@@ -33,6 +33,83 @@ class _ModelExhausted(Exception):
     """Modelo atual sem tokens/credito/limite (402/429/quota)."""
 
 
+def _fallback_prompt(messages: list) -> str:
+    """Achata as mensagens (sem tool-calls) num prompt simples de texto, pro
+    fallback sem ferramentas (Cohere/Replicate)."""
+    partes = []
+    for m in messages:
+        role = m.get("role")
+        content = m.get("content")
+        if not content or not isinstance(content, str):
+            continue
+        if role == "system":
+            partes.append(f"[instrucoes]\n{content}")
+        elif role == "user":
+            partes.append(f"Usuario: {content}")
+        elif role == "assistant":
+            partes.append(f"K.E.M.Y: {content}")
+    partes.append("K.E.M.Y:")
+    return "\n\n".join(partes)
+
+
+def _call_cohere_fallback(prompt: str) -> str:
+    resp = requests.post(
+        "https://api.cohere.com/v2/chat",
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {cfg.COHERE_API_KEY}",
+        },
+        json={"model": cfg.COHERE_MODEL, "messages": [{"role": "user", "content": prompt}]},
+        timeout=60,
+    )
+    resp.raise_for_status()
+    data = resp.json()
+    return "".join(b.get("text", "") for b in data.get("message", {}).get("content", [])).strip()
+
+
+def _call_replicate_fallback(prompt: str) -> str:
+    resp = requests.post(
+        f"https://api.replicate.com/v1/models/{cfg.REPLICATE_MODEL}/predictions",
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {cfg.REPLICATE_API_TOKEN}",
+            "Prefer": "wait",
+        },
+        json={"input": {"prompt": prompt}},
+        timeout=90,
+    )
+    resp.raise_for_status()
+    data = resp.json()
+    saida = data.get("output")
+    if isinstance(saida, list):
+        saida = "".join(str(p) for p in saida)
+    return str(saida or "").strip()
+
+
+def call_no_tools_fallback(messages: list) -> str:
+    """Ultimo recurso quando a fila inteira da OpenRouter esgotou: responde SEM
+    ferramentas via Cohere ou Replicate (o que tiver chave configurada). Levanta
+    RuntimeError se nenhuma das duas estiver configurada ou ambas falharem."""
+    prompt = _fallback_prompt(messages)
+    erros = []
+    if cfg.COHERE_API_KEY:
+        try:
+            return _call_cohere_fallback(prompt)
+        except requests.RequestException as exc:
+            erros.append(f"Cohere: {exc}")
+    if cfg.REPLICATE_API_TOKEN:
+        try:
+            return _call_replicate_fallback(prompt)
+        except requests.RequestException as exc:
+            erros.append(f"Replicate: {exc}")
+    if not erros:
+        raise RuntimeError(
+            "Fallback sem ferramentas indisponivel: configure COHERE_API_KEY ou "
+            "REPLICATE_API_TOKEN no ambiente."
+        )
+    raise RuntimeError("Fallback sem ferramentas falhou: " + "; ".join(erros))
+
+
 def _call(messages: list, model: str) -> dict:
     resp = requests.post(
         cfg.API_URL,
@@ -90,7 +167,16 @@ def run_turn(messages: list, emit=None) -> str:
             print(f"  [resultado] {text}\n")
 
     for _ in range(12):
-        data = call_with_fallback(messages)
+        try:
+            data = call_with_fallback(messages)
+        except RuntimeError as exc:
+            try:
+                texto = call_no_tools_fallback(messages)
+            except RuntimeError:
+                raise exc  # nenhum fallback disponivel — propaga o erro original
+            _ev("result", "OpenRouter esgotada — respondendo sem ferramentas (Cohere/Replicate).")
+            messages.append({"role": "assistant", "content": texto})
+            return texto
         message = data["choices"][0]["message"]
         messages.append(message)
 

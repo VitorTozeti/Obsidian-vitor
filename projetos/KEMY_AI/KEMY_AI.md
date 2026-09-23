@@ -2,7 +2,7 @@
 name: KEMY_AI
 description: chat-bot de terminal em Python (ex grok-chat-cli) cuja persona é a K.E.M.Y — Kernel Engine for Modular Yield — assistente de engenharia de software estilo Claude Code, com ferramentas de arquivo/shell; motor Grok/OpenRouter por baixo
 tags: [projeto, proj/kemy-ai, cli, python, chatbot, agente, openrouter, grok]
-updated: 2026-09-23 (v2 + interface web index.html/kemy_server.py; testado no navegador: modelo gratuito CONFIRMADO suportando tool-calling; código modularizado)
+updated: 2026-09-23 (integração Ollama LOCAL: KEMY_API_URL trocável + usar_ollama.bat/.ps1 + OLLAMA.md; v2 web index.html/kemy_server.py; tool-calling grátis confirmado; código modularizado)
 ---
 
 # KEMY_AI — assistente de terminal K.E.M.Y
@@ -94,6 +94,14 @@ Leitura curta: *"o motor-núcleo modular que entrega código"*.
   Pulam pastas de ruído (`.git`, `node_modules`, etc.); limites por env `KEMY_SEARCH_MAX_RESULTS`
   (200) e `KEMY_SEARCH_MAX_DEPTH` (8). O `SYSTEM_PROMPT` passou a instruir **procurar antes de
   assumir/perguntar**. Detalhes em [[KEMY_AI-dados]].
+
+## Modo Ollama LOCAL (grátis/offline) — 2026-09-23
+- `kemy_config.py`: `API_URL` agora lê `KEMY_API_URL` (antes fixo na OpenRouter).
+- Apontar para `http://localhost:11434/v1/chat/completions` roda o modelo **no próprio PC**
+  (sem custo/token, sem internet, tool-calling ok com `qwen2.5`/`llama3.1`).
+- Facilitadores: `usar_ollama.bat` (duplo-clique), `usar_ollama.ps1`, guia `OLLAMA.md`.
+- Distribuível `KEMY_AI_ollama.zip` gerado **sem** a chave da OpenRouter. Detalhes/tabela
+  de env em [[KEMY_AI-dados]].
 
 ## ⚠️ Segurança (dois pontos herdados, ainda válidos)
 
