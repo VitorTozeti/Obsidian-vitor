@@ -5,6 +5,13 @@ editável no Obsidian. Copie esta pasta para começar um vault novo; ela já vem
 estrutura, as regras e toda a automação de sincronização com o GitHub — **sem nenhum
 dado de projeto**. O objetivo é guardar informação de forma barata em tokens.
 
+## Regra global do Megabrain
+
+Antes de abrir, pesquisar, resumir, citar, indexar ou inferir a partir de qualquer
+arquivo em `megabrain/`, cumpra [MEGABRAIN.md](MEGABRAIN.md). Esse contexto só pode ser
+usado quando a mensagem atual do usuário contiver a frase exata `Use o megabrain`.
+A autorização é pontual e não persiste para a próxima mensagem, tarefa, agente ou sessão.
+
 ## Regras para o GEMINI
 
 1. **Comece SEMPRE por `_INDEX.md`.** Ele é o índice mestre: uma linha por nota.

@@ -12,6 +12,8 @@ começar um vault novo.
 ```
 base_obsidians/
   _INDEX.md          <- índice mestre (1 linha por nota) — o que o Claude lê por padrão
+  MEGABRAIN.md       <- política de ativação explícita do contexto Megabrain
+  megabrain/         <- contextos técnicos, acessíveis apenas com "Use o megabrain"
   CLAUDE.md          <- regras de uso/economia para o Claude (inclui como montar o _INDEX)
   clientes/          <- notas por cliente
   processos/         <- rotinas internas (sync com GitHub, manutenção do vault)
@@ -55,3 +57,5 @@ Abra a pasta como vault no Obsidian e rode o `auto-sync.ps1`.
 - Capriche na `description` do frontmatter — é ela que guia o Claude.
 - Projeto novo = pasta própria `projetos/<slug>/` + tag `proj/<slug>` + grupo de cor no
   `graph.json` + nota `<slug>-dados.md`. Detalhes no `CLAUDE.md`.
+- Contextos de `megabrain/` só podem ser usados quando o pedido atual contiver a frase
+  exata `Use o megabrain`; a autorização não persiste entre mensagens.

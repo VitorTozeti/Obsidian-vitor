@@ -40,6 +40,7 @@
 
 ## Referências
 - ⭐ [Mapa de Projetos](referencias/mapa-projetos.md) — carregamento de contexto: por projeto, o hub, o repo real no disco e as refs sempre-considerar (COMECE AQUI ao entrar num projeto)
+- [Megabrain — Índice de Contextos](megabrain/indice.md) — mapa de competências técnicas e lacunas; contexto restrito, use somente após o usuário escrever `Use o megabrain`
 
 ## Templates
 - [Template de Nota](templates/nota-template.md) — modelo com frontmatter para criar notas novas
