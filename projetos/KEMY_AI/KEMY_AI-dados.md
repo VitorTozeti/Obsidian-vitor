@@ -2,7 +2,7 @@
 name: KEMY_AI-dados
 description: mapa de onde os dados do KEMY_AI vivem — pasta/código, motor Grok via OpenRouter (endpoint, modelo, parâmetros), as 4 ferramentas, variáveis de ambiente KEMY_*/GROK_* e o loop de turno
 tags: [projeto, proj/kemy-ai, dados, arquitetura, openrouter, python]
-updated: 2026-09-23 (busca recursiva find_files/search_text; + modelo padrão trocado para o GRATUITO inclusionai/ling-3.0-flash-fin:free e chave aceita OPENROUTER_API_KEY)
+updated: 2026-09-23 (busca recursiva find_files/search_text; modelo padrão GRATUITO + chave aceita OPENROUTER_API_KEY; rodízio automático de modelo quando esgota tokens/crédito)
 ---
 
 # KEMY_AI — Onde os dados vivem
@@ -48,6 +48,31 @@ Nota de dados/arquitetura do [[KEMY_AI]]. O que existe, onde mora e como se cone
 Ordem de resolução da **chave**: `KEMY_API_KEY` → `OPENROUTER_API_KEY` → `GROK_API_KEY` →
 `_HARDCODED_API_KEY`. Do **modelo**: `KEMY_MODEL` → `GROK_MODEL` → default grátis. As antigas
 `GROK_*` seguem funcionando para não quebrar setups existentes.
+
+## Rodízio automático de modelo (quando esgota tokens/crédito)
+
+Implementado em `kemy.py`: `MODEL_ROTATION`, `current_model()`, `_looks_exhausted()`,
+`_ModelExhausted` e `call_kemy_with_fallback()`.
+
+- **Fila (`MODEL_ROTATION`):** o `MODEL` atual entra primeiro, seguido dos modelos de
+  `KEMY_MODEL_FALLBACKS` (env, separado por vírgula) — ou, se a env não for definida, do
+  `DEFAULT_FREE_MODELS` hardcoded: `inclusionai/ling-3.0-flash-fin:free`,
+  `inclusionai/ling-3.0-flash-vl:free`. Sem duplicar o modelo atual na fila.
+- **Detecção de esgotamento (`_looks_exhausted`):** HTTP `402` (crédito insuficiente) ou
+  `429` (rate limit), OU o corpo da resposta contendo palavras-chave (`insufficient
+  credit`, `rate limit`, `quota`, `too many requests`, etc.) — cobre variações de texto
+  que o OpenRouter pode devolver.
+  - `nvidia/nemotron-3-embed-1b:free` **não** entra nessa lista: é modelo de
+    **embeddings**, não serve para chat/tool-calling — citado pelo usuário mas descartado
+    por não ser aplicável ao caso de uso da K.E.M.Y.
+- **Troca (`call_kemy_with_fallback`):** ao bater um erro "esgotado", avisa no terminal
+  (`[K.E.M.Y] Modelo '...' sem tokens/credito/limite — trocando para '...'`) e tenta o
+  próximo da fila. Persiste o índice do modelo ativo (`_current_model_idx`) para a sessão
+  inteira — não volta a tentar o modelo que já esgotou. Se **todos** esgotarem, levanta erro
+  (não inventa resposta). Erros que **não** são de esgotamento (ex. request malformado)
+  propagam imediatamente, sem trocar de modelo.
+- **Transparência:** o banner do REPL (`main()`) mostra o modelo ativo e a fila completa
+  ao iniciar.
 
 ## Ferramentas do agente (6)
 

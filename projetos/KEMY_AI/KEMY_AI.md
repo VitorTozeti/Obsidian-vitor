@@ -2,7 +2,7 @@
 name: KEMY_AI
 description: chat-bot de terminal em Python (ex grok-chat-cli) cuja persona é a K.E.M.Y — Kernel Engine for Modular Yield — assistente de engenharia de software estilo Claude Code, com ferramentas de arquivo/shell; motor Grok/OpenRouter por baixo
 tags: [projeto, proj/kemy-ai, cli, python, chatbot, agente, openrouter, grok]
-updated: 2026-09-23 (rebrand grok-chat-cli → KEMY_AI + persona K.E.M.Y; busca recursiva find_files/search_text; modelo padrão trocado para o GRATUITO inclusionai/ling-3.0-flash-fin:free)
+updated: 2026-09-23 (rebrand grok-chat-cli → KEMY_AI + persona K.E.M.Y; busca recursiva find_files/search_text; modelo padrão GRATUITO + rodízio automático quando um modelo esgota tokens/crédito)
 ---
 
 # KEMY_AI — assistente de terminal K.E.M.Y
@@ -47,6 +47,12 @@ Leitura curta: *"o motor-núcleo modular que entrega código"*.
   trocável por `KEMY_MODEL`), `temperature 0.3`, `max_tokens` 1024. A chave agora aceita
   `KEMY_API_KEY` → `OPENROUTER_API_KEY` → `GROK_API_KEY`. Loop de ferramentas com teto de 12
   passos por turno. ⚠️ modelos `:free` podem não suportar tool-calling — ver [[KEMY_AI-dados]].
+- **Rodízio automático de modelo (2026-09-23, feito):** se o modelo em uso ficar **sem
+  tokens/crédito/limite** (402/429/quota), a K.E.M.Y **detecta e troca sozinha** para o
+  próximo modelo gratuito da fila (`MODEL_ROTATION`), avisando no terminal — sem precisar
+  reiniciar nem o usuário mexer em nada. Fila padrão: `ling-3.0-flash-fin:free` →
+  `ling-3.0-flash-vl:free`; customizável via `KEMY_MODEL_FALLBACKS`. Só troca nesse cenário
+  específico (erro de quota/limite) — outros erros da API continuam sendo reportados normalmente.
 - **Ferramentas (6):** `read_file`, `write_file`, `list_dir`, `find_files`, `search_text`,
   `run_command` — todas **sem trava de pasta** (aceitam caminho absoluto, fora do projeto)
   e `run_command` roda shell real sem confirmar. Ver o aviso de segurança abaixo.

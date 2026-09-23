@@ -132,3 +132,18 @@ tarefas automaticas sem voce acompanhar.
 - `KEMY_MAX_TOKENS` — opcional, padrao `1024`. O plano gratis do OpenRouter tem
   saldo limitado; se pedir `max_tokens` alto demais para o saldo, a API responde
   erro 402 (credito insuficiente). (Fallback: `GROK_MAX_TOKENS`.)
+
+## Troca automatica de modelo (sem token/credito acaba, ela troca sozinha)
+
+Se o modelo gratuito em uso ficar **sem tokens/credito/limite** — a API responde
+`402` (credito insuficiente), `429` (rate limit) ou uma mensagem de quota — a K.E.M.Y
+**detecta e troca sozinha** para o proximo modelo gratuito da fila, avisando no
+terminal (`[K.E.M.Y] Modelo '...' sem tokens/credito/limite — trocando para '...'`).
+Ela **so** troca nesse cenario especifico; qualquer outro erro da API (ex. requisicao
+invalida) continua sendo reportado normalmente, sem trocar de modelo.
+
+- **Fila padrao:** `inclusionai/ling-3.0-flash-fin:free` (1º, o `KEMY_MODEL` atual) →
+  `inclusionai/ling-3.0-flash-vl:free` (2º, fallback).
+- **Customizar a fila:** defina `KEMY_MODEL_FALLBACKS` com uma lista separada por
+  virgula (o modelo de `KEMY_MODEL` sempre entra primeiro, mesmo se nao estiver na lista).
+- Se **todos** os modelos da fila esgotarem, a K.E.M.Y avisa e para (nao inventa resposta).
