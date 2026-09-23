@@ -18,8 +18,9 @@ Thumbs.db
 .scripts/.last-sync-date
 
 # Projeto KEMY_AI: só o que contém a chave de API hardcoded (OpenRouter) fica de fora.
-# As notas do vault (KEMY_AI.md, KEMY_AI-dados.md), o README e o .env.example são
-# versionados normalmente; o script com a chave e o zip (que embala o script) NÃO.
-projetos/KEMY_AI/kemy.py
+# As notas do vault, o README, o .env.example e os módulos SEM segredo (kemy.py,
+# kemy_tools.py, kemy_agents.py) são versionados; o kemy_config.py (que tem a chave
+# hardcoded) e o zip (que embala tudo) NÃO.
+projetos/KEMY_AI/kemy_config.py
 projetos/KEMY_AI.zip
 projetos/KEMY_AI/.env

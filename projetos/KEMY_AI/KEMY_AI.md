@@ -2,7 +2,7 @@
 name: KEMY_AI
 description: chat-bot de terminal em Python (ex grok-chat-cli) cuja persona é a K.E.M.Y — Kernel Engine for Modular Yield — assistente de engenharia de software estilo Claude Code, com ferramentas de arquivo/shell; motor Grok/OpenRouter por baixo
 tags: [projeto, proj/kemy-ai, cli, python, chatbot, agente, openrouter, grok]
-updated: 2026-09-23 (rebrand grok-chat-cli → KEMY_AI + persona K.E.M.Y; busca recursiva find_files/search_text; modelo padrão GRATUITO + rodízio automático quando um modelo esgota tokens/crédito)
+updated: 2026-09-23 (v2 + interface web index.html/kemy_server.py; testado no navegador: modelo gratuito CONFIRMADO suportando tool-calling; código modularizado)
 ---
 
 # KEMY_AI — assistente de terminal K.E.M.Y
@@ -30,9 +30,41 @@ Leitura curta: *"o motor-núcleo modular que entrega código"*.
 
 ## Estado atual (2026-09-23)
 
-- **Fase:** **funcionando, rebrand concluído.** Repositório/código real vive **dentro
-  do próprio vault**, em `projetos/KEMY_AI/` (caso incomum — os outros projetos guardam
-  o código fora). Ver mapa completo em [[KEMY_AI-dados]].
+- **Fase:** **v2 funcionando** — código modularizado e muito mais capaz. Vive **dentro do
+  próprio vault**, em `projetos/KEMY_AI/`. Ver mapa completo em [[KEMY_AI-dados]].
+- **Interface web (2026-09-23, feito e testado):** `kemy_server.py` (servidor stdlib
+  `http.server`, sem dep nova) serve `index.html` (chat tema escuro azul) e a API
+  `/api/chat|status|reset|mode`. Roda com `python kemy_server.py` → http://localhost:8000.
+  Usa o MESMO cérebro do terminal (`kemy.run_turn`). No web roda em `assume_yes` (não trava
+  em confirmação); o `run_turn` ganhou um `emit` para a UI mostrar as ferramentas usadas.
+  **Terminal segue funcionando** (`python kemy.py`). Config de preview: `kemy-web` na porta 8800.
+  - ✅ **Testado no navegador:** o modelo gratuito `inclusionai/ling-3.0-flash-fin:free`
+    **chamou ferramentas com sucesso** (`list_dir`) e respondeu como K.E.M.Y — ou seja, o
+    `:free` SUPORTA tool-calling (dúvida das versões anteriores resolvida).
+- **v2 — grande expansão de capacidades (2026-09-23, feito):**
+  - **Código modularizado:** `kemy.py` (REPL/orquestração) + `kemy_config.py` (config +
+    estado + modo) + `kemy_tools.py` (20 ferramentas) + `kemy_agents.py` (multiagente)
+    + `kemy_server.py` + `index.html` (web).
+  - **Web:** `fetch_url` (baixa/limpa página), `web_search` (DuckDuckGo, sem chave).
+  - **Documentos:** `read_document` (PDF/Word/Excel/CSV), `edit_docx`, `edit_excel`.
+  - **E-mail:** `send_email` pela conta `vitortozeti@gmail.com` — **sempre mostra e pede
+    confirmação** antes de enviar (usa senha de app do Gmail via `KEMY_EMAIL_APP_PASSWORD`).
+  - **Área de transferência:** `clipboard_read/write`.
+  - **Obsidian:** `obsidian_list_projects`, `obsidian_read_note`, `obsidian_write_note`
+    (conexão direta com este vault; caminho em `KEMY_OBSIDIAN_VAULT`).
+  - **Memória própria (hub de dados dela):** pasta `~/.kemy/` guarda **histórico
+    persistente** das conversas (`--continuar` retoma a última) e a **memória de pastas/
+    projetos** que ela já usou (`remember_folder`/`list_known_folders`).
+  - **Multiagente:** `spawn_agents` roda várias tarefas em paralelo (threads) e junta.
+  - **Modo automático x seguro:** `/auto` e `/seguro` (ou env `KEMY_CONFIRM`) — no seguro
+    ela pede OK antes de escrever/rodar/editar/sair pra web; e-mail **sempre** confirma.
+  - **Comandos de barra:** `/ajuda /modelo /seguro /auto /pasta /ferramentas /projetos
+    /pastas /salvar /limpar`.
+  - **Deps opcionais:** `beautifulsoup4, pypdf, python-docx, openpyxl, pyperclip`
+    (importadas sob demanda; sem elas a K.E.M.Y avisa `pip install ...`).
+- ⚠️ **Segurança (2026-09-23):** a chave hardcoded migrou para `kemy_config.py`; um
+  auto-commit do vault chegou a versioná-la (commits locais **não** pushados) — corrigido
+  com `git rm --cached` + `.gitignore` apontando p/ `kemy_config.py`. Ver [[KEMY_AI-dados]].
 - **Rebrand grok-chat-cli → KEMY_AI (feito):**
   - Pasta `projetos/grok-chat-cli/` → `projetos/KEMY_AI/`; script `grok_chat.py` → `kemy.py`.
   - Banner do REPL e prompt de resposta agora são `K.E.M.Y>` (antes `grok>`).

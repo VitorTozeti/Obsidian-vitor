@@ -4,11 +4,35 @@ Chat de terminal em Python que conversa com voce livremente (mantendo o contexto
 de toda a conversa, como no Claude Code). A assistente se chama **K.E.M.Y** —
 *Kernel Engine for Modular Yield* — e responde **sempre** com essa identidade.
 
-Por baixo, a K.E.M.Y usa o modelo **Grok (xAI) via OpenRouter** como motor de
+Por baixo, a K.E.M.Y usa **modelos GRATUITOS via OpenRouter** como motor de
 inferencia, mas ela **nunca se apresenta como "Grok"**: para o usuario, quem
-conversa e sempre a K.E.M.Y. Quando precisar, a K.E.M.Y pode usar ferramentas para
-ler/escrever arquivos, listar pastas e rodar comandos de shell dentro do projeto
-atual — mas voce tambem pode simplesmente bater papo, tirar duvidas de codigo, etc.
+conversa e sempre a K.E.M.Y.
+
+## Duas formas de usar
+
+- **Navegador (web):** `python kemy_server.py` e abra http://localhost:8000
+  (a interface e o `index.html`). Chat com um clique, mostra as ferramentas que ela usa.
+- **Terminal:** `python kemy.py` (mesmo cerebro, mesmas ferramentas).
+
+Ambos usam os mesmos modulos, entao o que voce melhora num vale pro outro.
+
+## Novidades da v2
+
+Codigo modularizado: `kemy.py` (REPL), `kemy_config.py` (config + estado + a chave),
+`kemy_tools.py` (as 20 ferramentas), `kemy_agents.py` (multiagente), `kemy_server.py`
+(servidor web) e `index.html` (interface). Capacidades:
+
+- **Web:** `fetch_url` (baixa e resume um link), `web_search` (pesquisa no DuckDuckGo).
+- **Documentos:** `read_document` (PDF, Word, Excel, CSV), `edit_docx`, `edit_excel`.
+- **E-mail:** `send_email` pela sua conta — **sempre mostra o e-mail e pede confirmacao**.
+- **Area de transferencia:** `clipboard_read` / `clipboard_write`.
+- **Obsidian:** lista os projetos do seu vault, le e escreve notas (`obsidian_*`).
+- **Memoria propria (hub `~/.kemy/`):** historico persistente das conversas
+  (`python kemy.py --continuar` retoma a ultima) e memoria das pastas/projetos que ja usou.
+- **Multiagente:** `spawn_agents` roda varias tarefas em paralelo.
+- **Modo automatico x seguro:** `/auto` e `/seguro` — no seguro ela pede OK antes de
+  escrever/rodar/editar/sair pra web (o e-mail confirma sempre).
+- **Comandos de barra:** `/ajuda /modelo /seguro /auto /pasta /ferramentas /projetos /pastas /limpar`.
 
 ## O que significa K.E.M.Y
 
@@ -26,7 +50,7 @@ Leitura curta: *"o motor-nucleo modular que entrega codigo"*.
 ## ⚠️ Chave da API hardcoded no codigo
 
 A pedido de quem criou este projeto, a chave da API do OpenRouter esta **escrita
-direto em `kemy.py`** (constante `_HARDCODED_API_KEY`), pra rodar sem precisar
+direto em `kemy_config.py`** (constante `_HARDCODED_API_KEY`), pra rodar sem precisar
 configurar nada. Isso e conveniente mas **inseguro para qualquer coisa alem de uso
 pessoal e local**:
 
@@ -121,7 +145,7 @@ tarefas automaticas sem voce acompanhar.
 
 ## Configuracao
 
-- `_HARDCODED_API_KEY` (em `kemy.py`) ou variavel de ambiente `KEMY_API_KEY`
+- `_HARDCODED_API_KEY` (em `kemy_config.py`) ou variavel de ambiente `KEMY_API_KEY`
   (tem prioridade) — chave do OpenRouter (https://openrouter.ai/settings/keys).
   Tambem aceita `OPENROUTER_API_KEY` (padrao da doc do OpenRouter) e a antiga
   `GROK_API_KEY` como fallback.

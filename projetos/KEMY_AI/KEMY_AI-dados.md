@@ -2,7 +2,7 @@
 name: KEMY_AI-dados
 description: mapa de onde os dados do KEMY_AI vivem — pasta/código, motor Grok via OpenRouter (endpoint, modelo, parâmetros), as 4 ferramentas, variáveis de ambiente KEMY_*/GROK_* e o loop de turno
 tags: [projeto, proj/kemy-ai, dados, arquitetura, openrouter, python]
-updated: 2026-09-23 (busca recursiva find_files/search_text; modelo padrão GRATUITO + chave aceita OPENROUTER_API_KEY; rodízio automático de modelo quando esgota tokens/crédito)
+updated: 2026-09-23 (v2: código modularizado em 4 arquivos; 20 ferramentas incl. web/documentos/e-mail/obsidian/multiagente; hub de dados ~/.kemy; modo auto/seguro; incidente de chave versionada corrigido)
 ---
 
 # KEMY_AI — Onde os dados vivem
@@ -13,15 +13,64 @@ Nota de dados/arquitetura do [[KEMY_AI]]. O que existe, onde mora e como se cone
 
 - **Pasta real:** `C:\Users\v.tozeti\Desktop\Vitor\teste\Obsidian-vitor\projetos\KEMY_AI`
   (o código vive **dentro do vault** — diferente dos outros projetos).
-- **Sem remoto Git próprio.** No `.gitignore` do vault: `kemy.py` e `KEMY_AI.zip` são
-  **ignorados** (contêm a chave hardcoded); as notas, README e `.env.example` **são versionados**.
-- **Arquivos:**
-  - `kemy.py` — script único (REPL + ferramentas + chamada de API). ~260 linhas.
-  - `README.md` — uso, significado da sigla e avisos de segurança.
-  - `requirements.txt` — dependência única: `requests`.
-  - `.env.example` — modelo das variáveis (`KEMY_API_KEY`, `KEMY_MODEL`).
-  - `.gitignore` (interno) — `.env`, `__pycache__/`, `*.pyc`, `.venv/`.
-  - `KEMY_AI.zip` — pacote distribuível (sem `.env`/`__pycache__`).
+- **Git:** no `.gitignore` do vault, **`kemy_config.py`** (contém a chave hardcoded) e
+  **`KEMY_AI.zip`** são ignorados; os demais módulos (`kemy.py`, `kemy_tools.py`,
+  `kemy_agents.py`), notas, README e `.env.example` **são versionados**.
+- **Estrutura (v2, modularizada):**
+  - `kemy.py` — entrada: REPL, orquestração do turno, chamada da API com rodízio,
+    histórico persistente, comandos de barra.
+  - `kemy_config.py` — **config + ESTADO** (chave/modelo, caminhos, modo auto/seguro,
+    system prompt, `confirm()`/`confirm_always()`). ⚠️ tem a chave hardcoded → gitignored.
+  - `kemy_tools.py` — as **20 ferramentas** + `TOOL_DEFINITIONS` (deps pesadas importadas
+    sob demanda).
+  - `kemy_agents.py` — multiagente (`run_agents`, paralelo com ThreadPoolExecutor).
+  - `kemy_server.py` — servidor web (stdlib `http.server`): serve `index.html` + API
+    `/api/chat|status|reset|mode`; sessão única em memória com lock; seta `assume_yes`.
+  - `index.html` — interface de chat (tema escuro azul, vanilla JS, fetch na API).
+  - `README.md`, `requirements.txt` (base `requests` + extras opcionais), `.env.example`,
+    `.gitignore` interno, `KEMY_AI.zip` (pacote distribuível).
+- **Como rodar:** web → `python kemy_server.py` (http://localhost:8000); terminal →
+  `python kemy.py`. Preview do app (launch.json): `kemy-web`, porta 8800.
+
+## Ferramentas (20) e o hub de dados da K.E.M.Y
+
+- **Arquivos/disco:** `read_file`, `write_file`, `list_dir`, `find_files`, `search_text`, `run_command`.
+- **Web:** `fetch_url` (baixa+limpa HTML), `web_search` (POST em `html.duckduckgo.com`, sem chave).
+- **Documentos:** `read_document` (dispatch por extensão: `pypdf`/`python-docx`/`openpyxl`/texto),
+  `edit_docx` (append/replace/create), `edit_excel` (cell+value / append_row).
+- **Área de transferência:** `clipboard_read`, `clipboard_write` (`pyperclip`).
+- **E-mail:** `send_email` — SMTP Gmail (`smtp.gmail.com:587`, STARTTLS), remetente
+  `KEMY_EMAIL_FROM` (padrão `vitortozeti@gmail.com`), senha só via `KEMY_EMAIL_APP_PASSWORD`
+  (senha de APP, nunca hardcode). **Sempre** monta preview e chama `confirm_always` antes de enviar.
+- **Obsidian:** `obsidian_list_projects` (lê `referencias/mapa-projetos.md` + `projetos/`),
+  `obsidian_read_note`, `obsidian_write_note`. Vault em `KEMY_OBSIDIAN_VAULT`.
+- **Memória:** `remember_folder`, `list_known_folders`.
+- **Multiagente:** `spawn_agents(tasks[])` → `kemy_agents.run_agents` (paralelo, cada agente
+  é um chat simples sem ferramentas, com o mesmo rodízio de modelo).
+- **Hub de dados dela (`KEMY_HOME`, padrão `~/.kemy/`):** `historico/conversa-*.jsonl` (uma
+  linha JSON por mensagem; `--continuar` retoma a última) e `pastas_conhecidas.json`
+  (pastas/projetos que já usou). Fica **fora do vault** (dado operacional, não conhecimento).
+
+## Modo automático x seguro
+
+- Estado em `cfg.STATE.confirm_mode` (env `KEMY_CONFIRM`, padrão auto). `cfg.confirm(desc)`
+  retorna True direto no modo auto; no seguro imprime a ação e pede `s/N`. Ferramentas de
+  escrita/execução/edição/web chamam `confirm`; **e-mail usa `confirm_always`** (pede OK
+  mesmo no auto). Troca a quente com `/auto` e `/seguro`.
+
+## ⚠️ Incidente de segurança (2026-09-23) — chave versionada, corrigido
+
+- Ao migrar a chave hardcoded de `kemy.py` para `kemy_config.py`, o **auto-sync do vault**
+  (`.scripts/auto-sync.ps1`, faz `git add -A` + commit + push periódico) rodou na janela
+  antes de o `.gitignore` ser atualizado e **commitou `kemy_config.py` com a chave** (commits
+  locais `d8737cd`/`0cdb919`).
+- **Contido:** os commits **não** foram pushados para `origin`
+  (`github.com/VitorTozeti/Obsidian-vitor`); fiz `git rm --cached kemy_config.py` e apontei o
+  `.gitignore` para `kemy_config.py`, então o `git add -A` do auto-sync não o reinclui mais.
+- **Pendência (decisão do usuário):** a chave ainda está no histórico local não-pushado.
+  Fix bulletproof = **revogar/rotacionar a chave** em `openrouter.ai/settings/keys` (ela é de
+  uso local e já vai embalada no zip, então rotacionar é barato). Alternativa: limpar os 2
+  commits locais antes que o auto-sync os empurre.
 
 ## Motor de inferência (API)
 
@@ -29,9 +78,10 @@ Nota de dados/arquitetura do [[KEMY_AI]]. O que existe, onde mora e como se cone
 - **Modelo padrão:** `inclusionai/ling-3.0-flash-fin:free` — **GRATUITO** no OpenRouter
   (escolhido em 2026-09-23 para **evitar gastos**). Trocável por env `KEMY_MODEL` (ex.
   `x-ai/grok-4.3`, pago). Lista: `openrouter.ai/models`.
-  - ⚠️ **Ressalva:** modelos `:free` podem **não suportar tool/function-calling** ou ter
-    limites de taxa; se as ferramentas pararem de ser chamadas, é o modelo (troque para um
-    que suporte tools). O código de tools não muda.
+  - ✅ **Tool-calling confirmado:** teste no navegador (2026-09-23) mostrou o
+    `inclusionai/ling-3.0-flash-fin:free` chamando `list_dir` com sucesso — o `:free`
+    **suporta** function-calling. (Se algum modelo futuro da fila não suportar, as
+    ferramentas simplesmente deixam de ser chamadas; aí é só trocar de modelo.)
 - **Parâmetros:** `temperature = 0.3`, `max_tokens = 1024` (default), `tool_choice = "auto"`.
 - **Auth:** header `Authorization: Bearer <API_KEY>`.
 - ⚠️ **Chave hardcoded** em `_HARDCODED_API_KEY` (dentro de `kemy.py`). Variável de ambiente
@@ -74,18 +124,12 @@ Implementado em `kemy.py`: `MODEL_ROTATION`, `current_model()`, `_looks_exhauste
 - **Transparência:** o banner do REPL (`main()`) mostra o modelo ativo e a fila completa
   ao iniciar.
 
-## Ferramentas do agente (6)
+## Ferramentas base de arquivo/disco (parte das 20)
 
-Definidas em `TOOL_DEFINITIONS` (formato function-calling da OpenAI) e implementadas em `TOOL_IMPLS`:
-
-| Ferramenta | Faz | Observação |
-|---|---|---|
-| `read_file` | lê um arquivo de texto | caminho relativo **ou absoluto** |
-| `write_file` | cria/sobrescreve arquivo | cria pastas-pai; caminho absoluto permitido |
-| `list_dir` | lista uma pasta | padrão `.` |
-| `find_files` | **acha arquivos por nome** (glob) recursivamente | `pattern`, `path`, `max_depth`; pula pastas de ruído |
-| `search_text` | **busca texto dentro dos arquivos** (grep) recursivo | `query`, `path`, `file_glob`, `max_depth`; retorna `arquivo:linha:` |
-| `run_command` | roda comando de shell | `shell=True`, timeout 60s, **sem confirmação** |
+As 6 ferramentas originais (`read_file`, `write_file`, `list_dir`, `find_files`,
+`search_text`, `run_command`) seguem existindo dentro das 20 (lista completa na seção
+"Ferramentas (20)" acima). Diferença na v2: `write_file` e `run_command` passam pela
+confirmação do **modo seguro** (`cfg.confirm`); no modo automático rodam direto como antes.
 
 ### Busca recursiva (grande liberdade de acesso a pastas)
 - `find_files`/`search_text` usam o helper `_walk_limited` (os.walk com teto de profundidade
