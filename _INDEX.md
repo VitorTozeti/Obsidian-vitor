@@ -41,6 +41,8 @@
   - [Pokédex — Onde os dados vivem](projetos/pokedex/pokedex-dados.md) — PokéAPI (endpoints, cache/fair use), tabela de tipos embutida e repositório do projeto Pokédex
 - [Meu Spotify](projetos/meu-spotify/meu-spotify.md) — app pessoal de música grátis com escuta offline; viabilidade: possível via Audius/Jamendo + biblioteca local, inviável para o catálogo mainstream
   - [Meu Spotify — Onde os dados vivem](projetos/meu-spotify/meu-spotify-dados.md) — APIs de música (Audius/Jamendo/Deezer/Spotify), o que cada uma libera, armazenamento offline e limites legais
+- [KEMY_AI](projetos/KEMY_AI/KEMY_AI.md) — chat-bot de terminal em Python (ex grok-chat-cli) com a persona K.E.M.Y (Kernel Engine for Modular Yield), estilo Claude Code, ferramentas de arquivo/shell; motor Grok/OpenRouter por baixo
+  - [KEMY_AI — Onde os dados vivem](projetos/KEMY_AI/KEMY_AI-dados.md) — pasta/código, OpenRouter (endpoint/modelo/parâmetros), as 4 ferramentas, variáveis KEMY_*/GROK_* e o loop de turno
 
 ## Referências
 - ⭐ [Mapa de Projetos](referencias/mapa-projetos.md) — carregamento de contexto: por projeto, o hub, o repo real no disco e as refs sempre-considerar (COMECE AQUI ao entrar num projeto)

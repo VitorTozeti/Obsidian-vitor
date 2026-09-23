@@ -2,7 +2,7 @@
 name: mapa-projetos
 description: mapa de carregamento de contexto — por projeto, o que abrir (hub, notas, refs sempre-considerar, repo real no disco)
 tags: [referencia, mapa, navegacao, sempre-considerar]
-updated: 2026-09-07
+updated: 2026-09-23
 ---
 
 # Mapa de Projetos — Carregamento de Contexto
@@ -20,6 +20,7 @@ updated: 2026-09-07
 | Role SP no trilho | `role-sp` 🟧 #F97316 | `projetos/role-sp/` | [[role-sp]] | [[role-sp-dados]] | `C:\Users\Vitor\Desktop\projetos\Linhas metros e pontos de interesse proj\Roles-na-linha-verde` (`VitorTozeti/Roles-na-linha-verde`) | ⭐[[mapa-projetos]] |
 | Pokédex + Time | `pokedex` 🟥 #DC2626 | `projetos/pokedex/` | [[pokedex]] | [[pokedex-dados]] | `C:\Users\v.tozeti\Desktop\Vitor\teste\poke` (git local, sem remoto) | ⭐[[mapa-projetos]] |
 | Meu Spotify | `meu-spotify` 🟦 #0D9488 | `projetos/meu-spotify/` | [[meu-spotify]] | [[meu-spotify-dados]] | (a definir — projeto novo, sem repo ainda) | ⭐[[mapa-projetos]] |
+| KEMY_AI | `kemy-ai` 🟦 #2196B3 | `projetos/KEMY_AI/` | [[KEMY_AI]] | [[KEMY_AI-dados]] | `C:\Users\v.tozeti\Desktop\Vitor\teste\Obsidian-vitor\projetos\KEMY_AI` (código no vault; `kemy.py`/zip fora do git — chave hardcoded) | ⭐[[mapa-projetos]] |
 
 <!-- Ao passar de um punhado de projetos, quebre em seções por área, ex.:
 ## Ecossistema A

@@ -17,6 +17,9 @@ Thumbs.db
 # Marcador de "já sincronizou hoje" (por máquina, não versionar)
 .scripts/.last-sync-date
 
-# Projeto de teste com chave de API hardcoded no código (OpenRouter) — NUNCA versionar
-projetos/grok-chat-cli/
-projetos/grok-chat-cli.zip
+# Projeto KEMY_AI: só o que contém a chave de API hardcoded (OpenRouter) fica de fora.
+# As notas do vault (KEMY_AI.md, KEMY_AI-dados.md), o README e o .env.example são
+# versionados normalmente; o script com a chave e o zip (que embala o script) NÃO.
+projetos/KEMY_AI/kemy.py
+projetos/KEMY_AI.zip
+projetos/KEMY_AI/.env
