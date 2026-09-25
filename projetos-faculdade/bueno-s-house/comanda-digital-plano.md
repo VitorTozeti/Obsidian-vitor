@@ -2,7 +2,7 @@
 name: comanda-digital-plano
 description: Plano de implementação faseado do SRS "Comanda Digital" sobre o Bueno's House, com base em auditoria real do código (não estimativa)
 tags: [proj/bueno-s-house]
-updated: 2026-09-25 (Fases 0-1 implementadas)
+updated: 2026-09-25 (Fases 0-5 implementadas e enviadas ao GitHub; frontend de fichas técnicas/fornecedores/dashboard pendente)
 ---
 
 # Comanda Digital — Plano de Implementação
@@ -71,28 +71,57 @@ fases executáveis. Nenhum código foi alterado nesta rodada — é só plano, a
 - Carrinho é só em memória (signal, some ao recarregar a página) — pré-existente, não é regressão desta fase, mas vale registrar como fricção de UX.
 - Endereço de entrega não é capturado no cadastro (fica para o checkout, `CustomerAddress`) — consistente com o fluxo do SRS, mas o cliente precisa cadastrar um endereço em algum momento antes do checkout; hoje não há tela para isso no `customer-checkout` além de listar endereços existentes.
 
-**Fase 2 — Ficha técnica e custo (bloco 4, RF-011 a 013 — maior risco técnico)**
-7. Migration: `fator_correcao` em `recipe_items`, `rendimento` em `recipes`.
-8. Serviço de cálculo: `custo_prato = Σ(quantidade × fator_correcao × custo_unitario) /
-   rendimento`; `food_cost% = custo_prato/preco_venda × 100` com semáforo (RN02: >35% só
-   avisa).
-9. Endpoint de custo por produto + tela Angular com `FormArray` para a ficha técnica.
+**Fase 2 — Ficha técnica e custo (bloco 4, RF-011 a 013) — ✅ backend implementado em 2026-09-25**
+7. Migration `V14__ficha_tecnica_custo.sql`: `correction_factor` em `recipe_items` (DEFAULT 1),
+   `yield_quantity` em `recipes` (DEFAULT 1) — default seguro para fichas já cadastradas.
+8. `InventoryService.toRecipeResponse()` calcula `costPerServing` (= `custo_prato`) e
+   `foodCostPercent` com o semáforo `GREEN`/`YELLOW`/`RED` (RN02: só avisa, nunca bloqueia) —
+   embutido direto na resposta da ficha técnica, sem endpoint separado.
+9. Novo `GET /api/inventory/recipes/{productId}` (antes só existia `POST`). `RecipeItemRequest`
+   agora exige `correctionFactor >= 1.0` (RN08) e `RecipeRequest` exige `yieldQuantity`.
+10. **Pendente:** RN01 ("prato só ATIVO com ficha técnica") **não foi implementada** de
+    propósito — enforçar isso hoje quebraria todo produto existente sem ficha técnica ao ser
+    editado. Registrado como decisão consciente, não esquecimento.
+11. **Pendente:** tela Angular com `FormArray` para a ficha técnica — só backend foi feito
+    (sem Node/npm neste ambiente para validar um componente Angular novo com segurança).
 
-**Fase 3 — Fornecedores e Compras (bloco 7, RF-021 a 026 — do zero)**
-10. Entidade `SupplierProduct` (fornecedor×ingrediente×preço×unidade).
-11. `SupplierController`/`Service` + validação de CNPJ (criar validador).
-12. Cotação comparativa por ingrediente.
-13. `Purchase` com itens de linha + status; ação "receber" gera `StockMovement`
-    `ENTRADA_COMPRA` (mecanismo já existe) e atualiza `costPerUnit` (RN05).
-14. Telas Angular correspondentes.
+**Fase 3 — Fornecedores e Compras (bloco 7, RF-021 a 026) — ✅ backend implementado em 2026-09-25**
+12. Migration `V15__fornecedores_compras.sql`: tabela `supplier_products` (cotação),
+    `purchases.status` (`RASCUNHO/ENVIADO/RECEBIDO/CANCELADO`, default `RASCUNHO`), tabela
+    `purchase_items` (linhas do pedido de compra). `purchases.purchased_at` virou opcional
+    (só é preenchido no recebimento).
+13. `CnpjValidator` (algoritmo de dígito verificador) + `SupplierService`/`SupplierController`
+    (`/api/suppliers`, CRUD, `/api/suppliers/{id}/products` para o catálogo do fornecedor,
+    `/api/suppliers/quote?inventoryItemId=` para a cotação comparativa ordenada por preço).
+14. `PurchaseService`/`PurchaseController` (`/api/purchases`): criar em `RASCUNHO` com itens,
+    `PATCH /{id}/send` → `ENVIADO`, `POST /{id}/receive` → `RECEBIDO` (gera `StockMovement`
+    `ENTRADA_COMPRA` via `InventoryService.receiveStock()` e atualiza `costPerUnit`, RN05),
+    `PATCH /{id}/cancel`.
+15. **Pendente:** telas Angular (fornecedores, catálogo, cotação, fluxo de compra) — não
+    construídas nesta rodada.
 
-**Fase 4 — Estoque completo (bloco 8, RF-027 a 033 — maioria já pronta)**
-15. Confirmar saída manual com motivo obrigatório, saldo em tempo real, tela de log de
-    movimentações (dado já existe, falta tela).
+**Fase 4 — Estoque completo (bloco 8, RF-027 a 033) — ✅ concluída em 2026-09-25**
+16. Já estava quase tudo pronto (saldo em tempo real, alertas de mínimo, log de movimentações
+    via API). Único gap real: `AJUSTE_PERDA` (saída manual) aceitava motivo em branco — agora
+    `InventoryService.registerManualMovement()` rejeita com 422 se `reason` vier vazio (RF-030).
+17. **Extra, fora do plano original:** a auditoria da Fase 1 tinha marcado RF-018
+    ("cancelamento com estorno de estoque") como não confirmado. Confirmado que **não
+    existia** — `ESTORNO_CANCELAMENTO` só aparecia como comentário no código, nunca usado.
+    Implementado: `InventoryService.reverseDeductionForOrderItem()` (idempotente, reverte só o
+    que foi de fato baixado) chamado por `OrderService.transitionTo()` sempre que um pedido
+    vira `CANCELADO`. `OrderService.cancel()` agora também exige motivo não vazio.
+    **Gap remanescente, não resolvido:** RN04 ("cancelamento livre antes de EM_PREPARO, depois
+    só GERENTE/ADMIN") não é diferenciado por status no endpoint genérico `/orders/{id}/transition`
+    — GARCOM/CAIXA ainda podem cancelar por ali em qualquer status permitido pela máquina de
+    estados. Só o endpoint dedicado `/orders/{id}/cancel` é restrito a ADMIN/GERENTE.
 
-**Fase 5 — Dashboard (bloco 9, RF-034 a 037)**
-16. Backend: food-cost médio (depende da Fase 2) + vendas por período.
-17. Frontend: instalar Chart.js/ng2-charts (não existe hoje) e construir a tela.
+**Fase 5 — Dashboard (bloco 9, RF-034 a 037) — backend concluído, frontend pendente**
+18. `InventoryService.averageFoodCostPercent()` + `GET /api/reports/average-food-cost` (média
+    do food cost só dos produtos que têm ficha técnica com preço válido).
+19. "Vendas por período" (RF-037) já era coberto por `GET /api/reports/daily-revenue`
+    (série por dia) — nenhuma mudança necessária, só reaproveitar no gráfico de linha.
+20. **Pendente:** instalar Chart.js/ng2-charts e construir a tela de dashboard em Angular — não
+    feito nesta rodada (risco alto de código não compilável sem Node para validar).
 
 **Fase 6 — Usuários internos (parte do bloco 10, RF-041)**
 18. `UserController`/`Service` novo (dado já modelado) para ADMIN gerenciar staff.
@@ -104,6 +133,14 @@ fases executáveis. Nenhum código foi alterado nesta rodada — é só plano, a
 22. Deploy: banco gerenciado + backend + frontend Angular + CORS de produção — testar cedo
     (planos gratuitos têm pegadinhas).
 23. README com URLs de produção + seed `admin@email.com`/`senha123`.
+
+### Envio ao GitHub (2026-09-25)
+
+Commit `f94d684` (48 arquivos) enviado para `origin/feat/migracao-angular` em
+[github.com/Joaovsr98/Bueno-sHouse](https://github.com/Joaovsr98/Bueno-sHouse). Sem conflito
+(branch estava atualizada antes do fetch). **Compilação ainda não verificada** — próximo
+passo obrigatório antes de confiar no branch é rodar `mvn -Dmaven.test.skip=true compile` e
+`npm run build` localmente.
 
 ### Ordem de execução recomendada
 

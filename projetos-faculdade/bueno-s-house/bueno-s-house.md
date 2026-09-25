@@ -97,8 +97,15 @@ Flyway ainda não auditadas linha a linha.
 4. Aguardando novos capítulos do material do professor para continuar a auditoria progressiva
    (processo formal já definido: capítulo novo → auditoria em 5 pontos → aprovação → só então
    código).
-5. Próximas fases do plano (ficha técnica/food cost, fornecedores/compras, dashboard,
-   usuários internos, deploy) — ver [[comanda-digital-plano]].
+5. ~~Próximas fases do plano (ficha técnica/food cost, fornecedores/compras, dashboard)~~ —
+   **Fases 2-5 implementadas no backend em 2026-09-25** (custo/food cost da ficha técnica,
+   fornecedores/cotação/pedido de compra completo, estoque com motivo obrigatório em perdas,
+   estorno de estoque no cancelamento de pedido — gap que a auditoria não tinha pego —, food
+   cost médio no dashboard). **Frontend Angular para essas telas (ficha técnica, fornecedores,
+   dashboard com gráficos) ainda não foi construído.** Detalhe completo em
+   [[comanda-digital-plano]].
+6. Usuários internos (`UserController` para Admin criar Gerente/Cozinheiro) e deploy — ainda
+   não iniciados, ver [[comanda-digital-plano]] (Fases 6-7).
 
 ## Relacionado
 - [[mapa-projetos]]
