@@ -231,6 +231,12 @@ sugere ajustes.
   `getMoveNames`, `pokemonWithAbility`, `pokemonWithMove`, `getStatsIndex` (fontes em
   [[pokedex-dados]]). Testado no navegador: Levitate → 32, False Swipe → 126, Gen 1 por
   Velocidade: Electrode 150 no topo / Slowpoke 15 no fim.
+  **Redesign UX dos filtros (mesma data):** a barra solta virou um **painel** (`.filters-panel`)
+  com busca grande + contador (spinner enquanto carrega), grade de campos **rotulados**
+  (Tipo · Geração · Habilidade · Golpe · Ordenar por status), direção como **controle
+  segmentado** "↓ Maior / ↑ Menor" (desabilitado até escolher um status), campos preenchidos
+  com destaque de acento (`.is-set`), **chips dos filtros ativos** removíveis com ✕ + "Limpar
+  tudo", Enter aplica na hora e layout responsivo (5 col → 2 col → mobile).
 - **Pendências (próximos passos):** ~~criar repo remoto no GitHub + deploy (Pages)~~ **feito**
   (remoto `VitorTozeti/Vitor-Pokemon` + workflow Pages commitado 2026-09-14; falta só
   confirmar que a página publicada está no ar e linkar a URL do Pages aqui);
