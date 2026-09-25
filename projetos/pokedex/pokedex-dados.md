@@ -2,7 +2,7 @@
 name: pokedex-dados
 description: onde os dados vivem no projeto Pokédex — PokéAPI (endpoints usados), estratégia de cache/pré-download, tabela de tipos embutida e repositório
 tags: [projeto, proj/pokedex, dados, pokeapi, api]
-updated: 2026-09-15 (CUSTOM_MEGAS em items.js — megas fan-made embutidas; mirror da PokéAPI tem fan-megas)
+updated: 2026-09-25 (endpoints dos filtros por habilidade/golpe + índice de status via GraphQL)
 ---
 
 # Pokédex — Onde os dados vivem
@@ -87,6 +87,16 @@ Mapa de **localização** dos dados do [[pokedex]] (não é regra de negócio �
 - Preferências de UI: `poke:theme` (paleta de acento), `poke:mode` (claro/escuro/auto) e
   `poke:anim` (animações ligadas/reduzidas).
 - Ao estourar a cota, o app limpa `pokemon:*` **e `movei:*`** e tenta de novo (`cacheSet`).
+
+### Filtros avançados da Pokédex (2026-09-25)
+
+| Uso | Endpoint | Cache (`poke:v1:` +) |
+|---|---|---|
+| Autocompletar habilidades | `/ability?limit=2000` | `abilityNames` |
+| Autocompletar golpes | `/move?limit=3000` | `moveNames` |
+| Quem tem a habilidade | `/ability/{slug}` → `pokemon[]` | `ability:{slug}` |
+| Quem aprende o golpe | `/move/{slug}` → `learned_by_pokemon[]` (só nomes) | `movelearn:{slug}` |
+| Ranking por status | GraphQL `https://beta.pokeapi.co/graphql/v1beta` (1 query, `pokemon_v2_pokemon` id≤1025 + `pokemon_v2_pokemonstats`); fallback `/pokemon/{id}` em lotes de 10 | `statsIndex` = `{nome:[hp,atk,def,spa,spd,spe]}` |
 
 ## Dados embutidos no app (não vêm de API)
 
