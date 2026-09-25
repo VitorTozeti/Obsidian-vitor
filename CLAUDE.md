@@ -37,13 +37,14 @@ a fonte por-projeto é a coluna de cor de [mapa-projetos](referencias/mapa-proje
 | `meu-spotify` | 🟦 teal #0D9488 | 889992 |
 | `kemy-ai` | 🟦 azul #2196F3 | 2201331 |
 | `megabrain` | 🟧 laranja claro #FB923C | 16495164 |
+| `bueno-s-house` | 🟦 índigo #4F46E5 | 5195493 |
 
 **Exceção de nota única (não é cor de projeto):** a nota [[KEMY_AI-dados]] (dentro do
 projeto `kemy-ai`) tem contraste extra em **amarelo #EAB308 / 15381256** via
 `path:projetos/KEMY_AI/KEMY_AI-dados.md` + `tag:#dados-amarelo`, para diferenciá-la
 visualmente do azul do resto do `kemy-ai` — não conta como cor de projeto na tabela acima.
 
-**Cores ainda livres** (da paleta): índigo #4F46E5 / 5195493 · marrom #92400E / 9584654 ·
+**Cores ainda livres** (da paleta): marrom #92400E / 9584654 ·
 lima #65A30D / 6660877 · rosa #DB2777 / 14362487 · ciano #06B6D4 / 440020. (Evite o azul
 #2563EB — fica próximo do `kemy-ai` #2196F3. `#EAB308` amarelo está reservado ao contraste
 do `KEMY_AI-dados`, acima. `#FB923C` é um laranja mais claro que o `role-sp` #EA580C —

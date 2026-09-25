@@ -22,6 +22,7 @@ updated: 2026-09-23 (adicionado Megabrain; KEMY_AI-dados marcado com contraste a
 | Meu Spotify | `meu-spotify` 🟦 #0D9488 | `projetos/meu-spotify/` | [[meu-spotify]] | [[meu-spotify-dados]] | (a definir — projeto novo, sem repo ainda) | ⭐[[mapa-projetos]] |
 | KEMY_AI | `kemy-ai` 🟦 #2196F3 | `projetos/KEMY_AI/` | [[KEMY_AI]] | [[KEMY_AI-dados]] 🟨 #EAB308 | `C:\Users\v.tozeti\Desktop\Vitor\teste\Obsidian-vitor\projetos\KEMY_AI` (código no vault; `kemy.py`/zip fora do git — chave hardcoded) | ⭐[[mapa-projetos]] |
 | Megabrain | `megabrain` 🟧 #FB923C | `projetos/megabrain/` | [[Megabrain]] | [[Megabrain-dados]] | (sem repo — hub de conhecimento/memória do vault, sem código externo) | ⭐[[mapa-projetos]] |
+| Bueno's House (faculdade) | `bueno-s-house` 🟦 índigo #4F46E5 | `projetos-faculdade/bueno-s-house/` | [[bueno-s-house]] | (nota única, sem `-dados.md` — projeto de portfólio reaproveitado, não código gerado pelo vault) | `C:\Users\v.tozeti\Desktop\Vitor\teste\thiagolas\Bueno-sHouse` (sem Git iniciado) | ⭐[[mapa-projetos]] |
 
 <!-- Ao passar de um punhado de projetos, quebre em seções por área, ex.:
 ## Ecossistema A
