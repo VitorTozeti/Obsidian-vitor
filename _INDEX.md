@@ -48,7 +48,9 @@
   - [Megabrain — Onde os dados vivem](projetos/megabrain/Megabrain-dados.md) — pasta, convenção de cor (laranja) e como se relaciona com o contraste amarelo do KEMY_AI-dados
 
 ## Projetos Faculdade
-- [Bueno's House](projetos-faculdade/bueno-s-house/bueno-s-house.md) — sistema de gestão para restaurantes (Spring Boot + React/Angular), reaproveitado como base técnica para o trabalho acadêmico "DaHorta"
+- [Bueno's House](projetos-faculdade/bueno-s-house/bueno-s-house.md) — sistema de gestão para restaurantes (Spring Boot + React/Angular), reaproveitado como base técnica para o trabalho acadêmico "Comanda Digital"
+  - [Comanda Digital — SRS v3.2](projetos-faculdade/bueno-s-house/comanda-digital-srs.md) — especificação oficial completa do professor (requisitos, modelo de dados, regras, roteiro, critérios de nota)
+  - [Comanda Digital — Estado Atual vs. SRS](projetos-faculdade/bueno-s-house/comanda-digital-estado.md) — comparativo bloco a bloco do que já está feito e o que falta
 
 ## Referências
 - ⭐ [Mapa de Projetos](referencias/mapa-projetos.md) — carregamento de contexto: por projeto, o hub, o repo real no disco e as refs sempre-considerar (COMECE AQUI ao entrar num projeto)

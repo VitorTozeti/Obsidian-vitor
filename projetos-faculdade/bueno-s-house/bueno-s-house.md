@@ -1,6 +1,6 @@
 ---
 name: bueno-s-house
-description: Sistema de gestão para restaurantes (monólito Spring Boot + Angular/React) usado como base para o trabalho acadêmico "DaHorta"
+description: Sistema de gestão para restaurantes (monólito Spring Boot + Angular/React) usado como base para o trabalho acadêmico "Comanda Digital" (ex-"DaHorta")
 tags: [proj/bueno-s-house]
 updated: 2026-09-25
 ---
@@ -45,15 +45,23 @@ MySQL`), módulos desacoplados por eventos de domínio: `identity, organization,
 dinein, ordering, kitchen, payments, cashregister, customers, delivery, couriers, inventory,
 reports, notifications`.
 
-### O pivô acadêmico "DaHorta"
+### O pivô acadêmico "Comanda Digital" (ex-"DaHorta")
 
 Em 2026-08-07 a usuária trouxe capítulos de um material de faculdade descrevendo um projeto
-chamado **DaHorta**: uma *dark kitchen* (sem salão), 4 atores (Cliente, Funcionário/Cozinha,
-Motoboy, Dono/Administração), fluxo `received → preparing → ready → delivering → delivered`
-com confirmação por código, stack obrigatória **Angular (cliente) + Spring Boot + MySQL**.
+então chamado internamente **DaHorta**: uma *dark kitchen* (sem salão), 4 atores (Cliente,
+Funcionário/Cozinha, Motoboy, Dono/Administração), fluxo `received → preparing → ready →
+delivering → delivered` com confirmação por código, stack obrigatória **Angular (cliente) +
+Spring Boot + MySQL**.
 
-Foi feita uma auditoria capítulo a capítulo (Git, MySQL, API REST, tela pura, SOLID, OWASP,
-padrões GoF) comparando o Bueno's House contra os requisitos do professor. Resumo:
+Em 2026-09-25 a usuária trouxe o **SRS v3.2 completo e oficial** do professor, com o nome
+formal **"Comanda Digital"** — muito mais detalhado (ficha técnica com food cost,
+fornecedores/compras/cotação, dashboard com Chart.js, 43 requisitos funcionais, critérios de
+nota por bloco). Guia completo em [[comanda-digital-srs]]; comparação com o que o Bueno's
+House já cobre em [[comanda-digital-estado]] — **essas duas notas substituem o resumo abaixo
+como fonte de verdade**, que fica só como contexto histórico da primeira auditoria.
+
+Auditoria de 2026-08-07 (capítulo a capítulo: Git, MySQL, API REST, tela pura, SOLID, OWASP,
+padrões GoF), contra a versão parcial do material disponível até então. Resumo:
 
 - **Núcleo acadêmico DaHorta** (precisa estar 100% correto): Cliente, Cardápio, Pedido,
   Cozinha, Motoboy, Código de entrega, Estoque/admin — já coberto pelos módulos
@@ -87,3 +95,5 @@ Flyway ainda não auditadas linha a linha.
 
 ## Relacionado
 - [[mapa-projetos]]
+- [[comanda-digital-srs]]
+- [[comanda-digital-estado]]
