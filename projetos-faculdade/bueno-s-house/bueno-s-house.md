@@ -84,14 +84,21 @@ executado de fato nesta máquina; validação estrita do Hibernate foi desligada
 (`SPRING_JPA_HIBERNATE_DDL_AUTO=none`) por divergências de tipo entre JPA e as migrations
 Flyway ainda não auditadas linha a linha.
 
-### Pendências em aberto (na data desta nota)
+### Pendências em aberto (atualizado 2026-09-25)
 
-1. Rodar `mvn test` de verdade pelo menos uma vez (nunca foi validado).
-2. `git init` + `.gitignore` (nessa ordem) — aguardando aprovação da usuária.
-3. Resolver a "porta de entrada do Cliente" (autenticação, criação de pedido, ownership).
+1. Rodar `mvn test`/`npm run build` de verdade pelo menos uma vez — nunca foi validado, e o
+   ambiente usado pelo Claude nesta sessão não tem Java/Maven/Node instalados para conferir.
+2. ~~`git init` + `.gitignore`~~ — **correção:** o Git já existia (remoto no GitHub,
+   `Joaovsr98/Bueno-sHouse`), contradizendo a auditoria de agosto.
+3. ~~Resolver a "porta de entrada do Cliente"~~ — **Fase 1 do [[comanda-digital-plano]]
+   implementada em 2026-09-25**: cadastro público (`POST /api/auth/register`), cardápio
+   público (RN09), cardápio Angular navegável sem login, cadastro Angular novo. Compilação
+   ainda não verificada localmente.
 4. Aguardando novos capítulos do material do professor para continuar a auditoria progressiva
    (processo formal já definido: capítulo novo → auditoria em 5 pontos → aprovação → só então
    código).
+5. Próximas fases do plano (ficha técnica/food cost, fornecedores/compras, dashboard,
+   usuários internos, deploy) — ver [[comanda-digital-plano]].
 
 ## Relacionado
 - [[mapa-projetos]]

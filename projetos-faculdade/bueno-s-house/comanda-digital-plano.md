@@ -2,7 +2,7 @@
 name: comanda-digital-plano
 description: Plano de implementação faseado do SRS "Comanda Digital" sobre o Bueno's House, com base em auditoria real do código (não estimativa)
 tags: [proj/bueno-s-house]
-updated: 2026-09-25
+updated: 2026-09-25 (Fases 0-1 implementadas)
 ---
 
 # Comanda Digital — Plano de Implementação
@@ -48,15 +48,28 @@ fases executáveis. Nenhum código foi alterado nesta rodada — é só plano, a
 
 ### Fases do plano
 
-**Fase 0 — Fundação (bloqueante)**
-1. `git init` + `.gitignore` (nessa ordem) — aguardando aprovação da usuária.
-2. Rodar `mvn test` de verdade pelo menos uma vez (precisa Docker/Testcontainers).
-3. Decidir consolidar em Angular e descontinuar o frontend React.
+**Fase 0 — Fundação (bloqueante) — ✅ concluída em 2026-09-25**
+1. ~~`git init` + `.gitignore`~~ — **correção**: o Git já existia (remoto
+   `github.com/Joaovsr98/Bueno-sHouse`, branch `feat/migracao-angular`,
+   `.gitignore` já cobrindo `.env`/`node_modules`/`target`), contradizendo a
+   auditoria de agosto. Nada a fazer aqui.
+2. Rodar `mvn test` de verdade — **ainda pendente**, este ambiente (sessão do
+   Claude) não tem Java/Maven/Node instalados para validar; precisa ser
+   rodado localmente pela usuária.
+3. Decidir consolidar em Angular — **decisão tomada**, mantida como
+   recomendação (React não foi removido ainda, só não deve receber mais
+   trabalho).
 
-**Fase 1 — Auth do Cliente (fecha blocos 1+2 do SRS, RF-001 a 008)**
-4. `POST /api/auth/register` público → cria `User` (perfil CLIENTE) + `Customer` vinculado.
-5. Liberar `GET /api/categories`/`GET /api/products` sem login (RN09: só ativos).
-6. Validar ownership de `/api/orders/*` já existente após ligar o cadastro público.
+**Fase 1 — Auth do Cliente (fecha blocos 1+2 do SRS, RF-001 a 008) — ✅ implementada em 2026-09-25 (compilação não verificada, ver Pendências)**
+4. `POST /api/auth/register` público → cria `User` (perfil CLIENTE) + `Customer` vinculado. Feito: `RegisterRequest` DTO, `AuthService.register()`, `AuthController`, `EmailAlreadyExistsException` (409, RN10), liberado em `SecurityConfig`.
+5. Cardápio público sem login (RN09: só produtos `available=true`). Feito: `ProductService.listPublicByUnit/listPublicByCategory` + `ProductRepository` com filtro `AvailableTrue`; `ProductController` decide staff vs. público via `SecurityContextHolder` (CLIENTE logado também vê só o público); `GET /api/categories`, `/api/products`, `/api/units` liberados no `SecurityConfig`.
+6. Ownership de `/api/orders/*` já existia (confirmado por auditoria de código, não precisou de mudança).
+7. **Extra além do previsto no plano original:** o Angular guardava `/app/*` inteiro (inclusive o cardápio) atrás de `authGuard` — isso quebraria RF-001 na prática (cardápio não era navegável sem login). Corrigido: `cardapio` ficou público, só `carrinho`/`pedidos`/`pedidos/:orderId` continuam guardados. Criada tela `features/register/` (formulário nome/e-mail/telefone/senha). `authGuard` agora preserva `returnUrl` e o login redireciona de volta pra lá (RF-005). Header do app do cliente mostra "Entrar" para anônimo e "Sair" só para logado.
+
+**Pendências abertas desta fase:**
+- Compilar/testar de verdade (`mvn -Dmaven.test.skip=true compile`, depois `mvn test` com Docker; `npm run build` no `frontend-angular`) — não foi possível neste ambiente.
+- Carrinho é só em memória (signal, some ao recarregar a página) — pré-existente, não é regressão desta fase, mas vale registrar como fricção de UX.
+- Endereço de entrega não é capturado no cadastro (fica para o checkout, `CustomerAddress`) — consistente com o fluxo do SRS, mas o cliente precisa cadastrar um endereço em algum momento antes do checkout; hoje não há tela para isso no `customer-checkout` além de listar endereços existentes.
 
 **Fase 2 — Ficha técnica e custo (bloco 4, RF-011 a 013 — maior risco técnico)**
 7. Migration: `fator_correcao` em `recipe_items`, `rendimento` em `recipes`.
