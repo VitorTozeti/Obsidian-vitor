@@ -2,7 +2,7 @@
 name: comanda-digital-plano
 description: Plano de implementação faseado do SRS "Comanda Digital" sobre o Bueno's House, com base em auditoria real do código (não estimativa)
 tags: [proj/bueno-s-house]
-updated: 2026-09-25 (Fases 0-5 implementadas e enviadas ao GitHub; frontend de fichas técnicas/fornecedores/dashboard pendente)
+updated: 2026-09-25 (Fases 0-5 implementadas e enviadas ao GitHub; frontend de fichas técnicas/fornecedores/dashboard pendente; paginação e Swagger confirmados ausentes)
 ---
 
 # Comanda Digital — Plano de Implementação
@@ -127,8 +127,20 @@ fases executáveis. Nenhum código foi alterado nesta rodada — é só plano, a
 18. `UserController`/`Service` novo (dado já modelado) para ADMIN gerenciar staff.
 
 **Fase 7 — Polimento, NFRs e Deploy**
-19. Confirmar paginação em todas as listagens (RNF08, não confirmado).
-20. Swagger/DTOs/`@ControllerAdvice` — parecem atendidos, só conferir.
+19. **Paginação (RNF08) — confirmado AUSENTE em 2026-09-25:** nenhum dos 23
+    `@RestController` do backend usa `Pageable` (`grep -rl Pageable` no
+    `src/main/java` retorna zero arquivos). Todas as listagens (pedidos,
+    produtos, fornecedores, etc.) hoje devolvem a lista inteira. Bloqueia o
+    bloco 5 (RF-019 "lista de pedidos paginada") do SRS — precisa ser
+    implementado, não é só "conferir".
+20. **Swagger/OpenAPI (RNF11) — confirmado AUSENTE em 2026-09-25:** o
+    `pom.xml` não tem nenhuma dependência `springdoc-openapi` (só
+    `web/data-jpa/validation/security/websocket/mysql/flyway/jjwt/lombok`).
+    Não existe `/swagger-ui.html` hoje. Precisa adicionar
+    `springdoc-openapi-starter-webmvc-ui` e liberar a rota no
+    `SecurityConfig` (`/v3/api-docs/**`, `/swagger-ui/**` públicos). DTOs e
+    `@ControllerAdvice` continuam atendidos (confirmado nas auditorias
+    anteriores, Cap. 04/07).
 21. DER visual exportado (entregável extra).
 22. Deploy: banco gerenciado + backend + frontend Angular + CORS de produção — testar cedo
     (planos gratuitos têm pegadinhas).

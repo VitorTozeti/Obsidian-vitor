@@ -2,7 +2,7 @@
 name: comanda-digital-estado
 description: Comparativo entre o SRS "Comanda Digital" (10 blocos de nota) e o que o Bueno's House já implementa — o que está feito, o que falta e o que ainda não foi auditado
 tags: [proj/bueno-s-house]
-updated: 2026-09-25
+updated: 2026-09-25 (paginação e Swagger confirmados ausentes por grep/pom.xml)
 ---
 
 # Comanda Digital — Estado Atual vs. SRS
@@ -44,6 +44,15 @@ compromisso.**
 - Baixa automática de estoque idempotente ao concluir item na cozinha — já é exatamente o
   padrão que RF-017 pede.
 - Confirmação de entrega por código já validada server-side.
+
+### Gaps de RNF confirmados em 2026-09-25 (novos, não estimativa)
+
+- **RNF08 (paginação) — AUSENTE.** `grep -rl Pageable` nos 23 `@RestController` do backend
+  não retorna nenhum arquivo: nenhuma listagem é paginada hoje (nem pedidos, nem produtos,
+  nem fornecedores). Impacta diretamente RF-019 (bloco 5 do SRS).
+- **RNF11 (Swagger) — AUSENTE.** `pom.xml` não tem `springdoc-openapi` nem nenhuma outra
+  lib de OpenAPI; não existe `/swagger-ui.html`. Precisa ser adicionado do zero (dependência
+  + liberar rota pública no `SecurityConfig`). Ver detalhe em [[comanda-digital-plano]] Fase 7.
 
 ### Gaps confirmados (herdados da auditoria anterior, ainda valem)
 
