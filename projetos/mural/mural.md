@@ -11,11 +11,17 @@ Um mural de post-its só para duas pessoas, com assuntos que queremos conversar,
 
 ## Estado atual (2026-09-28)
 
-- **Fase:** **Fase 1 (Scaffold/Esqueleto de Projeto) concluída** em `C:\Users\v.tozeti\Desktop\Vitor\teste\Vitor-mural`.
-- **Arquitetura aplicada:** HTML5 + CSS puro (fundo estilo cortiça com efeito pin-board, layout responsivo) + JS nativo modular (`app.js`, `board.js`, `postit.js`, `github.js`, `crypto.js`) e `data.json` inicial.
+- **Fase:** **Esqueleto completo (MVP + V2 + Extras de UX)** implementado e funcional em `C:\Users\v.tozeti\Desktop\Vitor\teste\Vitor-mural`.
+- **Arquitetura aplicada:**
+  - Front-end modular HTML5, CSS e JS nativo sem frameworks pesados.
+  - Temas visuais (Cortiça, Madeira, Escuro) e suporte a arrastar com mouse ou touch em smartphones/tablets.
+  - Post-its customizáveis (6 cores, 5 fontes manuscritas, 3 tamanhos, rotações orgânicas, badges de sensibilidade do assunto e reações rápidas ❤️/👀/😅).
+  - Post-its guardados com criptografia de ponta a ponta (Web Crypto API AES-GCM + PBKDF2) e dicas públicas.
+  - Sincronização Serverless via GitHub Pages com polling de 15s e tratamento automático de conflitos (HTTP 409).
+  - Gaveta de Histórico de conversas resolvidas com opção de reabertura rápida.
 - **Próximos passos:**
-  - Configurar repositório remoto no GitHub e ativar o GitHub Pages.
-  - Inserir o Personal Access Token (Fine-grained) e testar a sincronização remota entre os dois usuários.
+  - Subir a pasta `Vitor-mural` para um repositório no GitHub e ativar o GitHub Pages.
+  - Gerar o Fine-grained Personal Access Token para ambos e testar o uso em tempo real nos dois navegadores/celulares.
 - **Onde os dados vivem:** consulte [[mural-dados]] para o mapa de persistência e repositório.
 
 ## Notas detalhadas do projeto
