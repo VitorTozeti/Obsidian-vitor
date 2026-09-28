@@ -46,6 +46,9 @@
   - [KEMY_AI — Onde os dados vivem](projetos/KEMY_AI/KEMY_AI-dados.md) — pasta/código, OpenRouter (endpoint/modelo/parâmetros), as 20 ferramentas, variáveis KEMY_*/GROK_*, rodízio de modelo e o loop de turno
 - [Megabrain](projetos/megabrain/Megabrain.md) — hub de conhecimento/memória estruturada do vault, segundo cérebro que complementa o KEMY_AI
   - [Megabrain — Onde os dados vivem](projetos/megabrain/Megabrain-dados.md) — pasta, convenção de cor (laranja) e como se relaciona com o contraste amarelo do KEMY_AI-dados
+- [Mural de Post-its](projetos/mural/mural.md) — mural interativo de post-its para duas pessoas, leve e com post-its guardados/criptografados via GitHub
+  - [Mural — Onde os dados vivem](projetos/mural/mural-dados.md) — mapa de localização de dados, repositório, chaves do LocalStorage e fluxo da API GitHub
+  - [Mural — Planejamento](projetos/mural/planejamento-mural-postits.md) — planejamento de arquitetura, funcionalidades, modelo de dados e criptografia do mural de post-its
 
 ## Projetos Faculdade
 - [Bueno's House](projetos-faculdade/bueno-s-house/bueno-s-house.md) — sistema de gestão para restaurantes (Spring Boot + React/Angular), reaproveitado como base técnica para o trabalho acadêmico "Comanda Digital"
