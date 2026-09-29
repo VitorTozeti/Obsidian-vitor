@@ -26,29 +26,29 @@ Um mural de post-its só pra duas pessoas, com assuntos que queremos conversar, 
 ## 2. Funcionalidades
 
 ### MVP (versão 1)
-- [ ] Mural com fundo estilo cortiça/quadro
-- [ ] Criar, editar e apagar post-its
-- [ ] Arrastar e soltar os post-its pelo mural
-- [ ] Customização do post-it:
-  - [ ] Cor (paleta de post-its clássicos)
-  - [ ] Fonte (algumas opções, incluindo estilo manuscrito)
-  - [ ] Tamanho
-  - [ ] Rotação leve (pra dar aparência de colado à mão)
-  - [ ] Emoji/ícone opcional
-- [ ] Identificação do autor (cada post-it mostra quem criou, por cor ou etiqueta)
-- [ ] Sincronização entre os dois via GitHub
+- [x] Mural com fundo estilo cortiça/quadro
+- [x] Criar, editar e apagar post-its
+- [x] Arrastar e soltar os post-its pelo mural
+- [x] Customização do post-it:
+  - [x] Cor (paleta de post-its clássicos)
+  - [x] Fonte (algumas opções, incluindo estilo manuscrito)
+  - [x] Tamanho
+  - [x] Rotação leve (pra dar aparência de colado à mão)
+  - [x] Emoji/ícone opcional
+- [x] Identificação do autor (cada post-it mostra quem criou, por cor ou etiqueta)
+- [x] Sincronização entre os dois via GitHub
 
 ### Versão 2
-- [ ] **Post-its guardados** (criptografados, revelados quando quem criou decidir)
-- [ ] Status do post-it: "quero falar", "já conversamos", "resolvido", "preciso de mais tempo"
-- [ ] Nível de delicadeza: leve, médio, conversa séria
-- [ ] Histórico de assuntos resolvidos
+- [x] **Post-its guardados** (criptografados, revelados quando quem criou decidir)
+- [x] Status do post-it: "quero falar", "já conversamos", "resolvido", "preciso de mais tempo"
+- [x] Nível de delicadeza: leve, médio, conversa séria
+- [x] Histórico de assuntos resolvidos
 
 ### Ideias futuras
-- [ ] Reações rápidas (❤️, 👀, 😅) em cada post-it
+- [x] Reações rápidas (❤️, 👀, 😅) em cada post-it
 - [ ] Comentário/resposta curta em cada post-it
 - [ ] Notificação de novo post-it (pode ser só um indicador visual ao abrir o site)
-- [ ] Temas do mural (cortiça, madeira, escuro)
+- [x] Temas do mural (cortiça, madeira, escuro)
 - [ ] "Post-it surpresa" que se revela numa data específica
 
 ---
@@ -111,6 +111,7 @@ Um mural de post-its só pra duas pessoas, com assuntos que queremos conversar, 
       "status": "quero_falar",
       "sensitivity": "leve",
       "locked": false,
+      "reactions": { "❤️": ["ela"], "👀": ["eu", "ela"] },
       "createdAt": "2026-09-28T12:00:00Z"
     },
     {
@@ -125,6 +126,7 @@ Um mural de post-its só pra duas pessoas, com assuntos que queremos conversar, 
       "color": "#F48FB1",
       "x": 300,
       "y": 200,
+      "hint": "Abre no sábado 👀",
       "createdAt": "2026-09-28T12:05:00Z"
     }
   ]
@@ -132,6 +134,11 @@ Um mural de post-its só pra duas pessoas, com assuntos que queremos conversar, 
 ```
 
 Para post-its guardados (`locked: true`), o campo `text` **não existe**. O conteúdo fica só dentro de `encrypted`. Cor, posição e autor continuam visíveis, então ela vê que existe um post-it misterioso, mas não consegue ler.
+
+**Campos adicionados na implementação** (além do previsto originalmente neste planejamento):
+- `reactions`: mapa `{ emoji: [autores_que_reagiram] }`, usado pelas reações rápidas ❤️/👀/😅.
+- `hint`: dica pública opcional de um post-it guardado (mostrada no modal de revelar antes de pedir a senha).
+- `resolvedAt`: timestamp de quando o post-it foi marcado como `resolvido`, usado na gaveta de Histórico.
 
 ---
 
@@ -222,26 +229,27 @@ Se preferir manter tudo num repo só e público, funciona, mas: evite escrever c
 
 ## 10. Roadmap
 
-### Fase 1: Mural local (1 a 2 dias)
+### Fase 1: Mural local (1 a 2 dias) — ✅ concluída
 - Estrutura HTML/CSS e o mural
 - Criar, editar, apagar e arrastar post-its
 - Customização de cor, fonte, tamanho
 - Salvar no `localStorage` (só pra testar a sensação)
 
-### Fase 2: Sincronização (1 a 2 dias)
+### Fase 2: Sincronização (1 a 2 dias) — ✅ concluída
 - Tela de configuração do token
 - Leitura e escrita do `data.json` via API
 - Polling e tratamento de conflito
-- Deploy no GitHub Pages
+- Deploy no GitHub Pages — site no ar em [vitortozeti.github.io/Mural](https://vitortozeti.github.io/Mural/)
 
-### Fase 3: Post-its guardados (1 dia)
+### Fase 3: Post-its guardados (1 dia) — ✅ concluída
 - Criptografia e descriptografia
 - Interface de cadeado, revelar e dica
-- Testes com senha errada e conteúdo perdido
+- Testes com senha errada e conteúdo perdido *(pendente teste manual com os dois usuários reais)*
 
-### Fase 4: Extras (quando bater vontade)
-- Status, nível de delicadeza, histórico
-- Reações, comentários, temas
+### Fase 4: Extras (quando bater vontade) — ✅ maior parte concluída
+- Status, nível de delicadeza, histórico — feito
+- Reações, temas — feito
+- Comentário/resposta curta e "post-it surpresa" com data — ainda não implementados
 
 ---
 
@@ -260,20 +268,21 @@ Se preferir manter tudo num repo só e público, funciona, mas: evite escrever c
 
 ## 12. Próximos passos
 
-1. Decidir: **um repo ou dois** (site + dados).
+1. ~~Decidir: um repo ou dois (site + dados).~~ Feito: repo único público `VitorTozeti/Mural` (site + `data.json` juntos).
 2. Combinar com ela a brincadeira e o tom.
-3. Criar o repositório e ativar o GitHub Pages.
-4. Gerar os dois tokens (o seu e o dela).
-5. Construir o protótipo da Fase 1 e testar a sensação do mural.
+3. ~~Criar o repositório e ativar o GitHub Pages.~~ Feito.
+4. Gerar os dois tokens (o seu e o dela) e configurar cada um na tela de engrenagem ⚙️ do site.
+5. ~~Construir o protótipo da Fase 1 e testar a sensação do mural.~~ Feito — MVP, V2 e a maior parte dos extras já implementados.
+6. Testar sincronização em tempo real com os dois tokens configurados, em celular e desktop.
 
 ---
 
 ## 13. Checklist técnico rápido
 
-- [ ] Repositório criado no GitHub
-- [ ] GitHub Pages ativado (branch `main`, pasta raiz)
-- [ ] `data.json` inicial com `{"version":1,"postits":[]}`
-- [ ] Token fine-grained gerado (Contents: read/write, só nesse repo)
-- [ ] Token do site nunca commitado
+- [x] Repositório criado no GitHub (`VitorTozeti/Mural`, público)
+- [x] GitHub Pages ativado — [vitortozeti.github.io/Mural](https://vitortozeti.github.io/Mural/)
+- [x] `data.json` inicial no repositório
+- [ ] Token fine-grained gerado (Contents: read/write, só nesse repo) para os dois usuários
+- [x] Token do site nunca commitado (fica só no `localStorage`)
 - [ ] Testado em celular e desktop
 - [ ] Testado com os dois usando ao mesmo tempo

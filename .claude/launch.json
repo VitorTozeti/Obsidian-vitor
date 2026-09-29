@@ -13,6 +13,12 @@
       "runtimeArgs": ["kemy_server.py", "8800"],
       "cwd": "C:/Users/v.tozeti/Desktop/Vitor/teste/Obsidian-vitor/projetos/KEMY_AI",
       "port": 8800
+    },
+    {
+      "name": "mural-static",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8792", "--directory", "C:/Users/v.tozeti/Desktop/Vitor/teste/Vitor-mural"],
+      "port": 8792
     }
   ]
 }
