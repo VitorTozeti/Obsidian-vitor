@@ -60,3 +60,6 @@ powershell -ExecutionPolicy Bypass -File .scripts\forcar-github.ps1 -RepoUrl "ht
 ```powershell
 powershell -ExecutionPolicy Bypass -File .scripts\enviar-github.ps1 -Mensagem "minha nota"
 ```
+
+## Ver também
+- [[vault-dados]] — onde vivem scripts, remoto e config do vault · [[mapa-dados]]

@@ -2,7 +2,7 @@
 name: comanda-digital-plano
 description: Plano de implementação faseado do SRS "Comanda Digital" sobre o Bueno's House, com base em auditoria real do código (não estimativa)
 tags: [proj/bueno-s-house]
-updated: 2026-09-25 (Fases 0-5 implementadas e enviadas ao GitHub; frontend de fichas técnicas/fornecedores/dashboard pendente; paginação e Swagger confirmados ausentes)
+updated: 2026-09-29 (Fases 5 e 7 fechadas; Fase 6 e parte da 7 + telas Angular simples implementadas no working tree, NÃO compiladas nem commitadas)
 ---
 
 # Comanda Digital — Plano de Implementação
@@ -123,28 +123,32 @@ fases executáveis. Nenhum código foi alterado nesta rodada — é só plano, a
 20. **Pendente:** instalar Chart.js/ng2-charts e construir a tela de dashboard em Angular — não
     feito nesta rodada (risco alto de código não compilável sem Node para validar).
 
-**Fase 6 — Usuários internos (parte do bloco 10, RF-041)**
-18. `UserController`/`Service` novo (dado já modelado) para ADMIN gerenciar staff.
+**Fase 6 — Usuários internos (RF-041) — ✅ backend implementado em 2026-09-29 (não compilado)**
+18. `UserController` (`/api/users`, só ADMINISTRADOR): `GET` lista staff (exclui CLIENTE), `POST` cria
+    usuário com perfil escolhido, `PATCH /{id}` troca perfil / ativa-desativa / redefine senha (zera
+    bloqueio de login). Regras: perfil CLIENTE nunca por aqui; admin não altera o próprio perfil nem
+    se desativa. Arquivos em `modules/identity/{controller,service,dto}`. **Pendente:** tela Angular.
 
-**Fase 7 — Polimento, NFRs e Deploy**
-19. **Paginação (RNF08) — confirmado AUSENTE em 2026-09-25:** nenhum dos 23
-    `@RestController` do backend usa `Pageable` (`grep -rl Pageable` no
-    `src/main/java` retorna zero arquivos). Todas as listagens (pedidos,
-    produtos, fornecedores, etc.) hoje devolvem a lista inteira. Bloqueia o
-    bloco 5 (RF-019 "lista de pedidos paginada") do SRS — precisa ser
-    implementado, não é só "conferir".
-20. **Swagger/OpenAPI (RNF11) — confirmado AUSENTE em 2026-09-25:** o
-    `pom.xml` não tem nenhuma dependência `springdoc-openapi` (só
-    `web/data-jpa/validation/security/websocket/mysql/flyway/jjwt/lombok`).
-    Não existe `/swagger-ui.html` hoje. Precisa adicionar
-    `springdoc-openapi-starter-webmvc-ui` e liberar a rota no
-    `SecurityConfig` (`/v3/api-docs/**`, `/swagger-ui/**` públicos). DTOs e
-    `@ControllerAdvice` continuam atendidos (confirmado nas auditorias
-    anteriores, Cap. 04/07).
-21. DER visual exportado (entregável extra).
-22. Deploy: banco gerenciado + backend + frontend Angular + CORS de produção — testar cedo
-    (planos gratuitos têm pegadinhas).
-23. README com URLs de produção + seed `admin@email.com`/`senha123`.
+**Fase 7 — Polimento, NFRs e Deploy — parcial (2026-09-29)**
+19. **Paginação (RNF08) — ✅ para pedidos (RF-019):** `GET /api/orders?unitId&page&size` (size máx.
+    100, mais recentes primeiro) devolve total em `X-Total-Count` (exposto no `CorsConfig`). Sem `page`
+    mantém a lista completa, para não quebrar painéis atuais. **Demais listagens (produtos,
+    fornecedores…) continuam sem paginação.**
+20. **Swagger/OpenAPI (RNF11) — ✅:** `springdoc-openapi-starter-webmvc-ui` 2.6.0 no `pom.xml`; rotas
+    `/v3/api-docs/**`, `/swagger-ui/**` públicas no `SecurityConfig`. UI em `/swagger-ui.html`.
+21. DER visual exportado — **pendente**.
+22. Deploy (banco gerenciado + back + Angular + CORS prod) — **pendente**, depende de conta/plataforma da usuária.
+23. README — ✅ seção "API docs, paginação e usuários internos" adicionada (seed real de dev:
+    `admin@demo.local` / `admin123`; a nota antiga citava `admin@email.com`/`senha123`, incorreto).
+
+### Telas Angular simples (2026-09-29, sem estilo, por pedido da usuária)
+
+Criadas em `frontend-angular/src/app/features/`, sem CSS (só `<table border>`/form crus), rotas em
+`app.routes.ts` e itens no menu do `staff-layout`; `ApiService.patch()` adicionado:
+`users/` (`/usuarios`), `suppliers/` (`/fornecedores`: fornecedores, catálogo, cotação, pedidos de
+compra com enviar/receber/cancelar), `recipes/` (`/fichas-tecnicas`, `FormArray`, mostra custo e food
+cost), `dashboard/` (`/dashboard`: **tabelas, sem Chart.js** — decisão de simplicidade). Não compiladas
+(sem Node neste ambiente). Fica pendente, se quiserem gráficos: instalar Chart.js/ng2-charts.
 
 ### Envio ao GitHub (2026-09-25)
 
@@ -153,6 +157,34 @@ Commit `f94d684` (48 arquivos) enviado para `origin/feat/migracao-angular` em
 (branch estava atualizada antes do fetch). **Compilação ainda não verificada** — próximo
 passo obrigatório antes de confiar no branch é rodar `mvn -Dmaven.test.skip=true compile` e
 `npm run build` localmente.
+
+### Status consolidado das fases (2026-09-29)
+
+| Fase | Status | O que falta |
+|---|---|---|
+| 0 Fundação | ✅ | `mvn test` real (rodar localmente) |
+| 1 Auth do cliente | ✅ | compilar/testar; tela de endereço no checkout |
+| 2 Ficha técnica/custo | ✅ backend + tela simples | RN01 (prato ATIVO só com ficha) deliberadamente não feita |
+| 3 Fornecedores/compras | ✅ backend + tela simples | validar em execução |
+| 4 Estoque | ✅ | RN04 (cancelar após EM_PREPARO só gerente) no endpoint genérico `/transition` |
+| 5 Dashboard | ✅ backend + gráficos (linha/barras) | `npm install` + build (chart.js ^4 adicionado ao package.json) |
+| 6 Usuários internos | ✅ backend + tela simples | compilar |
+| 7 Polimento/Deploy | ✅ pronto p/ front | deploy real em plataforma (depende da usuária); revisar seed V900 em prod |
+
+**Rodada de 2026-09-29 (Fases 5 e 7 fechadas, não compiladas):**
+- Gráficos: `features/dashboard/chart.ts` (`<app-chart>`, Chart.js puro, sem ng2-charts) usado no dashboard
+  (linha = faturamento/dia, barras = top 5).
+- Paginação opcional `?page&size` (+ `X-Total-Count`) em produtos, fornecedores, compras e itens de
+  estoque via helper `config/Paging.java`; sem `page` tudo segue igual (não quebra telas).
+- DER: `docs/DER.md` no repo (Mermaid gerado das migrations: 43 tabelas, 71 FKs).
+- Deploy: `frontend-angular/Dockerfile` + `nginx.conf` (proxy `/api` e `/ws` → backend, fallback SPA),
+  serviço `frontend-angular` no `docker-compose.yml` (porta `ANGULAR_PORT`, padrão 4200), `.env.example` atualizado.
+- Ressalva: a migration `V900__seed_demo_data.sql` está no mesmo `locations` do Flyway e o `AuthService`
+  depende do perfil CLIENTE vindo dela — antes de produção real, separar seed de perfis (obrigatório) do seed demo.
+
+**Restam de verdade:** (a) build/teste real de tudo (`mvn test`, `npm run build`) — bloqueia confiar
+nas Fases 1-7; (c) estilizar as telas Angular cruas (= próxima etapa: construção do front); (d) RN04;
+(g) deploy real; (h) commitar/enviar o working tree das Fases 6-7 (não commitado).
 
 ### Ordem de execução recomendada
 

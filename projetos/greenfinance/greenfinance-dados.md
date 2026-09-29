@@ -57,3 +57,6 @@ Nota de localização técnica e dados de integração do projeto [[greenfinance
 - **Arquivos Intermediários / Formatos de Importação:**
   - *Extratos bancários:* OFX, CSV e PDF (parseados via `src/utils/statementImport.ts` e `src/utils/pdfExtract.ts`).
   - *Backup / Restauração:* exportação e importação de JSON completo ou CSV via tela de Configurações (`src/pages/Settings.tsx`).
+
+## Ver também
+- [[mapa-dados]] — hub de todas as notas de dados · ⭐[[mapa-projetos]]

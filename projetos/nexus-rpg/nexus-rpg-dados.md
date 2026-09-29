@@ -74,3 +74,6 @@ Todos os dados da aplicação residem no `localStorage` do navegador do usuário
 
 - **Arquivos `.nexus` (JSON):** formato completo de exportação e importação de sistemas de RPG (regras, fórmulas, tabelas, blocos de ficha e configurações de campanha).
 - **Versionamento de Schema:** mantido no código como `SCHEMA = 10`, suportando migração automática para estruturas salvas a partir do schema 6.
+
+## Ver também
+- [[mapa-dados]] — hub de todas as notas de dados · ⭐[[mapa-projetos]]

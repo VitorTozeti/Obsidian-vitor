@@ -109,3 +109,6 @@ Mapa de **localização** dos dados do [[pokedex]] (não é regra de negócio �
 - Cachear respostas da PokéAPI no cliente (IndexedDB) por Pokémon consultado; **ou**
 - Pré-baixar o dataset completo (via dataset oficial ou script varrendo os índices) e servir
   como JSON estático junto do site — elimina dependência de rede e respeita o *fair use*.
+
+## Ver também
+- [[mapa-dados]] — hub de todas as notas de dados · ⭐[[mapa-projetos]]

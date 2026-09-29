@@ -124,3 +124,6 @@ Fases definidas para o repositório `spotify-vitor` (ver caminho acima), stack P
    mais robusto no celular.
 
 Ainda não iniciado — usuário pediu só o planejamento por enquanto.
+
+## Ver também
+- [[mapa-dados]] — hub de todas as notas de dados · ⭐[[mapa-projetos]]

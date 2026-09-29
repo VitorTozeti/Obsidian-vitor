@@ -68,3 +68,6 @@ Chaves mantidas localmente em cada navegador (nunca commitadas no repositório):
 - `mural_theme`: paleta do fundo (`claro|creme|cinza|azulado|rosado|escuro`).
 - `mural_last_color`: última cor de post-it usada.
 - `author_color_<autor>`: cor da etiqueta do autor.
+
+## Ver também
+- [[mapa-dados]] — hub de todas as notas de dados · ⭐[[mapa-projetos]]

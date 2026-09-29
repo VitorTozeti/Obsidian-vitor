@@ -52,3 +52,6 @@ garantia" (a regra de economia continua valendo por padrão).
 ## Sincronização com o GitHub
 O envio é **pull-first seguro**: os scripts puxam o remoto antes de enviar e não
 sobrescrevem o trabalho de quem subiu na `main`. Ver [[enviar-vault-github]].
+
+## Ver também
+- [[vault-dados]] — onde vivem scripts, remoto e config do vault · [[mapa-dados]]

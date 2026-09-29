@@ -2,7 +2,7 @@
 name: mapa-projetos
 description: mapa de carregamento de contexto — por projeto, o que abrir (hub, notas, refs sempre-considerar, repo real no disco)
 tags: [referencia, mapa, navegacao, sempre-considerar]
-updated: 2026-09-23 (adicionado Megabrain; KEMY_AI-dados marcado com contraste amarelo)
+updated: 2026-09-29 (adicionado grok-code-cli; bueno-s-house-dados; hub mapa-dados)
 ---
 
 # Mapa de Projetos — Carregamento de Contexto
@@ -23,8 +23,8 @@ updated: 2026-09-23 (adicionado Megabrain; KEMY_AI-dados marcado com contraste a
 | KEMY_AI | `kemy-ai` 🟦 #2196F3 | `projetos/KEMY_AI/` | [[KEMY_AI]] | [[KEMY_AI-dados]] 🟨 #EAB308 | `C:\Users\v.tozeti\Desktop\Vitor\teste\Obsidian-vitor\projetos\KEMY_AI` (código no vault; `kemy.py`/zip fora do git — chave hardcoded) | ⭐[[mapa-projetos]] |
 | Megabrain | `megabrain` 🟧 #FB923C | `projetos/megabrain/` | [[Megabrain]] | [[Megabrain-dados]] | (sem repo — hub de conhecimento/memória do vault, sem código externo) | ⭐[[mapa-projetos]] |
 | Mural | `mural` 🟦 ciano #06B6D4 | `projetos/mural/` | [[mural]] | [[mural-dados]] | `C:\Users\v.tozeti\Desktop\Vitor\teste\Vitor-mural` | ⭐[[mapa-projetos]] |
-| Bueno's House (faculdade) | `bueno-s-house` 🟦 índigo #4F46E5 | `projetos-faculdade/bueno-s-house/` | [[bueno-s-house]] | (nota única, sem `-dados.md` — projeto de portfólio reaproveitado, não código gerado pelo vault) | `C:\Users\v.tozeti\Desktop\Vitor\teste\thiagolas\Bueno-sHouse` (sem Git iniciado) | ⭐[[mapa-projetos]] |
-
+| Bueno's House (faculdade) | `bueno-s-house` 🟦 índigo #4F46E5 | `projetos-faculdade/bueno-s-house/` | [[bueno-s-house]] | [[bueno-s-house-dados]] | `C:\Users\v.tozeti\Desktop\Vitor\teste\thiagolas\Bueno-sHouse` (sem Git iniciado) | ⭐[[mapa-projetos]] |
+| grok-code-cli | `grok-code-cli` 🟫 marrom #92400E | `projetos/grok-code-cli/` | [[grok-code-cli]] | [[grok-code-cli-dados]] | `C:\Users\v.tozeti\Desktop\Vitor\teste\Obsidian-vitor\projetos\grok-code-cli` (código no vault, sem repo próprio) | ⭐[[mapa-projetos]] |\n
 <!-- Ao passar de um punhado de projetos, quebre em seções por área, ex.:
 ## Ecossistema A
 | ... tabela ... |
@@ -36,6 +36,10 @@ updated: 2026-09-23 (adicionado Megabrain; KEMY_AI-dados marcado com contraste a
 São as `sempre-considerar` — consulte-as **antes de assumir** qualquer código, chave, base
 fiscal ou regra de negócio. (Cadastre aqui os links `[[...]]` das suas referências
 transversais conforme criá-las.)
+
+Onde cada dado mora, projeto a projeto: [[mapa-dados]] (inclui [[vault-dados]] para a infra do próprio vault).
+
+Fora dos projetos: [[ideias]] (o que construir a seguir) e [[estudos-programacao]] (o que aprender para construir).
 
 ## Como manter esta nota
 Projeto novo → adicione a linha aqui (com pasta, hub, **nota de dados**, repo, refs)

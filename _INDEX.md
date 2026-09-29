@@ -49,14 +49,34 @@
 - [Mural de Post-its](projetos/mural/mural.md) — mural interativo de post-its para duas pessoas, leve e com post-its guardados/criptografados via GitHub
   - [Mural — Onde os dados vivem](projetos/mural/mural-dados.md) — mapa de localização de dados, repositório, chaves do LocalStorage e fluxo da API GitHub
   - [Mural — Planejamento](projetos/mural/planejamento-mural-postits.md) — planejamento de arquitetura, funcionalidades, modelo de dados e criptografia do mural de post-its
+- [grok-code-cli](projetos/grok-code-cli/grok-code-cli.md) — CLI agente de código estilo Claude Code (Node.js) usando a API xAI/Grok com 4 ferramentas de arquivo/shell
+  - [grok-code-cli — Onde os dados vivem](projetos/grok-code-cli/grok-code-cli-dados.md) — endpoint xAI, variáveis GROK_*, ferramentas e arquivos
+
+## Ideias
+- [Ideias — hub](ideias/ideias.md) — caixa de entrada + método para não esquecer e realizar ideias
+  - [Ideias — Inbox](ideias/ideias-inbox.md) — anote ideias em 1 linha (data, ideia, para quê, status)
+  - [Como realizar uma ideia](ideias/ideias-como-realizar.md) — clarear, validar, MVP, stack, plano, virar projeto
+  - [Modelo de nota de ideia](ideias/ideia-template.md) — template para detalhar uma ideia
+
+## Estudos
+- [Estudos de Programação — hub](estudos/estudos-programacao.md) — trilhas ligadas aos projetos do vault
+  - [Front-end](estudos/estudos-front-end.md) — HTML/CSS/JS/TS, React/Angular, PWA, testes
+  - [Back-end](estudos/estudos-back-end.md) — REST, SQL, Spring/Node/Python, auth, OWASP
+  - [Full-stack](estudos/estudos-full-stack.md) — integrar front+back+banco, deploy e CI
+  - [Jogos](estudos/estudos-jogos.md) — game loop, Godot/Unity/Phaser, sistemas de RPG
+  - [Modelagem de software](estudos/estudos-modelagem-software.md) — requisitos, UML, DER, arquitetura, padrões
+  - [MTS (a confirmar)](estudos/estudos-mts.md) — placeholder até a sigla ser definida
 
 ## Projetos Faculdade
 - [Bueno's House](projetos-faculdade/bueno-s-house/bueno-s-house.md) — sistema de gestão para restaurantes (Spring Boot + React/Angular), reaproveitado como base técnica para o trabalho acadêmico "Comanda Digital"
+  - [Bueno's House — Onde os dados vivem](projetos-faculdade/bueno-s-house/bueno-s-house-dados.md) — repo, MySQL/Flyway, endpoints REST, credenciais demo e ambiente local
   - [Comanda Digital — SRS v3.2](projetos-faculdade/bueno-s-house/comanda-digital-srs.md) — especificação oficial completa do professor (requisitos, modelo de dados, regras, roteiro, critérios de nota)
   - [Comanda Digital — Estado Atual vs. SRS](projetos-faculdade/bueno-s-house/comanda-digital-estado.md) — comparativo bloco a bloco do que já está feito e o que falta (primeira estimativa, ver plano para versão auditada)
   - [Comanda Digital — Plano de Implementação](projetos-faculdade/bueno-s-house/comanda-digital-plano.md) — plano faseado com base em auditoria real do código (backend + os dois frontends)
 
 ## Referências
+- ⭐ [Mapa de Dados](referencias/mapa-dados.md) — hub de todas as notas `-dados` (onde cada repo/API/credencial/armazenamento mora)
+- [Vault — Onde os dados vivem](referencias/vault-dados.md) — remoto GitHub, scripts de sync, config local, preview servers, o que fica fora do Git
 - ⭐ [Mapa de Projetos](referencias/mapa-projetos.md) — carregamento de contexto: por projeto, o hub, o repo real no disco e as refs sempre-considerar (COMECE AQUI ao entrar num projeto)
 
 ## Templates

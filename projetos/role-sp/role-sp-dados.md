@@ -51,3 +51,6 @@ script.js        # Lógica central: coordenadas das linhas/estações, catálogo
 ## Projeto de Dados - O que a Kemmy Gosta
 
 - **Parques e vistas interessantes** (pontos de interesse focados em áreas verdes, mirantes e paisagens urbanas/natureza dentro do projeto Role SP)
+
+## Ver também
+- [[mapa-dados]] — hub de todas as notas de dados · ⭐[[mapa-projetos]]

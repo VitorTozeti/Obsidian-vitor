@@ -2,7 +2,7 @@
 name: bueno-s-house
 description: Sistema de gestão para restaurantes (monólito Spring Boot + Angular/React) usado como base para o trabalho acadêmico "Comanda Digital" (ex-"DaHorta")
 tags: [proj/bueno-s-house]
-updated: 2026-09-25
+updated: 2026-09-29
 ---
 
 # Bueno's House — Sistema de Gestão para Restaurantes
@@ -108,6 +108,8 @@ Flyway ainda não auditadas linha a linha.
    não iniciados, ver [[comanda-digital-plano]] (Fases 6-7).
 
 ## Relacionado
-- [[mapa-projetos]]
+- [[bueno-s-house-dados]] — onde os dados vivem
+- [[comanda-digital-plano]]
+- [[mapa-projetos]] · [[mapa-dados]]
 - [[comanda-digital-srs]]
 - [[comanda-digital-estado]]
