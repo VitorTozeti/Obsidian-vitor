@@ -67,6 +67,17 @@
   - [Modelagem de software](estudos/estudos-modelagem-software.md) — requisitos, UML, DER, arquitetura, padrões
   - [MTS (a confirmar)](estudos/estudos-mts.md) — placeholder até a sigla ser definida
 
+## Vida pessoal
+- [Vida pessoal — hub-mestre](vida/vida.md) — liga os hubs de gostos e hobbies (música, hobbies, jogos, filmes/séries, livros)
+  - [Música — hub](vida/musica/musica.md) — gêneros, artistas, álbuns, playlists e shows
+  - [Hobbies — hub](vida/hobbies/hobbies.md) — vôlei, desenho, culinária e novos hobbies
+    - [Vôlei](vida/hobbies/volei.md) — posição, fundamentos, diário de treinos/jogos e metas
+    - [Desenho](vida/hobbies/desenho.md) — estilo, materiais, referências, estudos e galeria
+    - [Culinária](vida/hobbies/culinaria.md) — receitas dominadas/para testar, técnicas, modelo de receita
+  - [Jogos — hub](vida/jogos/jogos.md) — jogos que gostei/zerei com nota, jogando agora, top e wishlist
+  - [Filmes, Séries & Animes — hub](vida/filmes-series/filmes-series.md) — assistindo, vistos com nota, quero ver
+  - [Livros — hub](vida/livros/livros.md) — lendo, lidos com nota, quero ler
+
 ## Projetos Faculdade
 - [Bueno's House](projetos-faculdade/bueno-s-house/bueno-s-house.md) — sistema de gestão para restaurantes (Spring Boot + React/Angular), reaproveitado como base técnica para o trabalho acadêmico "Comanda Digital"
   - [Bueno's House — Onde os dados vivem](projetos-faculdade/bueno-s-house/bueno-s-house-dados.md) — repo, MySQL/Flyway, endpoints REST, credenciais demo e ambiente local

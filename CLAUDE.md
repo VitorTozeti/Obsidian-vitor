@@ -41,6 +41,20 @@ a fonte por-projeto é a coluna de cor de [mapa-projetos](referencias/mapa-proje
 | `mural` | 🟦 ciano #06B6D4 | 440020 |
 | `grok-code-cli` | 🟫 marrom #92400E | 9584654 |
 
+**Área "Vida pessoal" (`vida/`, não são projetos — cada hub tem cor própria, via
+`path:vida/<area>/` + `tag:#vida/<area>`):**
+
+| Hub | Cor | Decimal |
+|---|---|---|
+| `vida/musica` | fúcsia #D946EF | 14239471 |
+| `vida/hobbies` | carmim #BE123C | 12456508 |
+| `vida/jogos` | azul-marinho #1E3A8A | 1981066 |
+| `vida/filmes-series` | coral #FF6F61 | 16740193 |
+| `vida/livros` | ouro escuro #CA8A04 | 13273604 |
+| hub-mestre `vida/vida.md` (tag `vida-hub`) | pêssego #F5D0A9 | 16109737 |
+
+Hobby novo → nota em `vida/hobbies/` (herda a cor). Área nova → `vida/<area>/` + dois grupos de cor.
+
 **Exceção de nota única (não é cor de projeto):** a nota [[KEMY_AI-dados]] (dentro do
 projeto `kemy-ai`) tem contraste extra em **amarelo #EAB308 / 15381256** via
 `path:projetos/KEMY_AI/KEMY_AI-dados.md` + `tag:#dados-amarelo`, para diferenciá-la
