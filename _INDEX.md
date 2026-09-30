@@ -71,7 +71,12 @@
 - [Vida pessoal — hub-mestre](vida/vida.md) — liga os hubs de gostos e hobbies (música, hobbies, jogos, filmes/séries, livros)
   - [Música — hub](vida/musica/musica.md) — gêneros, artistas, álbuns, playlists e shows
   - [Hobbies — hub](vida/hobbies/hobbies.md) — vôlei, desenho, culinária e novos hobbies
-    - [Vôlei](vida/hobbies/volei.md) — posição, fundamentos, diário de treinos/jogos e metas
+    - [Vôlei](vida/hobbies/volei.md) — posição, autoavaliação, diário de treinos/jogos e metas; hub do guia de vôlei
+      - [Vôlei — Fundamentos](vida/hobbies/volei/volei-fundamentos.md) — saque, passe, levantamento, ataque, bloqueio, defesa
+      - [Vôlei — Regras](vida/hobbies/volei/volei-regras.md) — quadra, rally point, toques, faltas, substituições
+      - [Vôlei — Posições e rodízio](vida/hobbies/volei/volei-posicoes-rotacao.md) — posições, zonas 1–6, rodízio
+      - [Vôlei — Jogadas e sistemas](vida/hobbies/volei/volei-jogadas-sistemas.md) — china/pipe/meia, 4-2/6-2/5-1
+      - [Vôlei — Treinos e glossário](vida/hobbies/volei/volei-treinos-glossario.md) — glossário, treino e lesões
     - [Desenho](vida/hobbies/desenho.md) — estilo, materiais, referências, estudos e galeria
     - [Culinária](vida/hobbies/culinaria.md) — receitas dominadas/para testar, técnicas, modelo de receita
   - [Jogos — hub](vida/jogos/jogos.md) — jogos que gostei/zerei com nota, jogando agora, top e wishlist
