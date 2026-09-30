@@ -7,7 +7,7 @@ updated: 2026-09-29
 
 # 📚 Livros — hub
 
-Voltar: [[vida]]
+Voltar: [[gostos-cultura]] · [[vida]]
 
 ## Lendo agora
 | Livro | Autor | Página/% |

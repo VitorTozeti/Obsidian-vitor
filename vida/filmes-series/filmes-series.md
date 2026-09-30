@@ -7,7 +7,7 @@ updated: 2026-09-29
 
 # 🎬 Filmes, Séries & Animes — hub
 
-Voltar: [[vida]]
+Voltar: [[gostos-cultura]] · [[vida]]
 
 ## Assistindo agora
 | Título | Tipo | Onde | Onde parei |

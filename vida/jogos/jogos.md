@@ -7,7 +7,7 @@ updated: 2026-09-29
 
 # 🎮 Jogos — hub
 
-Voltar: [[vida]] · Relacionado: [[estudos-jogos]] · [[nexus-rpg]] · [[pokedex]]
+Voltar: [[gostos-cultura]] · [[vida]] · Relacionado: [[estudos-jogos]] · [[nexus-rpg]] · [[pokedex]]
 
 ## Gêneros favoritos
 -

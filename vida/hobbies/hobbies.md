@@ -5,9 +5,9 @@ tags: [vida/hobbies, hub]
 updated: 2026-09-29
 ---
 
-# 🎯 Hobbies — hub
+# 🎯 Hobbies & Prática — hub 2 de 2
 
-Voltar: [[vida]]
+Voltar: [[vida]] · Hub irmão: [[gostos-cultura]]
 
 | Hobby | Nota | Frequência | Meta atual |
 |---|---|---|---|

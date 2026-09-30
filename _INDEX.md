@@ -69,8 +69,12 @@
 
 ## Vida pessoal
 - [Vida pessoal — hub-mestre](vida/vida.md) — liga os hubs de gostos e hobbies (música, hobbies, jogos, filmes/séries, livros)
-  - [Música — hub](vida/musica/musica.md) — gêneros, artistas, álbuns, playlists e shows
-  - [Hobbies — hub](vida/hobbies/hobbies.md) — vôlei, desenho, culinária e novos hobbies
+  - [Gostos & Cultura — hub 1](vida/gostos-cultura.md) — o que eu curto: música, jogos, filmes/séries, livros
+    - [Música — hub](vida/musica/musica.md) — gêneros, artistas, álbuns, playlists e shows
+    - [Jogos — hub](vida/jogos/jogos.md) — jogos que gostei/zerei com nota, jogando agora, top e wishlist
+    - [Filmes, Séries & Animes — hub](vida/filmes-series/filmes-series.md) — assistindo, vistos com nota, quero ver
+    - [Livros — hub](vida/livros/livros.md) — lendo, lidos com nota, quero ler
+  - [Hobbies & Prática — hub 2](vida/hobbies/hobbies.md) — vôlei, desenho, culinária e novos hobbies
     - [Vôlei](vida/hobbies/volei.md) — posição, autoavaliação, diário de treinos/jogos e metas; hub do guia de vôlei
       - [Vôlei — Fundamentos](vida/hobbies/volei/volei-fundamentos.md) — saque, passe, levantamento, ataque, bloqueio, defesa
       - [Vôlei — Regras](vida/hobbies/volei/volei-regras.md) — quadra, rally point, toques, faltas, substituições
@@ -79,9 +83,6 @@
       - [Vôlei — Treinos e glossário](vida/hobbies/volei/volei-treinos-glossario.md) — glossário, treino e lesões
     - [Desenho](vida/hobbies/desenho.md) — estilo, materiais, referências, estudos e galeria
     - [Culinária](vida/hobbies/culinaria.md) — receitas dominadas/para testar, técnicas, modelo de receita
-  - [Jogos — hub](vida/jogos/jogos.md) — jogos que gostei/zerei com nota, jogando agora, top e wishlist
-  - [Filmes, Séries & Animes — hub](vida/filmes-series/filmes-series.md) — assistindo, vistos com nota, quero ver
-  - [Livros — hub](vida/livros/livros.md) — lendo, lidos com nota, quero ler
 
 ## Projetos Faculdade
 - [Bueno's House](projetos-faculdade/bueno-s-house/bueno-s-house.md) — sistema de gestão para restaurantes (Spring Boot + React/Angular), reaproveitado como base técnica para o trabalho acadêmico "Comanda Digital"

@@ -7,7 +7,7 @@ updated: 2026-09-29
 
 # 🎵 Música — hub
 
-Voltar: [[vida]] · App relacionado: [[meu-spotify]]
+Voltar: [[gostos-cultura]] · [[vida]] · App relacionado: [[meu-spotify]]
 
 ## Gêneros que mais escuto
 -

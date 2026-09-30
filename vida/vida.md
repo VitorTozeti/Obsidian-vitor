@@ -2,7 +2,7 @@
 name: vida
 description: hub-mestre da vida pessoal — liga os hubs de música, hobbies (vôlei, desenho, culinária), jogos, filmes/séries e livros
 tags: [vida-hub, hub]
-updated: 2026-09-29
+updated: 2026-09-30
 ---
 
 # Vida pessoal — hub-mestre
@@ -10,14 +10,11 @@ updated: 2026-09-29
 > O vault não é só código: aqui mora **quem eu sou fora dos projetos** — gostos, hobbies e
 > coisas que marcaram. Cada área tem **seu próprio hub** (e sua própria cor no graph).
 
-## Hubs
-| Área | Hub | O que guarda |
+## Os 2 hubs
+| Hub | Tema | Contém |
 |---|---|---|
-| 🎵 Música | [[musica]] | gêneros, artistas, álbuns, playlists e shows |
-| 🏐 🎨 🍳 Hobbies | [[hobbies]] | [[volei]], [[desenho]], [[culinaria]] e novos hobbies |
-| 🎮 Jogos | [[jogos]] | jogos que gostei, zerados, notas e lista de desejos |
-| 🎬 Filmes & Séries | [[filmes-series]] | o que vi, notas e o que quero ver |
-| 📚 Livros | [[livros]] | lidos, lendo, quero ler |
+| 🎧 [[gostos-cultura]] | o que eu **curto/consumo** | [[musica]] · [[jogos]] · [[filmes-series]] · [[livros]] |
+| 🎯 [[hobbies]] | o que eu **pratico/faço** | [[volei]] (+ guia) · [[desenho]] · [[culinaria]] |
 
 ## Como usar
 1. **Anotou algo novo?** Vá direto no hub da área e adicione 1 linha na tabela.
