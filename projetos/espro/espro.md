@@ -15,9 +15,12 @@ Dados e localização: [[espro-dados]].
 
 ## Estado atual (2026-10-02)
 
-- **Fase: ideia / planejamento.** Pasta do código criada vazia em
-  `C:\Users\v.tozeti\Desktop\Vitor\teste\Espro` — nenhuma linha de código ainda.
-- **Hospedagem decidida: Cloudflare** (Pages + Workers/Functions + D1 para dados e R2 para imagens/uploads). Nome da empresa fictícia e front-end **a definir**.
+- **MVP mobile-first funcionando** em `C:\Users\v.tozeti\Desktop\Vitor\teste\Espro` (HTML/CSS/JS puro, sem build; sem Git ainda). Testado em 375×812 no preview (`espro-static`, porta 8793, em `.claude/launch.json`).
+- **4 telas** (navegação inferior no celular, barra lateral ≥960px): Início (progresso da edição, próximos compromissos, setores), Quadro (colunas com scroll-snap, filtro por setor, botão "avançar"), Agenda (calendário mensal com pontos coloridos por setor; mostra eventos **e** prazos dos cartões) e Revista (lista de páginas reordenável, 5 modelos, prévia deslizável, exportar PDF A5 via impressão).
+- **Visual:** papel quente + títulos em Fraunces/Inter, tema claro/escuro automático, alvos de toque ≥44px, bottom sheets para edição, exclusão com toque duplo, `safe-area` e `prefers-reduced-motion`.
+- **Dados:** ainda em `localStorage` (+ exportar/importar backup JSON). `js/store.js` isola isso para trocar por API/D1.
+- **Próximos passos:** Functions + D1 (cartões/eventos/páginas), R2 para imagens, login (se for o grupo todo), `git init` + deploy no Cloudflare Pages, arrastar-e-soltar no quadro, nome/identidade da empresa fictícia.
+- Estrutura de arquivos e armazenamento: [[espro-dados]].
 
 ## Visão — 4 pilares
 

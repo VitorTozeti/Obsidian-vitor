@@ -25,7 +25,7 @@ updated: 2026-10-02 (adicionado espro; adicionado grok-code-cli; bueno-s-house-d
 | Mural | `mural` 🟦 ciano #06B6D4 | `projetos/mural/` | [[mural]] | [[mural-dados]] | `C:\Users\v.tozeti\Desktop\Vitor\teste\Vitor-mural` | ⭐[[mapa-projetos]] |
 | Bueno's House (faculdade) | `bueno-s-house` 🟦 índigo #4F46E5 | `projetos-faculdade/bueno-s-house/` | [[bueno-s-house]] | [[bueno-s-house-dados]] | `C:\Users\v.tozeti\Desktop\Vitor\teste\thiagolas\Bueno-sHouse` (sem Git iniciado) | ⭐[[mapa-projetos]] |
 | grok-code-cli | `grok-code-cli` 🟫 marrom #92400E | `projetos/grok-code-cli/` | [[grok-code-cli]] | [[grok-code-cli-dados]] | `C:\Users\v.tozeti\Desktop\Vitor\teste\Obsidian-vitor\projetos\grok-code-cli` (código no vault, sem repo próprio) | ⭐[[mapa-projetos]] |
-| ESPRO — Revista | `espro` 🟩 verde-oliva #4D7C0F | `projetos/espro/` | [[espro]] | [[espro-dados]] | `C:\Users\v.tozeti\Desktop\Vitor\teste\Espro` (vazia, sem Git) | ⭐[[mapa-projetos]] |\n
+| ESPRO — Revista | `espro` 🟩 verde-oliva #4D7C0F | `projetos/espro/` | [[espro]] | [[espro-dados]] | `C:\Users\v.tozeti\Desktop\Vitor\teste\Espro` (MVP mobile-first em HTML/CSS/JS, sem Git) | ⭐[[mapa-projetos]] |\n
 <!-- Ao passar de um punhado de projetos, quebre em seções por área, ex.:
 ## Ecossistema A
 | ... tabela ... |

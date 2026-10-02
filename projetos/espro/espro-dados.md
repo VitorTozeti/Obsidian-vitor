@@ -14,6 +14,10 @@ Mapa de dados do [[espro]].
 - **Repositório remoto:** ainda não existe.
 - **Hospedagem:** Cloudflare (Pages + Functions/Workers).
 
+- **Arquivos:** `index.html`, `css/style.css`, `js/store.js` (estado + persistência), `js/ui.js` (helpers, sheet, ícones), `js/views.js` (4 telas e formulários), `js/app.js` (roteador por hash), `manifest.webmanifest`, `README.md`.
+- **Estado hoje:** chave `espro.v1` no `localStorage` (empresa, setores, cards, eventos, paginas); imagens da revista guardadas como data-URL JPEG ≤1000px (limite ~5MB do navegador → migrar para R2).
+- **Servidor de preview:** `espro-static` (porta 8793) em `Obsidian-vitor/.claude/launch.json`.
+
 ## 2. Dados previstos (modelo inicial)
 - **Empresa** — nome, missão, logo, setores.
 - **Setores / membros** — quem pertence a qual setor.
