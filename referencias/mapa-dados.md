@@ -21,6 +21,7 @@ Complementa o ⭐[[mapa-projetos]]: ali está *o que abrir por projeto*; aqui, *
 | Mural | [[mural-dados]] | Cloudflare D1/Pages, `/data`, LocalStorage |
 | Bueno's House | [[bueno-s-house-dados]] | MySQL, Flyway, endpoints REST |
 | grok-code-cli | [[grok-code-cli-dados]] | API xAI, `GROK_*` |
+| ESPRO | [[espro-dados]] | pasta local, modelo de dados previsto (a definir) |
 | Vault (infra) | [[vault-dados]] | GitHub remoto, scripts, sync, graph |
 
 ## Como manter

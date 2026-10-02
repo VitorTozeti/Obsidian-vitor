@@ -51,6 +51,8 @@
   - [Mural — Planejamento](projetos/mural/planejamento-mural-postits.md) — planejamento de arquitetura, funcionalidades, modelo de dados e criptografia do mural de post-its
 - [grok-code-cli](projetos/grok-code-cli/grok-code-cli.md) — CLI agente de código estilo Claude Code (Node.js) usando a API xAI/Grok com 4 ferramentas de arquivo/shell
   - [grok-code-cli — Onde os dados vivem](projetos/grok-code-cli/grok-code-cli-dados.md) — endpoint xAI, variáveis GROK_*, ferramentas e arquivos
+  - [ESPRO — Revista](projetos/espro/espro.md) — plataforma da empresa fictícia da ESPRO: vitrine, montador de revista a partir de dados enviados e quadro estilo Trello por setor e calendário de atividades (Cloudflare)
+  - [ESPRO — Onde os dados vivem](projetos/espro/espro-dados.md) — pasta do código, modelo de dados previsto e armazenamento (a definir)
 
 ## Ideias
 - [Ideias — hub](ideias/ideias.md) — caixa de entrada + método para não esquecer e realizar ideias

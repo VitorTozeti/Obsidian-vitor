@@ -40,6 +40,7 @@ a fonte por-projeto é a coluna de cor de [mapa-projetos](referencias/mapa-proje
 | `bueno-s-house` | 🟦 índigo #4F46E5 | 5195493 |
 | `mural` | 🟦 ciano #06B6D4 | 440020 |
 | `grok-code-cli` | 🟫 marrom #92400E | 9584654 |
+| `espro` | 🟩 verde-oliva #4D7C0F | 5078031 |
 
 **Área "Vida pessoal" (`vida/`, não são projetos — cada hub tem cor própria, via
 `path:vida/<area>/` + `tag:#vida/<area>`):**

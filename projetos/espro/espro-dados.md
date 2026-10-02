@@ -1,0 +1,29 @@
+---
+name: espro-dados
+description: onde os dados do projeto ESPRO vivem — pasta do código, repositório, armazenamento (a definir)
+tags: [projeto, proj/espro, dados]
+updated: 2026-10-02
+---
+
+# ESPRO — Onde os dados vivem
+
+Mapa de dados do [[espro]].
+
+## 1. Código
+- **Pasta local:** `C:\Users\v.tozeti\Desktop\Vitor\teste\Espro` (criada, vazia em 2026-10-02).
+- **Repositório remoto:** ainda não existe.
+- **Hospedagem:** Cloudflare (Pages + Functions/Workers).
+
+## 2. Dados previstos (modelo inicial)
+- **Empresa** — nome, missão, logo, setores.
+- **Setores / membros** — quem pertence a qual setor.
+- **Revista / edições** — páginas, ordem, template, capa.
+- **Matérias** — texto, imagens, autor, setor, status.
+- **Quadro (kanban)** — colunas, cartões (título, setor, responsável, prazo, matéria vinculada).
+- **Eventos (calendário)** — título, início/fim, dia inteiro, setor, responsável, tipo (reunião/prazo/evento), cartão ou matéria vinculada.
+
+## 3. Armazenamento (Cloudflare)
+- **D1 (SQLite):** empresa, setores, membros, edições, matérias, cartões e eventos.
+- **R2:** imagens e arquivos da revista (uploads).
+- **Pages Functions / Workers:** API (`/api/...`) entre o site e o D1/R2.
+- Mesmo padrão já usado no [[mural-dados]] (Cloudflare D1/Pages).
