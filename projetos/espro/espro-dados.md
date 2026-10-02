@@ -15,7 +15,7 @@ Mapa de dados do [[espro]].
 - **Hospedagem:** Cloudflare (Pages + Functions/Workers).
 
 - **Arquivos:** `index.html`, `css/style.css`, `js/store.js` (estado + persistência), `js/ui.js` (helpers, sheet, ícones), `js/views.js` (4 telas e formulários), `js/app.js` (roteador por hash), `manifest.webmanifest`, `README.md`.
-- **Estado hoje:** chave `espro.v1` no `localStorage` (empresa, setores, cards, eventos, paginas); imagens da revista guardadas como data-URL JPEG ≤1000px (limite ~5MB do navegador → migrar para R2).
+- **Estado hoje:** chave `espro.v1` no `localStorage`, campo `v:2` (empresa, setores, cards, eventos, paginas); imagens da revista guardadas como data-URL JPEG ≤1000px (limite ~5MB do navegador → migrar para R2).
 - **Servidor de preview:** `espro-static` (porta 8793) em `Obsidian-vitor/.claude/launch.json`.
 
 ## 2. Dados previstos (modelo inicial)
@@ -31,3 +31,6 @@ Mapa de dados do [[espro]].
 - **R2:** imagens e arquivos da revista (uploads).
 - **Pages Functions / Workers:** API (`/api/...`) entre o site e o D1/R2.
 - Mesmo padrão já usado no [[mural-dados]] (Cloudflare D1/Pages).
+
+## 4. Ordem dos cartões
+- A ordem visual de cada coluna é a ordem do array `cards` (função `Store.placeCard(id, col, beforeId)`); na futura tabela D1 isso vira uma coluna `posicao`.
