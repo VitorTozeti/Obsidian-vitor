@@ -4,21 +4,48 @@
     {
       "name": "poke-static",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8791", "--directory", "C:/Users/v.tozeti/Desktop/Vitor/teste/poke"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8791",
+        "--directory",
+        "C:/Users/v.tozeti/Desktop/Vitor/teste/poke"
+      ],
       "port": 8791
     },
     {
       "name": "kemy-web",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["kemy_server.py", "8800"],
+      "runtimeArgs": [
+        "kemy_server.py",
+        "8800"
+      ],
       "cwd": "C:/Users/v.tozeti/Desktop/Vitor/teste/Obsidian-vitor/projetos/KEMY_AI",
       "port": 8800
     },
     {
       "name": "mural-static",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8792", "--directory", "C:/Users/v.tozeti/Desktop/Vitor/teste/Vitor-mural"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8792",
+        "--directory",
+        "C:/Users/v.tozeti/Desktop/Vitor/teste/Vitor-mural"
+      ],
       "port": 8792
+    },
+    {
+      "name": "espro-static",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8793",
+        "--directory",
+        "C:/Users/v.tozeti/Desktop/Vitor/teste/Espro"
+      ],
+      "port": 8793
     }
   ]
 }
