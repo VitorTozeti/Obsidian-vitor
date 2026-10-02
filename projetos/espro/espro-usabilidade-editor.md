@@ -94,6 +94,11 @@ Hub: [[espro]] · dados: [[espro-dados]]. O editor é a parte central do projeto
 - **Acessibilidade**: foco visível, rótulos ARIA nas alças, mover por teclado/leitor de tela, contraste, `prefers-reduced-motion`, alvos grandes.
 - **Performance**: renderizar só o que mudou (não reconstruir a página inteira a cada gesto), miniaturas em cache, virtualizar filmstrip, *debounce* do autosave, imagens com `decoding=async`.
 
+## Status (2026-10-02)
+- **Fase 1 — entregue:** editor em tela cheia, edição direta na página, barra contextual, caixas de texto livres (modelo híbrido), autosave, desfazer/refazer global, exclusão com "Desfazer", IndexedDB, painel de objetos/camadas básico, zoom por botões e Ctrl+scroll, menu da página.
+- **Ainda pendente da Fase 1:** histórico de versões por página e recuperação de rascunho entre sessões.
+- **Próximo (Fase 2):** pinça/arrastar com 2 dedos para zoom, guias + encaixe (snap), recorte/reenquadramento da imagem, seleção múltipla/alinhar, campos numéricos, gestos de girar/redimensionar com 2 dedos, mover/redimensionar o quadro do texto corrido.
+
 ## Roadmap sugerido
 
 | Fase | Foco | Itens |
