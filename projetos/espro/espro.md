@@ -26,6 +26,7 @@ Dados e localização: [[espro-dados]].
 - **Dados:** ainda em `localStorage` (+ exportar/importar backup JSON). `js/store.js` isola isso para trocar por API/D1.
 - **Próximos passos:** Functions + D1 (cartões/eventos/páginas), R2 para imagens, login (se for o grupo todo), `git init` + deploy no Cloudflare Pages, arrastar-e-soltar no quadro, nome/identidade da empresa fictícia.
 - Estrutura de arquivos e armazenamento: [[espro-dados]].
+- **Levantamento de usabilidade do editor (2026-10-02):** diagnóstico + ~60 melhorias em 10 temas + roadmap em 5 fases → [[espro-usabilidade-editor]].
 
 ## Visão — 4 pilares
 

@@ -53,6 +53,7 @@
   - [grok-code-cli — Onde os dados vivem](projetos/grok-code-cli/grok-code-cli-dados.md) — endpoint xAI, variáveis GROK_*, ferramentas e arquivos
   - [ESPRO — Revista](projetos/espro/espro.md) — plataforma da empresa fictícia da ESPRO: vitrine, montador de revista a partir de dados enviados e quadro estilo Trello por setor e calendário de atividades (Cloudflare)
   - [ESPRO — Onde os dados vivem](projetos/espro/espro-dados.md) — pasta do código, modelo de dados previsto e armazenamento (a definir)
+  - [ESPRO — Usabilidade do editor](projetos/espro/espro-usabilidade-editor.md) — diagnóstico e todas as melhorias de UX do editor de páginas, por tema, com roadmap em 5 fases
 
 ## Ideias
 - [Ideias — hub](ideias/ideias.md) — caixa de entrada + método para não esquecer e realizar ideias
