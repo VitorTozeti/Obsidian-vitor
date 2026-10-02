@@ -14,7 +14,7 @@ Mapa de dados do [[espro]].
 - **Repositório remoto:** ainda não existe.
 - **Hospedagem:** Cloudflare (Pages + Functions/Workers).
 
-- **Arquivos:** `index.html`, `css/style.css`, `js/store.js` (estado + persistência), `js/ui.js` (helpers, sheet, ícones), `js/rich.js` (sanitizador, editor de texto rico, editor de imagens), `js/views.js` (4 telas e formulários), `js/app.js` (roteador por hash), `manifest.webmanifest`, `README.md`.
+- **Arquivos:** `index.html`, `css/style.css`, `js/store.js` (estado + persistência), `js/ui.js` (helpers, sheet, ícones), `js/rich.js` (sanitizador, editor de texto rico), `js/canvas.js` (editor de layout/imagens estilo canvas), `js/views.js` (4 telas e formulários), `js/app.js` (roteador por hash), `manifest.webmanifest`, `README.md`.
 - **Estado hoje:** chave `espro.v1` no `localStorage`, campo `v:2` (empresa, setores, cards, eventos, paginas); imagens da revista guardadas como data-URL JPEG ≤1000px (limite ~5MB do navegador → migrar para R2).
 - **Servidor de preview:** `espro-static` (porta 8793) em `Obsidian-vitor/.claude/launch.json`.
 
@@ -41,3 +41,5 @@ Mapa de dados do [[espro]].
 ## 6. Texto rico e imagens (formato novo da página)
 - Página: `html` (HTML sanitizado: p, h2, h3, b, i, u, s, listas, blockquote, a, span com `color`, classes `fs-sm|fs-lg|fs-xl` e `ff-serif|ff-sans|ff-mono`, `text-align`), `texto` (versão só texto), `colunas` (1|2) e `imgs: [{src, pos, tam, forma, legenda}]` (`pos`: fundo|topo|acima|esquerda|direita|abaixo). Páginas antigas (`texto` + `img`) são convertidas na leitura (`conteudo()` / `imagensDe()`).
 - As imagens são data-URLs ≤1000px dentro do JSON (limite ~5MB do localStorage) → no D1 o `html` vai em coluna TEXT e as imagens para o R2 (guardar só a URL em `imgs[].src`).
+
+- **Imagem livre:** `{src, pos:'livre', x, y, w, h, rot, atras, forma, legenda}` — `x,y,w` em % da largura da folha e `y,h` em % da altura (folha A5 148×210); `rot` em graus; `atras:true` fica atrás do texto. Imagens livres têm `position:absolute` na página (índice no array = ordem de empilhamento).
