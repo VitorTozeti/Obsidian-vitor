@@ -14,7 +14,7 @@ Mapa de dados do [[espro]].
 - **Repositório remoto:** ainda não existe.
 - **Hospedagem:** Cloudflare (Pages + Functions/Workers).
 
-- **Arquivos:** `index.html`, `css/style.css`, `js/store.js` (estado + persistência), `js/ui.js` (helpers, sheet, ícones), `js/rich.js` (sanitizador, editor de texto rico), `js/editor.js` (editor de páginas em tela cheia: objetos, histórico, autosave), `js/views.js` (4 telas e formulários), `js/app.js` (roteador por hash), `manifest.webmanifest`, `README.md`.
+- **Arquivos:** `index.html`, `css/style.css`, `js/store.js` (estado + persistência), `js/ui.js` (helpers, sheet, ícones), `js/rich.js` (sanitizador, editor de texto rico), `js/editor.js` (editor de páginas em tela cheia), `js/extras.js` (modelos, planejar, biblioteca, Ctrl+K), `js/qualidade.js` (verificador, exportar, apresentar), `js/equipe.js` (comentários, revisão, versões, alertas), `js/sync.js` (cliente de sincronização), `functions/` + `schema.sql` + `wrangler.toml` (servidor), `js/views.js` (4 telas e formulários), `js/app.js` (roteador por hash), `manifest.webmanifest`, `README.md`.
 - **Estado hoje:** **IndexedDB** (banco `espro`, store `kv`, chave `state`; fallback localStorage `espro.v1` se o navegador não oferecer), campo `v:2` (empresa, setores, cards, eventos, paginas); imagens da revista guardadas como data-URL JPEG ≤1000px (limite ~5MB do navegador → migrar para R2).
 - **Servidor de preview:** `espro-static` (porta 8793) em `Obsidian-vitor/.claude/launch.json`.
 
@@ -46,3 +46,10 @@ Mapa de dados do [[espro]].
 
 ## 7. Objetos da página (Fase 1 do editor)
 - A página guarda `objs: []` (substitui `imgs`): imagens `{tipo:'img', src, pos, tam, forma, legenda, x,y,w,h,rot,atras}` e **caixas de texto** `{tipo:'texto', html, x,y,w,h, rot, atras, fundo}` (`fundo`: ''|branco|sec|preto|amarelo). A posição no array é a ordem de empilhamento. `Store.upsert(kind,item,{silent:true})` grava sem re-renderizar (usado pelo autosave); `Store.remove` devolve `{item,index}` e `Store.restore` desfaz.
+
+## 8. Fases 2–5: novos campos e coleções
+- **Imagens/objetos:** `fx, fy, cz` (recorte: ponto focal % e zoom), `alt`, `ph` (imagem de exemplo); quadro do texto móvel em `pagina.quadro = {x,y,w,h,rot}`; `pagina.fonte` (escala 0.6–1 do texto corrido); `pagina.cardId` ↔ `card.paginaId`.
+- **Mídia:** `state.midia = {id: dataURL}`; as páginas guardam `src:'img:<id>'` (hash do conteúdo, sem duplicar). `img:ph` = imagem de exemplo.
+- **Novas coleções:** `comentarios [{id,paginaId,autor,texto,quando,resolvido}]`, `versoes [{id,paginaId,quando,autor,motivo,snap}]`, `apagados [{kind,id,_u}]` (tombstones), `marca {cores}`, `_metaU {empresa,marca}`.
+- **Sincronização:** todo item sincronizável tem `_u` (ms; "último a editar vence"). Cliente: `localStorage espro.auth` (token) e `espro.sync` (cursor, lastPush, ordem, mídia enviada). Servidor (`functions/_lib/api.js`): `POST /api/login`, `POST /api/sync` (push + pull por cursor `rev`), `GET|PUT /api/midia/:id`, `POST /api/presence`, `GET /api/ping`. Token = `base64(json).HMAC-SHA256`, vale 30 dias. D1: tabelas `items(kind,id,u,del,data,rev)`, `meta(rev)`, `midia`, `presence`.
+- **Limites conhecidos:** relógios dos aparelhos entram na regra "último vence"; D1 guarda a mídia em linhas de até ~3 MB (se crescer, migrar para R2); sem edição simultânea em tempo real (só aviso de presença).

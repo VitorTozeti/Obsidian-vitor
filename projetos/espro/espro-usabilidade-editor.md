@@ -95,9 +95,12 @@ Hub: [[espro]] · dados: [[espro-dados]]. O editor é a parte central do projeto
 - **Performance**: renderizar só o que mudou (não reconstruir a página inteira a cada gesto), miniaturas em cache, virtualizar filmstrip, *debounce* do autosave, imagens com `decoding=async`.
 
 ## Status (2026-10-02)
-- **Fase 1 — entregue:** editor em tela cheia, edição direta na página, barra contextual, caixas de texto livres (modelo híbrido), autosave, desfazer/refazer global, exclusão com "Desfazer", IndexedDB, painel de objetos/camadas básico, zoom por botões e Ctrl+scroll, menu da página.
-- **Ainda pendente da Fase 1:** histórico de versões por página e recuperação de rascunho entre sessões.
-- **Próximo (Fase 2):** pinça/arrastar com 2 dedos para zoom, guias + encaixe (snap), recorte/reenquadramento da imagem, seleção múltipla/alinhar, campos numéricos, gestos de girar/redimensionar com 2 dedos, mover/redimensionar o quadro do texto corrido.
+- **Fase 1 — entregue:** editor em tela cheia, edição direta, barra contextual, caixas de texto (híbrido), autosave, desfazer/refazer, exclusão com "Desfazer", IndexedDB, camadas e zoom por botões.
+- **Fase 2 — entregue:** pinça, guias+encaixe, margens/grade, seleção múltipla/alinhar/distribuir, recorte, campos numéricos, gestos de 2 dedos, quadro do texto móvel, trocar imagem, texto alternativo.
+- **Fase 3 — entregue:** galeria de modelos, planejar edição, paleta Ctrl+K, miniaturas, biblioteca de mídia, cores da marca, estilos de texto, página dupla, colar/arrastar/câmera.
+- **Fase 4 — entregue:** encaixar/dividir texto, verificador de pré-impressão, PDF por escopo + sangria/marcas, HTML de leitura, apresentação.
+- **Fase 5 — entregue (servidor sem teste real):** vínculo página↔tarefa, comentários, revisão/aprovação, histórico de versões, alertas, sincronização/login/presença via Cloudflare D1.
+- **Fora do escopo / ideias futuras:** edição simultânea em tempo real (cursor ao vivo), comentários fixados em pontos da página, R2 para mídia grande, assistente de IA para resumir/sugerir título, templates por seção personalizáveis.
 
 ## Roadmap sugerido
 
