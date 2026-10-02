@@ -14,7 +14,7 @@ Mapa de dados do [[espro]].
 - **Repositório remoto:** ainda não existe.
 - **Hospedagem:** Cloudflare (Pages + Functions/Workers).
 
-- **Arquivos:** `index.html`, `css/style.css`, `js/store.js` (estado + persistência), `js/ui.js` (helpers, sheet, ícones), `js/views.js` (4 telas e formulários), `js/app.js` (roteador por hash), `manifest.webmanifest`, `README.md`.
+- **Arquivos:** `index.html`, `css/style.css`, `js/store.js` (estado + persistência), `js/ui.js` (helpers, sheet, ícones), `js/rich.js` (sanitizador, editor de texto rico, editor de imagens), `js/views.js` (4 telas e formulários), `js/app.js` (roteador por hash), `manifest.webmanifest`, `README.md`.
 - **Estado hoje:** chave `espro.v1` no `localStorage`, campo `v:2` (empresa, setores, cards, eventos, paginas); imagens da revista guardadas como data-URL JPEG ≤1000px (limite ~5MB do navegador → migrar para R2).
 - **Servidor de preview:** `espro-static` (porta 8793) em `Obsidian-vitor/.claude/launch.json`.
 
@@ -37,3 +37,7 @@ Mapa de dados do [[espro]].
 
 ## 5. Páginas da revista
 - Cada página: `id, tpl, titulo, texto, img, secao (id do setor ou ''), status (rascunho|revisao|pronta)`. A ordem final é calculada (`ordenadas()`/`folhas()` em `js/views.js`); aberturas de seção **não** são gravadas, são geradas na hora. Na tabela D1 vira `paginas(posicao, secao_id, status, ...)`.
+
+## 6. Texto rico e imagens (formato novo da página)
+- Página: `html` (HTML sanitizado: p, h2, h3, b, i, u, s, listas, blockquote, a, span com `color`, classes `fs-sm|fs-lg|fs-xl` e `ff-serif|ff-sans|ff-mono`, `text-align`), `texto` (versão só texto), `colunas` (1|2) e `imgs: [{src, pos, tam, forma, legenda}]` (`pos`: fundo|topo|acima|esquerda|direita|abaixo). Páginas antigas (`texto` + `img`) são convertidas na leitura (`conteudo()` / `imagensDe()`).
+- As imagens são data-URLs ≤1000px dentro do JSON (limite ~5MB do localStorage) → no D1 o `html` vai em coluna TEXT e as imagens para o R2 (guardar só a URL em `imgs[].src`).
