@@ -2,7 +2,7 @@
 name: espro-dados
 description: onde os dados do projeto ESPRO vivem — pasta do código, repositório, armazenamento (a definir)
 tags: [projeto, proj/espro, dados]
-updated: 2026-10-02
+updated: 2026-10-05
 ---
 
 # ESPRO — Onde os dados vivem
@@ -60,3 +60,10 @@ Mapa de dados do [[espro]].
 - **Estante:** `js/edicoes.js` (rota `#/edicoes`, 5ª aba "Edições"): cartões com miniatura da capa, progresso, Abrir/Ler/Link/⋯; "Nova edição" = em branco, copiar estrutura (páginas vazias) ou duplicar inteira; editar nº/nome/data/situação; excluir (confirma, apaga as páginas).
 - **Identidade:** `js/marca.js`. `state.marca = {cores, primaria, fonte, slogan, logo:'img:<id>'}` (sincroniza como `meta marca`). `aplicarMarca()` injeta `<style id="marca-style">` (`--accent`, `--accent-ink`, `--accent-soft`, `--serif`), fonte Google escolhida, favicon SVG dinâmico; logo/monograma no cabeçalho, capa e contracapa. Fontes: Fraunces, Playfair Display, DM Serif Display, Lora, Space Grotesk, Poppins.
 - **Link público + QR:** botão "Link" da edição. Cliente gera `htmlLeitura(edId, true)` (`js/qualidade.js`, imagens trocadas por `/api/pm/<id>`) e envia `POST /api/publicar {id,nome,html}` (precisa estar logado na equipe; id aleatório 18 chars). Servidor (`functions/_lib/api.js`): `GET /api/p/<id>` (HTML público, CSP restrita), `GET /api/pm/<mid>` (imagem pública por hash), `POST /api/publicar`, `DELETE /api/publicar/<id>`. D1: nova tabela `publico(id, nome, html, u)` — **rodar `wrangler d1 execute espro --remote --file=schema.sql` de novo**. QR gerado no navegador com `qrcode-generator` (CDN cdnjs, carregado só ao abrir o sheet). Limite: HTML ≤ 1,8 MB (D1 ≤ 2 MB por linha). Lógica da API testada com repositório em memória no navegador; **D1 real ainda não testado**.
+
+## 10. Contas e cargos (2026-10-05)
+- **Publicado em** `https://espro-frame.pages.dev` (projeto Pages `espro-frame`, repo `VitorTozeti/Espro_frame`, deploy automático a cada push na `main`). D1 `espro` (id `ced36175-205d-4871-a3a5-6ece9932401f`, em `wrangler.toml`).
+- **Login trocado** do código único da equipe (`TEAM_CODE`, removido) para **e-mail + senha**: `POST /api/registrar`, `POST /api/login`. Senha com PBKDF2-SHA256 (100 mil voltas, salt por conta) na tabela `usuarios(email, nome, cargo, salt, hash, criado)`. **Sem segredos no painel**: a chave que assina os tokens é criada sozinha na tabela `config` (opcional `TOKEN_SECRET`), e todas as tabelas são criadas sozinhas no 1º acesso (`preparar()` em `functions/_lib/d1.js`).
+- **Cargos:** `admin` (fixo pelo e-mail `vitortozeti@gmail.com`, opcional `ADMIN_EMAIL`), `gestor` e `membro` (sem cargo, padrão de quem cria conta). Cargo lido do banco a cada requisição (mudança vale na hora; conta removida perde o acesso). Só o admin muda cargos/remove contas (`GET/PUT/DELETE /api/equipe`, tela "Gerenciar cargos" no menu da empresa → Equipe na nuvem). **Regra provisória:** só gestor/admin publica ou despublica o link público (403 para os demais) — a definir o que mais o gestor pode fazer.
+- **Risco:** o cadastro é aberto e o e-mail não é verificado; quem registrar `vitortozeti@gmail.com` primeiro vira admin → **criar a conta do admin antes de divulgar o link**. Sem limite de tentativas de senha.
+- Lógica da API testada no navegador (18 casos, repositório em memória); **D1 real ainda sem teste de ponta a ponta**.
