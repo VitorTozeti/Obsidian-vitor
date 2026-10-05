@@ -2,7 +2,7 @@
 name: espro
 description: plataforma da empresa fictícia exigida pela ESPRO — montar a revista a partir dos dados enviados e organizar as tarefas de cada setor em um quadro estilo Trello
 tags: [projeto, proj/espro, app, web, revista, kanban, calendario, cloudflare, ideia]
-updated: 2026-10-02
+updated: 2026-10-05
 ---
 
 # ESPRO — Revista da Empresa Fictícia
@@ -13,12 +13,12 @@ lugar central para **publicar a empresa**, **montar de verdade a revista** dela 
 
 Dados e localização: [[espro-dados]].
 
-## Estado atual (2026-10-02)
+## Estado atual (2026-10-05)
 
 - **MVP mobile-first funcionando** em `C:\Users\v.tozeti\Desktop\Vitor\teste\Espro` (HTML/CSS/JS puro, sem build; sem Git ainda). Testado em 375×812 no preview (`espro-static`, porta 8793, em `.claude/launch.json`).
 - **4 telas** (navegação inferior no celular, barra lateral ≥960px): Início (progresso da edição, próximos compromissos, setores), Quadro, Agenda (calendário mensal com pontos coloridos por setor; mostra eventos **e** prazos dos cartões) e Revista (ver seções abaixo).
 - **Setores padrão (2026-10-02):** Moda, Geek, Pop, Eventos, Notícias Gerais, RH, Marketing (cada um com cor). Dados antigos migram sozinhos (`v:2` no estado; cartões de setor extinto vão para o 1º setor).
-- **Quadro (melhorado 2026-10-02):** 4 colunas (A fazer / Fazendo / Revisão / Pronto) com **abas-atalho com contagem** acima do quadro (tocar rola até a coluna; a aba acompanha o scroll — é assim que se chega ao "Pronto" no celular), scroll horizontal com snap (barra visível no mouse), filtro por setor, botão "avançar" e **arrastar e soltar** por Pointer Events: no celular pela alça ⠿ do cartão (não briga com o scroll), no mouse pelo cartão inteiro; mostra fantasma + linha de inserção, reordena dentro da coluna, auto-scroll nas bordas e vibra ao pegar. Em ≥960px as 4 colunas cabem lado a lado.
+- **Quadro (atualizado 2026-10-05):** 4 colunas com abas-atalho, drag-and-drop avançado. **Novidade:** exibição de **quem gerou o cartão (`criador`)** e **quando foi gerado (`criadoEm`)** tanto no cartão visual quanto no formulário de edição (integrado ao perfil local/usuário sincronizado).
 - **Revista com seções (2026-10-02):** Notícias Gerais, Pop, Moda e Geek têm **seção própria** (nesta ordem); Eventos, RH e Marketing não têm seção (conteúdo deles entra em "Capa e abertura" ou como anúncio). A ordem impressa é automática: capa → sumário → geral → seções → contracapa; dentro de cada grupo vale a ordem manual (setas ↑↓). Cada seção ganha uma **página de abertura gerada sozinha** (cor do setor, título e índice) e as páginas da seção levam faixa/etiqueta na cor dela. O **sumário é automático**, agrupado por seção, com nº de página. 7 modelos: capa, sumário, matéria, destaque (foto grande), lista/Top (cada linha vira item numerado), anúncio, contracapa. Cada página tem situação (Rascunho / Em revisão / Pronta) → barra de progresso da edição; cada seção mostra "feitas/total tarefas" do Quadro (link filtra o quadro pelo setor) e botão "+ Página" já na seção. Prévia deslizável com atalhos por seção, contador "Página X de N" e exportar PDF A5 (a abertura de seção também sai impressa).
 - **Editor de página tipo Word + imagens livres (2026-10-02):** a página abre num sheet com abas **Editar / Prévia da página** (prévia ao vivo com a página real). O texto é **rico e editável**: desfazer/refazer, negrito, itálico, sublinhado, tachado, cor, estilo (parágrafo/título/subtítulo/citação), fonte (sem serifa/serifada/monoespaçada), tamanho (pequeno/normal/grande/enorme), listas (marcadores/numerada), alinhamento (esq./centro/dir./justificado), link, limpar formatação, contador de palavras e opção de 1 ou 2 colunas. Colar de Word/web é limpo por **sanitizador de lista branca** (sem scripts/estilos soltos). **Imagens** (até 6 por página) com posição **Fundo, Topo (largura total), Acima, Esquerda ou Direita (texto contorna), Abaixo**, tamanho P/M/G, forma (retângulo/arredondada/círculo), legenda e ordem. Aviso vermelho "Texto maior que a página" quando o conteúdo não cabe na folha (a folha tem tamanho fixo A5; o excesso é cortado — não há quebra automática de página).
 - **Layout tipo canvas para imagens (2026-10-02):** o sheet da página agora tem as abas **Texto** e **Layout e imagens**. No Layout a página aparece de verdade e cada imagem é uma caixa sobre ela: **arrastar para mover**, **8 bolinhas para redimensionar** (cantos mantêm a proporção; laterais cortam/esticam um lado) e **bolinha de cima para girar** (encaixa em 0/90/180°). Funciona com mouse e toque (no celular o 1º toque seleciona, depois arrasta; setas do teclado movem 1%, Shift 5%, Delete remove). Abaixo: miniaturas, "+" para adicionar, e painel da imagem selecionada — posição (Livre ou presets Fundo/Topo/Acima/Esquerda/Direita/Abaixo; qualquer imagem em preset vira "livre" ao ser arrastada), tamanho/slider de **largura %** (redimensiona em torno do centro), forma, legenda, **atrás do texto**, para frente/trás, duplicar, remover. Imagem nova entra livre no centro (capa/destaque/anúncio/contracapa: a 1ª vira fundo). Imagens livres guardam `x,y,w,h` em **% da folha** + `rot` + `atras`; ficam sobre o texto (que não contorna imagens livres).
@@ -51,6 +51,7 @@ Dados e localização: [[espro-dados]].
 
 ## Ideias de funcionalidades (backlog inicial)
 
+- **Backlog detalhado de colaboração e leitor:** ver [[espro-ideias-futuras]] (checklists em cartões, filtro "minhas tarefas", etiquetas de urgência, flipbook 3D, gráfico de setores, etc.).
 - Cadastro dos setores da empresa (Marketing, RH, Financeiro, Redação, Design...) e dos membros.
 - Upload de conteúdo por matéria (título, texto, imagens) com status ligado ao quadro.
 - Templates de página (capa, sumário, matéria, anúncio, contracapa) e ordenação das páginas.
@@ -67,5 +68,7 @@ Dados e localização: [[espro-dados]].
 
 ## Relacionados
 
+- [[espro-ideias-futuras]] — backlog detalhado de melhorias selecionadas
+- [[espro-usabilidade-editor]] — roadmap e usabilidade do editor de páginas
 - [[mural]] — já resolve quadro colaborativo com post-its; pode servir de base para o kanban.
 - [[mapa-projetos]]

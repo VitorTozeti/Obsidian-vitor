@@ -10,8 +10,8 @@ updated: 2026-10-02
 Mapa de dados do [[espro]].
 
 ## 1. Código
-- **Pasta local:** `C:\Users\v.tozeti\Desktop\Vitor\teste\Espro` (criada, vazia em 2026-10-02).
-- **Repositório remoto:** ainda não existe.
+- **Pasta local:** `C:\Users\v.tozeti\Desktop\Vitor\teste\Espro`.
+- **Repositório remoto:** `https://github.com/VitorTozeti/Espro_frame` (`main`).
 - **Hospedagem:** Cloudflare (Pages + Functions/Workers).
 
 - **Arquivos:** `index.html`, `css/style.css`, `js/store.js` (estado + persistência), `js/ui.js` (helpers, sheet, ícones), `js/rich.js` (sanitizador, editor de texto rico), `js/editor.js` (editor de páginas em tela cheia), `js/extras.js` (modelos, planejar, biblioteca, Ctrl+K), `js/qualidade.js` (verificador, exportar, apresentar), `js/equipe.js` (comentários, revisão, versões, alertas), `js/sync.js` (cliente de sincronização), `functions/` + `schema.sql` + `wrangler.toml` (servidor), `js/views.js` (4 telas e formulários), `js/app.js` (roteador por hash), `manifest.webmanifest`, `README.md`.
@@ -23,7 +23,7 @@ Mapa de dados do [[espro]].
 - **Setores / membros** — quem pertence a qual setor.
 - **Revista / edições** — páginas, ordem, template, capa.
 - **Matérias** — texto, imagens, autor, setor, status.
-- **Quadro (kanban)** — colunas, cartões (título, setor, responsável, prazo, matéria vinculada).
+- **Quadro (kanban)** — colunas, cartões (título, setor, responsável, prazo, matéria vinculada, criador, criadoEm).
 - **Eventos (calendário)** — título, início/fim, dia inteiro, setor, responsável, tipo (reunião/prazo/evento), cartão ou matéria vinculada.
 
 ## 3. Armazenamento (Cloudflare)
@@ -34,6 +34,7 @@ Mapa de dados do [[espro]].
 
 ## 4. Ordem dos cartões
 - A ordem visual de cada coluna é a ordem do array `cards` (função `Store.placeCard(id, col, beforeId)`); na futura tabela D1 isso vira uma coluna `posicao`.
+- Cada cartão possui metadados de autoria: `criador` (nome do usuário logado ou perfil local) e `criadoEm` (timestamp ms da criação).
 
 ## 5. Páginas da revista
 - Cada página: `id, tpl, titulo, texto, img, secao (id do setor ou ''), status (rascunho|revisao|pronta)`. A ordem final é calculada (`ordenadas()`/`folhas()` em `js/views.js`); aberturas de seção **não** são gravadas, são geradas na hora. Na tabela D1 vira `paginas(posicao, secao_id, status, ...)`.

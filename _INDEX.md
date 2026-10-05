@@ -54,6 +54,7 @@
   - [ESPRO — Revista](projetos/espro/espro.md) — plataforma da empresa fictícia da ESPRO: vitrine, montador de revista a partir de dados enviados e quadro estilo Trello por setor e calendário de atividades (Cloudflare)
   - [ESPRO — Onde os dados vivem](projetos/espro/espro-dados.md) — pasta do código, modelo de dados previsto e armazenamento (a definir)
   - [ESPRO — Usabilidade do editor](projetos/espro/espro-usabilidade-editor.md) — diagnóstico e todas as melhorias de UX do editor de páginas, por tema, com roadmap em 5 fases
+  - [ESPRO — Ideias futuras](projetos/espro/espro-ideias-futuras.md) — backlog de melhorias de colaboração no Kanban, leitor flipbook 3D e métricas de desempenho por setor
 
 ## Ideias
 - [Ideias — hub](ideias/ideias.md) — caixa de entrada + método para não esquecer e realizar ideias
