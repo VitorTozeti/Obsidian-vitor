@@ -2,7 +2,7 @@
 name: espro-dados
 description: onde os dados do projeto ESPRO vivem — pasta do código, repositório, armazenamento (a definir)
 tags: [projeto, proj/espro, dados]
-updated: 2026-10-05
+updated: 2026-10-06
 ---
 
 # ESPRO — Onde os dados vivem
@@ -69,3 +69,9 @@ Mapa de dados do [[espro]].
 - Lógica da API testada no navegador (18 casos, repositório em memória); **D1 real ainda sem teste de ponta a ponta**.
 - **Portão de login (2026-10-05):** o app só abre depois de entrar (e-mail + senha) ou criar conta (nome de usuário + e-mail + senha) — overlay `.portao` em `js/app.js`; reaparece ao sair da equipe. Sem conexão com o servidor não dá para fazer o 1º login (quem já entrou segue logado por 30 dias).
 - **Persistência na nuvem testada (2026-10-05):** push/pull no D1 real do site publicado funcionam (cartões, eventos, páginas, edições, setores, empresa). **Bug achado e corrigido:** no 1º login de um aparelho novo, os dados padrão (setores, edição nº 1, páginas, empresa "Minha Empresa") eram enviados como novos → **setores/edições duplicados** e **nome da empresa sobrescrito**. Agora `Store.ehNovo()` detecta aparelho "virgem" e `Sync.conectar` adota os dados do servidor sem enviar nada (`aplicar(pull, true)` em `js/sync.js`). Ao sair da aba, as pendências são enviadas na hora (`visibilitychange`). Banco limpo por tombstones (2º conjunto de padrões duplicado + 2 itens de teste). Existe uma conta de teste `teste.sync.367@example.com` no D1 (remover em "Gerenciar cargos"). O nome da empresa no banco voltou para "Minha Empresa" (sobrescrito antes da correção).
+
+## 11. Diário de bordo e setor por pessoa (2026-10-06)
+- **Setor por pessoa:** coluna `usuarios.setor` (id do setor; criada sozinha via `ALTER TABLE` em `preparar()`, também em `schema.sql`). Só o admin define (`PUT /api/equipe {email, setor?, cargo?}` — setor vale até para o admin; cargo do admin segue fixo). `GET /api/equipe`, login/registro e `ping` devolvem `setor`. Tela "Gerenciar cargos" ganhou um select de setor por pessoa. Cliente: `Sync.setor()`, `Sync.email()`, `Sync.equipe()` / `Sync.carregarEquipe()` (lista de contas lida por qualquer logado).
+- **Diário de bordo** (`js/diario.js`, rota `#/diario`, 6ª aba "Diário"): **uma pessoa por quinta-feira**, rodízio pela **ordem alfabética das contas** (`ordemAlfa`) a partir da quinta de referência `2026-01-01`: `índice = semanas desde a referência mod nº de contas`. Mostra a quinta mais recente + responsável + setor, as próximas 4 quintas e o histórico (8 a 52 semanas).
+- **Dados:** `state.diario [{id:'q-<ISO da quinta>', data, texto (≤4000), autorEmail, autor, setor, _u}]` — um registro por quinta (id fixo → "último a editar vence"); `diario` entrou em `SYNC_KINDS` e em `KINDS` da API. Escreve/edita quem é o responsável da quinta **ou** gestor/admin (regra só na interface; o servidor `sync` é genérico).
+- **Limite conhecido:** o rodízio é calculado, não gravado — entrar/sair conta **desloca as quintas futuras e as passadas sem registro**; quintas com registro mantêm o autor gravado. Não testado com D1 real (só no navegador com a equipe simulada).

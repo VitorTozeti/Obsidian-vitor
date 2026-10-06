@@ -2,7 +2,7 @@
 name: espro
 description: plataforma da empresa fictícia exigida pela ESPRO — montar a revista a partir dos dados enviados e organizar as tarefas de cada setor em um quadro estilo Trello
 tags: [projeto, proj/espro, app, web, revista, kanban, calendario, cloudflare, ideia]
-updated: 2026-10-05
+updated: 2026-10-06
 ---
 
 # ESPRO — Revista da Empresa Fictícia
@@ -38,6 +38,7 @@ Dados e localização: [[espro-dados]].
   - **Fase 5 · Equipe:** página↔**tarefa do Quadro** (situação da página e coluna do cartão andam juntas nos dois sentidos), **comentários** por página (resolver/reabrir), **pedir revisão / aprovar / pedir ajustes** (gera comentário), **histórico de versões** (15 por página, restaurar), **alertas** no Início (tarefas atrasadas, fechamento próximo, páginas em revisão, comentários abertos) + aviso opcional do navegador, e **sincronização com Cloudflare** (login por código da equipe, D1, mídia, presença "fulano também está editando"). **O servidor (D1) NÃO foi testado de verdade** — só a lógica da API contra um repositório em memória.
 - **Edições, identidade e link público (2026-10-05):** nova aba **Edições** = estante com todas as edições (nº 1, nº 2…; cada uma com suas páginas; criar em branco/copiando estrutura/duplicando; abrir, ler, editar dados, excluir). **Identidade da marca** (menu da empresa → "Identidade da marca"): logo (ou monograma), cor principal que recolore o app inteiro, fonte dos títulos (6 opções), slogan; aplicada ao cabeçalho, capa/contracapa, favicon. **Link público de leitura + QR code** por edição (precisa de login na equipe e da tabela `publico` no D1). Detalhes em [[espro-dados]] §9. Quadro/agenda continuam globais (não por edição).
 - **Contas e cargos (2026-10-05):** login por **e-mail + senha** (sem painel/segredos), admin fixo `vitortozeti@gmail.com`, cargos Gestor(a) e Sem cargo, tela "Gerenciar cargos"; site no ar em `espro-frame.pages.dev`. Detalhes em [[espro-dados]] §10.
+- **Diário de bordo + setor por pessoa (2026-10-06):** nova aba **Diário**: a cada quinta-feira uma pessoa (ordem alfabética das contas, em rodízio) escreve como foi a semana; mostra quem é a vez, próximas quintas e histórico. O admin define o **setor de cada pessoa** em "Gerenciar cargos" (além de gestor/a). Detalhes em [[espro-dados]] §11. Commit local `cda4a3a` (ainda sem push → sem deploy).
 - **Visual:** papel quente + títulos em Fraunces/Inter, tema claro/escuro automático, alvos de toque ≥44px, bottom sheets para edição, exclusão com toque duplo, `safe-area` e `prefers-reduced-motion`.
 - **Dados:** ainda em `localStorage` (+ exportar/importar backup JSON). `js/store.js` isola isso para trocar por API/D1.
 - **Próximos passos:** publicar na Cloudflare e fazer o 1º teste real do D1 (ver `README.md` na pasta do código), `git init`, nome/identidade da empresa fictícia, mover imagens para R2 se a mídia no D1 crescer demais.
