@@ -183,8 +183,20 @@ passo obrigatório antes de confiar no branch é rodar `mvn -Dmaven.test.skip=tr
   depende do perfil CLIENTE vindo dela — antes de produção real, separar seed de perfis (obrigatório) do seed demo.
 
 **Restam de verdade:** (a) build/teste real de tudo (`mvn test`, `npm run build`) — bloqueia confiar
-nas Fases 1-7; (c) estilizar as telas Angular cruas (= próxima etapa: construção do front); (d) RN04;
+nas Fases 1-7; (c) estilizar as telas Angular cruas (= próxima etapa: construção do front); (d) ~~RN04~~ feita em 2026-10-07;
 (g) deploy real; (h) commitar/enviar o working tree das Fases 6-7 (não commitado).
+
+
+### Rodada de 2026-10-07 (RN04, endereço no checkout, base visual) — não compilada
+
+- **RN04 resolvida:** `OrderController.transition` (`POST /api/orders/{id}/transitions`) agora recusa
+  `CANCELADO` (422) para quem não é ADMINISTRADOR/GERENTE quando o pedido já passou de RECEBIDO/CONFIRMADO
+  (`OrderService.canCancelFreely`, usa `NOT_CANCELLABLE`). Antes disso qualquer perfil do endpoint cancela.
+- **Endereço no checkout:** `customer-checkout` ganhou formulário "Novo endereço" (`POST /api/customers/{id}/addresses`);
+  abre sozinho se o cliente não tem endereço e já seleciona o recém-criado.
+- **Base visual:** classe global `.page-basic` em `styles.css` (host das telas usuarios, fornecedores, fichas
+  técnicas, dashboard) estiliza tabelas/inputs/botões no tema escuro/laranja sem reescrever os templates.
+- Continua pendente: compilar/testar tudo (sem Java/Node/Docker ativo nesta sessão), deploy real, separar seed V900.
 
 ### Ordem de execução recomendada
 
