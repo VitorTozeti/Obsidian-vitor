@@ -2,7 +2,7 @@
 name: espro
 description: plataforma da empresa fictícia exigida pela ESPRO — montar a revista a partir dos dados enviados e organizar as tarefas de cada setor em um quadro estilo Trello
 tags: [projeto, proj/espro, app, web, revista, kanban, calendario, cloudflare, ideia]
-updated: 2026-10-06
+updated: 2026-10-07
 ---
 
 # ESPRO — Revista da Empresa Fictícia
@@ -39,6 +39,7 @@ Dados e localização: [[espro-dados]].
 - **Edições, identidade e link público (2026-10-05):** nova aba **Edições** = estante com todas as edições (nº 1, nº 2…; cada uma com suas páginas; criar em branco/copiando estrutura/duplicando; abrir, ler, editar dados, excluir). **Identidade da marca** (menu da empresa → "Identidade da marca"): logo (ou monograma), cor principal que recolore o app inteiro, fonte dos títulos (6 opções), slogan; aplicada ao cabeçalho, capa/contracapa, favicon. **Link público de leitura + QR code** por edição (precisa de login na equipe e da tabela `publico` no D1). Detalhes em [[espro-dados]] §9. Quadro/agenda continuam globais (não por edição).
 - **Contas e cargos (2026-10-05):** login por **e-mail + senha** (sem painel/segredos), admin fixo `vitortozeti@gmail.com`, cargos Gestor(a) e Sem cargo, tela "Gerenciar cargos"; site no ar em `espro-frame.pages.dev`. Detalhes em [[espro-dados]] §10.
 - **Diário de bordo + setor por pessoa (2026-10-06):** nova aba **Diário**: a cada quinta-feira uma pessoa (ordem alfabética das contas, em rodízio) escreve como foi a semana; mostra quem é a vez, próximas quintas e histórico. O admin define o **setor de cada pessoa** em "Gerenciar cargos" (além de gestor/a). Detalhes em [[espro-dados]] §11. Commit local `cda4a3a` (ainda sem push → sem deploy).
+- **Cargos, quadro por setor e página Equipe (2026-10-07):** cargos diretor(a) e instrutor(a); só o admin cria setores e define cargo/setor; cada setor só vê o próprio quadro (admin/diretor/instrutor veem tudo); nova aba **Equipe** (pessoas por setor; gestor vê o seu); RH é avisado toda quinta de quem faz o diário. Detalhes em [[espro-dados]] §12.
 - **Visual:** papel quente + títulos em Fraunces/Inter, tema claro/escuro automático, alvos de toque ≥44px, bottom sheets para edição, exclusão com toque duplo, `safe-area` e `prefers-reduced-motion`.
 - **Dados:** ainda em `localStorage` (+ exportar/importar backup JSON). `js/store.js` isola isso para trocar por API/D1.
 - **Próximos passos:** publicar na Cloudflare e fazer o 1º teste real do D1 (ver `README.md` na pasta do código), `git init`, nome/identidade da empresa fictícia, mover imagens para R2 se a mídia no D1 crescer demais.
