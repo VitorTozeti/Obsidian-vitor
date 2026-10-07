@@ -85,3 +85,6 @@ Dados e localização: [[espro-dados]].
 - [[espro-usabilidade-editor]] — roadmap e usabilidade do editor de páginas
 - [[mural]] — já resolve quadro colaborativo com post-its; pode servir de base para o kanban.
 - [[mapa-projetos]]
+
+## Correção da barra de abas (2026-10-07)
+Com a 7ª aba (Equipe), a `.tabs` ganhou `grid-auto-flow: column` e quebrou o menu lateral do PC (≥960px). Correção em `css/style.css`: o desktop volta a `grid-auto-flow: row`; no celular as abas usam `minmax(0,1fr)` com `min-width:0` e rótulo com reticências (7 abas × 54px em 375px, sem estouro). Regra: ao adicionar aba, testar celular **e** PC. Commit `5a416ae` na `main` de `Espro_frame`.
