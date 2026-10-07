@@ -79,6 +79,7 @@ Dados e localização: [[espro-dados]].
 
 ## Relacionados
 
+- [[espro-analise-roadmap]] — análise e planejamento em ondas (2026-10-07)
 - [[espro-ideias-futuras]] — backlog detalhado de melhorias selecionadas
 - [[espro-usabilidade-editor]] — roadmap e usabilidade do editor de páginas
 - [[mural]] — já resolve quadro colaborativo com post-its; pode servir de base para o kanban.
