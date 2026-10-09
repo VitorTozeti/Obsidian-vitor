@@ -90,3 +90,9 @@ Mapa de dados do [[espro]].
 - **Cargo novo `cogestor`** (Co-gestor(a)): mesmo alcance do gestor — vê só o próprio setor, abre a aba Equipe (do setor), publica o link público; conta como líder do setor. Só o admin atribui. Alterado em `functions/_lib/api.js` (`CARGOS`, `gestao`), `js/sync.js`, `js/pessoas.js`.
 - **Visão do administrador** (só `vitortozeti@gmail.com`; diretor/instrutor continuam com a visão anterior): na aba Equipe, resumo de pessoas cadastradas por cargo, aviso de quem está **sem setor/sem cargo**, tabela **setores × cargos**, lista de **todas as pessoas** com busca, filtro por setor/cargo e **troca de cargo e setor inline** (`viewAdmin` em `js/pessoas.js`, CSS `.adm-*`/`.matriz` no fim de `css/style.css`).
 - Testado no preview com equipe simulada; **D1 real não testado**. Commit `4df0d4a` em `Espro_frame` (sem push → sem deploy).
+
+## 14. Pessoa em mais de um setor (2026-10-09)
+- `usuarios.setor` agora guarda **ids separados por vírgula** (`"moda,geek"`; vazio = sem setor) — sem mudar o schema, contas antigas com 1 id continuam válidas. Helpers: `listaSetores`, `nomesSetores`, `seletorSetores` em `js/ui.js`; no servidor `listaSetores` em `functions/_lib/api.js`.
+- **Servidor:** quem não é "amplo" vê/grava cartões de **qualquer** setor seu (`meusSetores.includes`); `PUT /api/equipe` aceita `setor` como texto `"a,b"` ou array (máx. 12, normaliza e remove duplicados).
+- **Cliente:** `Sync.setores()` (lista) e `Sync.setor()` (só o 1º, legado). Admin escolhe os setores num menu com caixas (grava ao fechar) na aba Equipe e em "Gerenciar cargos"; gestor com 2+ setores vê um bloco por setor; pessoas aparecem em cada setor dele na matriz setores × cargos (a soma pode passar do nº de pessoas); aviso de quinta do RH vale se **algum** setor da pessoa for RH.
+- Testado no preview (helpers e seletor) e sintaxe do servidor; **D1 real não testado**. Commit local em `Espro_frame` (sem push → sem deploy).

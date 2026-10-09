@@ -91,3 +91,6 @@ Com a 7ª aba (Equipe), a `.tabs` ganhou `grid-auto-flow: column` e quebrou o me
 
 ## Co-gestor e visão do administrador (2026-10-09)
 Novo cargo **Co-gestor(a)** e, na aba Equipe, uma **visão exclusiva do admin** (pessoas cadastradas, setores × cargos, filtros, edição de cargo/setor na hora). Detalhes em [[espro-dados]] §13.
+
+## Pessoa em mais de um setor (2026-10-09)
+Agora certas pessoas podem ter **2 (ou mais) setores**: o admin marca vários numa lista com caixas; a pessoa vê o quadro de todos eles. Detalhes em [[espro-dados]] §14.
