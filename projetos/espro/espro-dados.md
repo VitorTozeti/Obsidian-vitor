@@ -2,7 +2,7 @@
 name: espro-dados
 description: onde os dados do projeto ESPRO vivem — pasta do código, repositório, armazenamento (a definir)
 tags: [projeto, proj/espro, dados]
-updated: 2026-10-06
+updated: 2026-10-09
 ---
 
 # ESPRO — Onde os dados vivem
@@ -85,3 +85,8 @@ Mapa de dados do [[espro]].
 - **Página Equipe** (`js/pessoas.js`, rota `#/equipe`, aba só para gestor/diretor/instrutor/admin): amplos veem total de pessoas, cargos e **quantas pessoas por setor** com lista e tarefas abertas/prontas; gestor vê só o setor dele ("Você lidera"). Admin tem atalhos para Setores e Cargos.
 - **Aviso de quinta para o RH:** quem está no setor `RH` recebe, toda quinta, um cartão "Atenção" no Início + toast + aviso do navegador (se permitido) com o nome da pessoa do diário (`avisoQuintaRH`/`notificarQuintaRH` em `js/equipe.js`). **Só funciona com o app aberto**; push com o app fechado exigiria service worker + Worker com cron (não feito).
 - Testado: regras do servidor em memória (13 casos, ok) e telas no preview com API simulada. **D1 real não testado**; sem commit/push ainda.
+
+## 13. Co-gestor e visão do administrador (2026-10-09)
+- **Cargo novo `cogestor`** (Co-gestor(a)): mesmo alcance do gestor — vê só o próprio setor, abre a aba Equipe (do setor), publica o link público; conta como líder do setor. Só o admin atribui. Alterado em `functions/_lib/api.js` (`CARGOS`, `gestao`), `js/sync.js`, `js/pessoas.js`.
+- **Visão do administrador** (só `vitortozeti@gmail.com`; diretor/instrutor continuam com a visão anterior): na aba Equipe, resumo de pessoas cadastradas por cargo, aviso de quem está **sem setor/sem cargo**, tabela **setores × cargos**, lista de **todas as pessoas** com busca, filtro por setor/cargo e **troca de cargo e setor inline** (`viewAdmin` em `js/pessoas.js`, CSS `.adm-*`/`.matriz` no fim de `css/style.css`).
+- Testado no preview com equipe simulada; **D1 real não testado**. Commit `4df0d4a` em `Espro_frame` (sem push → sem deploy).

@@ -2,7 +2,7 @@
 name: espro
 description: plataforma da empresa fictícia exigida pela ESPRO — montar a revista a partir dos dados enviados e organizar as tarefas de cada setor em um quadro estilo Trello
 tags: [projeto, proj/espro, app, web, revista, kanban, calendario, cloudflare, ideia]
-updated: 2026-10-07
+updated: 2026-10-09
 ---
 
 # ESPRO — Revista da Empresa Fictícia
@@ -88,3 +88,6 @@ Dados e localização: [[espro-dados]].
 
 ## Correção da barra de abas (2026-10-07)
 Com a 7ª aba (Equipe), a `.tabs` ganhou `grid-auto-flow: column` e quebrou o menu lateral do PC (≥960px). Correção em `css/style.css`: o desktop volta a `grid-auto-flow: row`; no celular as abas usam `minmax(0,1fr)` com `min-width:0` e rótulo com reticências (7 abas × 54px em 375px, sem estouro). Regra: ao adicionar aba, testar celular **e** PC. Commit `5a416ae` na `main` de `Espro_frame`.
+
+## Co-gestor e visão do administrador (2026-10-09)
+Novo cargo **Co-gestor(a)** e, na aba Equipe, uma **visão exclusiva do admin** (pessoas cadastradas, setores × cargos, filtros, edição de cargo/setor na hora). Detalhes em [[espro-dados]] §13.
