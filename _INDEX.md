@@ -33,7 +33,10 @@
   - [Nexus RPG — Onde os dados vivem](projetos/nexus-rpg/nexus-rpg-dados.md) — mapa de localização de dados, repositório, chaves do LocalStorage e arquitetura de arquivos do Nexus RPG
   - [Nexus RPG — Detalhamento das telas](projetos/nexus-rpg/nexus-rpg-telas.md) — auth, 17 abas do Mestre, editor de fichas (21 blocos), suíte de campanha e modo Jogador, tela a tela
   - [Nexus RPG — Arquitetura e Guia](projetos/nexus-rpg/nexus-rpg-arquitetura.md) — funcionamento interno, motores de regras/dados, canvas de fichas e guia para futuras atualizações
-  - [Nexus RPG — Planejamento](projetos/nexus-rpg/nexus-rpg-planejamento.md) — roadmap: checklist entregue vs. pendente, backlog priorizado por área e próximos passos
+  - [Nexus RPG — Planejamento](projetos/nexus-rpg/nexus-rpg-planejamento.md) — roadmap: checklist entregue vs. pendente, backlog priorizado por área e próximos passos + análise técnica 2026-10-13 (cota, testes, a11y, arquitetura)
+  - [Nexus RPG — Mapas e geradores](projetos/nexus-rpg/nexus-rpg-mapas-geradores.md) — geradores procedurais (mundo/masmorra/caverna/interior/vila), estudo REA do Azgaar/Watabou, zoom/pan, hex, PNG e UX/UI (2026-10-13)
+  - [Nexus RPG — Plano de melhorias](projetos/nexus-rpg/nexus-rpg-plano-melhorias.md) — auditoria 2026-10-13: dados, segurança, arquitetura, testes/CI, UX/UI, funcionalidades, PWA e ondas de execução
+  - [Nexus RPG — Rodada v2](projetos/nexus-rpg/nexus-rpg-v2-sistema-mapa-campanha.md) — assistente de criação do sistema, mapa 100% editável (objetos vetoriais), combate/diário/tela dos jogadores/.campanha (2026-10-13)
 - [Role SP no trilho](projetos/role-sp/role-sp.md) — mapa interativo das linhas de metrô, trem e monotrilho de SP com pontos turísticos, culturais e integração de ônibus via OpenStreetMap
   - [Role SP no trilho — Onde os dados vivem](projetos/role-sp/role-sp-dados.md) — mapa de localização de dados, repositório, APIs externas e estruturas de dados do Role SP no trilho
   - [Role SP no trilho — Detalhamento da interface](projetos/role-sp/role-sp-interface.md) — painéis, tabela das 14 linhas, ~156 POIs em 20 categorias, funções e fluxo "Quero ir aqui"

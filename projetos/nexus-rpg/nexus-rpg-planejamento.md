@@ -2,7 +2,7 @@
 name: nexus-rpg-planejamento
 description: planejamento e roadmap do Nexus RPG — checklist entregue vs. pendente, backlog priorizado e próximos passos por área
 tags: [projeto, proj/nexus-rpg, planejamento, roadmap, rpg]
-updated: 2026-09-08
+updated: 2026-10-13
 ---
 
 # Nexus RPG — Planejamento
@@ -75,6 +75,37 @@ entregue, o que está pendente e a ordem sugerida de ataque. Hub do projeto:
    linha no "Log de alterações" do `nexus-rpg-prototipo.md`.
 2. Depois **Prioridade 2** (tema claro + contraste + ícones) — melhora percebida rápida.
 3. Só então avaliar **Prioridade 3**, decidindo se vale sair do modelo 100% offline.
+
+## Análise técnica (2026-10-13)
+
+> Rodada de implementação no mesmo dia: geradores de mapa, zoom/pan, hex, backup, tela de falha, acessibilidade — [[nexus-rpg-mapas-geradores]].
+
+Auditoria do código em `The-One-System` (~7k linhas, 24 `<script>` globais, 308 funções globais).
+Commits recentes (mapas/dados didáticos) estão além do que esta nota descrevia.
+
+1. **Persistência sem proteção de cota** — `store()` (`src/core/helpers.js:25`) faz `setItem`
+   sem `try/catch`; mapas e fotos em base64 estouram ~5MB e o app falha em silêncio/exceção.
+   Tratar `QuotaExceededError`, avisar o usuário e comprimir imagens (`readPhoto`, `campaign-map.js`).
+2. **Sem backup automático** — tudo vive só no `localStorage`; limpar o navegador apaga a campanha.
+   Exportar/importar campanha inteira (`.campanha`) e lembrete de backup vira prioridade 1.
+3. *(corrigido em 2026-10-13: `persist()` já trata cota — ver [[nexus-rpg-mapas-geradores]])* **`h({html:})` e `innerHTML`** — hoje os usos escapam com `esc()`, mas `html:` é um ponto
+   frágil; preferir `textContent`/nós e restringir `html:` a literais fixos.
+4. **Senha em texto plano** (já conhecido) — se virar algo além de protótipo, ao menos hash
+   (PBKDF2 via WebCrypto) ou remover o conceito de senha no modo local.
+5. **Zero testes automatizados** — motores de fórmula e dados (`formula-engine.js`,
+   `dice-engine.js`) são puros e ideais p/ testes unitários; migrações de `sanitizeSystem`/
+   `migrateSystem` também. Hoje só há `--dump-dom`.
+6. **Acessibilidade** — só 1 ocorrência de `aria-*` em todo o código; falta foco/teclado nas
+   telas e contraste (`--muted`/`--dim`, já no backlog 57).
+7. **Arquitetura** — `player.js` (1253 linhas), `master-pieces.js` (947) e `campaign-map.js`
+   (607) concentram demais; escopo global e ordem de `<script>` são frágeis. Opção sem quebrar
+   `file://`: IIFEs/namespaces (`Nexus.formula`, …) ou bundle único gerado por script.
+8. **Deploy** — workflow ainda é o template Jekyll do GitHub Pages (site é estático puro);
+   trocar por publicação direta de arquivos estáticos e rodar testes no CI.
+9. **Sem tratamento global de erro** — nenhum `window.onerror`/`unhandledrejection`; um erro
+   de render deixa a tela em branco. Adicionar fallback + botão "exportar dados" na falha.
+10. **Backlog antigo** (editor de ficha ↶ ↷, lixeira, tema claro, ícones) segue válido — ver
+    Prioridades 1–2 acima.
 
 ## Riscos / restrições
 

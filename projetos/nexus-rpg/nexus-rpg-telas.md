@@ -190,7 +190,8 @@ Canvas de largura fixa **`CANVAS_W = 860`px** (escalado para caber na tela), gri
     .seg/.map-token-marks` + regras de hover/`.no-labels`/`.painting`. Modelo:
     `newMap` ganhou `terrain/showLabels/grid.snap`; `newToken` ganhou `marks`; migração
     em `sanitizeCampaign`.
-  - **Pendências mapeadas (próximos passos):** pan/zoom do canvas p/ mapas grandes;
+  - **Atualização 2026-10-13:** pan/zoom, grade hex, bússola/escala, desfazer do pincel, exportar PNG e **geradores procedurais** — ver [[nexus-rpg-mapas-geradores]] (pan/zoom abaixo já entregue).
+  - **Pendências mapeadas (próximos passos):** ~~pan/zoom do canvas~~ (feito);
     alças de redimensionar/rotacionar direto na peça (hoje via sliders); multi-seleção +
     copiar/colar + tecla Delete; camadas de terreno separadas por material (hoje é 1
     raster) e brush “conecta com metaball”; trilha/iniciativa lateral de tokens; peso do

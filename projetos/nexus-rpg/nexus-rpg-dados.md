@@ -70,6 +70,13 @@ Todos os dados da aplicação residem no `localStorage` do navegador do usuário
 
 > ⚠️ **Nota sobre segurança de credenciais:** o app foi concebido como protótipo offline e armazena senhas em texto puro no `localStorage`. Não utilize senhas reais.
 
+## Mapas — campos e arquivos novos (2026-10-13)
+
+- Arquivo `src/master/campaign/map-gen.js` (geradores). Em `campaign.maps[]`: `genMeta {g,seed}`, `compass`, `scale {on,total,unit}`, `grid.type` (`square`|`hex`); pins/props/reinos gerados têm `gen:true`. A imagem gerada fica em `m.image` (JPEG). Detalhes em [[nexus-rpg-mapas-geradores]].
+- Backup da conta: botão **💾 Backup** → JSON `nexus-backup-AAAA-MM-DD.json` (`{app,versao,conta,exportadoEm,dados}`).
+
+- **v2 (2026-10-13):** mapas ganham `objs/bg/fx`; campanha ganha `notebook, handouts, combat, clocks, resources, tables, xp, present, meta, prep`; formato `.campanha` v1 e backup de conta restaurável — ver [[nexus-rpg-v2-sistema-mapa-campanha]].
+
 ## Arquivos Intermediários e Formatos de Exportação
 
 - **Arquivos `.nexus` (JSON):** formato completo de exportação e importação de sistemas de RPG (regras, fórmulas, tabelas, blocos de ficha e configurações de campanha).
