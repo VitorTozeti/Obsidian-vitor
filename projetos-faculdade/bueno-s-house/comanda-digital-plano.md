@@ -2,7 +2,7 @@
 name: comanda-digital-plano
 description: Plano de implementação faseado do SRS "Comanda Digital" sobre o Bueno's House, com base em auditoria real do código (não estimativa)
 tags: [proj/bueno-s-house]
-updated: 2026-10-13 (working tree limpo; tudo até RN04 commitado em 56af648 — falta build real, deploy, seed V900)
+updated: 2026-10-13 (rodada: seed separado, RN01, deploy prod, telas administrativas estilizadas, carrinho persistido, React removido — NÃO compilado, NÃO commitado)
 ---
 
 # Comanda Digital — Plano de Implementação
@@ -197,6 +197,34 @@ nas Fases 1-7; (c) estilizar as telas Angular cruas (= próxima etapa: construç
 - **Base visual:** classe global `.page-basic` em `styles.css` (host das telas usuarios, fornecedores, fichas
   técnicas, dashboard) estiliza tabelas/inputs/botões no tema escuro/laranja sem reescrever os templates.
 - Continua pendente: compilar/testar tudo (sem Java/Node/Docker ativo nesta sessão), deploy real, separar seed V900.
+
+### Rodada de 2026-10-13 (itens 2–6 do pós-auditoria) — não compilada, não commitada
+
+Ambiente da sessão sem Java/Maven/Node e Docker Desktop sem WSL → **nada foi compilado**; revisão só estática.
+
+- **Seed separado (V900):** perfis de acesso (inclui CLIENTE) viraram `V16__seed_profiles.sql` (`INSERT IGNORE`,
+  roda em todo ambiente). O demo foi para `backend/src/main/resources/db/seed/V900__seed_demo_data.sql` (usuários
+  agora referenciam perfil por nome, não por id) e só entra com `SPRING_PROFILES_ACTIVE=dev`
+  (`application-dev.yml` → `flyway.locations: db/migration,db/seed`; `application.yml` de teste idem).
+  **Atenção:** banco local criado antes disso dá checksum divergente no V900 → recriar o banco ou `flyway repair`.
+- **RN01 implementada:** prato novo nasce inativo; ativar (criar com `available=true`, editar de inativo→ativo, ou
+  `PATCH /api/products/{id}/availability`) exige ficha técnica, senão 422. Editar prato já ativo não reverifica;
+  `available` ausente no PUT agora **mantém** o estado (antes reativava). Também corrigido: PUT sem `variations`
+  apagava as variações — agora preserva. Catálogo Angular ganhou checkbox "Disponível"; tela de fichas ganhou botão
+  "Ativar prato". Teste novo `createActiveProductWithoutRecipeReturns422` em `CatalogControllerIT`.
+- **Deploy (preparado, não executado):** `docker-compose.prod.yml` (Caddy com HTTPS automático, MySQL/API sem porta
+  pública, perfil `prod`), `Caddyfile`, `docs/DEPLOY.md` (passo a passo VPS + backup + alternativas PaaS) e
+  `BootstrapAdminRunner` (cria 1º admin + restaurante/unidade se `BOOTSTRAP_ADMIN_EMAIL/PASSWORD` definidos e não
+  houver ADMINISTRADOR; remover as variáveis depois). Falta só escolher servidor/domínio e rodar.
+- **Telas estilizadas:** usuários, fornecedores/compras, fichas técnicas e dashboard reescritas com o design do
+  sistema (classes `.page`, `.field`, `.btn-ghost`, `.data-table`, `.badge-*`, `.kpi-value` em `styles.css`; removido
+  `.page-basic`). Dashboard com KPIs (faturamento, ticket, pedidos, food cost com semáforo), gráficos temáticos
+  (Chart.js com tooltip/eixo em R$) e tabela de estoque baixo; fornecedores com status em badge, "melhor preço" na
+  cotação e total do rascunho; fichas com cards de preço/custo/food cost.
+- **Carrinho** persiste em `localStorage` (`bueno.cart`, validado ao carregar). **React (`frontend/`) removido** do
+  repo e do `docker-compose.yml`; porta/CORS padrão agora `4200`.
+- **Continua pendente:** build/teste real (`mvn test`, `npm install && npm run build`), executar o deploy, conferir
+  visualmente as telas no navegador, e commitar/enviar esta rodada.
 
 ### Ordem de execução recomendada
 
