@@ -2,7 +2,7 @@
 name: comanda-digital-plano
 description: Plano de implementação faseado do SRS "Comanda Digital" sobre o Bueno's House, com base em auditoria real do código (não estimativa)
 tags: [proj/bueno-s-house]
-updated: 2026-09-29 (Fases 5 e 7 fechadas; Fase 6 e parte da 7 + telas Angular simples implementadas no working tree, NÃO compiladas nem commitadas)
+updated: 2026-10-13 (working tree limpo; tudo até RN04 commitado em 56af648 — falta build real, deploy, seed V900)
 ---
 
 # Comanda Digital — Plano de Implementação
@@ -184,7 +184,7 @@ passo obrigatório antes de confiar no branch é rodar `mvn -Dmaven.test.skip=tr
 
 **Restam de verdade:** (a) build/teste real de tudo (`mvn test`, `npm run build`) — bloqueia confiar
 nas Fases 1-7; (c) estilizar as telas Angular cruas (= próxima etapa: construção do front); (d) ~~RN04~~ feita em 2026-10-07;
-(g) deploy real; (h) commitar/enviar o working tree das Fases 6-7 (não commitado).
+(g) deploy real; (h) ~~commitar~~ feito — verificado em 2026-10-13: working tree limpo, último commit `56af648`.
 
 
 ### Rodada de 2026-10-07 (RN04, endereço no checkout, base visual) — não compilada
