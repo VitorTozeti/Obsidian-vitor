@@ -42,6 +42,7 @@
   - [Pokédex — Onde os dados vivem](projetos/pokedex/pokedex-dados.md) — PokéAPI (endpoints, cache/fair use), tabela de tipos embutida e repositório do projeto Pokédex
 - [Meu Spotify](projetos/meu-spotify/meu-spotify.md) — app pessoal de música grátis com escuta offline; viabilidade: possível via Audius/Jamendo + biblioteca local, inviável para o catálogo mainstream
   - [Meu Spotify — Onde os dados vivem](projetos/meu-spotify/meu-spotify-dados.md) — APIs de música (Audius/Jamendo/Deezer/Spotify), o que cada uma libera, armazenamento offline e limites legais
+  - [Como o Spotify funciona](projetos/meu-spotify/como-o-spotify-funciona.md) — fluxo de reprodução (chunks, CDN, DRM, offline) e o que o Meu Spotify copia
 - [KEMY_AI](projetos/KEMY_AI/KEMY_AI.md) — assistente K.E.M.Y (Kernel Engine for Modular Yield) em Python, terminal + web (index.html), com 20 ferramentas (web, docs PDF/Word/Excel, e-mail, Obsidian, multiagente); modelos gratuitos via OpenRouter
   - [KEMY_AI — Onde os dados vivem](projetos/KEMY_AI/KEMY_AI-dados.md) — pasta/código, OpenRouter (endpoint/modelo/parâmetros), as 20 ferramentas, variáveis KEMY_*/GROK_*, rodízio de modelo e o loop de turno
 - [Megabrain](projetos/megabrain/Megabrain.md) — hub de conhecimento/memória estruturada do vault, segundo cérebro que complementa o KEMY_AI
