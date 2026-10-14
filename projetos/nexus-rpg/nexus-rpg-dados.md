@@ -92,3 +92,7 @@ Todos os dados da aplicação residem no `localStorage` do navegador do usuário
 
 ## Ver também
 - [[mapa-dados]] — hub de todas as notas de dados · ⭐[[mapa-projetos]]
+
+## 2026-10-14 — Rolagem preservada ao editar
+- `render()` em `src/core/state.js` agora também guarda/restaura a rolagem **interna** (painéis laterais, listas, `.mpane-body`, `.mt-side`…) via `capturaRolagem`/`restauraRolagem`, além do scroll da janela e do foco. O `painel-aberto` é aplicado antes de restaurar (evita deslocamento de layout).
+- `dashboard.js` refocus usa `focus({preventScroll:true})`.
