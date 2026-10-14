@@ -249,3 +249,6 @@ disponibilidade, ou remover; Esc/✕/Pronto fecham. CSS `.per-*` em `assets/css/
 Biblioteca de perícias prontas e criação por Enter continuam acima da grade.
 Dentro de cada grupo os cartões aparecem em **ordem alfabética** (`localeCompare` pt-BR, sem
 diferenciar acento/maiúscula) — só na exibição; a ordem salva em `sys.skills` não muda.
+
+## Fluxo e proteção do Mestre (2026-10-14)
+Gaveta **Ficha ao vivo**, **🕘 Versões** + ↶ ↷, “Sugestões do app” e “Testar assim mesmo” no Início, wizard do jogador sem travas e **🎲 Me surpreenda**, biblioteca de condições. Detalhes em [[nexus-rpg-ux-liberdade]].

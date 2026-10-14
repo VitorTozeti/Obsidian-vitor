@@ -36,7 +36,7 @@
   - [Nexus RPG — Planejamento](projetos/nexus-rpg/nexus-rpg-planejamento.md) — roadmap: checklist entregue vs. pendente, backlog priorizado por área e próximos passos + análise técnica 2026-10-13 (cota, testes, a11y, arquitetura)
   - [Nexus RPG — Mapas e geradores](projetos/nexus-rpg/nexus-rpg-mapas-geradores.md) — geradores procedurais (mundo/masmorra/caverna/interior/vila), estudo REA do Azgaar/Watabou, zoom/pan, hex, PNG e UX/UI (2026-10-13)
   - [Nexus RPG — Plano de melhorias](projetos/nexus-rpg/nexus-rpg-plano-melhorias.md) — auditoria 2026-10-13: dados, segurança, arquitetura, testes/CI, UX/UI, funcionalidades, PWA e ondas de execução
-  - [Nexus RPG — UX: liberdade criativa](projetos/nexus-rpg/nexus-rpg-ux-liberdade.md) — proposta de UX pela jornada do Mestre/Jogador: jogável desde o 1º minuto, ficha ao vivo, sem bloqueios
+  - [Nexus RPG — UX: liberdade criativa](projetos/nexus-rpg/nexus-rpg-ux-liberdade.md) — UX pela jornada do Mestre/Jogador (implementado em parte): ficha ao vivo, versões, wizard sem bloqueios
   - [Nexus RPG — Rodada v2](projetos/nexus-rpg/nexus-rpg-v2-sistema-mapa-campanha.md) — assistente de criação do sistema, mapa 100% editável (objetos vetoriais), combate/diário/tela dos jogadores/.campanha (2026-10-13)
   - [Nexus RPG — Mesa: mapa + tokens](projetos/nexus-rpg/nexus-rpg-mesa-tokens.md) — 2026-10-14: editor de mapas aposentado → imagem + tokens (fotos, categorias, anel de condição), atributos/perícias rápidos (41 perícias prontas) e render sem pulo
 - [Role SP no trilho](projetos/role-sp/role-sp.md) — mapa interativo das linhas de metrô, trem e monotrilho de SP com pontos turísticos, culturais e integração de ônibus via OpenStreetMap

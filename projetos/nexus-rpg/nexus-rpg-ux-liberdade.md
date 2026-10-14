@@ -7,7 +7,7 @@ updated: 2026-10-14
 
 # Nexus RPG — UX: um fluxo que convida a criar (2026-10-14)
 
-Ainda é **proposta**: nada foi implementado. Complementa a seção 5 do [[nexus-rpg-plano-melhorias]].
+**Status (2026-10-14): passos 1–4 e parte do 5/6 implementados** (ver “Implementado” no fim). Complementa a seção 5 do [[nexus-rpg-plano-melhorias]].
 
 ## O problema em uma frase
 Hoje o Mestre precisa **montar o sistema inteiro antes de ver algo funcionando**: 17 abas,
@@ -94,3 +94,15 @@ que pode ser descartado. Ao voltar, a pessoa cai exatamente onde estava.
 6. **Acabamento**: editor de ficha, ícones, acessibilidade completa.
 
 Relacionado: [[nexus-rpg]] · [[nexus-rpg-telas]] · [[nexus-rpg-plano-melhorias]] · [[nexus-rpg-mesa-tokens]]
+
+## Implementado (2026-10-14, repositório The-One-System)
+| Passo | O que entrou | Onde |
+|---|---|---|
+| 1 | **Ficha ao vivo**: gaveta com herói de exemplo calculado com as regras atuais (atributos, recursos, perícias em ordem alfabética), seletor de nível, atalhos “Layout da ficha” e “▶ Testar / Jogar”; recolhe numa pílula (preferência em `nexus_live`) | `src/ui/ficha-viva.js`, `assets/css/ficha-viva.css`, `sampleDraft(sys,level)` |
+| 2 | **Versões automáticas** (até 8 por personagem, a cada ~4 min de edição e ao sair da aba; “🕘 Versões” lista e restaura, e restaurar é desfazível) + botões **↶ ↷** visíveis na barra do editor | `src/ui/versoes.js` (`nexus_ver_<id>`) |
+| 3 | Aba Início: “Verificação” virou **“Sugestões do app”** (💡, tom sem cobrança) e o botão **“▶ Testar assim mesmo”** fica sempre disponível; avisos nas abas idem | `src/master/master-nav.js`, `formula-field.js` |
+| 4 | **Wizard do jogador não bloqueante**: etapas clicáveis (teclado ok), Avançar nunca trava (mostra 💡 do que falta), **“🎲 Me surpreenda”** sorteia nome, classe, origem, atributos e perícias dentro das regras | `src/player/player.js` (`surpreendaFicha`) |
+| 5 | **Biblioteca de condições prontas** (14, sem efeitos mecânicos) e **Modo Simples como padrão** para quem ainda não escolheu | `src/ui/bibliotecas.js`, `state.js` |
+| 6 | Esc fecha Versões; foco ao abrir. Foco visível, `prefers-reduced-motion` e `aria-label` já existiam | `shortcuts.js` |
+
+**Ainda pendente:** boas-vindas com 3 cartões no 1º acesso (o assistente de modelos já existe via Início), edição inline/arrastar para reordenar, bibliotecas de itens/classes/origens, ícones SVG únicos, autocompletar de fórmulas, tour opcional, focus-trap completo nos modais e canvas da ficha pelo teclado.
