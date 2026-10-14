@@ -247,3 +247,5 @@ resumida, bônus de treino, automática/escolha). **Clicar num cartão abre um p
 (gaveta à direita, `S.ui.perSel`) para editar nome, atributo, descrição, bônus e
 disponibilidade, ou remover; Esc/✕/Pronto fecham. CSS `.per-*` em `assets/css/sistema.css`.
 Biblioteca de perícias prontas e criação por Enter continuam acima da grade.
+Dentro de cada grupo os cartões aparecem em **ordem alfabética** (`localeCompare` pt-BR, sem
+diferenciar acento/maiúscula) — só na exibição; a ordem salva em `sys.skills` não muda.
