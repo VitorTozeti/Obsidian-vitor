@@ -13,6 +13,7 @@ O projeto oferece um ambiente integrado para RPGs de mesa dividido em dois perfi
 
 ## Estado atual (2026-10-14)
 
+- **Classes/origens com mecânica (2026-10-14):** fórmula de recurso por classe, habilidades por nível, técnicas de classe, traços com efeito (Asas → Voo), resistências, efeito por código JS + correções de layout/contraste — [[nexus-rpg-classes-origens]].
 - **Mesa simples + atributos/perícias rápidos (2026-10-14):** mapa = imagem salva, tokens com foto/categorias/tokens próprios e anel de condição; biblioteca de 41 perícias; `render()` não pula mais para o topo — [[nexus-rpg-mesa-tokens]]. (Substitui os geradores/editor de mapa das rodadas anteriores.)
 
 - **Rodada v2 (2026-10-13):** sistema guiado, mapa editável e Mesa ao vivo — [[nexus-rpg-v2-sistema-mapa-campanha]].

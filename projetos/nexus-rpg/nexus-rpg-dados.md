@@ -35,8 +35,10 @@ src/
     history.js              # Pilhas de Desfazer/Refazer (Undo/Redo)
   data/
     example-system.js       # Definição do sistema de exemplo e migração de ficha
+    arquetipos.js           # Motor de classes/origens: fórmulas de recurso, técnicas, resistências, efeito por código
   ui/
     atributos-pericias.js   # Abas Atributos e Perícias (criação rápida + biblioteca de 41 perícias) — 2026-10-14
+    classes-origens.js      # Editor de Classes/Origens (master-detail, técnicas, traços, código) — [[nexus-rpg-classes-origens]]
     shortcuts.js            # Mapeamento de atalhos de teclado do editor
     ui-basic.js             # Componentes reutilizáveis de interface
     glossary.js             # Dicas de contexto e termos do sistema
