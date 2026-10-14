@@ -7,7 +7,7 @@ updated: 2026-10-14
 
 # Nexus RPG — UX: um fluxo que convida a criar (2026-10-14)
 
-**Status (2026-10-14): implementado quase tudo (ver “Implementado” no fim).** Complementa a seção 5 do [[nexus-rpg-plano-melhorias]].
+**Status (2026-10-14): implementado (ver “Implementado” no fim).** Complementa a seção 5 do [[nexus-rpg-plano-melhorias]] (5.2 ícones agora feito).
 
 ## O problema em uma frase
 Hoje o Mestre precisa **montar o sistema inteiro antes de ver algo funcionando**: 17 abas,
@@ -113,4 +113,8 @@ Relacionado: [[nexus-rpg]] · [[nexus-rpg-telas]] · [[nexus-rpg-plano-melhorias
 
 **Já existia e não precisou mexer:** autocompletar/diagnóstico de fórmulas (`formula-field.js`), foco preso nos diálogos de confirmação, setas movendo blocos no canvas da ficha, ↑↓ para reordenar atributos, assistente de modelos na criação do Mestre.
 
-**Decidido não fazer agora:** padronizar todos os ícones em SVG (5.2 do plano) — troca transversal de centenas de emojis, alto risco de regressão visual e pouco ganho de fluxo; fica como item próprio. Edição inline por clique no texto e arrastar-e-soltar para reordenar também ficaram de fora (✎ painel lateral e ↑↓ já cobrem).
+| 8 | **Ícones SVG únicos** (≈75 emojis de interface → traço 24×24 que herda a cor). Passada pós-render `iconPass()` + observador para toasts/diálogos no `<body>`; idempotente. Preserva emojis de conteúdo (blocos da ficha `.blk-body`, ícone de condição escolhido pelo usuário, emojis fora do mapa) e dá `aria-label` a botões que ficam só com ícone | `src/ui/icones.js` (mapa `ICONES`), CSS `.ic` |
+
+**Para trocar/adicionar um ícone:** edite o mapa `ICONES` (emoji → [nome acessível, conteúdo do `<svg>`]). Emojis novos de interface só viram SVG se estiverem no mapa. Gotcha: o observador usa `setTimeout` (não `requestAnimationFrame`, que não dispara em aba em segundo plano).
+
+**Decidido não fazer:** edição inline por clique no texto e arrastar-e-soltar para reordenar (o painel lateral ✎ e ↑↓ já cobrem).
