@@ -39,6 +39,9 @@ src/
   ui/
     atributos-pericias.js   # Abas Atributos e Perícias (criação rápida + biblioteca de 41 perícias) — 2026-10-14
     classes-origens.js      # Editor de Classes/Origens (master-detail, técnicas, traços, código) — [[nexus-rpg-classes-origens]]
+    master-detail.js        # Layout lista+editor reutilizável (mdLayout/mdCab/mdAbas…) — [[nexus-rpg-editores-itens]]
+    itens-editor.js         # Itens: abas Básico/Combate/Efeitos/Uso, biblioteca com mecânica, usarItem
+    recursos-tecnicas.js    # Recursos (fórmula/recarga/quem mexe) e tiers de técnica com simulador
     shortcuts.js            # Mapeamento de atalhos de teclado do editor
     ui-basic.js             # Componentes reutilizáveis de interface
     glossary.js             # Dicas de contexto e termos do sistema

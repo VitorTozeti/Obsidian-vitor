@@ -40,6 +40,7 @@
   - [Nexus RPG — Rodada v2](projetos/nexus-rpg/nexus-rpg-v2-sistema-mapa-campanha.md) — assistente de criação do sistema, mapa 100% editável (objetos vetoriais), combate/diário/tela dos jogadores/.campanha (2026-10-13)
   - [Nexus RPG — Classes, origens e efeitos](projetos/nexus-rpg/nexus-rpg-classes-origens.md) — 2026-10-14: classe muda fórmula de recurso, habilidades por nível, técnicas escolhíveis, traços com efeito, resistências, efeito por código; layout
   - [Nexus RPG — Mesa: mapa + tokens](projetos/nexus-rpg/nexus-rpg-mesa-tokens.md) — 2026-10-14: editor de mapas aposentado → imagem + tokens (fotos, categorias, anel de condição), atributos/perícias rápidos (41 perícias prontas) e render sem pulo
+  - [Nexus RPG — Editores, itens e efeito condicional](projetos/nexus-rpg/nexus-rpg-editores-itens.md) — 2026-10-14: master-detail unificado (Recursos/Itens/Técnicas/Classes), "⏱ Vale" por nível/atributo, itens com Uso/raridade/biblioteca com mecânica, validação por classe
 - [Role SP no trilho](projetos/role-sp/role-sp.md) — mapa interativo das linhas de metrô, trem e monotrilho de SP com pontos turísticos, culturais e integração de ônibus via OpenStreetMap
   - [Role SP no trilho — Onde os dados vivem](projetos/role-sp/role-sp-dados.md) — mapa de localização de dados, repositório, APIs externas e estruturas de dados do Role SP no trilho
   - [Role SP no trilho — Detalhamento da interface](projetos/role-sp/role-sp-interface.md) — painéis, tabela das 14 linhas, ~156 POIs em 20 categorias, funções e fluxo "Quero ir aqui"
