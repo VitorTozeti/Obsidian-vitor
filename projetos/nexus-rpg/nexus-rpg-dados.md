@@ -96,3 +96,8 @@ Todos os dados da aplicação residem no `localStorage` do navegador do usuário
 ## 2026-10-14 — Rolagem preservada ao editar
 - `render()` em `src/core/state.js` agora também guarda/restaura a rolagem **interna** (painéis laterais, listas, `.mpane-body`, `.mt-side`…) via `capturaRolagem`/`restauraRolagem`, além do scroll da janela e do foco. O `painel-aberto` é aplicado antes de restaurar (evita deslocamento de layout).
 - `dashboard.js` refocus usa `focus({preventScroll:true})`.
+
+## 2026-10-14 — Paletas de cores (temas)
+- Novo `src/ui/temas.js` (carregado 1º no `index.html`): 8 paletas (Noite, Meia-noite, Oceano, Floresta, Vinho, Grafite, Claro, Pergaminho, Alto contraste) + **Personalizada** (4 cores: fundo, painéis, texto, destaque; o resto é derivado com `color-mix`). Botão 🎨 flutuante (canto inferior esquerdo), fora do `#root` → trocar tema não chama `render()`. Salvo em `localStorage` (`nexus-tema`, `nexus-tema-custom`).
+- CSS: cores fixas viraram variáveis (`--surf`, `--surf2`, `--line2`, `--acc-txt`, `--warn-txt`, `--rose-txt`, `--ok-txt`). Canvas da ficha, mapas e tela de apresentação continuam escuros de propósito.
+- **Ainda sem commit** (a pedido do usuário, aguardando aprovação).
