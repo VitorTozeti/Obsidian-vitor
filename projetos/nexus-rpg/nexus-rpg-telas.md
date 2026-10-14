@@ -239,3 +239,11 @@ Fórmulas, dados e efeitos são detalhados em [[nexus-rpg-arquitetura]]; resumo:
 `formula-engine` (funções `min/max/menor/maior/round/arredondar/floor/piso/ceil/teto/abs/modulo/se/if`),
 `dice-engine` (`NdX`, `kh/kl/dh/dl`, vantagem/desvantagem que se cancelam, dice pool
 estilo Ordem), migração de schema `SCHEMA=10` (migra de `SCHEMA_MIN=6`).
+
+## Aba Perícias do Mestre (2026-10-14)
+Reformulada em `src/ui/atributos-pericias.js` (`tabPericias`/`painelPericia`): as perícias do
+sistema aparecem em **grade de cartões agrupada por atributo ligado** (nome, sigla, descrição
+resumida, bônus de treino, automática/escolha). **Clicar num cartão abre um painel lateral**
+(gaveta à direita, `S.ui.perSel`) para editar nome, atributo, descrição, bônus e
+disponibilidade, ou remover; Esc/✕/Pronto fecham. CSS `.per-*` em `assets/css/sistema.css`.
+Biblioteca de perícias prontas e criação por Enter continuam acima da grade.
