@@ -1,54 +1,96 @@
 ---
 name: nexus-rpg-ux-liberdade
-description: reflexão de UX/UI do Nexus RPG — princípios e propostas por tela para deixar o app agradável, livre para experimentar e ainda guiado/acessível
+description: proposta de UX/UI do Nexus RPG organizada pela jornada do usuário (Mestre e Jogador) — fluxo mais curto, livre para experimentar, com ajuda e acessibilidade
 tags: [projeto, proj/nexus-rpg, ux, ui, acessibilidade, roadmap]
 updated: 2026-10-14
 ---
 
-# Nexus RPG — UX: liberdade criativa com rede de proteção (2026-10-14)
+# Nexus RPG — UX: um fluxo que convida a criar (2026-10-14)
 
-Complementa a seção 5 do [[nexus-rpg-plano-melhorias]]. Ainda é **proposta**, nada foi implementado.
+Ainda é **proposta**: nada foi implementado. Complementa a seção 5 do [[nexus-rpg-plano-melhorias]].
 
-## Diagnóstico
-O app funciona, mas o fluxo foi pensado como **formulário com validação**: o checklist da aba Início,
-o `canNext` do wizard e os erros de fórmula dizem "falta isso", e quase nada diz "experimente isso".
-Ter 17 abas mais o modo avançado faz o Mestre sentir que precisa preencher tudo antes de jogar.
-O medo de errar (excluir sem desfazer, o limite de ~5 MB do localStorage) inibe a experimentação.
+## O problema em uma frase
+Hoje o Mestre precisa **montar o sistema inteiro antes de ver algo funcionando**: 17 abas,
+um checklist de "problemas" e um wizard que trava. A recompensa (ver uma ficha viva, jogar)
+vem tarde demais, e o medo de errar (pouco desfazer) desestimula a experimentação.
 
-## Princípios
-1. **Nada é obrigatório para testar.** Todo sistema incompleto pode ser jogado: as lacunas viram padrões visíveis ("sem atributo → 10").
-2. **Errar é barato.** Desfazer global, lixeira, snapshots/versões do sistema, "duplicar e brincar".
-3. **Ajuda que convida, não que bloqueia.** Avisos aparecem como sugestões ("💡 dica"), nunca como travas. O checklist vira "o que dá para fazer agora".
-4. **Feedback imediato.** Toda edição de regra mostra o efeito ao vivo numa ficha-exemplo.
-5. **Divulgação progressiva.** O modo avançado é ligado por aba ou por recurso, e não como um muro global.
-6. **Acessível por padrão.** Teclado, foco visível, contraste, `prefers-reduced-motion` e textos claros, sempre.
+## A ideia central
+> **Jogável desde o primeiro minuto, e melhor a cada ajuste.**
 
-## Propostas por área
-| Área | Proposta | Por quê |
-|---|---|---|
-| Global | **"▶ Testar agora"** sempre visível: abre uma ficha-exemplo gerada com o sistema atual, em gaveta lateral | ciclo criar→ver em segundos |
-| Global | **Snapshots** ("Salvar versão", "Voltar para…") e "Duplicar sistema como rascunho" | coragem para experimentar |
-| Global | Desfazer por toast em toda exclusão (5.8) + lixeira de 30 dias | errar barato |
-| Global | Ctrl+K como **paleta de comandos** (ir para, criar, testar, alternar tema), não só busca | poder sem menus |
-| Início | Trocar o checklist de "problemas" por **cartões de próxima ação** e um progresso leve; problemas em tom de sugestão | motivação em vez de cobrança |
-| Início | **Modelos de partida** (D&D-like, Ordem-like, minimalista 3 atributos, em branco) | página em branco intimida |
-| Abas de regras | Prévia ao vivo ("Ficha de teste: FOR 14 → mod +2, Vida 24") ao lado de cada fórmula | entender a regra sem rolar |
-| Abas de regras | Padrões editáveis inline: clicar no texto para renomear e arrastar para reordenar (perícias, atributos, classes) | menos formulário |
-| Abas de regras | Biblioteca pronta (como a de perícias) também para classes, origens, condições e itens | começar por remix |
-| Fórmulas | Autocompletar de variáveis, erro explicado em português com exemplo de correção | fórmula é a parte mais assustadora |
-| Editor de ficha | Botões ↶ ↷ visíveis, snap, guias de alinhamento, miniaturas na paleta, modo "pré-visualizar como jogador" | já no backlog 5.3, é o núcleo criativo |
-| Editor de ficha | Mover/redimensionar blocos pelo teclado (setas, Shift+setas) | acessibilidade do canvas |
-| Wizard do jogador | Etapas **não bloqueantes**: pular etapas e voltar; prévia da ficha sempre visível; "🎲 Rolar aleatório" por etapa | jogador também cria |
-| Campanha/Mesa | Arrastar e soltar entre painéis (bestiário→mapa, item→jogador); estados vazios com ação | fluidez na sessão |
-| Visual | Ícones SVG únicos (5.2), escala de espaçamentos e tipografia, microanimações curtas (respeitando reduced-motion) | acabamento "agradável" |
-| Visual | Tema da **ficha** separado do tema do app (5.3) | identidade de cada sistema |
-| Acessibilidade | `role=tablist`, focus-trap nos modais, `aria-live` nos toasts e rolagens, contraste AA em todas as paletas de `temas.js`, alvos ≥ 40px | manter a ajuda inclusiva |
-| Ajuda | Glossário contextual com "?" ao lado de cada termo; tour opcional de 5 passos, que pode ser dispensado e reaberto | ajuda disponível, nunca imposta |
+O fluxo deixa de ser "preencher tudo → testar" e vira um **ciclo curto**:
+**escolher um ponto de partida → ver a ficha ao vivo → ajustar → ver de novo.**
+A ajuda aparece no caminho como sugestão e nunca bloqueia.
 
-## Ordem sugerida (ondas)
-1. **Rede de proteção:** desfazer/lixeira, snapshots, avisos sem bloquear. Isso destrava tudo o resto.
-2. **Ciclo de teste:** "Testar agora" + prévia ao vivo nas fórmulas.
-3. **Começo fácil:** modelos de partida, bibliotecas, estados vazios com ação.
-4. **Acabamento:** ícones, ritmo visual, editor de ficha (5.3), acessibilidade (5.5).
+---
+
+## Jornada do Mestre
+
+### 1. Primeiro contato (0–1 min)
+**Hoje:** login → personagem → 17 abas vazias.
+**Proposto:** uma tela de boas-vindas com 3 cartões grandes:
+- **Começar de um modelo** (estilo D&D, estilo Ordem, minimalista de 3 atributos)
+- **Começar em branco**
+- **Importar `.nexus`**
+
+O modelo já vem jogável. A pessoa sai daqui com um sistema funcionando, não com uma lista de tarefas.
+
+### 2. Criar e ajustar (o núcleo)
+Layout em **duas colunas**: à esquerda, a aba de regras; à direita, a **ficha de teste ao vivo**
+(gaveta que pode ser recolhida). Tudo o que mudar na esquerda aparece na hora na direita
+("FOR 14 → +2 · Vida 24").
+- **Menos abas visíveis:** as 4 seções (Fundação, Personagem, Mundo, Saída) viram uma barra lateral
+  com progresso leve (●○). As abas avançadas aparecem quando a pessoa clica em "+ mais
+  recursos" ou quando o modelo já as usa. Fim do muro do modo avançado global.
+- **Editar onde se vê:** renomear com um clique no texto e reordenar arrastando (atributos,
+  perícias, classes). O painel lateral fica para os detalhes, como já foi feito em Perícias.
+- **Bibliotecas prontas** em todas as listas (classes, origens, itens, condições), não só em perícias.
+- **Fórmulas sem medo:** autocompletar de variáveis, erro explicado em português com uma sugestão
+  de correção que dá para aplicar com um clique, e o resultado de exemplo ao lado.
+
+### 3. Validar sem travar
+**Hoje:** o checklist da aba Início lista "problemas".
+**Proposto:** um indicador discreto no topo ("Pronto para jogar · 2 sugestões"). Ao abrir,
+aparecem **sugestões com ação** ("Nenhuma classe ainda: adicionar da biblioteca?"). Lacunas
+nunca impedem o teste; elas usam um valor padrão visível e marcado em cinza.
+
+### 4. Desenhar a ficha
+O editor visual passa a abrir **já com o layout do modelo**, e a pessoa ajusta em vez de partir do zero.
+Inclui desfazer/refazer visíveis, guias de alinhamento, encaixe, miniaturas na paleta, setas do teclado
+para mover os blocos e um botão **"Ver como jogador"**.
+
+### 5. Levar para a mesa
+Botão fixo **"▶ Testar / Jogar"**: abre o wizard do jogador com o sistema atual, num modo de teste
+que pode ser descartado. Ao voltar, a pessoa cai exatamente onde estava.
+
+## Jornada do Jogador
+- **Wizard não bloqueante:** etapas viram abas que dá para visitar em qualquer ordem; a **prévia da
+  ficha fica sempre ao lado**; o que falta aparece como "falta escolher 2 perícias", sem desabilitar
+  o Avançar.
+- **"🎲 Me surpreenda"** por etapa e na ficha inteira, para quem quer só jogar.
+- **Explicação no lugar:** "?" ao lado de cada termo abre o glossário do próprio sistema.
+
+## Rede de proteção (vale para tudo)
+- **Desfazer por toast** em toda exclusão, e uma **lixeira** de onde dá para restaurar.
+- **Versões salvas automaticamente** ("há 10 min", "ontem") e "Duplicar como rascunho" para experimentar.
+- Salvamento silencioso com indicador "✓ salvo", sem botão de salvar para lembrar.
+
+## Ajuda e acessibilidade (sem atrapalhar quem já sabe)
+- Tour opcional de 4 passos, que pode ser dispensado e reaberto pelo "?". Dicas somem depois de usadas.
+- Ctrl+K vira paleta de comandos (ir para, criar, testar, trocar tema).
+- Teclado em tudo (inclusive o canvas), foco visível, `role=tablist`, modais com foco preso,
+  `aria-live` em toasts e rolagens, contraste AA em todas as paletas, alvos ≥ 40px,
+  `prefers-reduced-motion`.
+- Visual: um único conjunto de ícones SVG, escala consistente de espaçamentos e fontes, e
+  microanimações curtas que confirmam a ação.
+
+---
+
+## Ordem de execução (cada passo já melhora o fluxo sozinho)
+1. **Ficha de teste ao vivo + "Testar / Jogar"**: fecha o ciclo criar→ver. *(maior ganho)*
+2. **Rede de proteção**: desfazer, lixeira, versões automáticas.
+3. **Boas-vindas com modelos** + checklist transformado em sugestões.
+4. **Wizard do jogador não bloqueante** + "Me surpreenda".
+5. **Barra lateral enxuta**, bibliotecas em todas as listas, edição inline.
+6. **Acabamento**: editor de ficha, ícones, acessibilidade completa.
 
 Relacionado: [[nexus-rpg]] · [[nexus-rpg-telas]] · [[nexus-rpg-plano-melhorias]] · [[nexus-rpg-mesa-tokens]]
