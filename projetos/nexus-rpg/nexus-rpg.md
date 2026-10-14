@@ -17,6 +17,7 @@ O projeto oferece um ambiente integrado para RPGs de mesa dividido em dois perfi
 
 - **Rodada v2 (2026-10-13):** sistema guiado, mapa editável e Mesa ao vivo — [[nexus-rpg-v2-sistema-mapa-campanha]].
 - **Plano de melhorias (2026-10-13):** auditoria completa e ondas de execução em [[nexus-rpg-plano-melhorias]].
+- **UX com liberdade criativa (2026-10-14):** princípios e propostas por tela em [[nexus-rpg-ux-liberdade]].
 - **Mapas 4.0 + UX/UI (2026-10-13):** geradores procedurais (mundo, masmorra, caverna, interior, vila), zoom/pan, grade hex, bússola/escala, exportar PNG, backup e acessibilidade — ver [[nexus-rpg-mapas-geradores]].
 
 - **Localização dos dados:** consulte [[nexus-rpg-dados]] para repositório, estrutura de arquivos, chaves do `localStorage` e carregamento.
