@@ -7,7 +7,7 @@ updated: 2026-10-14
 
 # Nexus RPG — UX: um fluxo que convida a criar (2026-10-14)
 
-**Status (2026-10-14): passos 1–4 e parte do 5/6 implementados** (ver “Implementado” no fim). Complementa a seção 5 do [[nexus-rpg-plano-melhorias]].
+**Status (2026-10-14): implementado quase tudo (ver “Implementado” no fim).** Complementa a seção 5 do [[nexus-rpg-plano-melhorias]].
 
 ## O problema em uma frase
 Hoje o Mestre precisa **montar o sistema inteiro antes de ver algo funcionando**: 17 abas,
@@ -105,4 +105,12 @@ Relacionado: [[nexus-rpg]] · [[nexus-rpg-telas]] · [[nexus-rpg-plano-melhorias
 | 5 | **Biblioteca de condições prontas** (14, sem efeitos mecânicos) e **Modo Simples como padrão** para quem ainda não escolheu | `src/ui/bibliotecas.js`, `state.js` |
 | 6 | Esc fecha Versões; foco ao abrir. Foco visível, `prefers-reduced-motion` e `aria-label` já existiam | `shortcuts.js` |
 
-**Ainda pendente:** boas-vindas com 3 cartões no 1º acesso (o assistente de modelos já existe via Início), edição inline/arrastar para reordenar, bibliotecas de itens/classes/origens, ícones SVG únicos, autocompletar de fórmulas, tour opcional, focus-trap completo nos modais e canvas da ficha pelo teclado.
+| 7 | **Tour opcional** de 4 passos (abre 1ª vez, “❓ Tour” reabre, Esc/“Pular” dispensa; `nexus_tour_visto`) | `src/ui/tour.js` |
+| 7 | **Boas-vindas no Início vazio**: 3 cartões (modelo · do zero · importar `.nexus`) | `master-nav.js` (`.bv-grid`) |
+| 7 | **Bibliotecas** de classes, origens e itens prontos (só identidade; efeitos o Mestre liga) | `src/ui/bibliotecas-extra.js` |
+| 7 | **Desfazer por toast** ao excluir classe/origem/item/condição (`comDesfazer`) | `bibliotecas-extra.js` |
+| 7 | **Foco preso** (Tab) e `role=dialog` em busca, glossário, versões e tour | `tour.js`, `helpers.js` (`a11yPass`) |
+
+**Já existia e não precisou mexer:** autocompletar/diagnóstico de fórmulas (`formula-field.js`), foco preso nos diálogos de confirmação, setas movendo blocos no canvas da ficha, ↑↓ para reordenar atributos, assistente de modelos na criação do Mestre.
+
+**Decidido não fazer agora:** padronizar todos os ícones em SVG (5.2 do plano) — troca transversal de centenas de emojis, alto risco de regressão visual e pouco ganho de fluxo; fica como item próprio. Edição inline por clique no texto e arrastar-e-soltar para reordenar também ficaram de fora (✎ painel lateral e ↑↓ já cobrem).
