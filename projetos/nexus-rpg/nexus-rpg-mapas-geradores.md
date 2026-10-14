@@ -2,10 +2,12 @@
 name: nexus-rpg-mapas-geradores
 description: geradores procedurais de mapa (mundo e masmorra/caverna/interior/vila), estudo das ferramentas de referência feito com o REA, zoom/pan, hex, exportar PNG e melhorias gerais de UX/UI do Nexus RPG
 tags: [projeto, proj/nexus-rpg, mapas, geradores, ux, rea]
-updated: 2026-10-13
+updated: 2026-10-14
 ---
 
 # Nexus RPG — Geradores de mapa e rodada de UX/UI (2026-10-13)
+
+> ⚠️ **Aposentado em 2026-10-14:** os geradores e o editor de mapas descritos aqui foram removidos do código e substituídos pela Mesa simples (imagem + tokens). Ver [[nexus-rpg-mesa-tokens]]. A nota fica como histórico/estudo (REA do Azgaar e Watabou).
 
 Parte do [[nexus-rpg]]. Contexto: pedido de "melhorar todos os sistemas de UX/UI e puxar com o
 REA as melhores ferramentas de criação de mapas de RPG (grande e pequena escala) e adaptar".

@@ -2,10 +2,12 @@
 name: nexus-rpg-v2-sistema-mapa-campanha
 description: rodada de 3 agentes (2026-10-13) — fluxo de criação do sistema, mapa 100% editável (objetos vetoriais) e recursos de campanha real (combate, diário, tela dos jogadores, .campanha); arquivos, APIs e limitações
 tags: [projeto, proj/nexus-rpg, ux, mapas, campanha, sistema]
-updated: 2026-10-13
+updated: 2026-10-14
 ---
 
 # Nexus RPG — Rodada v2: sistema, mapa editável e campanha real
+
+> ⚠️ **Parcialmente substituída em 2026-10-14:** a parte do "mapa 100% editável" (objetos vetoriais, geradores, pincel) foi removida; o mapa agora é imagem + tokens — ver [[nexus-rpg-mesa-tokens]]. Assistente de sistema, combate/diário/tela dos jogadores/.campanha seguem valendo.
 
 Feita por 3 agentes em paralelo com **propriedade exclusiva de arquivos** (+ um CSS próprio por frente).
 Antecedentes: [[nexus-rpg-mapas-geradores]] (geradores) e [[nexus-rpg-plano-melhorias]] (plano).

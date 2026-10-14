@@ -2,7 +2,7 @@
 name: nexus-rpg-dados
 description: mapa de localização de dados, repositório, chaves do LocalStorage e arquitetura de arquivos do Nexus RPG
 tags: [proj/nexus-rpg, dados, infra, arquitetura]
-updated: 2026-09-08
+updated: 2026-10-14
 ---
 
 # Nexus RPG — Onde os Dados Vivem
@@ -36,6 +36,7 @@ src/
   data/
     example-system.js       # Definição do sistema de exemplo e migração de ficha
   ui/
+    atributos-pericias.js   # Abas Atributos e Perícias (criação rápida + biblioteca de 41 perícias) — 2026-10-14
     shortcuts.js            # Mapeamento de atalhos de teclado do editor
     ui-basic.js             # Componentes reutilizáveis de interface
     glossary.js             # Dicas de contexto e termos do sistema
@@ -70,7 +71,14 @@ Todos os dados da aplicação residem no `localStorage` do navegador do usuário
 
 > ⚠️ **Nota sobre segurança de credenciais:** o app foi concebido como protótipo offline e armazena senhas em texto puro no `localStorage`. Não utilize senhas reais.
 
-## Mapas — campos e arquivos novos (2026-10-13)
+## Mesa (mapa + tokens) — 2026-10-14
+
+- Editor de mapas antigo **removido** (`campaign-map.js`, `map-editor.js`, `map-gen.js`); no lugar, `src/master/campaign/mesa-mapa.js` + `assets/css/mapa.css`. Detalhes em [[nexus-rpg-mesa-tokens]].
+- Campos novos em `campaign`: `tokenCats[]`, `tokenLib[]`, `tokenConds[]`; em cada mapa: `aspect`; em cada token: `conds[]`, `libId`; em cada atributo: `desc`. `sanitizeCampaign` migra tudo.
+- `render()` (state.js) agora preserva rolagem/foco na mesma tela.
+- O preview local usa o servidor `the-one-system` (porta 8794) cadastrado em `.claude/launch.json` deste vault.
+
+## Mapas — campos e arquivos (2026-10-13, **histórico**: substituídos pela Mesa)
 
 - Arquivo `src/master/campaign/map-gen.js` (geradores). Em `campaign.maps[]`: `genMeta {g,seed}`, `compass`, `scale {on,total,unit}`, `grid.type` (`square`|`hex`); pins/props/reinos gerados têm `gen:true`. A imagem gerada fica em `m.image` (JPEG). Detalhes em [[nexus-rpg-mapas-geradores]].
 - Backup da conta: botão **💾 Backup** → JSON `nexus-backup-AAAA-MM-DD.json` (`{app,versao,conta,exportadoEm,dados}`).

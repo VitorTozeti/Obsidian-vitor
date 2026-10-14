@@ -2,7 +2,7 @@
 name: nexus-rpg-plano-melhorias
 description: plano completo de melhorias do Nexus RPG por área (dados, segurança, arquitetura, testes/CI, UX/UI, funcionalidades, distribuição, docs) com evidências, esforço, impacto e ondas de execução
 tags: [projeto, proj/nexus-rpg, planejamento, roadmap, auditoria]
-updated: 2026-10-13
+updated: 2026-10-14
 ---
 
 # Nexus RPG — Plano de melhorias (auditoria 2026-10-13)
@@ -12,6 +12,8 @@ já entregue, commit `8c10d43`). Fontes: leitura do código em `The-One-System` 
 por busca (`grep`/`wc`). Itens marcados **(medido)** têm número verificado; **(inferido)** são julgamento.
 Esforço: P (horas) · M (1–2 dias) · G (semana+). Impacto: ⭐ baixo · ⭐⭐ médio · ⭐⭐⭐ alto.
 
+> **Atualização 2026-10-14:** o item 3.1 (render reconstrói tudo) foi mitigado — `render()` preserva rolagem/foco; mapa trocado por Mesa simples ([[nexus-rpg-mesa-tokens]]).
+>
 > **Atualização:** itens 1.1, 1.2, 1.4, 1.7, 3.5, 5.6, 5.8 (parcial), mapa editável e iniciativa/modo apresentação/.campanha foram entregues na [[nexus-rpg-v2-sistema-mapa-campanha]] (não commitado).
 
 ## 1. Dados e robustez

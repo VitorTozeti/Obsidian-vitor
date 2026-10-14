@@ -46,6 +46,18 @@
         "C:/Users/v.tozeti/Desktop/Vitor/teste/Espro"
       ],
       "port": 8793
+    },
+    {
+      "name": "the-one-system",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8794",
+        "--directory",
+        "C:/Users/v.tozeti/Desktop/Vitor/teste/The-One-System"
+      ],
+      "port": 8794
     }
   ]
 }

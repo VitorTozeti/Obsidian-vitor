@@ -2,7 +2,7 @@
 name: nexus-rpg-telas
 description: detalhamento tela a tela do Nexus RPG (auth, 17 abas do Mestre, editor de fichas com 21 blocos, campanha e modo Jogador)
 tags: [proj/nexus-rpg, telas, ui, referencia-tecnica]
-updated: 2026-09-09
+updated: 2026-10-14
 ---
 
 # Nexus RPG — Detalhamento de Todas as Telas
@@ -113,6 +113,7 @@ Canvas de largura fixa **`CANVAS_W = 860`px** (escalado para caber na tela), gri
   dos atributos do sistema; NPCs com cards de relacionamento.
 - **Jogadores (`players.js`):** gestão dos personagens dos jogadores na campanha.
 - **Itens da campanha (`campaign-items.js`):** itens específicos da mesa.
+- **Mapa — ATUAL (2026-10-14):** `mesa-mapa.js`. Barra (mapa, nome, novo, trocar imagem, grade, excluir) + palco com zoom/arrastar + lateral com **Biblioteca** (categorias, tokens prontos e próprios, criar token com foto) e **No mapa**; editor do token selecionado com **condições = anel colorido**. Ver [[nexus-rpg-mesa-tokens]]. Os itens abaixo sobre mapas (2026-09-09 e 2026-10-13) descrevem o editor antigo, **removido** — histórico.
 - **Mapa (`campaign-map.js`) — coleção de mapas + temas (2026-09-09):** deixou de ser
   um mapa único. Agora `campaign.maps` é uma **lista** com `currentMapId`
   (migração automática do `map` antigo em `sanitizeCampaign`). Cada mapa tem **tipo**
