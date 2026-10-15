@@ -32,3 +32,11 @@ recurso (Vida), com técnicas/itens mexendo em recursos. Código em `The-One-Sys
 
 ## Notas de teste
 Servidor `the-one-system` (porta 8794) faz cache dos scripts: use `fetch(url,{cache:'reload'})` em todos os scripts antes de recarregar.
+
+## Livro de regras (PDF/.doc) — 2026-10-15
+- Nova aba **📕 Livro de regras** (grupo Saída, `src/ui/livro.js`, dados em `sys.livro`): capa (título, subtítulo, autor, cor, imagem), sumário clicável,
+  capítulos automáticos (regras gerais, atributos, recursos, perícias, classes, origens, itens, técnicas, condições, escolhas) que se atualizam com o sistema,
+  capítulos livres, ▲▼ para reordenar, texto de abertura (`# ` subtítulo, `- ` lista) e **imagens** por capítulo (reduzidas a ~1100px, legenda e tamanho).
+- Prévia em páginas A4 (iframe) nas visões **Jogadores** (sem código, sem fórmulas internas, sem capítulos "só Mestre") e **Mestre**.
+- Exportar: **PDF** via impressão do navegador (iframe oculto → "Salvar como PDF", numeração de página por `@page`), **.doc** (HTML que abre no Word/LibreOffice/Google Docs) e **.html**.
+- Pendente: reformar o editor da ficha do jogador (canvas de blocos) para ser mais editável/divertido.
