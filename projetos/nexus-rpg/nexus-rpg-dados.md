@@ -2,7 +2,7 @@
 name: nexus-rpg-dados
 description: mapa de localização de dados, repositório, chaves do LocalStorage e arquitetura de arquivos do Nexus RPG
 tags: [proj/nexus-rpg, dados, infra, arquitetura]
-updated: 2026-10-14
+updated: 2026-10-15
 ---
 
 # Nexus RPG — Onde os Dados Vivem
@@ -40,6 +40,9 @@ src/
     atributos-pericias.js   # Abas Atributos e Perícias (criação rápida + biblioteca de 41 perícias) — 2026-10-14
     classes-origens.js      # Editor de Classes/Origens (master-detail, técnicas, traços, código) — [[nexus-rpg-classes-origens]]
     master-detail.js        # Layout lista+editor reutilizável (mdLayout/mdCab/mdAbas…) — [[nexus-rpg-editores-itens]]
+    icon-picker.js          # Seletor de ícones (iconePicker) — [[nexus-rpg-codigo-icones-tecnicas]]
+    codigo-editor.js        # Editor de efeito por código (realce, autocomplete, montar, prévia)
+    tecnicas-editor.js      # Modelos de técnica, uso/liga-desliga (usarHabilidade)
     itens-editor.js         # Itens: abas Básico/Combate/Efeitos/Uso, biblioteca com mecânica, usarItem
     recursos-tecnicas.js    # Recursos (fórmula/recarga/quem mexe) e tiers de técnica com simulador
     shortcuts.js            # Mapeamento de atalhos de teclado do editor

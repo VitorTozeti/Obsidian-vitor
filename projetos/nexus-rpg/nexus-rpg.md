@@ -14,6 +14,7 @@ O projeto oferece um ambiente integrado para RPGs de mesa dividido em dois perfi
 ## Estado atual (2026-10-14)
 
 - **Editores unificados + itens com efeito/uso (2026-10-14):** master-detail em Recursos/Itens/Técnicas/Classes, efeito condicional "⏱ Vale", itens com Uso/raridade/biblioteca com mecânica — [[nexus-rpg-editores-itens]].
+- **Ícones, código e técnicas (2026-10-15):** seletor de 670 ícones, valores de efeito como fórmula, editor de código guiado, recursos especiais por item/técnica/código, técnicas usáveis e liga/desliga, defesa soma no valor — [[nexus-rpg-codigo-icones-tecnicas]].
 - **Classes/origens com mecânica (2026-10-14):** fórmula de recurso por classe, habilidades por nível, técnicas de classe, traços com efeito (Asas → Voo), resistências, efeito por código JS + correções de layout/contraste — [[nexus-rpg-classes-origens]].
 - **Mesa simples + atributos/perícias rápidos (2026-10-14):** mapa = imagem salva, tokens com foto/categorias/tokens próprios e anel de condição; biblioteca de 41 perícias; `render()` não pula mais para o topo — [[nexus-rpg-mesa-tokens]]. (Substitui os geradores/editor de mapa das rodadas anteriores.)
 
