@@ -39,4 +39,9 @@ Servidor `the-one-system` (porta 8794) faz cache dos scripts: use `fetch(url,{ca
   capítulos livres, ▲▼ para reordenar, texto de abertura (`# ` subtítulo, `- ` lista) e **imagens** por capítulo (reduzidas a ~1100px, legenda e tamanho).
 - Prévia em páginas A4 (iframe) nas visões **Jogadores** (sem código, sem fórmulas internas, sem capítulos "só Mestre") e **Mestre**.
 - Exportar: **PDF** via impressão do navegador (iframe oculto → "Salvar como PDF", numeração de página por `@page`), **.doc** (HTML que abre no Word/LibreOffice/Google Docs) e **.html**.
-- Pendente: reformar o editor da ficha do jogador (canvas de blocos) para ser mais editável/divertido.
+
+## Estúdio da ficha e criação ao vivo — 2026-10-15
+- **Estúdio da ficha** (`src/ui/ficha-studio.js`): aba Ficha ganhou o botão "Abrir estúdio" (tela cheia, `S.ui.estudio`). Esquerda: 🧱 Blocos (por categoria, com descrição, busca, sugestões do que falta/sobreposto),
+  🎨 Estilo (11 **temas** de ficha via `sh.tema.vars` aplicado no papel por `aplicaTemaFicha`, papel/fundo, cantos/sombra/borda/moldura de todos os blocos de uma vez), 📐 Modelos (miniaturas dos presets + "Meus modelos" em `sys.modelosFicha`), ☰ Camadas.
+  Direita: opções do bloco (`propsCard`) ou dicas. **Duplo clique** no bloco edita título/texto direto no papel (`editarTextoNoBloco`). O editor antigo virou `tabFichaLegado` (recolhido).
+- **Criação do personagem** (`src/ui/criacao-viva.js`): painel "ao vivo" ao lado dos passos (ícone/cor da classe, atributos finais, barras de recurso, defesa, movimento, resistências) e botões 🎲 Sortear / ⚖ Equilibrar / ↺ Zerar nos atributos.
