@@ -41,6 +41,7 @@ src/
     classes-origens.js      # Editor de Classes/Origens (master-detail, técnicas, traços, código) — [[nexus-rpg-classes-origens]]
     master-detail.js        # Layout lista+editor reutilizável (mdLayout/mdCab/mdAbas…) — [[nexus-rpg-editores-itens]]
     icon-picker.js          # Seletor de ícones (iconePicker) — [[nexus-rpg-codigo-icones-tecnicas]]
+    tecnicas-editor.js      # Modelos + uso de técnicas por tipo, invocações (cartaoTecnica, cartaoInvocacao) — [[nexus-rpg-magias-tecnicas]]
     codigo-editor.js        # Editor de efeito por código (realce, autocomplete, montar, prévia)
     tecnicas-editor.js      # Modelos de técnica, uso/liga-desliga (usarHabilidade)
     itens-editor.js         # Itens: abas Básico/Combate/Efeitos/Uso, biblioteca com mecânica, usarItem
