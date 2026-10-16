@@ -2,7 +2,7 @@
 name: nexus-rpg-dados
 description: mapa de localização de dados, repositório, chaves do LocalStorage e arquitetura de arquivos do Nexus RPG
 tags: [proj/nexus-rpg, dados, infra, arquitetura]
-updated: 2026-10-15
+updated: 2026-10-16
 ---
 
 # Nexus RPG — Onde os Dados Vivem
@@ -73,7 +73,7 @@ Todos os dados da aplicação residem no `localStorage` do navegador do usuário
 
 | Chave | Formato | Conteúdo |
 |---|---|---|
-| `nexus_accounts` | JSON Array | Lista de contas: `[ { id, name, pass, createdAt } ]` |
+| `nexus_accounts` | JSON Array | Lista de contas: `[ { id, name, salt, hash, algo, createdAt } ]` — senha como **hash salgado** (SHA-256 × 12 000, JS puro síncrono). Contas antigas com `pass` em texto são convertidas no próximo login. |
 | `nexus_session` | JSON Object | Sessão ativa: `{ accountId, personagemId }` |
 | `nexus_acct_<id>` | JSON Object | Dados da conta: `{ personagens: [ { id, kind, name, system | draft+saved } ] }` |
 
@@ -109,3 +109,14 @@ Todos os dados da aplicação residem no `localStorage` do navegador do usuário
 - Novo `src/ui/temas.js` (carregado 1º no `index.html`): 8 paletas (Noite, Meia-noite, Oceano, Floresta, Vinho, Grafite, Claro, Pergaminho, Alto contraste) + **Personalizada** (4 cores: fundo, painéis, texto, destaque; o resto é derivado com `color-mix`). Botão 🎨 flutuante (canto inferior esquerdo), fora do `#root` → trocar tema não chama `render()`. Salvo em `localStorage` (`nexus-tema`, `nexus-tema-custom`).
 - CSS: cores fixas viraram variáveis (`--surf`, `--surf2`, `--line2`, `--acc-txt`, `--warn-txt`, `--rose-txt`, `--ok-txt`). Canvas da ficha, mapas e tela de apresentação continuam escuros de propósito.
 - **Ainda sem commit** (a pedido do usuário, aguardando aprovação).
+
+## 2026-10-16 — Gatilhos, contador, CSP e senha com hash
+Resposta ao teste às cegas [[nexus-rpg-teste-rezero-ux]].
+- **Novos arquivos:** `src/core/gatilhos.js` (motor + editor da aba ⚡ Gatilhos do recurso; carregado depois de `history.js`) e `assets/css/melhorias.css` (carregado por último).
+- **Recurso (`sys.resources[]`) ganhou:** `start` (fórmula "Começa em"; vazio = começa cheio), `contador` (bool; só rótulo/atalho, equivale a `start:'0'`) e `gatilhos:[{id,quando:'zero'|'cheio',acoes:[{k:'restaurar'|'somar'|'aviso',alvo,modo,n,texto}]}]`. `sys.semNiveis` (bool) esconde nível no app. Tudo validado em `migrateSystem` (arquivo importado pode vir malformado; limites de 20 gatilhos/20 ações).
+- **Ficha:** `computeSheet` devolve `inicio` por recurso; `recursosInner/setRes` chama `executarGatilhos` (só no modo `play`). `aplicarDescanso` usa `inicio`.
+- **Combate/Bestiário:** `x.res[resId]={cur,max}` por combatente (`cbIniciaRecursos`); `statblock.recs[resId]` = máximo manual do inimigo (vazio = fórmula do sistema com os atributos do statblock).
+- **Mesa:** `focarPainel(k)` (scroll + flash ao abrir painel); botão "🧪 Adicionar meu personagem de teste" cria player `{teste:true, sheet:<draft>}`.
+- **Render:** `render()` guarda no `mousedown` qual campo foi clicado e devolve o foco depois de reconstruir (causa raiz do "texto digitado some": `onchange`→`render()` trocava o DOM antes do foco chegar). `ajustaBlocosJogo` faz os blocos da ficha do jogador crescerem até caber o conteúdo (sem rolagem interna) e empurra os de baixo.
+- **Segurança:** `<meta http-equiv="Content-Security-Policy">` em `index.html` — `connect-src 'none'`, `default-src 'none'`, `script-src 'self' 'unsafe-eval'` (eval só por causa do "efeito por código"), estilos inline permitidos. Nada sai do navegador, nem por código liberado. Sistema importado continua chegando com `codigoBloqueado`.
+- **Dev:** `python -m http.server` entrega 52 scripts em série e o navegador pode cachear versões velhas — para testar use um servidor com `Cache-Control: no-store` e **espere ~6 s** antes de ler a página (uma leitura em branco logo após o carregamento foi só lentidão, não bug).

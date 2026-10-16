@@ -2,7 +2,7 @@
 name: nexus-rpg-planejamento
 description: planejamento e roadmap do Nexus RPG — checklist entregue vs. pendente, backlog priorizado e próximos passos por área
 tags: [projeto, proj/nexus-rpg, planejamento, roadmap, rpg]
-updated: 2026-10-13
+updated: 2026-10-16
 ---
 
 # Nexus RPG — Planejamento
@@ -119,3 +119,6 @@ Commits recentes (mapas/dados didáticos) estão além do que esta nota descrevi
 - [[nexus-rpg-telas]] — detalhamento tela a tela
 - [[nexus-rpg-dados]] — onde os dados vivem
 - [[nexus-rpg-arquitetura]] — funcionamento interno e guia de evolução
+
+## Feedback de teste às cegas (2026-10-16)
+Backlog priorizado de funcionalidades e UX/UI vindo de um teste de ponta a ponta criando um sistema de Re:Zero: ver [[nexus-rpg-teste-rezero-ux]] (gatilhos de evento, contador/relógio, nível opcional, resultado de rolagem em destaque, ficha sem scroll interno, navegação que troca em vez de empilhar).

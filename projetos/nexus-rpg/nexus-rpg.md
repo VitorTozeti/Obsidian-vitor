@@ -2,7 +2,7 @@
 name: nexus-rpg
 description: motor e construtor de sistemas de RPG de mesa 100% offline, com editor visual de fichas e modos Mestre e Jogador
 tags: [projeto, proj/nexus-rpg, rpg, vanilla-js, offline]
-updated: 2026-10-14
+updated: 2026-10-16
 ---
 
 # Nexus RPG
@@ -15,6 +15,7 @@ O projeto oferece um ambiente integrado para RPGs de mesa dividido em dois perfi
 
 - **Editores unificados + itens com efeito/uso (2026-10-14):** master-detail em Recursos/Itens/Técnicas/Classes, efeito condicional "⏱ Vale", itens com Uso/raridade/biblioteca com mecânica — [[nexus-rpg-editores-itens]].
 - **Ícones, código e técnicas (2026-10-15):** seletor de 670 ícones, valores de efeito como fórmula, editor de código guiado, recursos especiais por item/técnica/código, técnicas usáveis e liga/desliga, defesa soma no valor — [[nexus-rpg-codigo-icones-tecnicas]].
+- **Teste às cegas Re:Zero (2026-10-16):** criação de um sistema próprio sem ler docs — pontos fortes, lacunas (gatilhos "ao chegar a 0", recurso contador, nível opcional, combate só com HP) e atritos de UX/UI — [[nexus-rpg-teste-rezero-ux]].
 - **Classes/origens com mecânica (2026-10-14):** fórmula de recurso por classe, habilidades por nível, técnicas de classe, traços com efeito (Asas → Voo), resistências, efeito por código JS + correções de layout/contraste — [[nexus-rpg-classes-origens]].
 - **Mesa simples + atributos/perícias rápidos (2026-10-14):** mapa = imagem salva, tokens com foto/categorias/tokens próprios e anel de condição; biblioteca de 41 perícias; `render()` não pula mais para o topo — [[nexus-rpg-mesa-tokens]]. (Substitui os geradores/editor de mapa das rodadas anteriores.)
 
