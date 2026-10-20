@@ -82,6 +82,9 @@ Investigação + combate estilo **Ordem Paranormal / Feiticeiros & Maldições**
 | Epílogo por personagem | 🟡 | handouts/diário |
 | Arquivo final (diário + fichas + mapas) | 🟡 | export `.campanha`; sem "livro da campanha" em PDF |
 
+## Atualização (mesmo dia)
+Todos os ❌/🟡 priorizados abaixo foram implementados — ver [[nexus-rpg-magias-dnd-bestiario-campanha]] (commit `fd17949`). Continuam de fora: jogo online multi-computador (por decisão) e presets fiéis (dependem dos livros oficiais; há modelos **aproximados**). Observação: o pool "N d20 fica com o maior" (Ordem) **já existia** (aba Dados → Pool).
+
 ## Veredito
 O Nexus **já roda uma campanha inteira de forma efetiva** para um Mestre presencial: monta o sistema, cria personagens, prepara NPCs/mapas/tabelas/relógios, conduz a sessão com tela dos jogadores e iniciativa, e registra diário/XP/loot. O que falta não impede jogar — obriga o Mestre a fazer à mão:
 

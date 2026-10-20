@@ -127,3 +127,13 @@ Resposta ao teste às cegas [[nexus-rpg-teste-rezero-ux]].
 - Novos arquivos: `src/data/regras-gerais.js` (após `arquetipos.js`), `src/ui/regras-gerais-ui.js` e `src/ui/assistentes.js` (após `itens-editor.js`), `assets/css/regras.css`.
 - Sistema ganhou `sys.morte` e `sys.movimento` (validados em `sanitizeRegrasGerais`, chamado no fim de `sanitizeSystem`). Ficha ganhou `d.morte` e `d.turno` (criados sob demanda). Aba `combate` em `TAB_META`.
 - Detalhes em [[nexus-rpg-morte-movimento-assistentes]]. Commit `00c3c2e`.
+
+## 2026-10-20 — Magias D&D, bestiário, combate e Missões & Mundo
+- Novos arquivos: `src/ui/conjuracao.js` (após `tecnicas-editor.js`), `src/ui/regras-extra.js` (após `livro.js`), `src/master/campaign/bestiario-extra.js` (após `bestiary.js`), `src/master/campaign/combate-acoes.js` e `mundo.js` (após `initiative.js`), `assets/css/campanha2.css`.
+- `ab.uso` ganhou `execucao, concentracao, ritual, componentes, circulo, escola, repete, ataque{on,bonus}, aumenta{formula,custo,max}`; ficha ganhou `d.concentrando`.
+- Statblock ganhou `nivel, mov, resist, tracos, habs[], fases[], lendarias{n,usadas,texto}, usaMorte`; combatente ganhou `morte, concentrando, fasesVistas, lendUsadas, invocDe, invocAtk`.
+- Campanha ganhou `arcos, missoes, pistas, faccoes, calendario, seguranca` (`sanitizeMundo`, roda também ao abrir a seção) e `present.pausa` (Carta X); NPC ganhou `faccaoId`.
+- Sistema ganhou `graus{on,modo,margem,nat}` e recurso `teste{on}`; `construirSistema` aplica `m.pos(sys)` dos modelos inspirados (`paranormal`, `feiticeiros`, `tormentoso`).
+- `expandeDadosDinamicos(expr,vars)` no dice-engine: `(fórmula)dN` vira número de dados (usado por `rollExpr` e `mediaExpr`).
+- **Dev:** o servidor `the-one-system-nocache` (porta 8795, `.claude/servidor-sem-cache.py`, `Cache-Control: no-store`) evita scripts velhos em cache; espere `typeof telaFalha==='function'` antes de testar (60 scripts em série).
+- Detalhes em [[nexus-rpg-magias-dnd-bestiario-campanha]].

@@ -58,6 +58,17 @@
         "C:/Users/v.tozeti/Desktop/Vitor/teste/The-One-System"
       ],
       "port": 8794
+    },
+    {
+      "name": "the-one-system-nocache",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-I",
+        ".claude/servidor-sem-cache.py",
+        "8795",
+        "C:/Users/v.tozeti/Desktop/Vitor/teste/The-One-System"
+      ],
+      "port": 8795
     }
   ]
 }
