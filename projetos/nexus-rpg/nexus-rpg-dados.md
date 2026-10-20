@@ -2,7 +2,7 @@
 name: nexus-rpg-dados
 description: mapa de localização de dados, repositório, chaves do LocalStorage e arquitetura de arquivos do Nexus RPG
 tags: [proj/nexus-rpg, dados, infra, arquitetura]
-updated: 2026-10-16
+updated: 2026-10-20
 ---
 
 # Nexus RPG — Onde os Dados Vivem
@@ -35,6 +35,7 @@ src/
     history.js              # Pilhas de Desfazer/Refazer (Undo/Redo)
   data/
     example-system.js       # Definição do sistema de exemplo e migração de ficha
+    regras-gerais.js        # Morte (sys.morte, d.morte) e movimento (sys.movimento, d.turno) — [[nexus-rpg-morte-movimento-assistentes]]
     arquetipos.js           # Motor de classes/origens: fórmulas de recurso, técnicas, resistências, efeito por código
   ui/
     atributos-pericias.js   # Abas Atributos e Perícias (criação rápida + biblioteca de 41 perícias) — 2026-10-14
@@ -121,3 +122,8 @@ Resposta ao teste às cegas [[nexus-rpg-teste-rezero-ux]].
 - **Render:** `render()` guarda no `mousedown` qual campo foi clicado e devolve o foco depois de reconstruir (causa raiz do "texto digitado some": `onchange`→`render()` trocava o DOM antes do foco chegar). `ajustaBlocosJogo` faz os blocos da ficha do jogador crescerem até caber o conteúdo (sem rolagem interna) e empurra os de baixo.
 - **Segurança:** `<meta http-equiv="Content-Security-Policy">` em `index.html` — `connect-src 'none'`, `default-src 'none'`, `script-src 'self' 'unsafe-eval'` (eval só por causa do "efeito por código"), estilos inline permitidos. Nada sai do navegador, nem por código liberado. Sistema importado continua chegando com `codigoBloqueado`.
 - **Dev:** `python -m http.server` entrega 52 scripts em série e o navegador pode cachear versões velhas — para testar use um servidor com `Cache-Control: no-store` e **espere ~6 s** antes de ler a página (uma leitura em branco logo após o carregamento foi só lentidão, não bug).
+
+## 2026-10-20 — Morte, movimento e assistentes
+- Novos arquivos: `src/data/regras-gerais.js` (após `arquetipos.js`), `src/ui/regras-gerais-ui.js` e `src/ui/assistentes.js` (após `itens-editor.js`), `assets/css/regras.css`.
+- Sistema ganhou `sys.morte` e `sys.movimento` (validados em `sanitizeRegrasGerais`, chamado no fim de `sanitizeSystem`). Ficha ganhou `d.morte` e `d.turno` (criados sob demanda). Aba `combate` em `TAB_META`.
+- Detalhes em [[nexus-rpg-morte-movimento-assistentes]]. Commit `00c3c2e`.

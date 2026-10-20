@@ -43,6 +43,7 @@
   - [Nexus RPG — Editores, itens e efeito condicional](projetos/nexus-rpg/nexus-rpg-editores-itens.md) — 2026-10-14: master-detail unificado (Recursos/Itens/Técnicas/Classes), "⏱ Vale" por nível/atributo, itens com Uso/raridade/biblioteca com mecânica, validação por classe
   - [Nexus RPG — Ícones, código e técnicas](projetos/nexus-rpg/nexus-rpg-codigo-icones-tecnicas.md) — 2026-10-15: seletor de 670 ícones, efeitos com fórmula, editor de código guiado, recursos especiais, técnicas usáveis/liga-desliga, início rápido de item
   - [Nexus RPG — Teste às cegas: Re:Zero](projetos/nexus-rpg/nexus-rpg-teste-rezero-ux.md) — 2026-10-16: sistema criado sem ler docs; o que fluiu, o que faltou (gatilhos, contador, níveis opcionais) e atritos de UX/UI priorizados
+  - [Nexus RPG — Morte, movimento e assistentes](projetos/nexus-rpg/nexus-rpg-morte-movimento-assistentes.md) — 2026-10-20: regras de morte/salvamento, movimento e ações por turno, assistentes de técnica, poder e modificação física
   - [Nexus RPG — Magias e técnicas por tipo](projetos/nexus-rpg/nexus-rpg-magias-tecnicas.md) — 2026-10-16: tipos cura/dano/buff/debuff/invocação, área, teste, condição, multi-recurso, criaturas estilizadas
 - [Role SP no trilho](projetos/role-sp/role-sp.md) — mapa interativo das linhas de metrô, trem e monotrilho de SP com pontos turísticos, culturais e integração de ônibus via OpenStreetMap
   - [Role SP no trilho — Onde os dados vivem](projetos/role-sp/role-sp-dados.md) — mapa de localização de dados, repositório, APIs externas e estruturas de dados do Role SP no trilho
