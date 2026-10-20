@@ -137,3 +137,9 @@ Resposta ao teste às cegas [[nexus-rpg-teste-rezero-ux]].
 - `expandeDadosDinamicos(expr,vars)` no dice-engine: `(fórmula)dN` vira número de dados (usado por `rollExpr` e `mediaExpr`).
 - **Dev:** o servidor `the-one-system-nocache` (porta 8795, `.claude/servidor-sem-cache.py`, `Cache-Control: no-store`) evita scripts velhos em cache; espere `typeof telaFalha==='function'` antes de testar (60 scripts em série).
 - Detalhes em [[nexus-rpg-magias-dnd-bestiario-campanha]].
+
+## 2026-10-20 — Progressão, tags e criação
+- Novos: `src/data/progressao.js` (após `regras-gerais.js`), `src/ui/progressao-ui.js` e `src/ui/tags-ui.js` (após `regras-extra.js`), `src/ui/habilidades-ux.js` (após `assistentes.js`), `assets/css/criacao.css`.
+- Sistema: `sys.ganhos[]` (regras de ganho; `perLevel` migra para cá), `profTiers[].nivelMin`, tags com `icon/cat/desc`. Efeitos novos `pontosAtributo/pontosPericia/treino` (`B.pts`).
+- `levelPoints(sys,level,eff)` → `{attrPoints, skillCount, treino, tecnicas}`. Abas Progressão e Tags chamam `tabProgressaoNova`/`tabTagsNova`.
+- Detalhes em [[nexus-rpg-progressao-tags-criacao]].
