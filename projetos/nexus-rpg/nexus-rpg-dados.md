@@ -143,3 +143,10 @@ Resposta ao teste às cegas [[nexus-rpg-teste-rezero-ux]].
 - Sistema: `sys.ganhos[]` (regras de ganho; `perLevel` migra para cá), `profTiers[].nivelMin`, tags com `icon/cat/desc`. Efeitos novos `pontosAtributo/pontosPericia/treino` (`B.pts`).
 - `levelPoints(sys,level,eff)` → `{attrPoints, skillCount, treino, tecnicas}`. Abas Progressão e Tags chamam `tabProgressaoNova`/`tabTagsNova`.
 - Detalhes em [[nexus-rpg-progressao-tags-criacao]].
+
+## 2026-10-20 — Sistemas de poder e editor em blocos
+- Novos: `src/data/poderes.js` (após `progressao.js`), `src/ui/blocos-uso.js` e `src/ui/poderes-ui.js` (após `habilidades-ux.js`), `assets/css/poderes.css`.
+- Sistema: `sys.poderes[]` (formas, combos, modo, cópia). Técnica: `uso.usos {max, recarga}` e `uso.blocos` (ordem dos blocos). Efeito novo `poder`.
+- Personagem: `d.poder[poderId] = {des, perd, esc, equip, copias}` e `d.usos[abId]` (usos gastos; zera no descanso).
+- Aba nova `poderes` em `TAB_META` (grupo Personagem); formas entram no `gatherEffects` como fonte `tipo:'poder'`.
+- Detalhes em [[nexus-rpg-sistemas-de-poder]].
