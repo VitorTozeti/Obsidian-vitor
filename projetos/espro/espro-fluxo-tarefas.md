@@ -28,6 +28,11 @@ Tudo fica **dentro do cartão** (`js/fluxo.js`, `js/views.js`):
 - **Só admin, diretor(a) e instrutor(a)** veem todos os setores.
 - **Cobrança formal por e-mail** (botão "Cobrar por e-mail" no cartão, só para esses 3 cargos): monta mensagem formal (tarefa, setor, situação, prazo, subtarefas pendentes, observação, assinatura com cargo), mostra prévia, abre no programa de e-mail do cobrador (`mailto:`) ou copia o texto, e registra "cobrou por e-mail" na linha do tempo. **Não envia sozinho**: envio automático pelo servidor exigiria serviço de e-mail (Resend/MailChannels) com chave de API.
 
+## Responsável do próprio setor e avisos da Equipe (2026-10-21)
+- O **responsável** (cartão e Repassar) só pode ser pessoa **do mesmo setor do cartão** (na gestão, só gestor/co-gestor); a lista muda sozinha ao trocar o setor e o formulário recusa nome de outro setor. Só confere com a equipe carregada (login); texto antigo não é barrado.
+- Visão do admin na aba Equipe: **não avisa mais "sem cargo"**; **admin, diretor(a) e instrutor(a) não precisam de setor** (aparecem como "Todos os setores" e não entram no aviso "sem setor").
+- Bug corrigido: `Sync` é `const` global (não existe em `window`), então `window.Sync?.` nunca funcionava; `equipe.js` ganhou `SY()` e `autorAtual()` agora usa o nome de quem está logado. Sobra `js/editor.js:634` (presença) com o mesmo problema, não mexido.
+
 ## Quadro da Gestão (2026-10-21)
 - Aba/alternador **"Quadro da Gestão"** no Quadro (admin, diretor(a), instrutor(a)); o gestor/co-gestor vê "Tarefas da diretoria". Cartão com `gestao:true` e `setor` = setor do gestor escolhido (o select acompanha o responsável).
 - **Só admin/diretor/instrutor criam** essas tarefas e só escolhem gestores/co-gestores como responsáveis. O gestor do setor vê, dá ciente, anota, move e conclui, mas não cria, não repassa e não apaga. **Membros nem recebem** esses cartões.
