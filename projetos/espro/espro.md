@@ -2,7 +2,7 @@
 name: espro
 description: plataforma da empresa fictícia exigida pela ESPRO — montar a revista a partir dos dados enviados e organizar as tarefas de cada setor em um quadro estilo Trello
 tags: [projeto, proj/espro, app, web, revista, kanban, calendario, cloudflare, ideia]
-updated: 2026-10-09
+updated: 2026-10-21
 ---
 
 # ESPRO — Revista da Empresa Fictícia
@@ -81,6 +81,7 @@ Dados e localização: [[espro-dados]].
 ## Relacionados
 
 - [[espro-analise-roadmap]] — análise e planejamento em ondas (2026-10-07)
+- [[espro-fluxo-tarefas]] — repasse, ciente, conclusão e notas no cartão (substitui grupos de WhatsApp)
 - [[espro-ideias-futuras]] — backlog detalhado de melhorias selecionadas
 - [[espro-usabilidade-editor]] — roadmap e usabilidade do editor de páginas
 - [[mural]] — já resolve quadro colaborativo com post-its; pode servir de base para o kanban.
@@ -94,3 +95,6 @@ Novo cargo **Co-gestor(a)** e, na aba Equipe, uma **visão exclusiva do admin** 
 
 ## Pessoa em mais de um setor (2026-10-09)
 Agora certas pessoas podem ter **2 (ou mais) setores**: o admin marca vários numa lista com caixas; a pessoa vê o quadro de todos eles. Detalhes em [[espro-dados]] §14.
+
+## Fluxo de tarefas no quadro (2026-10-21)
+O cartão agora guarda o fluxo inteiro: **repassar** (com recado), **ciente**, **assumir**, **concluir** (com entrega/link), **reabrir**, notas e linha do tempo, mais o feed **Atividade** e avisos no Início. Objetivo: tirar a comunicação dos grupos de WhatsApp por setor. Ver [[espro-fluxo-tarefas]] e [[espro-dados]] §15.

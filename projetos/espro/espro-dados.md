@@ -2,7 +2,7 @@
 name: espro-dados
 description: onde os dados do projeto ESPRO vivem — pasta do código, repositório, armazenamento (a definir)
 tags: [projeto, proj/espro, dados]
-updated: 2026-10-09
+updated: 2026-10-21
 ---
 
 # ESPRO — Onde os dados vivem
@@ -96,3 +96,9 @@ Mapa de dados do [[espro]].
 - **Servidor:** quem não é "amplo" vê/grava cartões de **qualquer** setor seu (`meusSetores.includes`); `PUT /api/equipe` aceita `setor` como texto `"a,b"` ou array (máx. 12, normaliza e remove duplicados).
 - **Cliente:** `Sync.setores()` (lista) e `Sync.setor()` (só o 1º, legado). Admin escolhe os setores num menu com caixas (grava ao fechar) na aba Equipe e em "Gerenciar cargos"; gestor com 2+ setores vê um bloco por setor; pessoas aparecem em cada setor dele na matriz setores × cargos (a soma pode passar do nº de pessoas); aviso de quinta do RH vale se **algum** setor da pessoa for RH.
 - Testado no preview (helpers e seletor) e sintaxe do servidor; **D1 real não testado**. Commit local em `Espro_frame` (sem push → sem deploy).
+
+## 15. Fluxo de tarefas no cartão (2026-10-21)
+- Campos novos em `cards` (sincronizam como parte do item): `respEmail`, `repasse {para, paraEmail, por, quando, nota, ciente, cienteEm}`, `concluidoEm`, `concluidoPor`, `entrega`, `entregaLink`. `historico` agora tem `tipo` (`mov|concluiu|repasse|ciente|assumiu|nota`), `texto`, `de/para`, `por`, `quando` (máx. 60); entradas antigas sem `tipo` valem `mov`.
+- `Store.logCol(c, de, para)` registra a mudança de coluna (também ao arrastar/seta, não só no formulário) e preenche/limpa `concluidoEm/Por`. Trocar o responsável no formulário gera um repasse pendente de ciente.
+- Código novo: `js/fluxo.js` (objeto `Fluxo`), carregado antes de `views.js`; avisos em `alertas()` (`js/equipe.js`); CSS `.fluxo-box`, `.timeline`, `.selo-fluxo` no fim de `css/style.css`. Servidor sem mudança (sync genérico). Detalhes e fluxo: [[espro-fluxo-tarefas]].
+- **Quadro da Gestão:** `cards.gestao:true` (cartão visível só a amplos e ao gestor/co-gestor do `setor`). Regras de leitura/gravação no servidor; ver [[espro-fluxo-tarefas]].
