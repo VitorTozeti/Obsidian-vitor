@@ -72,6 +72,7 @@
   - [ESPRO — Onde os dados vivem](projetos/espro/espro-dados.md) — pasta do código, modelo de dados previsto e armazenamento (a definir)
   - [ESPRO — Usabilidade do editor](projetos/espro/espro-usabilidade-editor.md) — diagnóstico e todas as melhorias de UX do editor de páginas, por tema, com roadmap em 5 fases
   - [ESPRO — Ideias futuras](projetos/espro/espro-ideias-futuras.md) — backlog de melhorias de colaboração no Kanban, leitor flipbook 3D e métricas de desempenho por setor
+  - [ESPRO — 40 ideias e plano](projetos/espro/espro-40-ideias.md) — análise de 2026-10-21, 40 adições com valor/esforço e plano em 5 ondas
   - [ESPRO — Fluxo de tarefas](projetos/espro/espro-fluxo-tarefas.md) — repasse, ciente, conclusão e notas no cartão para substituir grupos de WhatsApp (2026-10-21)
   - [ESPRO — Análise e roadmap](projetos/espro/espro-analise-roadmap.md) — pontos a melhorar e features em ondas (2026-10-07)
 
