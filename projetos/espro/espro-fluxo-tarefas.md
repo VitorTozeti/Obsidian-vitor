@@ -33,6 +33,11 @@ Tudo fica **dentro do cartão** (`js/fluxo.js`, `js/views.js`):
 - Visão do admin na aba Equipe: **não avisa mais "sem cargo"**; **admin, diretor(a) e instrutor(a) não precisam de setor** (aparecem como "Todos os setores" e não entram no aviso "sem setor").
 - Bug corrigido: `Sync` é `const` global (não existe em `window`), então `window.Sync?.` nunca funcionava; `equipe.js` ganhou `SY()` e `autorAtual()` agora usa o nome de quem está logado. Sobra `js/editor.js:634` (presença) com o mesmo problema, não mexido.
 
+## Várias pessoas na mesma tarefa (2026-10-21)
+- `resp` guarda os nomes separados por vírgula (`"Ana, Bruno"`) e `respEmail` os e-mails. Seletor com etiquetas (`Fluxo.seletorPessoas`) no cartão e no Repassar; só aceita gente do setor do cartão.
+- **Ciente individual:** `repasse.cientes` lista quem já viu; `repasse.ciente` só vira true quando todos deram ciente. O cartão mostra "Aguardando ciente de X, Y" (só quem falta). Ao mudar a lista, quem já deu ciente continua ciente.
+- Cobrança por e-mail vai para todos os responsáveis ("Prezado(a) Ana e Bruno"). Dados antigos (um nome só) seguem válidos.
+
 ## Quadro da Gestão (2026-10-21)
 - Aba/alternador **"Quadro da Gestão"** no Quadro (admin, diretor(a), instrutor(a)); o gestor/co-gestor vê "Tarefas da diretoria". Cartão com `gestao:true` e `setor` = setor do gestor escolhido (o select acompanha o responsável).
 - **Só admin/diretor/instrutor criam** essas tarefas e só escolhem gestores/co-gestores como responsáveis. O gestor do setor vê, dá ciente, anota, move e conclui, mas não cria, não repassa e não apaga. **Membros nem recebem** esses cartões.
