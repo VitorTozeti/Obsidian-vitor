@@ -102,3 +102,6 @@ Mapa de dados do [[espro]].
 - `Store.logCol(c, de, para)` registra a mudança de coluna (também ao arrastar/seta, não só no formulário) e preenche/limpa `concluidoEm/Por`. Trocar o responsável no formulário gera um repasse pendente de ciente.
 - Código novo: `js/fluxo.js` (objeto `Fluxo`), carregado antes de `views.js`; avisos em `alertas()` (`js/equipe.js`); CSS `.fluxo-box`, `.timeline`, `.selo-fluxo` no fim de `css/style.css`. Servidor sem mudança (sync genérico). Detalhes e fluxo: [[espro-fluxo-tarefas]].
 - **Quadro da Gestão:** `cards.gestao:true` (cartão visível só a amplos e ao gestor/co-gestor do `setor`). Regras de leitura/gravação no servidor; ver [[espro-fluxo-tarefas]].
+
+## 16. Avisos, push e perfil (2026-10-21)
+- D1: `avisos(id, email, titulo, texto, url, criado, lido)` (60 por pessoa), `push_subs(endpoint, email, criado)`, `config('vapid')`, `config('lembrete_dia')`; `usuarios.funcao/bio/foto`. Cartão: `repasse.porEmail`. Detalhes em [[espro-avisos-perfil]].

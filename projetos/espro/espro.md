@@ -81,6 +81,7 @@ Dados e localização: [[espro-dados]].
 ## Relacionados
 
 - [[espro-analise-roadmap]] — análise e planejamento em ondas (2026-10-07)
+- [[espro-avisos-perfil]] — avisos no celular, e-mail automático, perfil e organograma
 - [[espro-40-ideias]] — análise de 2026-10-21: 40 ideias + plano em ondas
 - [[espro-fluxo-tarefas]] — repasse, ciente, conclusão e notas no cartão (substitui grupos de WhatsApp)
 - [[espro-ideias-futuras]] — backlog detalhado de melhorias selecionadas
