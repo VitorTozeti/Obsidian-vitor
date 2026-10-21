@@ -2,7 +2,7 @@
 name: espro-ideias-futuras
 description: ideias selecionadas de colaboração kanban, leitor 3d e gestão para enriquecer a plataforma da empresa fictícia ESPRO
 tags: [projeto, proj/espro, planejamento, ideias, backlog]
-updated: 2026-10-05
+updated: 2026-10-21
 ---
 
 # ESPRO — Ideias Futuras e Backlog de Funcionalidades
@@ -31,7 +31,7 @@ Melhorias para dinamizar o trabalho entre os membros e líderes dos departamento
 6. **Estimativa de Esforço / Tempo:**
    - Campo opcional de tempo estimado (ex.: `Estimativa: 2h`) para calcular a carga horária investida pela equipe.
 7. **Arquivamento de Cartões Concluídos:**
-   - Ação de arquivar cartões da coluna *Pronto* para manter o fluxo do quadro limpo sem perder o histórico do projeto.
+   - Ação de arquivar cartões da coluna *Pronto* para manter o fluxo do quadro limpo sem perder o histórico do projeto. **Descartado (2026-10-21):** o arquivamento foi removido; prontas ficam sempre como concluídas.
 8. **Distribuição Automática de Tarefas (Rodízio):**
    - Assistente para sugerir ou distribuir tarefas sem responsável entre os membros cadastrados na equipe.
 

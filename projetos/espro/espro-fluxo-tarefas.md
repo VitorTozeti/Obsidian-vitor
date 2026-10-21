@@ -48,7 +48,7 @@ Tudo fica **dentro do cartão** (`js/fluxo.js`, `js/views.js`):
 2. Quem recebe abre o Início → **Ciente** → trabalha marcando as subtarefas.
 3. Dúvida → **nota no cartão** (fica registrada junto da tarefa).
 4. Terminou → **Concluir** com entrega/link → quem repassou é avisado; Revisão fica para o gestor.
-5. Fim da semana: **Arquivar prontos**. Reunião de quinta: usar o Feed de atividade.
+5. Fim da semana: tarefas prontas **ficam em Concluído** (o "Arquivar prontos" foi removido em 2026-10-21; cartões que estavam arquivados voltam automaticamente para Concluído ao abrir o app — `desarquiva()` em `js/store.js`). Reunião de quinta: usar o Feed de atividade.
 6. Grupo de WhatsApp fica só para urgência/avisos gerais.
 
 ## Limites conhecidos / próximos passos
