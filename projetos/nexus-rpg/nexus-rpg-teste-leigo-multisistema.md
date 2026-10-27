@@ -111,3 +111,21 @@ Testado no preview 8795 (ver [[nexus-rpg-dados]]):
   - "Crítico ≥ 20" escondido com faixas, dF, pool de sucessos ou rolar-abaixo (`critD20`).
 - **Verificado no preview:** os 9 estilos rolando pela perícia, F5 e console sem erros.
 - **Ainda faltam:** dados de fome (V5), dado selvagem do Savage (melhor de 2 dados diferentes), atributo como tipo de dado (d4–d12), dois 6 = crítico no Blades, relógios, caixas de estresse e aspectos.
+
+## Rodada 3 — caixas, relógios e aspectos (2026-10-27)
+- Arquivo novo: `src/ui/aspectos-caixas.js`, carregado depois de `regras-extra.js`. As classes CSS ficam em `melhorias.css`.
+- **Recurso `r.visual`** pode ser `barra`, `caixas` ou `relogio`. Caixas e relógio ligam o `contador` e começam vazios.
+  - Por baixo continua sendo uma barra (`cur`/`max`), então gatilhos, morte e descanso funcionam igual.
+  - Caixas: clicar marca até aquela caixa; clicar na última desmarca.
+  - Relógio: uma pizza SVG de 2 a 24 segmentos; o clique avança.
+  - O editor do recurso ganhou a linha "Mostrar na ficha como".
+- **Aspectos** `sys.aspectos{on,nome,fixos[],livres,bonus,recursoId}`; na ficha ficam `d.aspectos{slotId:texto}` e `d.aspLivres[]`.
+  - Ganharam o bloco `aspectos` em `BLOCK_TYPES`; `garantirBlocoFicha` põe o bloco na ficha.
+  - Invocar: "+N" soma na última rolagem e refaz a faixa; "↻" rola de novo (`guardarRolagem`).
+  - Os dois gastam 1 do recurso escolhido e bloqueiam se não houver rolagem ou pontos.
+- **Estilos prontos:**
+  - Fate cria Pontos de Destino (3), Estresse físico/mental (3 caixas) e 5 aspectos fixos, incluindo as consequências leve, moderada e grave.
+  - Blades cria Estresse (9), Trauma (4) e Relógio pessoal (4).
+  - O desfazer do estilo restaura o sistema inteiro.
+- **Verificado no preview:** marcar caixa, invocar +2 (Razoável → Ótimo e Pontos de Destino 3 → 2), rerrolar, relógio 2/4 e F5.
+- Os relógios de ameaça do mestre já existiam em `campaign.clocks` (🧰 Ferramentas). Os da ficha são novos.
