@@ -129,3 +129,34 @@ Testado no preview 8795 (ver [[nexus-rpg-dados]]):
   - O desfazer do estilo restaura o sistema inteiro.
 - **Verificado no preview:** marcar caixa, invocar +2 (Razoável → Ótimo e Pontos de Destino 3 → 2), rerrolar, relógio 2/4 e F5.
 - Os relógios de ameaça do mestre já existiam em `campaign.clocks` (🧰 Ferramentas). Os da ficha são novos.
+
+## Rodada 4 — modelos completos e ajustes de D&D (2026-10-27)
+- Arquivo novo `src/ui/modelos-enriquecidos.js`, carregado depois de `aspectos-caixas.js`. Ele envolve o `pos()` de cada modelo em `MODELOS_SISTEMA`.
+  - ⚠️ Escopo global: os ajudantes usam o prefixo `_me*`. Um `_ef` duplicado quebrou o carregamento; o console acusa `Identifier already declared`.
+- **Todos os modelos:** `vincularMorteAVida` preenche `morte.resId`, e o aviso da aba Início sumiu.
+- **OP:**
+  - `progression.labels` vai de NEX 5% a 99%;
+  - Ocultista tem 8 rituais (um por elemento, com trava por nível); Combatente e Especialista têm 4 poderes cada;
+  - 9 origens, 5 tags de elemento, teste de Sanidade ligado.
+- **F&M:**
+  - técnicas inatas (sangue, fala, projeção, sombras), Flash negro, reversão e Expansão de Domínio (nível 13);
+  - Domínio simples no nível 9; 4 origens (incluindo Restrição celestial).
+- **T20:**
+  - 10 classes; magias do Arcanista do 1º ao 5º círculo, travadas nos níveis 1/5/9/13/17; Bardo e Clérigo com magias;
+  - 6 raças.
+- **D&D:**
+  - o botão "D&D (6)" chama `aplicarRegrasDnD`: modificador, valores 8–15, 24 pontos, proficiência ×, Vida `8 + CON + (Nível-1)*(5+CON)` e Defesa `10 + DES`;
+  - `sys.dndVida` faz as classes do catálogo ganharem dado de vida (`DADO_VIDA`);
+  - `grauPadraoTreinado` usa Proficiente em vez de Metade;
+  - `criarEspacosDeMagia` cria "Espaços 1º–5º círculo" em caixas, que recuperam no descanso longo;
+  - Bola de fogo do catálogo passou para o nível 5.
+- **Verificado no preview:**
+  - Mago com CON 14: 8 PV no nível 1 e 32 no nível 5; Guerreiro 12 e 44;
+  - espaços no nível 5: 4/3/2;
+  - Ocultista com 8 rituais, 3 deles travados no nível 1.
+- **Pendente:**
+  - compra de pontos com a tabela de custo do D&D (hoje é linear);
+  - bônus de ½ nível em todas as perícias do T20;
+  - "Equilibrar" ignora a classe;
+  - validação de PV negativo no bestiário;
+  - polimento do assistente e da navegação.

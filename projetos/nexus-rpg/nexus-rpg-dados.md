@@ -157,3 +157,4 @@ Resposta ao teste às cegas [[nexus-rpg-teste-rezero-ux]].
 - Detalhes em [[nexus-rpg-teste-leigo-multisistema]].
 - Rodada 2 (motor de dados): `sys.rollMode` aceita `'sucessos'` (+`sucAlvo`, `sucExplode`); `sys.faixas{on,lista}`; `sys.graus.modo` aceita `'sob'` (+`critSob`, `desSob`). Notação `dF`, `!`, `>=N`.
 - Rodada 3: `src/ui/aspectos-caixas.js` (após `regras-extra.js`). Recurso `visual` (`barra`/`caixas`/`relogio`); `sys.aspectos`; ficha `d.aspectos`, `d.aspLivres`; bloco `aspectos`.
+- Rodada 4: `src/ui/modelos-enriquecidos.js` (após `aspectos-caixas.js`); `sys.dndVida`; recursos "Espaços Nº círculo" (caixas). Ajudantes globais prefixados `_me*`.
