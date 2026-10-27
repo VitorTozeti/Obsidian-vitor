@@ -2,7 +2,7 @@
 name: nexus-rpg-dados
 description: mapa de localização de dados, repositório, chaves do LocalStorage e arquitetura de arquivos do Nexus RPG
 tags: [proj/nexus-rpg, dados, infra, arquitetura]
-updated: 2026-10-20
+updated: 2026-10-27
 ---
 
 # Nexus RPG — Onde os Dados Vivem
@@ -150,3 +150,8 @@ Resposta ao teste às cegas [[nexus-rpg-teste-rezero-ux]].
 - Personagem: `d.poder[poderId] = {des, perd, esc, equip, copias}` e `d.usos[abId]` (usos gastos; zera no descanso).
 - Aba nova `poderes` em `TAB_META` (grupo Personagem); formas entram no `gatherEffects` como fonte `tipo:'poder'`.
 - Detalhes em [[nexus-rpg-sistemas-de-poder]].
+
+## 2026-10-27 — Jogador ligado ao Mestre, ficha de teste e perícia %
+- Personagem `jogador`: `mestreId` + `system` (cópia). Personagem `mestre`: `testDraft`. Ficha: `d.pct{skillId:0-99}`. Perícia do sistema: `basePct`.
+- `helpers.js h()` ignora atributos booleanos falsos (`_ATTR_BOOL`).
+- Detalhes em [[nexus-rpg-teste-leigo-multisistema]].
