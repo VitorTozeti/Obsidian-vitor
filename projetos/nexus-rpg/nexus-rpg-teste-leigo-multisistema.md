@@ -99,3 +99,15 @@ Testado no preview 8795 (ver [[nexus-rpg-dados]]):
 - **(1) Jogador no sistema do Mestre:** "Criar Jogador" tem o seletor `#pj-sys` (Mestres da conta, exemplo ou `.nexus`). O personagem jogador ganhou `mestreId` e uma cópia em `system`. `sistemaDoJogador(p)` (em `state.js`) sempre puxa a versão atual do Mestre. O cartão do hub mostra "Ficha no sistema: X".
 - **(3) Ficha de teste:** o mestre ganhou `p.testDraft`, salvo pelo `persist()` e restaurado no `bindPersonagem`. Sobrevive ao F5 e à troca de personagem. O botão 🧪 sem ficha leva direto ao Testar.
 - **(2) CoC:** `ehPercentual(sys)` e `pctDe(sys,d,s)` ficam em `regras-extra.js`. A perícia ganhou `basePct` (padrão 20) e a ficha ganhou `d.pct[id]` (0–99), editável na tabela de perícias, que no modo d100 mostra todas as perícias com difícil/extremo. A rolagem usa 1d100 contra o %. O dado bônus pega o menor. O "Crítico ≥ 20" fica escondido. Verificado: 400 rolagens com 60% batem com os graus.
+
+## Rodada 2 — motor de dados (2026-10-27, commit `a179b2c`)
+- **Notação** (`dice-engine.js`, `DICE_RE` com fronteira de palavra): `4dF` (−/0/+), `1d6!` (explode, até 100 vezes), `5d10>=6` (conta sucessos; aceita `>= > <= <`). Pode combinar, ex.: `6d6!>=5`. `(N)dF` dinâmico também funciona. `4dX` e `2dd6` agora dão erro claro. `mediaExpr` entende dF (média 0) e explosão.
+- **Modo novo `sys.rollMode='sucessos'`**, com `sucAlvo` e `sucExplode`. `exprDoModo(sys,bonus)` monta o teste de perícia, ataque e bloco Dados.
+- **Faixas** `sys.faixas={on,lista:[{ate,ic,t}]}`, nas funções `sanitizarFaixas`, `faixaDe` e `rotuloResultado` (o grau tem prioridade). Prontas: PbtA, Blades, escada Fate, sucessos.
+- **Graus `modo:'sob'`** (GURPS), com `critSob` (4) e `desSob` (17). Rola sem somar bônus e mostra a margem.
+- **Aba Dados:**
+  - card "🎲 Estilos prontos" com 9 estilos (d20, PbtA, Fate, V5, Shadowrun, Blades, Savage, GURPS, CoC), com desfazer;
+  - erro vermelho na expressão;
+  - "Crítico ≥ 20" escondido com faixas, dF, pool de sucessos ou rolar-abaixo (`critD20`).
+- **Verificado no preview:** os 9 estilos rolando pela perícia, F5 e console sem erros.
+- **Ainda faltam:** dados de fome (V5), dado selvagem do Savage (melhor de 2 dados diferentes), atributo como tipo de dado (d4–d12), dois 6 = crítico no Blades, relógios, caixas de estresse e aspectos.

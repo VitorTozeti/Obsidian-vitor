@@ -155,3 +155,4 @@ Resposta ao teste às cegas [[nexus-rpg-teste-rezero-ux]].
 - Personagem `jogador`: `mestreId` + `system` (cópia). Personagem `mestre`: `testDraft`. Ficha: `d.pct{skillId:0-99}`. Perícia do sistema: `basePct`.
 - `helpers.js h()` ignora atributos booleanos falsos (`_ATTR_BOOL`).
 - Detalhes em [[nexus-rpg-teste-leigo-multisistema]].
+- Rodada 2 (motor de dados): `sys.rollMode` aceita `'sucessos'` (+`sucAlvo`, `sucExplode`); `sys.faixas{on,lista}`; `sys.graus.modo` aceita `'sob'` (+`critSob`, `desSob`). Notação `dF`, `!`, `>=N`.
