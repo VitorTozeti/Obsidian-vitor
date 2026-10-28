@@ -2,7 +2,7 @@
 name: bueno-s-house-dados
 description: mapa de localização de dados do Bueno's House / Comanda Digital — repositório, banco MySQL, migrations Flyway, endpoints REST, credenciais demo e ambiente local
 tags: [projeto, proj/bueno-s-house, dados, mysql, api]
-updated: 2026-10-13
+updated: 2026-10-28
 ---
 
 # Bueno's House — Onde os dados vivem
@@ -38,6 +38,9 @@ notas já existentes do vault; nada foi lido fora da pasta do vault nesta consol
 | Relatórios | `/api/reports/daily-revenue`, `average-ticket`, `top-products`, `low-stock`, `average-food-cost` |
 | Usuários (ADMIN) | `/api/users` |
 | Produtos | `PATCH /api/products/{id}/availability` `{available}` (RN01: ativar exige ficha técnica) |
+
+## 4b. Produção
+- Front: `https://bueno-s-house.vercel.app` (Vercel); `/api/*` via proxy para o backend (hiberna, ~1 min para acordar). Health: `/api/health`. Catálogo público exige `?unitId=1`. Avaliação: [[comanda-digital-avaliacao-producao]].
 
 ## 5. Ambiente local
 JDK 21 + Maven 3.9 + MySQL 8.4 nativos; `mvn test` (Testcontainers) e `npm run build` nunca validados nesta máquina.

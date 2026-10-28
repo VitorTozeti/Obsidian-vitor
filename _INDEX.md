@@ -116,6 +116,7 @@
   - [Comanda Digital — SRS v3.2](projetos-faculdade/bueno-s-house/comanda-digital-srs.md) — especificação oficial completa do professor (requisitos, modelo de dados, regras, roteiro, critérios de nota)
   - [Comanda Digital — Estado Atual vs. SRS](projetos-faculdade/bueno-s-house/comanda-digital-estado.md) — comparativo bloco a bloco do que já está feito e o que falta (primeira estimativa, ver plano para versão auditada)
   - [Comanda Digital — Plano de Implementação](projetos-faculdade/bueno-s-house/comanda-digital-plano.md) — plano faseado com base em auditoria real do código (backend + os dois frontends)
+  - [Comanda Digital — Avaliação em produção](projetos-faculdade/bueno-s-house/comanda-digital-avaliacao-producao.md) — teste da URL final (2026-10-28) contra o SRS: blocos, falhas e prioridades
 
 ## Referências
 - ⭐ [Mapa de Dados](referencias/mapa-dados.md) — hub de todas as notas `-dados` (onde cada repo/API/credencial/armazenamento mora)
