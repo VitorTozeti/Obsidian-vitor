@@ -2,7 +2,7 @@
 name: nexus-rpg
 description: motor e construtor de sistemas de RPG de mesa 100% offline, com editor visual de fichas e modos Mestre e Jogador
 tags: [projeto, proj/nexus-rpg, rpg, vanilla-js, offline]
-updated: 2026-10-20
+updated: 2026-10-30
 ---
 
 # Nexus RPG
@@ -18,6 +18,7 @@ O projeto oferece um ambiente integrado para RPGs de mesa dividido em dois perfi
 - **Teste leigo multi-sistema (2026-10-27):** 13 estilos (D&D, PF2, T20, OP, CoC, F&M, Fate, PbtA, V5, SW, Blades, GURPS, Re:Zero) — jogador não usa o sistema do mestre, CoC rola errado, ficha some, motor de dados sem sucessos/explosão/dF — [[nexus-rpg-teste-leigo-multisistema]].
 - **Teste às cegas Re:Zero (2026-10-16):** criação de um sistema próprio sem ler docs — pontos fortes, lacunas (gatilhos "ao chegar a 0", recurso contador, nível opcional, combate só com HP) e atritos de UX/UI — [[nexus-rpg-teste-rezero-ux]].
 - **Sistemas de poder e editor em blocos (2026-10-20):** aba 🔮 Poderes (formas por ritual, destruíveis com herança, fusões A+B, cópia, aprende N, equipa uma), usos limitados e técnica montada em blocos-frase; modelos Megumi/Yuta/Hornet/Elementos → [[nexus-rpg-sistemas-de-poder]]
+- **Poderes por categoria (2026-10-30):** técnica inata única com graus de crescimento (Jujutsu/F&M), magia aprendível com círculos e elementos (Ordem Paranormal), escolha/sorteio da inata; modelos Ilimitado e Rituais → [[nexus-rpg-poderes-categorias-graus]]
 - **Progressão, tags e criação (2026-10-20):** progressão em regras legíveis + linha do tempo + modelos automáticos, pontos/treino por nível e por habilidade, tags com pacotes e matriz em grade, criar habilidades/técnicas por barra única, cartão em abas e editor em passos — [[nexus-rpg-progressao-tags-criacao]].
 - **Magias D&D, bestiário e campanha completa (2026-10-20):** regras de magia (ação, concentração, ataque, aumentar) + 20 magias SRD, bestiário em 2 cliques e colar statblock, técnicas aplicadas no combate, seção 📜 Missões & Mundo, graus de sucesso, Sanidade X/Y, subir de nível, régua, modelos inspirados — [[nexus-rpg-magias-dnd-bestiario-campanha]].
 - **Campanha de ponta a ponta (2026-10-20):** análise por fase do que um Mestre precisa e do que o app cobre; prioridades: ficha↔combate, missões/pistas, modos de dados, subir de nível — [[nexus-rpg-campanha-ponta-a-ponta]].
