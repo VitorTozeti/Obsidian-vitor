@@ -22,6 +22,7 @@
 - [Manutenção do Vault](processos/manutencao-vault.md) — método editorial + regra de pesquisa proativa (pesquisar nas pastas antes de assumir/perguntar)
 - [Enviar vault para o GitHub](processos/enviar-vault-github.md) — envio pull-first seguro (enviar-github.bat); conflito para e pede resolução
 - [Receber vault do GitHub](processos/receber-vault-github.md) — pull seguro (commita local antes, não perde nada) + tarefa de sexta 12h e/ou sync 1x/dia ao abrir o Claude (hook SessionStart), ambos com aviso por e-mail se falhar
+- [Tool-calling seguro na K.E.M.Y](processos/kemy-tool-calling-seguro.md) — passo a passo para validar tool-calls, nunca deixar `tool_call_id` sem resposta e não confundir erro de execução com erro de provider (nasceu do incidente 2026-09-23)
 
 ## Projetos
 - [GreenFinance](projetos/greenfinance/greenfinance.md) — app PWA de controle financeiro pessoal, carteira de investimentos e conciliação bancária (Pluggy/extratos)
@@ -37,6 +38,14 @@
   - [Role SP no trilho — Onde os dados vivem](projetos/role-sp/role-sp-dados.md) — mapa de localização de dados, repositório, APIs externas e estruturas de dados do Role SP no trilho
   - [Role SP no trilho — Detalhamento da interface](projetos/role-sp/role-sp-interface.md) — painéis, tabela das 14 linhas, ~156 POIs em 20 categorias, funções e fluxo "Quero ir aqui"
   - [Role SP no trilho — Arquitetura e Guia](projetos/role-sp/role-sp-arquitetura.md) — funcionamento do script.js, algoritmos de clustering, cálculo de rotas e guia de expansão de transporte
+- [Pokédex + Gerador de Time](projetos/pokedex/pokedex.md) — site com Pokédex completa (tipos, habilidades, movimentos, status, itens) e motor de análise de time (cobertura de tipos, fraquezas, status gerais)
+  - [Pokédex — Onde os dados vivem](projetos/pokedex/pokedex-dados.md) — PokéAPI (endpoints, cache/fair use), tabela de tipos embutida e repositório do projeto Pokédex
+- [Meu Spotify](projetos/meu-spotify/meu-spotify.md) — app pessoal de música grátis com escuta offline; viabilidade: possível via Audius/Jamendo + biblioteca local, inviável para o catálogo mainstream
+  - [Meu Spotify — Onde os dados vivem](projetos/meu-spotify/meu-spotify-dados.md) — APIs de música (Audius/Jamendo/Deezer/Spotify), o que cada uma libera, armazenamento offline e limites legais
+- [KEMY_AI](projetos/KEMY_AI/KEMY_AI.md) — assistente K.E.M.Y (Kernel Engine for Modular Yield) em Python, terminal + web (index.html), com 20 ferramentas (web, docs PDF/Word/Excel, e-mail, Obsidian, multiagente); modelos gratuitos via OpenRouter
+  - [KEMY_AI — Onde os dados vivem](projetos/KEMY_AI/KEMY_AI-dados.md) — pasta/código, OpenRouter (endpoint/modelo/parâmetros), as 20 ferramentas, variáveis KEMY_*/GROK_*, rodízio de modelo e o loop de turno
+- [Megabrain](projetos/megabrain/Megabrain.md) — hub de conhecimento/memória estruturada do vault, segundo cérebro que complementa o KEMY_AI
+  - [Megabrain — Onde os dados vivem](projetos/megabrain/Megabrain-dados.md) — pasta, convenção de cor (laranja) e como se relaciona com o contraste amarelo do KEMY_AI-dados
 
 ## Referências
 - ⭐ [Mapa de Projetos](referencias/mapa-projetos.md) — carregamento de contexto: por projeto, o hub, o repo real no disco e as refs sempre-considerar (COMECE AQUI ao entrar num projeto)

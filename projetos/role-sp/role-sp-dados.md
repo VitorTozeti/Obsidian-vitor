@@ -47,3 +47,7 @@ script.js        # Lógica central: coordenadas das linhas/estações, catálogo
   - Objeto: `{ nome, categoria, lat, lng, desc, distancia, foto }`; fotos via `images.unsplash.com`; deduplicação por nome/categoria.
   - Constantes: `LIMITE_A_PE_METROS = 1500`; raio de busca de ônibus na Overpass = 600 m.
 - **Persistência de Dados:** o projeto não exige backend nem banco de dados persistente; todas as consultas e filtros operam diretamente na memória do cliente (DOM e Leaflet layer groups).
+
+## Projeto de Dados - O que a Kemmy Gosta
+
+- **Parques e vistas interessantes** (pontos de interesse focados em áreas verdes, mirantes e paisagens urbanas/natureza dentro do projeto Role SP)

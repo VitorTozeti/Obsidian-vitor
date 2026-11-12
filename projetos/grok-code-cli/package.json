@@ -1,0 +1,19 @@
+{
+  "name": "grok-code-cli",
+  "version": "1.0.0",
+  "description": "CLI agente de codigo estilo Claude Code, usando a API da xAI (Grok) com function calling.",
+  "type": "module",
+  "bin": {
+    "grok-code": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "license": "MIT"
+}
