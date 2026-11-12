@@ -2,7 +2,7 @@
 name: nexus-rpg
 description: motor e construtor de sistemas de RPG de mesa 100% offline, com editor visual de fichas e modos Mestre e Jogador
 tags: [projeto, proj/nexus-rpg, rpg, vanilla-js, offline]
-updated: 2026-09-08
+updated: 2026-10-30
 ---
 
 # Nexus RPG
@@ -11,7 +11,27 @@ Aplicação web **100% offline**, sem dependências externas, sem build e sem se
 
 O projeto oferece um ambiente integrado para RPGs de mesa dividido em dois perfis de uso: **Mestre** (criação completa de regras e desenho livre da ficha) e **Jogador** (criação guiada de personagens e ficha interativa).
 
-## Estado atual (2026-09-08)
+## Estado atual (2026-10-14)
+
+- **Editores unificados + itens com efeito/uso (2026-10-14):** master-detail em Recursos/Itens/Técnicas/Classes, efeito condicional "⏱ Vale", itens com Uso/raridade/biblioteca com mecânica — [[nexus-rpg-editores-itens]].
+- **Ícones, código e técnicas (2026-10-15):** seletor de 670 ícones, valores de efeito como fórmula, editor de código guiado, recursos especiais por item/técnica/código, técnicas usáveis e liga/desliga, defesa soma no valor — [[nexus-rpg-codigo-icones-tecnicas]].
+- **Teste leigo multi-sistema (2026-10-27):** 13 estilos (D&D, PF2, T20, OP, CoC, F&M, Fate, PbtA, V5, SW, Blades, GURPS, Re:Zero) — jogador não usa o sistema do mestre, CoC rola errado, ficha some, motor de dados sem sucessos/explosão/dF — [[nexus-rpg-teste-leigo-multisistema]].
+- **Teste às cegas Re:Zero (2026-10-16):** criação de um sistema próprio sem ler docs — pontos fortes, lacunas (gatilhos "ao chegar a 0", recurso contador, nível opcional, combate só com HP) e atritos de UX/UI — [[nexus-rpg-teste-rezero-ux]].
+- **Sistemas de poder e editor em blocos (2026-10-20):** aba 🔮 Poderes (formas por ritual, destruíveis com herança, fusões A+B, cópia, aprende N, equipa uma), usos limitados e técnica montada em blocos-frase; modelos Megumi/Yuta/Hornet/Elementos → [[nexus-rpg-sistemas-de-poder]]
+- **Poderes por categoria (2026-10-30):** técnica inata única com graus de crescimento (Jujutsu/F&M), magia aprendível com círculos e elementos (Ordem Paranormal), escolha/sorteio da inata; modelos Ilimitado e Rituais → [[nexus-rpg-poderes-categorias-graus]]
+- **Progressão, tags e criação (2026-10-20):** progressão em regras legíveis + linha do tempo + modelos automáticos, pontos/treino por nível e por habilidade, tags com pacotes e matriz em grade, criar habilidades/técnicas por barra única, cartão em abas e editor em passos — [[nexus-rpg-progressao-tags-criacao]].
+- **Magias D&D, bestiário e campanha completa (2026-10-20):** regras de magia (ação, concentração, ataque, aumentar) + 20 magias SRD, bestiário em 2 cliques e colar statblock, técnicas aplicadas no combate, seção 📜 Missões & Mundo, graus de sucesso, Sanidade X/Y, subir de nível, régua, modelos inspirados — [[nexus-rpg-magias-dnd-bestiario-campanha]].
+- **Campanha de ponta a ponta (2026-10-20):** análise por fase do que um Mestre precisa e do que o app cobre; prioridades: ficha↔combate, missões/pistas, modos de dados, subir de nível — [[nexus-rpg-campanha-ponta-a-ponta]].
+- **Pesquisa de sistemas (2026-10-20):** regras de D&D, Ordem Paranormal, Tormenta20, F&M, Fate, PF2e, Call of Cthulhu e comparativo — [[pesquisa-sistemas-rpg]].
+- **Morte, movimento e assistentes (2026-10-20):** aba ☠️ Morte & Movimento (testes contra a morte, contagem, vida negativa, resgates, cicatrizes; deslocamento, carga, condições, ações por turno) + assistentes 🧙 de técnica, ✨ poder e 🧬 modificação física com pontos de poder — [[nexus-rpg-morte-movimento-assistentes]].
+- **Magias e técnicas por tipo (2026-10-16):** cura, dano (alvo/área + teste), buff, debuff (condição), invocação com cartão de criatura estilizado, vários recursos por magia — [[nexus-rpg-magias-tecnicas]].
+- **Classes/origens com mecânica (2026-10-14):** fórmula de recurso por classe, habilidades por nível, técnicas de classe, traços com efeito (Asas → Voo), resistências, efeito por código JS + correções de layout/contraste — [[nexus-rpg-classes-origens]].
+- **Mesa simples + atributos/perícias rápidos (2026-10-14):** mapa = imagem salva, tokens com foto/categorias/tokens próprios e anel de condição; biblioteca de 41 perícias; `render()` não pula mais para o topo — [[nexus-rpg-mesa-tokens]]. (Substitui os geradores/editor de mapa das rodadas anteriores.)
+
+- **Rodada v2 (2026-10-13):** sistema guiado, mapa editável e Mesa ao vivo — [[nexus-rpg-v2-sistema-mapa-campanha]].
+- **Plano de melhorias (2026-10-13):** auditoria completa e ondas de execução em [[nexus-rpg-plano-melhorias]].
+- **UX com liberdade criativa (2026-10-14):** princípios e propostas por tela em [[nexus-rpg-ux-liberdade]].
+- **Mapas 4.0 + UX/UI (2026-10-13):** geradores procedurais (mundo, masmorra, caverna, interior, vila), zoom/pan, grade hex, bússola/escala, exportar PNG, backup e acessibilidade — ver [[nexus-rpg-mapas-geradores]].
 
 - **Localização dos dados:** consulte [[nexus-rpg-dados]] para repositório, estrutura de arquivos, chaves do `localStorage` e carregamento.
 - **Núcleo modularizado:** transição concluída de arquivo monolítico único (`nexus-rpg-prototipo.html`) para estrutura desacoplada em `src/` (`auth/`, `core/`, `data/`, `ui/`, `master/`, `player/`).

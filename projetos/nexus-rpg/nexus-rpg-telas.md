@@ -2,7 +2,7 @@
 name: nexus-rpg-telas
 description: detalhamento tela a tela do Nexus RPG (auth, 17 abas do Mestre, editor de fichas com 21 blocos, campanha e modo Jogador)
 tags: [proj/nexus-rpg, telas, ui, referencia-tecnica]
-updated: 2026-09-09
+updated: 2026-10-14
 ---
 
 # Nexus RPG — Detalhamento de Todas as Telas
@@ -113,6 +113,7 @@ Canvas de largura fixa **`CANVAS_W = 860`px** (escalado para caber na tela), gri
   dos atributos do sistema; NPCs com cards de relacionamento.
 - **Jogadores (`players.js`):** gestão dos personagens dos jogadores na campanha.
 - **Itens da campanha (`campaign-items.js`):** itens específicos da mesa.
+- **Mapa — ATUAL (2026-10-14):** `mesa-mapa.js`. Barra (mapa, nome, novo, trocar imagem, grade, excluir) + palco com zoom/arrastar + lateral com **Biblioteca** (categorias, tokens prontos e próprios, criar token com foto) e **No mapa**; editor do token selecionado com **condições = anel colorido**. Ver [[nexus-rpg-mesa-tokens]]. Os itens abaixo sobre mapas (2026-09-09 e 2026-10-13) descrevem o editor antigo, **removido** — histórico.
 - **Mapa (`campaign-map.js`) — coleção de mapas + temas (2026-09-09):** deixou de ser
   um mapa único. Agora `campaign.maps` é uma **lista** com `currentMapId`
   (migração automática do `map` antigo em `sanitizeCampaign`). Cada mapa tem **tipo**
@@ -190,7 +191,8 @@ Canvas de largura fixa **`CANVAS_W = 860`px** (escalado para caber na tela), gri
     .seg/.map-token-marks` + regras de hover/`.no-labels`/`.painting`. Modelo:
     `newMap` ganhou `terrain/showLabels/grid.snap`; `newToken` ganhou `marks`; migração
     em `sanitizeCampaign`.
-  - **Pendências mapeadas (próximos passos):** pan/zoom do canvas p/ mapas grandes;
+  - **Atualização 2026-10-13:** pan/zoom, grade hex, bússola/escala, desfazer do pincel, exportar PNG e **geradores procedurais** — ver [[nexus-rpg-mapas-geradores]] (pan/zoom abaixo já entregue).
+  - **Pendências mapeadas (próximos passos):** ~~pan/zoom do canvas~~ (feito);
     alças de redimensionar/rotacionar direto na peça (hoje via sliders); multi-seleção +
     copiar/colar + tecla Delete; camadas de terreno separadas por material (hoje é 1
     raster) e brush “conecta com metaball”; trilha/iniciativa lateral de tokens; peso do
@@ -237,3 +239,16 @@ Fórmulas, dados e efeitos são detalhados em [[nexus-rpg-arquitetura]]; resumo:
 `formula-engine` (funções `min/max/menor/maior/round/arredondar/floor/piso/ceil/teto/abs/modulo/se/if`),
 `dice-engine` (`NdX`, `kh/kl/dh/dl`, vantagem/desvantagem que se cancelam, dice pool
 estilo Ordem), migração de schema `SCHEMA=10` (migra de `SCHEMA_MIN=6`).
+
+## Aba Perícias do Mestre (2026-10-14)
+Reformulada em `src/ui/atributos-pericias.js` (`tabPericias`/`painelPericia`): as perícias do
+sistema aparecem em **grade de cartões agrupada por atributo ligado** (nome, sigla, descrição
+resumida, bônus de treino, automática/escolha). **Clicar num cartão abre um painel lateral**
+(gaveta à direita, `S.ui.perSel`) para editar nome, atributo, descrição, bônus e
+disponibilidade, ou remover; Esc/✕/Pronto fecham. CSS `.per-*` em `assets/css/sistema.css`.
+Biblioteca de perícias prontas e criação por Enter continuam acima da grade.
+Dentro de cada grupo os cartões aparecem em **ordem alfabética** (`localeCompare` pt-BR, sem
+diferenciar acento/maiúscula) — só na exibição; a ordem salva em `sys.skills` não muda.
+
+## Fluxo e proteção do Mestre (2026-10-14)
+Gaveta **Ficha ao vivo**, **🕘 Versões** + ↶ ↷, “Sugestões do app” e “Testar assim mesmo” no Início, wizard do jogador sem travas e **🎲 Me surpreenda**, biblioteca de condições. Detalhes em [[nexus-rpg-ux-liberdade]].

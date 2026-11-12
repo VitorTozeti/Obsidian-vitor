@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "rea": {
+      "command": "C:/Users/v.tozeti/Desktop/Vitor/teste/Obsidian-vitor/.tools/node/node.exe",
+      "args": ["C:/Users/v.tozeti/Desktop/Vitor/teste/Obsidian-vitor/.tools/node/node_modules/npm/bin/npx-cli.js", "-y", "rea-agents@6.4.0", "mcp"],
+      "env": {
+        "PATH": "C:/Users/v.tozeti/Desktop/Vitor/teste/Obsidian-vitor/.tools/node;C:/Windows/System32;C:/Windows"
+      }
+    }
+  }
+}

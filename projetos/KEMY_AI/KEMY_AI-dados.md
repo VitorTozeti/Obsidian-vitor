@@ -204,3 +204,6 @@ qualquer arquivo/pasta que o processo tenha permissão (inclusive achar `.env`/c
 ## Relacionado
 - [[KEMY_AI]] — hub do projeto (estado atual, rebrand, significado da sigla)
 - ⭐[[mapa-projetos]]
+
+## Ver também
+- [[mapa-dados]] — hub de todas as notas de dados · ⭐[[mapa-projetos]]

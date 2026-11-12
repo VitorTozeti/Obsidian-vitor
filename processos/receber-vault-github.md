@@ -85,3 +85,6 @@ rodou hoje → sai na hora. Forçar na mão: `... sync-diario.ps1 -Force`.
 > Lembrete: o plugin **obsidian-git** já faz pull/push a cada ~2 min e
 > `autoPullOnBoot`. A tarefa de sexta é uma **rede de segurança** extra com aviso
 > ativo por e-mail — não substitui o obsidian-git, reforça.
+
+## Ver também
+- [[vault-dados]] — onde vivem scripts, remoto e config do vault · [[mapa-dados]]

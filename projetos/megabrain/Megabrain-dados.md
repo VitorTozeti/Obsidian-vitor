@@ -38,3 +38,6 @@ Nota de dados/arquitetura do [[Megabrain]]. O que existe, onde mora e a convenç
 - [[Megabrain]] — hub do projeto
 - [[KEMY_AI-dados]] — nota de dados irmã (contraste amarelo)
 - ⭐[[mapa-projetos]]
+
+## Ver também
+- [[mapa-dados]] — hub de todas as notas de dados · ⭐[[mapa-projetos]]

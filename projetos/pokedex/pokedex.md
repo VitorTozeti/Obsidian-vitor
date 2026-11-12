@@ -2,7 +2,7 @@
 name: pokedex
 description: site Pokédex completa (tipos, habilidades, movimentos, status, itens) com gerador de time avançado que analisa cobertura de tipos, sinergia e status gerais
 tags: [projeto, proj/pokedex, site, web, pokeapi, ideia]
-updated: 2026-09-15 (10ª iteração: megas customizadas/fan-made — Mega Flygon, Milotic, Arcanine, Crobat, Luxray, Zoroark, Hydreigon, Togekiss, Weavile — com pedras próprias)
+updated: 2026-09-25 (11ª iteração: filtros da Pokédex por habilidade, golpe e ranking por status maior/menor)
 ---
 
 # Pokédex + Gerador de Time
@@ -221,6 +221,22 @@ sugere ajustes.
   entra no seletor de item (categoria Mega Pedras) e é segurada automaticamente, igual às
   oficiais. Testado no navegador: selecionar a Mega Flygon troca tipos/status/habilidade e
   segura a Flygonita, sem erros de console.
+- **Filtros avançados na Pokédex (11ª iteração, 2026-09-25, entregue):** a barra de filtros
+  ganhou **Habilidade** e **Golpe** (inputs com autocompletar via `<datalist>`, aceitam espaço
+  ou hífen e, para habilidade, também o nome PT curado de `abilities.js`), além de
+  **ordenação por status base** (HP/Atq/Def/AtE/DfE/Vel/Total) com **Maior→menor / Menor→maior**
+  e botão **Limpar**. Tudo combina com busca, tipo e geração (filtro de geração já existia). O
+  card mostra o valor do status ordenado. Código: `applyFilters` (agora async, com `filterRun`
+  p/ descartar resultados velhos) em `js/pokedex.js`; novos em `js/api.js`: `getAbilityNames`,
+  `getMoveNames`, `pokemonWithAbility`, `pokemonWithMove`, `getStatsIndex` (fontes em
+  [[pokedex-dados]]). Testado no navegador: Levitate → 32, False Swipe → 126, Gen 1 por
+  Velocidade: Electrode 150 no topo / Slowpoke 15 no fim.
+  **Redesign UX dos filtros (mesma data):** a barra solta virou um **painel** (`.filters-panel`)
+  com busca grande + contador (spinner enquanto carrega), grade de campos **rotulados**
+  (Tipo · Geração · Habilidade · Golpe · Ordenar por status), direção como **controle
+  segmentado** "↓ Maior / ↑ Menor" (desabilitado até escolher um status), campos preenchidos
+  com destaque de acento (`.is-set`), **chips dos filtros ativos** removíveis com ✕ + "Limpar
+  tudo", Enter aplica na hora e layout responsivo (5 col → 2 col → mobile).
 - **Pendências (próximos passos):** ~~criar repo remoto no GitHub + deploy (Pages)~~ **feito**
   (remoto `VitorTozeti/Vitor-Pokemon` + workflow Pages commitado 2026-09-14; falta só
   confirmar que a página publicada está no ar e linkar a URL do Pages aqui);

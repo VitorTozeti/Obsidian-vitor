@@ -2,7 +2,7 @@
 name: nexus-rpg-dados
 description: mapa de localização de dados, repositório, chaves do LocalStorage e arquitetura de arquivos do Nexus RPG
 tags: [proj/nexus-rpg, dados, infra, arquitetura]
-updated: 2026-09-08
+updated: 2026-10-27
 ---
 
 # Nexus RPG — Onde os Dados Vivem
@@ -35,7 +35,18 @@ src/
     history.js              # Pilhas de Desfazer/Refazer (Undo/Redo)
   data/
     example-system.js       # Definição do sistema de exemplo e migração de ficha
+    regras-gerais.js        # Morte (sys.morte, d.morte) e movimento (sys.movimento, d.turno) — [[nexus-rpg-morte-movimento-assistentes]]
+    arquetipos.js           # Motor de classes/origens: fórmulas de recurso, técnicas, resistências, efeito por código
   ui/
+    atributos-pericias.js   # Abas Atributos e Perícias (criação rápida + biblioteca de 41 perícias) — 2026-10-14
+    classes-origens.js      # Editor de Classes/Origens (master-detail, técnicas, traços, código) — [[nexus-rpg-classes-origens]]
+    master-detail.js        # Layout lista+editor reutilizável (mdLayout/mdCab/mdAbas…) — [[nexus-rpg-editores-itens]]
+    icon-picker.js          # Seletor de ícones (iconePicker) — [[nexus-rpg-codigo-icones-tecnicas]]
+    tecnicas-editor.js      # Modelos + uso de técnicas por tipo, invocações (cartaoTecnica, cartaoInvocacao) — [[nexus-rpg-magias-tecnicas]]
+    codigo-editor.js        # Editor de efeito por código (realce, autocomplete, montar, prévia)
+    tecnicas-editor.js      # Modelos de técnica, uso/liga-desliga (usarHabilidade)
+    itens-editor.js         # Itens: abas Básico/Combate/Efeitos/Uso, biblioteca com mecânica, usarItem
+    recursos-tecnicas.js    # Recursos (fórmula/recarga/quem mexe) e tiers de técnica com simulador
     shortcuts.js            # Mapeamento de atalhos de teclado do editor
     ui-basic.js             # Componentes reutilizáveis de interface
     glossary.js             # Dicas de contexto e termos do sistema
@@ -64,13 +75,86 @@ Todos os dados da aplicação residem no `localStorage` do navegador do usuário
 
 | Chave | Formato | Conteúdo |
 |---|---|---|
-| `nexus_accounts` | JSON Array | Lista de contas: `[ { id, name, pass, createdAt } ]` |
+| `nexus_accounts` | JSON Array | Lista de contas: `[ { id, name, salt, hash, algo, createdAt } ]` — senha como **hash salgado** (SHA-256 × 12 000, JS puro síncrono). Contas antigas com `pass` em texto são convertidas no próximo login. |
 | `nexus_session` | JSON Object | Sessão ativa: `{ accountId, personagemId }` |
 | `nexus_acct_<id>` | JSON Object | Dados da conta: `{ personagens: [ { id, kind, name, system | draft+saved } ] }` |
 
 > ⚠️ **Nota sobre segurança de credenciais:** o app foi concebido como protótipo offline e armazena senhas em texto puro no `localStorage`. Não utilize senhas reais.
 
+## Mesa (mapa + tokens) — 2026-10-14
+
+- Editor de mapas antigo **removido** (`campaign-map.js`, `map-editor.js`, `map-gen.js`); no lugar, `src/master/campaign/mesa-mapa.js` + `assets/css/mapa.css`. Detalhes em [[nexus-rpg-mesa-tokens]].
+- Campos novos em `campaign`: `tokenCats[]`, `tokenLib[]`, `tokenConds[]`; em cada mapa: `aspect`; em cada token: `conds[]`, `libId`; em cada atributo: `desc`. `sanitizeCampaign` migra tudo.
+- `render()` (state.js) agora preserva rolagem/foco na mesma tela.
+- O preview local usa o servidor `the-one-system` (porta 8794) cadastrado em `.claude/launch.json` deste vault.
+
+## Mapas — campos e arquivos (2026-10-13, **histórico**: substituídos pela Mesa)
+
+- Arquivo `src/master/campaign/map-gen.js` (geradores). Em `campaign.maps[]`: `genMeta {g,seed}`, `compass`, `scale {on,total,unit}`, `grid.type` (`square`|`hex`); pins/props/reinos gerados têm `gen:true`. A imagem gerada fica em `m.image` (JPEG). Detalhes em [[nexus-rpg-mapas-geradores]].
+- Backup da conta: botão **💾 Backup** → JSON `nexus-backup-AAAA-MM-DD.json` (`{app,versao,conta,exportadoEm,dados}`).
+
+- **v2 (2026-10-13):** mapas ganham `objs/bg/fx`; campanha ganha `notebook, handouts, combat, clocks, resources, tables, xp, present, meta, prep`; formato `.campanha` v1 e backup de conta restaurável — ver [[nexus-rpg-v2-sistema-mapa-campanha]].
+
 ## Arquivos Intermediários e Formatos de Exportação
 
 - **Arquivos `.nexus` (JSON):** formato completo de exportação e importação de sistemas de RPG (regras, fórmulas, tabelas, blocos de ficha e configurações de campanha).
 - **Versionamento de Schema:** mantido no código como `SCHEMA = 10`, suportando migração automática para estruturas salvas a partir do schema 6.
+
+## Ver também
+- [[mapa-dados]] — hub de todas as notas de dados · ⭐[[mapa-projetos]]
+
+## 2026-10-14 — Rolagem preservada ao editar
+- `render()` em `src/core/state.js` agora também guarda/restaura a rolagem **interna** (painéis laterais, listas, `.mpane-body`, `.mt-side`…) via `capturaRolagem`/`restauraRolagem`, além do scroll da janela e do foco. O `painel-aberto` é aplicado antes de restaurar (evita deslocamento de layout).
+- `dashboard.js` refocus usa `focus({preventScroll:true})`.
+
+## 2026-10-14 — Paletas de cores (temas)
+- Novo `src/ui/temas.js` (carregado 1º no `index.html`): 8 paletas (Noite, Meia-noite, Oceano, Floresta, Vinho, Grafite, Claro, Pergaminho, Alto contraste) + **Personalizada** (4 cores: fundo, painéis, texto, destaque; o resto é derivado com `color-mix`). Botão 🎨 flutuante (canto inferior esquerdo), fora do `#root` → trocar tema não chama `render()`. Salvo em `localStorage` (`nexus-tema`, `nexus-tema-custom`).
+- CSS: cores fixas viraram variáveis (`--surf`, `--surf2`, `--line2`, `--acc-txt`, `--warn-txt`, `--rose-txt`, `--ok-txt`). Canvas da ficha, mapas e tela de apresentação continuam escuros de propósito.
+- **Ainda sem commit** (a pedido do usuário, aguardando aprovação).
+
+## 2026-10-16 — Gatilhos, contador, CSP e senha com hash
+Resposta ao teste às cegas [[nexus-rpg-teste-rezero-ux]].
+- **Novos arquivos:** `src/core/gatilhos.js` (motor + editor da aba ⚡ Gatilhos do recurso; carregado depois de `history.js`) e `assets/css/melhorias.css` (carregado por último).
+- **Recurso (`sys.resources[]`) ganhou:** `start` (fórmula "Começa em"; vazio = começa cheio), `contador` (bool; só rótulo/atalho, equivale a `start:'0'`) e `gatilhos:[{id,quando:'zero'|'cheio',acoes:[{k:'restaurar'|'somar'|'aviso',alvo,modo,n,texto}]}]`. `sys.semNiveis` (bool) esconde nível no app. Tudo validado em `migrateSystem` (arquivo importado pode vir malformado; limites de 20 gatilhos/20 ações).
+- **Ficha:** `computeSheet` devolve `inicio` por recurso; `recursosInner/setRes` chama `executarGatilhos` (só no modo `play`). `aplicarDescanso` usa `inicio`.
+- **Combate/Bestiário:** `x.res[resId]={cur,max}` por combatente (`cbIniciaRecursos`); `statblock.recs[resId]` = máximo manual do inimigo (vazio = fórmula do sistema com os atributos do statblock).
+- **Mesa:** `focarPainel(k)` (scroll + flash ao abrir painel); botão "🧪 Adicionar meu personagem de teste" cria player `{teste:true, sheet:<draft>}`.
+- **Render:** `render()` guarda no `mousedown` qual campo foi clicado e devolve o foco depois de reconstruir (causa raiz do "texto digitado some": `onchange`→`render()` trocava o DOM antes do foco chegar). `ajustaBlocosJogo` faz os blocos da ficha do jogador crescerem até caber o conteúdo (sem rolagem interna) e empurra os de baixo.
+- **Segurança:** `<meta http-equiv="Content-Security-Policy">` em `index.html` — `connect-src 'none'`, `default-src 'none'`, `script-src 'self' 'unsafe-eval'` (eval só por causa do "efeito por código"), estilos inline permitidos. Nada sai do navegador, nem por código liberado. Sistema importado continua chegando com `codigoBloqueado`.
+- **Dev:** `python -m http.server` entrega 52 scripts em série e o navegador pode cachear versões velhas — para testar use um servidor com `Cache-Control: no-store` e **espere ~6 s** antes de ler a página (uma leitura em branco logo após o carregamento foi só lentidão, não bug).
+
+## 2026-10-20 — Morte, movimento e assistentes
+- Novos arquivos: `src/data/regras-gerais.js` (após `arquetipos.js`), `src/ui/regras-gerais-ui.js` e `src/ui/assistentes.js` (após `itens-editor.js`), `assets/css/regras.css`.
+- Sistema ganhou `sys.morte` e `sys.movimento` (validados em `sanitizeRegrasGerais`, chamado no fim de `sanitizeSystem`). Ficha ganhou `d.morte` e `d.turno` (criados sob demanda). Aba `combate` em `TAB_META`.
+- Detalhes em [[nexus-rpg-morte-movimento-assistentes]]. Commit `00c3c2e`.
+
+## 2026-10-20 — Magias D&D, bestiário, combate e Missões & Mundo
+- Novos arquivos: `src/ui/conjuracao.js` (após `tecnicas-editor.js`), `src/ui/regras-extra.js` (após `livro.js`), `src/master/campaign/bestiario-extra.js` (após `bestiary.js`), `src/master/campaign/combate-acoes.js` e `mundo.js` (após `initiative.js`), `assets/css/campanha2.css`.
+- `ab.uso` ganhou `execucao, concentracao, ritual, componentes, circulo, escola, repete, ataque{on,bonus}, aumenta{formula,custo,max}`; ficha ganhou `d.concentrando`.
+- Statblock ganhou `nivel, mov, resist, tracos, habs[], fases[], lendarias{n,usadas,texto}, usaMorte`; combatente ganhou `morte, concentrando, fasesVistas, lendUsadas, invocDe, invocAtk`.
+- Campanha ganhou `arcos, missoes, pistas, faccoes, calendario, seguranca` (`sanitizeMundo`, roda também ao abrir a seção) e `present.pausa` (Carta X); NPC ganhou `faccaoId`.
+- Sistema ganhou `graus{on,modo,margem,nat}` e recurso `teste{on}`; `construirSistema` aplica `m.pos(sys)` dos modelos inspirados (`paranormal`, `feiticeiros`, `tormentoso`).
+- `expandeDadosDinamicos(expr,vars)` no dice-engine: `(fórmula)dN` vira número de dados (usado por `rollExpr` e `mediaExpr`).
+- **Dev:** o servidor `the-one-system-nocache` (porta 8795, `.claude/servidor-sem-cache.py`, `Cache-Control: no-store`) evita scripts velhos em cache; espere `typeof telaFalha==='function'` antes de testar (60 scripts em série).
+- Detalhes em [[nexus-rpg-magias-dnd-bestiario-campanha]].
+
+## 2026-10-20 — Progressão, tags e criação
+- Novos: `src/data/progressao.js` (após `regras-gerais.js`), `src/ui/progressao-ui.js` e `src/ui/tags-ui.js` (após `regras-extra.js`), `src/ui/habilidades-ux.js` (após `assistentes.js`), `assets/css/criacao.css`.
+- Sistema: `sys.ganhos[]` (regras de ganho; `perLevel` migra para cá), `profTiers[].nivelMin`, tags com `icon/cat/desc`. Efeitos novos `pontosAtributo/pontosPericia/treino` (`B.pts`).
+- `levelPoints(sys,level,eff)` → `{attrPoints, skillCount, treino, tecnicas}`. Abas Progressão e Tags chamam `tabProgressaoNova`/`tabTagsNova`.
+- Detalhes em [[nexus-rpg-progressao-tags-criacao]].
+
+## 2026-10-20 — Sistemas de poder e editor em blocos
+- Novos: `src/data/poderes.js` (após `progressao.js`), `src/ui/blocos-uso.js` e `src/ui/poderes-ui.js` (após `habilidades-ux.js`), `assets/css/poderes.css`.
+- Sistema: `sys.poderes[]` (formas, combos, modo, cópia). Técnica: `uso.usos {max, recarga}` e `uso.blocos` (ordem dos blocos). Efeito novo `poder`.
+- Personagem: `d.poder[poderId] = {des, perd, esc, equip, copias}` e `d.usos[abId]` (usos gastos; zera no descanso).
+- Aba nova `poderes` em `TAB_META` (grupo Personagem); formas entram no `gatherEffects` como fonte `tipo:'poder'`.
+- Detalhes em [[nexus-rpg-sistemas-de-poder]].
+
+## 2026-10-27 — Jogador ligado ao Mestre, ficha de teste e perícia %
+- Personagem `jogador`: `mestreId` + `system` (cópia). Personagem `mestre`: `testDraft`. Ficha: `d.pct{skillId:0-99}`. Perícia do sistema: `basePct`.
+- `helpers.js h()` ignora atributos booleanos falsos (`_ATTR_BOOL`).
+- Detalhes em [[nexus-rpg-teste-leigo-multisistema]].
+- Rodada 2 (motor de dados): `sys.rollMode` aceita `'sucessos'` (+`sucAlvo`, `sucExplode`); `sys.faixas{on,lista}`; `sys.graus.modo` aceita `'sob'` (+`critSob`, `desSob`). Notação `dF`, `!`, `>=N`.
+- Rodada 3: `src/ui/aspectos-caixas.js` (após `regras-extra.js`). Recurso `visual` (`barra`/`caixas`/`relogio`); `sys.aspectos`; ficha `d.aspectos`, `d.aspLivres`; bloco `aspectos`.
+- Rodada 4: `src/ui/modelos-enriquecidos.js` (após `aspectos-caixas.js`); `sys.dndVida`; recursos "Espaços Nº círculo" (caixas). Ajudantes globais prefixados `_me*`.

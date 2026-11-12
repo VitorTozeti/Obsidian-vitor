@@ -2,7 +2,7 @@
 name: meu-spotify-dados
 description: onde os dados vivem no Meu Spotify — APIs de música (Audius, Jamendo, Deezer, Spotify), o que cada uma libera, armazenamento offline e limites legais
 tags: [projeto, proj/meu-spotify, dados, api, musica, offline]
-updated: 2026-09-15
+updated: 2026-10-13
 ---
 
 # Meu Spotify — Onde os dados vivem
@@ -66,6 +66,17 @@ permite e como guardar offline. (Regra de negócio/decisões ficam no hub.)
   `play()` esperava `DownloadedTrack` mas o `TrackRow` só garante passar `Track` — mudou pra
   receber `Track` e buscar o `DownloadedTrack` correspondente na lista pelo `id`.
 
+- **YouTube adicionado (2026-10-13, sem build testado — Node não está instalado):** nova fonte
+  `youtube` para tocar músicas/vídeos inteiros de graça via **YouTube IFrame Player API**
+  (streaming embutido, sem baixar; vídeo fica visível, exigência dos termos). Arquivos novos em
+  `src/youtube/` (`client.ts` busca via YouTube Data API v3 `search`, categoria música,
+  `videoEmbeddable`; chave guardada em `localStorage` `meu-spotify:youtube-key`, colada na tela
+  Buscar; `iframeApi.ts` carrega o script). `Player.tsx` controla o iframe (play/pause/next
+  sincronizados com o store). Cota grátis: 10.000 unidades/dia, busca = 100 (~100 buscas/dia).
+  **Playlists agora persistem** (`Playlist.tracks: Track[]` no IndexedDB, páginas
+  `/playlists` e `/playlist/:id`, componente `AddToPlaylist`). YouTube não tem offline nem toca
+  com tela bloqueada. Pendente: `npm install && npm run build` para validar tipos.
+
 ## APIs de música (fontes candidatas)
 
 ### Audius (recomendada como base) — áudio completo grátis
@@ -124,3 +135,6 @@ Fases definidas para o repositório `spotify-vitor` (ver caminho acima), stack P
    mais robusto no celular.
 
 Ainda não iniciado — usuário pediu só o planejamento por enquanto.
+
+## Ver também
+- [[mapa-dados]] — hub de todas as notas de dados · ⭐[[mapa-projetos]]

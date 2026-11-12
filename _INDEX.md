@@ -33,7 +33,25 @@
   - [Nexus RPG — Onde os dados vivem](projetos/nexus-rpg/nexus-rpg-dados.md) — mapa de localização de dados, repositório, chaves do LocalStorage e arquitetura de arquivos do Nexus RPG
   - [Nexus RPG — Detalhamento das telas](projetos/nexus-rpg/nexus-rpg-telas.md) — auth, 17 abas do Mestre, editor de fichas (21 blocos), suíte de campanha e modo Jogador, tela a tela
   - [Nexus RPG — Arquitetura e Guia](projetos/nexus-rpg/nexus-rpg-arquitetura.md) — funcionamento interno, motores de regras/dados, canvas de fichas e guia para futuras atualizações
-  - [Nexus RPG — Planejamento](projetos/nexus-rpg/nexus-rpg-planejamento.md) — roadmap: checklist entregue vs. pendente, backlog priorizado por área e próximos passos
+  - [Nexus RPG — Planejamento](projetos/nexus-rpg/nexus-rpg-planejamento.md) — roadmap: checklist entregue vs. pendente, backlog priorizado por área e próximos passos + análise técnica 2026-10-13 (cota, testes, a11y, arquitetura)
+  - [Nexus RPG — Mapas e geradores](projetos/nexus-rpg/nexus-rpg-mapas-geradores.md) — geradores procedurais (mundo/masmorra/caverna/interior/vila), estudo REA do Azgaar/Watabou, zoom/pan, hex, PNG e UX/UI (2026-10-13)
+  - [Nexus RPG — Plano de melhorias](projetos/nexus-rpg/nexus-rpg-plano-melhorias.md) — auditoria 2026-10-13: dados, segurança, arquitetura, testes/CI, UX/UI, funcionalidades, PWA e ondas de execução
+  - [Nexus RPG — UX: liberdade criativa](projetos/nexus-rpg/nexus-rpg-ux-liberdade.md) — UX pela jornada do Mestre/Jogador (implementado em parte): ficha ao vivo, versões, wizard sem bloqueios
+  - [Nexus RPG — Rodada v2](projetos/nexus-rpg/nexus-rpg-v2-sistema-mapa-campanha.md) — assistente de criação do sistema, mapa 100% editável (objetos vetoriais), combate/diário/tela dos jogadores/.campanha (2026-10-13)
+  - [Nexus RPG — Classes, origens e efeitos](projetos/nexus-rpg/nexus-rpg-classes-origens.md) — 2026-10-14: classe muda fórmula de recurso, habilidades por nível, técnicas escolhíveis, traços com efeito, resistências, efeito por código; layout
+  - [Nexus RPG — Mesa: mapa + tokens](projetos/nexus-rpg/nexus-rpg-mesa-tokens.md) — 2026-10-14: editor de mapas aposentado → imagem + tokens (fotos, categorias, anel de condição), atributos/perícias rápidos (41 perícias prontas) e render sem pulo
+  - [Nexus RPG — Editores, itens e efeito condicional](projetos/nexus-rpg/nexus-rpg-editores-itens.md) — 2026-10-14: master-detail unificado (Recursos/Itens/Técnicas/Classes), "⏱ Vale" por nível/atributo, itens com Uso/raridade/biblioteca com mecânica, validação por classe
+  - [Nexus RPG — Ícones, código e técnicas](projetos/nexus-rpg/nexus-rpg-codigo-icones-tecnicas.md) — 2026-10-15: seletor de 670 ícones, efeitos com fórmula, editor de código guiado, recursos especiais, técnicas usáveis/liga-desliga, início rápido de item
+  - [Nexus RPG — Teste leigo multi-sistema](projetos/nexus-rpg/nexus-rpg-teste-leigo-multisistema.md) — 2026-10-27: 3 agentes testando 13 estilos de RPG como leigos; críticos, lacunas do motor de dados e ordem de ataque
+  - [Nexus RPG — Teste às cegas: Re:Zero](projetos/nexus-rpg/nexus-rpg-teste-rezero-ux.md) — 2026-10-16: sistema criado sem ler docs; o que fluiu, o que faltou (gatilhos, contador, níveis opcionais) e atritos de UX/UI priorizados
+  - [Nexus RPG — Morte, movimento e assistentes](projetos/nexus-rpg/nexus-rpg-morte-movimento-assistentes.md) — 2026-10-20: regras de morte/salvamento, movimento e ações por turno, assistentes de técnica, poder e modificação física
+  - [Nexus RPG — Sistemas de poder e editor em blocos](projetos/nexus-rpg/nexus-rpg-sistemas-de-poder.md) — 2026-10-20: aba 🔮 Poderes (Dez Sombras, Yuta, Hornet, Elementos), formas desbloqueáveis/destruíveis, fusões, cópia, usos limitados e técnica em blocos
+  - [Nexus RPG — Poderes por categoria, graus e círculos](projetos/nexus-rpg/nexus-rpg-poderes-categorias-graus.md) — 2026-10-30: técnica inata única com graus, magia aprendível com círculos/elementos, modelos Ilimitado e Rituais paranormais
+  - [Nexus RPG — Progressão, tags e criação de habilidades](projetos/nexus-rpg/nexus-rpg-progressao-tags-criacao.md) — 2026-10-20: progressão em regras + linha do tempo + modelos, treino por nível, tags com matriz em grade, criar habilidade/técnica em abas e passos
+  - [Nexus RPG — Magias de D&D, bestiário e campanha completa](projetos/nexus-rpg/nexus-rpg-magias-dnd-bestiario-campanha.md) — 2026-10-20: regras de magia + pacote SRD, bestiário rápido (arquétipos, colar statblock), técnicas no combate, Missões & Mundo, graus, Sanidade X/Y, subir de nível, régua
+  - [Nexus RPG — Campanha de ponta a ponta](projetos/nexus-rpg/nexus-rpg-campanha-ponta-a-ponta.md) — 2026-10-20: ferramentas necessárias por fase (sessão zero → final), o que o app tem e o que falta, priorizado
+  - [Nexus RPG — Pesquisa de sistemas de RPG](projetos/nexus-rpg/pesquisa-sistemas/pesquisa-sistemas-rpg.md) — 2026-10-20: D&D 5e, Ordem Paranormal, Tormenta20, F&M, Fate, PF2e, Call of Cthulhu + comparativo de morte/ações
+  - [Nexus RPG — Magias e técnicas por tipo](projetos/nexus-rpg/nexus-rpg-magias-tecnicas.md) — 2026-10-16: tipos cura/dano/buff/debuff/invocação, área, teste, condição, multi-recurso, criaturas estilizadas
 - [Role SP no trilho](projetos/role-sp/role-sp.md) — mapa interativo das linhas de metrô, trem e monotrilho de SP com pontos turísticos, culturais e integração de ônibus via OpenStreetMap
   - [Role SP no trilho — Onde os dados vivem](projetos/role-sp/role-sp-dados.md) — mapa de localização de dados, repositório, APIs externas e estruturas de dados do Role SP no trilho
   - [Role SP no trilho — Detalhamento da interface](projetos/role-sp/role-sp-interface.md) — painéis, tabela das 14 linhas, ~156 POIs em 20 categorias, funções e fluxo "Quero ir aqui"
@@ -42,12 +60,68 @@
   - [Pokédex — Onde os dados vivem](projetos/pokedex/pokedex-dados.md) — PokéAPI (endpoints, cache/fair use), tabela de tipos embutida e repositório do projeto Pokédex
 - [Meu Spotify](projetos/meu-spotify/meu-spotify.md) — app pessoal de música grátis com escuta offline; viabilidade: possível via Audius/Jamendo + biblioteca local, inviável para o catálogo mainstream
   - [Meu Spotify — Onde os dados vivem](projetos/meu-spotify/meu-spotify-dados.md) — APIs de música (Audius/Jamendo/Deezer/Spotify), o que cada uma libera, armazenamento offline e limites legais
+  - [Como o Spotify funciona](projetos/meu-spotify/como-o-spotify-funciona.md) — fluxo de reprodução (chunks, CDN, DRM, offline) e o que o Meu Spotify copia
 - [KEMY_AI](projetos/KEMY_AI/KEMY_AI.md) — assistente K.E.M.Y (Kernel Engine for Modular Yield) em Python, terminal + web (index.html), com 20 ferramentas (web, docs PDF/Word/Excel, e-mail, Obsidian, multiagente); modelos gratuitos via OpenRouter
   - [KEMY_AI — Onde os dados vivem](projetos/KEMY_AI/KEMY_AI-dados.md) — pasta/código, OpenRouter (endpoint/modelo/parâmetros), as 20 ferramentas, variáveis KEMY_*/GROK_*, rodízio de modelo e o loop de turno
 - [Megabrain](projetos/megabrain/Megabrain.md) — hub de conhecimento/memória estruturada do vault, segundo cérebro que complementa o KEMY_AI
   - [Megabrain — Onde os dados vivem](projetos/megabrain/Megabrain-dados.md) — pasta, convenção de cor (laranja) e como se relaciona com o contraste amarelo do KEMY_AI-dados
+- [Mural de Post-its](projetos/mural/mural.md) — mural interativo de post-its para duas pessoas, leve e com post-its guardados/criptografados via GitHub
+  - [Mural — Onde os dados vivem](projetos/mural/mural-dados.md) — mapa de localização de dados, repositório, chaves do LocalStorage e fluxo da API GitHub
+  - [Mural — Planejamento](projetos/mural/planejamento-mural-postits.md) — planejamento de arquitetura, funcionalidades, modelo de dados e criptografia do mural de post-its
+- [grok-code-cli](projetos/grok-code-cli/grok-code-cli.md) — CLI agente de código estilo Claude Code (Node.js) usando a API xAI/Grok com 4 ferramentas de arquivo/shell
+  - [grok-code-cli — Onde os dados vivem](projetos/grok-code-cli/grok-code-cli-dados.md) — endpoint xAI, variáveis GROK_*, ferramentas e arquivos
+  - [ESPRO — Revista](projetos/espro/espro.md) — plataforma da empresa fictícia da ESPRO: vitrine, montador de revista a partir de dados enviados e quadro estilo Trello por setor e calendário de atividades (Cloudflare)
+  - [ESPRO — Onde os dados vivem](projetos/espro/espro-dados.md) — pasta do código, modelo de dados previsto e armazenamento (a definir)
+  - [ESPRO — Usabilidade do editor](projetos/espro/espro-usabilidade-editor.md) — diagnóstico e todas as melhorias de UX do editor de páginas, por tema, com roadmap em 5 fases
+  - [ESPRO — Ideias futuras](projetos/espro/espro-ideias-futuras.md) — backlog de melhorias de colaboração no Kanban, leitor flipbook 3D e métricas de desempenho por setor
+  - [ESPRO — Avisos, e-mail e organograma](projetos/espro/espro-avisos-perfil.md) — push com app fechado, e-mail automático (Resend), lembrete de prazo, perfil e organograma (2026-10-21)
+  - [ESPRO — 40 ideias e plano](projetos/espro/espro-40-ideias.md) — análise de 2026-10-21, 40 adições com valor/esforço e plano em 5 ondas
+  - [ESPRO — Fluxo de tarefas](projetos/espro/espro-fluxo-tarefas.md) — repasse, ciente, conclusão e notas no cartão para substituir grupos de WhatsApp (2026-10-21)
+  - [ESPRO — Análise e roadmap](projetos/espro/espro-analise-roadmap.md) — pontos a melhorar e features em ondas (2026-10-07)
+
+## Ideias
+- [Ideias — hub](ideias/ideias.md) — caixa de entrada + método para não esquecer e realizar ideias
+  - [Ideias — Inbox](ideias/ideias-inbox.md) — anote ideias em 1 linha (data, ideia, para quê, status)
+  - [Como realizar uma ideia](ideias/ideias-como-realizar.md) — clarear, validar, MVP, stack, plano, virar projeto
+  - [Modelo de nota de ideia](ideias/ideia-template.md) — template para detalhar uma ideia
+
+## Estudos
+- [Estudos de Programação — hub](estudos/estudos-programacao.md) — trilhas ligadas aos projetos do vault
+  - [Front-end](estudos/estudos-front-end.md) — HTML/CSS/JS/TS, React/Angular, PWA, testes
+  - [Back-end](estudos/estudos-back-end.md) — REST, SQL, Spring/Node/Python, auth, OWASP
+  - [Full-stack](estudos/estudos-full-stack.md) — integrar front+back+banco, deploy e CI
+  - [Jogos](estudos/estudos-jogos.md) — game loop, Godot/Unity/Phaser, sistemas de RPG
+  - [Modelagem de software](estudos/estudos-modelagem-software.md) — requisitos, UML, DER, arquitetura, padrões
+  - [MTS (a confirmar)](estudos/estudos-mts.md) — placeholder até a sigla ser definida
+
+## Vida pessoal
+- [Vida pessoal — hub-mestre](vida/vida.md) — liga os hubs de gostos e hobbies (música, hobbies, jogos, filmes/séries, livros)
+  - [Gostos & Cultura — hub 1](vida/gostos-cultura.md) — o que eu curto: música, jogos, filmes/séries, livros
+    - [Música — hub](vida/musica/musica.md) — gêneros, artistas, álbuns, playlists e shows
+    - [Jogos — hub](vida/jogos/jogos.md) — jogos que gostei/zerei com nota, jogando agora, top e wishlist
+    - [Filmes, Séries & Animes — hub](vida/filmes-series/filmes-series.md) — assistindo, vistos com nota, quero ver
+    - [Livros — hub](vida/livros/livros.md) — lendo, lidos com nota, quero ler
+  - [Hobbies & Prática — hub 2](vida/hobbies/hobbies.md) — vôlei, desenho, culinária e novos hobbies
+    - [Vôlei](vida/hobbies/volei.md) — posição, autoavaliação, diário de treinos/jogos e metas; hub do guia de vôlei
+      - [Vôlei — Fundamentos](vida/hobbies/volei/volei-fundamentos.md) — saque, passe, levantamento, ataque, bloqueio, defesa
+      - [Vôlei — Regras](vida/hobbies/volei/volei-regras.md) — quadra, rally point, toques, faltas, substituições
+      - [Vôlei — Posições e rodízio](vida/hobbies/volei/volei-posicoes-rotacao.md) — posições, zonas 1–6, rodízio
+      - [Vôlei — Jogadas e sistemas](vida/hobbies/volei/volei-jogadas-sistemas.md) — china/pipe/meia, 4-2/6-2/5-1
+      - [Vôlei — Treinos e glossário](vida/hobbies/volei/volei-treinos-glossario.md) — glossário, treino e lesões
+    - [Desenho](vida/hobbies/desenho.md) — estilo, materiais, referências, estudos e galeria
+    - [Culinária](vida/hobbies/culinaria.md) — receitas dominadas/para testar, técnicas, modelo de receita
+
+## Projetos Faculdade
+- [Bueno's House](projetos-faculdade/bueno-s-house/bueno-s-house.md) — sistema de gestão para restaurantes (Spring Boot + React/Angular), reaproveitado como base técnica para o trabalho acadêmico "Comanda Digital"
+  - [Bueno's House — Onde os dados vivem](projetos-faculdade/bueno-s-house/bueno-s-house-dados.md) — repo, MySQL/Flyway, endpoints REST, credenciais demo e ambiente local
+  - [Comanda Digital — SRS v3.2](projetos-faculdade/bueno-s-house/comanda-digital-srs.md) — especificação oficial completa do professor (requisitos, modelo de dados, regras, roteiro, critérios de nota)
+  - [Comanda Digital — Estado Atual vs. SRS](projetos-faculdade/bueno-s-house/comanda-digital-estado.md) — comparativo bloco a bloco do que já está feito e o que falta (primeira estimativa, ver plano para versão auditada)
+  - [Comanda Digital — Plano de Implementação](projetos-faculdade/bueno-s-house/comanda-digital-plano.md) — plano faseado com base em auditoria real do código (backend + os dois frontends)
+  - [Comanda Digital — Avaliação em produção](projetos-faculdade/bueno-s-house/comanda-digital-avaliacao-producao.md) — teste da URL final (2026-10-28) contra o SRS: blocos, falhas e prioridades
 
 ## Referências
+- ⭐ [Mapa de Dados](referencias/mapa-dados.md) — hub de todas as notas `-dados` (onde cada repo/API/credencial/armazenamento mora)
+- [Vault — Onde os dados vivem](referencias/vault-dados.md) — remoto GitHub, scripts de sync, config local, preview servers, o que fica fora do Git
 - ⭐ [Mapa de Projetos](referencias/mapa-projetos.md) — carregamento de contexto: por projeto, o hub, o repo real no disco e as refs sempre-considerar (COMECE AQUI ao entrar num projeto)
 - [Megabrain — Índice de Contextos](megabrain/indice.md) — mapa de competências técnicas e lacunas; contexto restrito, use somente após o usuário escrever `Use o megabrain`
 

@@ -2,7 +2,7 @@
 name: meu-spotify
 description: app pessoal de música tipo Spotify, de graça, usando APIs gratuitas, com escuta offline (salvando as faixas localmente) — só para uso próprio
 tags: [projeto, proj/meu-spotify, app, musica, offline, ideia]
-updated: 2026-09-15
+updated: 2026-10-13
 ---
 
 # Meu Spotify (player pessoal offline)
@@ -80,3 +80,4 @@ sua própria biblioteca local**.
 
 - [[meu-spotify-dados]] — onde os dados vivem: APIs de música (Audius/Jamendo/Deezer/Spotify),
   o que cada uma libera, estratégia de armazenamento offline e limites legais.
+- [[como-o-spotify-funciona]] — como o Spotify funciona por dentro e o que o projeto replica.

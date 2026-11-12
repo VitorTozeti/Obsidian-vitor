@@ -43,17 +43,36 @@ a fonte por-projeto é a coluna de cor de [mapa-projetos](referencias/mapa-proje
 | `meu-spotify` | 🟦 teal #0D9488 | 889992 |
 | `kemy-ai` | 🟦 azul #2196F3 | 2201331 |
 | `megabrain` | 🟧 laranja claro #FB923C | 16495164 |
+| `bueno-s-house` | 🟦 índigo #4F46E5 | 5195493 |
+| `mural` | 🟦 ciano #06B6D4 | 440020 |
+| `grok-code-cli` | 🟫 marrom #92400E | 9584654 |
+| `espro` | 🟩 verde-oliva #4D7C0F | 5078031 |
+
+**Área "Vida pessoal" (`vida/`, não são projetos — cada hub tem cor própria, via
+`path:vida/<area>/` + `tag:#vida/<area>`):**
+
+| Hub | Cor | Decimal |
+|---|---|---|
+| `vida/musica` | fúcsia #D946EF | 14239471 |
+| `vida/hobbies` | carmim #BE123C | 12456508 |
+| `vida/jogos` | azul-marinho #1E3A8A | 1981066 |
+| `vida/filmes-series` | coral #FF6F61 | 16740193 |
+| `vida/livros` | ouro escuro #CA8A04 | 13273604 |
+| hub `vida/gostos-cultura.md` (tag `vida/gostos`) | azul-petróleo #0891B2 | 561586 |
+| hub-mestre `vida/vida.md` (tag `vida-hub`) | pêssego #F5D0A9 | 16109737 |
+
+Hobby novo → nota em `vida/hobbies/` (herda a cor). Área nova → `vida/<area>/` + dois grupos de cor.
 
 **Exceção de nota única (não é cor de projeto):** a nota [[KEMY_AI-dados]] (dentro do
 projeto `kemy-ai`) tem contraste extra em **amarelo #EAB308 / 15381256** via
 `path:projetos/KEMY_AI/KEMY_AI-dados.md` + `tag:#dados-amarelo`, para diferenciá-la
 visualmente do azul do resto do `kemy-ai` — não conta como cor de projeto na tabela acima.
 
-**Cores ainda livres** (da paleta): índigo #4F46E5 / 5195493 · marrom #92400E / 9584654 ·
-lima #65A30D / 6660877 · rosa #DB2777 / 14362487 · ciano #06B6D4 / 440020. (Evite o azul
+**Cores ainda livres** (da paleta): (lima e rosa agora usados por `ideias` e `estudos`; escolha novas cores fora da paleta.) (Evite o azul
 #2563EB — fica próximo do `kemy-ai` #2196F3. `#EAB308` amarelo está reservado ao contraste
 do `KEMY_AI-dados`, acima. `#FB923C` é um laranja mais claro que o `role-sp` #EA580C —
-use outro tom se precisar de mais um laranja no futuro.)
+use outro tom se precisar de mais um laranja no futuro. O ciano #06B6D4 já está em uso
+pelo `mural`, acima.)
 
 > ⚠️ `.obsidian/graph.json` está no `.gitignore` deste vault (config local do Obsidian),
 > então a cor **não** sincroniza pelo Git — ela vale na máquina onde foi aplicada. Por
