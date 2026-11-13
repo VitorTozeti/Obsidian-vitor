@@ -143,3 +143,10 @@ Mapa de dados do [[espro]].
 - **R2:** binding `ARQUIVOS`, bucket `espro-arquivos`. As chaves seguem o formato `pdf/<edId>-<ts36>.pdf`.
 - **Diário:** os registros `state.diario` funcionam como âncoras da fila alfabética.
 - Detalhes em [[espro-cargos-niveis]] (Rodada 2).
+
+## 19. Vários cargos por pessoa (2026-11-13)
+- `usuarios.cargo` agora guarda **ids separados por vírgula** (`"admin,ti"`), igual a `usuarios.setor`. Sem mudança de schema; contas antigas com 1 id continuam válidas.
+- Servidor (`functions/_lib/api.js`): `cargosConta(u)` (o ADM sempre tem `admin` em 1º; lista vazia = `membro`); o nível é **o maior** entre os cargos (`ORDEM_NIVEL` gerência > TI > líder > membro), somado à tag Gerência e aos papéis no setor.
+- API: login, ping e `GET /api/equipe` devolvem `cargo` (o 1º, legado) **e** `cargos` (lista). `PUT /api/equipe` aceita `cargos: []` (ou `cargo` em texto `"a,b"`), máx. 8; `admin` só fica com o ADM. Excluir cargo confere se **algum** usuário o tem na lista.
+- Cliente: `cargosDe(u)`, `temCargo(u,id)`, `rotuloCargos(u)` em `js/cargos.js`; `Sync.cargos()`.
+- Commit `d12f0f6` (push feito → deploy automático do Pages). Testado: API em memória no navegador (10 casos ok) e tela no preview (375px). **D1 real não testado.**

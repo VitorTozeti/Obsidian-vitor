@@ -141,3 +141,13 @@ Agora encontra também:
   - `2aef9d8` (R2 desligado no `wrangler.toml`) **publicou**: portal em cartões, organograma em árvore, tags e diário estão no ar.
   - `6395c5d` (PDF no D1) está commitado; o push foi bloqueado pela permissão automática. Falta o usuário autorizar ou rodar o push.
 - **Ainda não testado:** o binding de BLOB no D1 real. O teste foi feito em memória: um PDF de 4,2 MB voltou idêntico, um de 26 MB foi recusado e a exclusão funcionou.
+
+## Rodada 4 (2026-11-13): vários cargos e tela única de pessoa
+- **Uma pessoa pode ter vários cargos** (ex.: ADM + TI) e vários setores (ex.: Geek + Marketing). O acesso é o do cargo mais alto. Dados em [[espro-dados]] §19.
+- **UX nova:** na página Equipe, cada pessoa tem o botão **"Editar cargos e setores"**, que abre uma tela única com:
+  - chave **★ Gerência** (só a gerência vê);
+  - **chips liga/desliga** para os cargos (só a gerência muda) e para os setores;
+  - **papel em cada setor** marcado (Colaborador / Co-gestora / Gestora), gravado no próprio setor;
+  - resumo "Fica assim: …" e **um Salvar só** (antes eram selects/menus que gravavam a cada mudança).
+- As tags da pessoa mostram um chip por cargo, na cor do cargo.
+- **Pendente:** o Vitor marcar no site (Equipe → Vitor → Editar): cargo **TI** (além de ADM) e setores **Geek + Marketing** (criar o setor Marketing em "Setores" se ainda não existir). Não deu para gravar direto no D1: a máquina não tem Node/wrangler.
