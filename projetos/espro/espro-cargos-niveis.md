@@ -162,3 +162,4 @@ Agora encontra também:
 - Regra correta (confirmada pelo Vitor): **o TI faz parte do Marketing, mas é cargo separado.** No organograma o TI é um **sub-ramo próprio dentro do setor Marketing** (TI → Gestor TI → equipe TI), ao lado da Gestora/Co-gestoras/equipe do Marketing — e não mais misturado à equipe do Marketing nem como ramo solto ao lado dos setores.
 - Código (`js/organograma.js`): `ehTI(u)` tira quem tem cargo `ti`/`gestorti` da equipe dos setores; `ehMarketing(s)` (nome contém "marketing") recebe o `ramoTI` como filho, na visão completa e na visão do setor. Sem setor Marketing, o TI volta a ser ramo solto.
 - Commits na `main` de `VitorTozeti/Espro_frame`: `6822666` (1ª tentativa, TI solto) e a correção seguinte (TI dentro do Marketing).
+- Ajuste final (desenho do Vitor): dentro do Marketing **não há nó "TI"** — ficam lado a lado **Gestor TI → equipe TI** e **Gestora Marketing → equipe MK** (`ramoTI(ti, true)` devolve só o corpo).
