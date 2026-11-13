@@ -114,3 +114,20 @@ Agora encontra também:
   - API real no navegador, com repositório e R2 em memória: papéis no setor dão nível líder; o TI recebe 403 ao mexer na tag Gerência; arquivo que não é PDF é recusado; colaborador não mexe em edição publicada nem nas páginas dela.
   - Telas no preview (375px) e regra do diário: todas ok.
 - **Pendente — antes do push:** criar o bucket R2 `espro-arquivos` na conta Cloudflare. Sem ele, o deploy do Pages falha, porque o binding está no `wrangler.toml`.
+
+## Rodada 3 (2026-11-13): portal em cartões, organograma em árvore, sem gerador de revista
+- **Portal** no estilo do "Portal da Logística": saudação, avisos e cartões (ícone, título, descrição, "Abrir →") em três grupos:
+  - **Ferramentas**: Quadro, Edições da revista.
+  - **Equipe**: Organograma, Diário de bordo, Agenda, Meu perfil.
+  - **Administração** (gerência/TI): Usuários e permissões, Setores, Cargos, Gerência.
+- **Organograma em árvore** (`js/organograma.js`, CSS `.arv2` e `.o2-*`), no estilo diagrama (raiz em círculo, pílulas com arco colorido e etiqueta do nível, colaboradores em círculos):
+  - **Completo**: Gerência → TI e setores → Gestora → Co-gestora(s) → equipe (mini avatares; tocar abre o setor).
+  - **Por setor**: Gestora → Co-gestora(s) → colaboradores.
+  - Chips para trocar de setor, zoom (−/+, "Ajustar à tela") e imprimir.
+- **Revista**: saíram a aba Revista e o editor de páginas (`#/revista` e `#/editor/*` redirecionam para Edições). Os arquivos `editor.js` e `qualidade.js` continuam no repositório, mas fora de uso.
+- **Edições** agora é só a coletânea de PDFs:
+  - Gestores: lançar, trocar, mudar a situação e excluir (excluir também apaga o PDF do R2).
+  - Os demais: só leem e baixam.
+  - Edições sem PDF só aparecem para gestores.
+- **Commit** `c133e7c`: ainda **sem push**.
+- **Atenção:** o deploy da rodada 2 (`0b94ee8`) **falhou**. O site ainda está na rodada 1, porque o bucket R2 `espro-arquivos` não existe na conta Cloudflare.
