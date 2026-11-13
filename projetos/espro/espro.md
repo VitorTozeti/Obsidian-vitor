@@ -2,7 +2,7 @@
 name: espro
 description: plataforma da empresa fictícia exigida pela ESPRO — montar a revista a partir dos dados enviados e organizar as tarefas de cada setor em um quadro estilo Trello
 tags: [projeto, proj/espro, app, web, revista, kanban, calendario, cloudflare, ideia]
-updated: 2026-10-21
+updated: 2026-11-13
 ---
 
 # ESPRO — Revista da Empresa Fictícia
@@ -80,6 +80,7 @@ Dados e localização: [[espro-dados]].
 
 ## Relacionados
 
+- [[espro-cargos-niveis]] — cargos/setores editáveis, níveis gerência/TI/líder/membro, portal, acervo de edições, página por setor (2026-11-13)
 - [[espro-analise-roadmap]] — análise e planejamento em ondas (2026-10-07)
 - [[espro-avisos-perfil]] — avisos no celular, e-mail automático, perfil e organograma
 - [[espro-40-ideias]] — análise de 2026-10-21: 40 ideias + plano em ondas
@@ -100,3 +101,14 @@ Agora certas pessoas podem ter **2 (ou mais) setores**: o admin marca vários nu
 
 ## Fluxo de tarefas no quadro (2026-10-21)
 O cartão agora guarda o fluxo inteiro: **repassar** (com recado), **ciente**, **assumir**, **concluir** (com entrega/link), **reabrir**, notas e linha do tempo, mais o feed **Atividade** e avisos no Início. Objetivo: tirar a comunicação dos grupos de WhatsApp por setor. Ver [[espro-fluxo-tarefas]] e [[espro-dados]] §15.
+
+## Portal, cargos editáveis e TI (2026-11-13)
+- A Início virou **Portal**.
+- Cargos e setores agora se criam, editam e excluem com facilidade.
+- Novo nível **Gerência**, que reúne os antigos admin, diretor e instrutor.
+- Novo cargo **TI**: faz tudo, menos mexer em cargos e na gerência.
+- Excluir conta.
+- Página de fluxo de cada setor, com pedidos entre setores.
+- Edições em formato de acervo.
+
+Ver [[espro-cargos-niveis]] e [[espro-dados]] §17. Commit `2be3015`, ainda sem push.

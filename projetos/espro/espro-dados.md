@@ -2,7 +2,7 @@
 name: espro-dados
 description: onde os dados do projeto ESPRO vivem — pasta do código, repositório, armazenamento (a definir)
 tags: [projeto, proj/espro, dados]
-updated: 2026-10-21
+updated: 2026-11-13
 ---
 
 # ESPRO — Onde os dados vivem
@@ -105,3 +105,33 @@ Mapa de dados do [[espro]].
 
 ## 16. Avisos, push e perfil (2026-10-21)
 - D1: `avisos(id, email, titulo, texto, url, criado, lido)` (60 por pessoa), `push_subs(endpoint, email, criado)`, `config('vapid')`, `config('lembrete_dia')`; `usuarios.funcao/bio/foto`. Cartão: `repasse.porEmail`. Detalhes em [[espro-avisos-perfil]].
+
+## 17. Cargos como dados, níveis, portal e setor (2026-11-13)
+- **Cargos:** coleção `state.cargos [{id, nome, nivel, cor, _u}]`, que sincroniza como kind `cargos`. `nivel` vale `gerencia`, `ti`, `lider` ou `membro`.
+  - Os ids padrão são fixos: `admin`, `diretor`, `instrutor`, `ti`, `gestor`, `cogestor` e `membro`. Por isso as contas antigas continuam valendo.
+  - Os padrões não são carimbados em `carimbarTudo`, para nunca sobrescreverem os do servidor.
+  - Servidor: `mapaCargos(repo)`, que usa os padrões mais `repo.cargosGravados()`. `nivelDe(cargo)` define `amplo = gerência || TI` e `gestao = amplo || lider`.
+  - Login, ping e `GET /api/equipe` devolvem `nivel`. O cliente usa `Sync.nivel()`, `Sync.gerencia()`, `Sync.ti()` e `Sync.amplo()`.
+  - `CARGO_ROTULO` virou um Proxy que lê `Cargos.rotulo()`.
+- **Regras do servidor:**
+  - `cargos` e `ordem/cargos`: só gerência.
+  - Excluir um cargo em uso, ou os cargos `admin` e `membro`, é recusado.
+  - `setores` e `diario`: gerência e TI.
+  - `PUT /api/equipe`:
+    - gerência e TI podem usar;
+    - `cargo` só a gerência muda;
+    - TI recebe 403 em contas da gerência.
+  - `DELETE /api/equipe/<email>`:
+    - gerência e TI podem usar;
+    - a conta não pode ser a própria;
+    - a conta não pode ser a do ADM;
+    - TI não exclui contas da gerência.
+  - A cobrança por e-mail fica para gerência e TI.
+- **Pedido entre setores:** `cards.deSetor`. Quem não é amplo pode **criar** (não editar) um cartão em outro setor se `deSetor` for um setor seu e o cartão não for da gestão.
+- **Arquivos novos:**
+  - `js/cargos.js`: Cargos, `nivelDe`, `setoresSheet`, `cargosSheet`, `excluirContaSheet`.
+  - `js/portal.js`: `Views.inicio` vira o portal; `Views.organograma`.
+  - `js/setor.js`: `Views.setor`.
+- **Rotas fora da barra de abas:** `#/organograma` e `#/setor/<id>`, tratadas em `js/app.js`.
+- **Edições:** `filtroEd` em `js/edicoes.js` (busca, ano, situação, gerir).
+- Detalhes funcionais em [[espro-cargos-niveis]].
