@@ -157,3 +157,8 @@ Agora encontra também:
 - Organograma (`js/organograma.js` → `ramoTI`): ramo TI agora é **TI → Gestor TI (pílula) → demais pessoas de TI**.
 - Visual (`css/style.css`, fim do arquivo): linhas de ligação na cor de cada ramo (`--lc`), fundo pontilhado com borda, destaque ao passar o mouse/foco por teclado.
 - Commit `a893970` na `main` de `VitorTozeti/Espro_frame` (deploy automático no Pages). Testado no navegador local com equipe simulada.
+
+## 2026-11-13 — TI separado do Marketing no organograma
+- Problema: quem tinha cargo TI e setor Marketing aparecia também como equipe do Marketing, parecendo que o TI era parte do Marketing.
+- Regra: **TI e Marketing são cargos/ramos separados.** Em `js/organograma.js`, `ehTI(u)` (cargo `ti` ou `gestorti`) tira a pessoa da equipe dos setores — ela só aparece no ramo TI. Exceção: se for Gestora/Co-gestora do setor, continua lá.
+- Commit `6822666` na `main` de `VitorTozeti/Espro_frame` (deploy automático no Pages).
