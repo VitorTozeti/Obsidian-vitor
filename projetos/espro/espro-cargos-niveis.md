@@ -131,3 +131,13 @@ Agora encontra também:
   - Edições sem PDF só aparecem para gestores.
 - **Commit** `c133e7c`: ainda **sem push**.
 - **Atenção:** o deploy da rodada 2 (`0b94ee8`) **falhou**. O site ainda está na rodada 1, porque o bucket R2 `espro-arquivos` não existe na conta Cloudflare.
+
+## PDF sem R2 (2026-11-13)
+- O R2 exige aceitar uma assinatura com cartão (mesmo no plano grátis). O usuário preferiu uma solução sem cartão.
+- **Solução:** o PDF fica **em pedaços de 1,5 MB no D1**, na tabela `pdf_partes(chave, n, dados BLOB)`. Métodos em `functions/_lib/d1.js`: `putPdf` (em lote), `getPdf` e `delPdf`. Limite: **25 MB por PDF** (o plano grátis do D1 tem 5 GB).
+- Se um dia houver o binding R2 `ARQUIVOS`, a API passa a usá-lo e o limite sobe para 95 MB. O `ping` informa `recursos.pdfMaxMB`.
+- **Deploy:**
+  - O deploy de `c133e7c` falhou ("R2 bucket 'espro-arquivos' not found").
+  - `2aef9d8` (R2 desligado no `wrangler.toml`) **publicou**: portal em cartões, organograma em árvore, tags e diário estão no ar.
+  - `6395c5d` (PDF no D1) está commitado; o push foi bloqueado pela permissão automática. Falta o usuário autorizar ou rodar o push.
+- **Ainda não testado:** o binding de BLOB no D1 real. O teste foi feito em memória: um PDF de 4,2 MB voltou idêntico, um de 26 MB foi recusado e a exclusão funcionou.
