@@ -158,7 +158,7 @@ Agora encontra também:
 - Visual (`css/style.css`, fim do arquivo): linhas de ligação na cor de cada ramo (`--lc`), fundo pontilhado com borda, destaque ao passar o mouse/foco por teclado.
 - Commit `a893970` na `main` de `VitorTozeti/Espro_frame` (deploy automático no Pages). Testado no navegador local com equipe simulada.
 
-## 2026-11-13 — TI separado do Marketing no organograma
-- Problema: quem tinha cargo TI e setor Marketing aparecia também como equipe do Marketing, parecendo que o TI era parte do Marketing.
-- Regra: **TI e Marketing são cargos/ramos separados.** Em `js/organograma.js`, `ehTI(u)` (cargo `ti` ou `gestorti`) tira a pessoa da equipe dos setores — ela só aparece no ramo TI. Exceção: se for Gestora/Co-gestora do setor, continua lá.
-- Commit `6822666` na `main` de `VitorTozeti/Espro_frame` (deploy automático no Pages).
+## 2026-11-13 — TI dentro do Marketing no organograma
+- Regra correta (confirmada pelo Vitor): **o TI faz parte do Marketing, mas é cargo separado.** No organograma o TI é um **sub-ramo próprio dentro do setor Marketing** (TI → Gestor TI → equipe TI), ao lado da Gestora/Co-gestoras/equipe do Marketing — e não mais misturado à equipe do Marketing nem como ramo solto ao lado dos setores.
+- Código (`js/organograma.js`): `ehTI(u)` tira quem tem cargo `ti`/`gestorti` da equipe dos setores; `ehMarketing(s)` (nome contém "marketing") recebe o `ramoTI` como filho, na visão completa e na visão do setor. Sem setor Marketing, o TI volta a ser ramo solto.
+- Commits na `main` de `VitorTozeti/Espro_frame`: `6822666` (1ª tentativa, TI solto) e a correção seguinte (TI dentro do Marketing).
