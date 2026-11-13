@@ -7,7 +7,7 @@ updated: 2026-11-13
 
 # ESPRO — Cargos, níveis, portal e setores (2026-11-13)
 
-Parte do [[espro]]. Dados técnicos em [[espro-dados]] §17. Commit `2be3015` em `Espro_frame`. Ainda **sem push**, então ainda não está no ar.
+Parte do [[espro]]. Dados técnicos em [[espro-dados]] §17. Commit `2be3015`: publicado (push e deploy em 2026-11-13). Rodada 2: commit `0b94ee8`, ainda sem push (veja o fim desta nota).
 
 ## Níveis de acesso (fixos no código)
 | Nível | Pode |
@@ -78,3 +78,39 @@ Agora encontra também:
   - Um pedido entre setores só passa se `deSetor` for o setor da própria pessoa.
 - **Telas:** testadas no preview em 375px e no desktop.
 - **Ainda não testado:** o D1 real. Falta fazer o push e o deploy.
+
+## Rodada 2 (2026-11-13): 3 tags, hierarquia, PDF e diário
+- **3 tags por pessoa** (`tagsPessoa` em `js/cargos.js`):
+  - ★ Gerência, se a pessoa tiver.
+  - Cargo, que agora é só o nome da função.
+  - Setores, mostrando o papel em cada um: Gestora ou Co-gestora.
+- **Gerência** virou uma marcação separada do cargo:
+  - Coluna `usuarios.gerencia` (0/1). Muda com `PUT /api/equipe {gerencia}`.
+  - Só a gerência dá ou tira a marcação. O ADM tem sempre.
+  - Os cargos antigos diretor e instrutor, com nível `gerencia`, continuam valendo por compatibilidade.
+- **Gestora e co-gestoras são papéis no setor**: ficam gravados no próprio setor (`gestora` = e-mail, `cogestoras` = lista). A mesma pessoa pode ser gestora num setor e colaboradora em outro.
+- **Nível efetivo calculado pelo servidor** (`nivelConta`), nesta ordem:
+  1. Tag Gerência ou ADM → gerência.
+  2. Cargo com nível TI → TI.
+  3. Gestora ou co-gestora em algum setor (ou cargo antigo gestor/co-gestor) → líder.
+  4. Qualquer outro caso → colaborador.
+- **Ferramentas de administração** (página Equipe):
+  - **Cargos** (gerência). Na criação de cargo, o nível agora só oferece Colaborador(a) ou TI.
+  - **Gerência** (gerência): chaves liga/desliga por pessoa.
+  - **Setores** (gerência e TI): escolher a gestora e as co-gestoras de cada setor.
+  - **Organograma**.
+- **Organograma em hierarquia**: Gerência → TI → em cada setor, Gestora → Co-gestora(s) → Colaboradores, ligados por traços (CSS `.arvore`/`.arv-*`).
+- **Portal**: a área de ferramentas tem, por enquanto, **Quadro** e **Edições da revista**.
+- **Edições = coletânea de PDFs**:
+  - Botão "Lançar PDF": número, nome, data e arquivo.
+  - Por edição: "Trocar PDF / editar".
+  - Todos os logados leem e baixam.
+  - Edição **publicada** (e suas páginas): só gestão (líder, TI, gerência) mexe. O servidor confere.
+  - Armazenamento: **Cloudflare R2**, binding `ARQUIVOS`, bucket `espro-arquivos` (em `wrangler.toml`).
+  - Rotas: `PUT /api/pdf/<edId>` (só gestão, até 95 MB, confere a assinatura `%PDF-`), `GET /api/pdf/pdf/<arquivo>.pdf` (logados) e `DELETE` (só gestão).
+  - A edição guarda `pdf {chave, nome, tamanho, em, por}`.
+- **Diário**: a fila continua em ordem alfabética, mas trocar a pessoa de uma quinta vira uma **âncora**. A partir dali, a fila segue de quem foi escolhido. Exemplo: troquei para a Dani → a semana seguinte é a próxima pessoa depois da Dani. Código: `ancoraAte` / `responsavelDa` em `js/diario.js`.
+- **Testes**:
+  - API real no navegador, com repositório e R2 em memória: papéis no setor dão nível líder; o TI recebe 403 ao mexer na tag Gerência; arquivo que não é PDF é recusado; colaborador não mexe em edição publicada nem nas páginas dela.
+  - Telas no preview (375px) e regra do diário: todas ok.
+- **Pendente — antes do push:** criar o bucket R2 `espro-arquivos` na conta Cloudflare. Sem ele, o deploy do Pages falha, porque o binding está no `wrangler.toml`.

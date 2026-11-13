@@ -135,3 +135,11 @@ Mapa de dados do [[espro]].
 - **Rotas fora da barra de abas:** `#/organograma` e `#/setor/<id>`, tratadas em `js/app.js`.
 - **Edições:** `filtroEd` em `js/edicoes.js` (busca, ano, situação, gerir).
 - Detalhes funcionais em [[espro-cargos-niveis]].
+
+## 18. Tag Gerência, papéis no setor e PDF no R2 (2026-11-13)
+- `usuarios.gerencia INTEGER` (0/1), criado pelo `ALTER` em `preparar()`.
+- `setores[].gestora` (e-mail) e `setores[].cogestoras` (lista de e-mails).
+- `edicoes[].pdf {chave, nome, tamanho, em, por}`.
+- **R2:** binding `ARQUIVOS`, bucket `espro-arquivos`. As chaves seguem o formato `pdf/<edId>-<ts36>.pdf`.
+- **Diário:** os registros `state.diario` funcionam como âncoras da fila alfabética.
+- Detalhes em [[espro-cargos-niveis]] (Rodada 2).
