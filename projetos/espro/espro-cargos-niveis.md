@@ -151,3 +151,9 @@ Agora encontra também:
   - resumo "Fica assim: …" e **um Salvar só** (antes eram selects/menus que gravavam a cada mudança).
 - As tags da pessoa mostram um chip por cargo, na cor do cargo.
 - **Pendente:** o Vitor marcar no site (Equipe → Vitor → Editar): cargo **TI** (além de ADM) e setores **Geek + Marketing** (criar o setor Marketing em "Setores" se ainda não existir). Não deu para gravar direto no D1: a máquina não tem Node/wrangler.
+
+## 2026-11-13 — Gestor(a) TI e organograma mais legível
+- Novo cargo padrão **`gestorti` — "Gestor(a) TI"** (nível `ti`, cor #155E75) em `js/store.js` e `functions/_lib/api.js`. Contas/bases antigas recebem o cargo automaticamente em `Cargos.lista()` (`js/cargos.js`), logo depois de "TI".
+- Organograma (`js/organograma.js` → `ramoTI`): ramo TI agora é **TI → Gestor TI (pílula) → demais pessoas de TI**.
+- Visual (`css/style.css`, fim do arquivo): linhas de ligação na cor de cada ramo (`--lc`), fundo pontilhado com borda, destaque ao passar o mouse/foco por teclado.
+- Commit `a893970` na `main` de `VitorTozeti/Espro_frame` (deploy automático no Pages). Testado no navegador local com equipe simulada.
