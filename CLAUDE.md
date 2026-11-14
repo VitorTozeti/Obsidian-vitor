@@ -38,7 +38,7 @@ a fonte por-projeto é a coluna de cor de [mapa-projetos](referencias/mapa-proje
 |---|---|---|
 | `greenfinance` | 🟩 verde #16A34A | 1483594 |
 | `nexus-rpg` | 🟪 roxo #9333EA | 9647082 |
-| `role-sp` | 🟧 laranja #EA580C | 15357964 |
+| `role-sp` | 🟧 laranja #F97316 | 16347926 |
 | `pokedex` | 🟥 vermelho #DC2626 | 14427686 |
 | `meu-spotify` | 🟦 teal #0D9488 | 889992 |
 | `kemy-ai` | 🟦 azul #2196F3 | 2201331 |
