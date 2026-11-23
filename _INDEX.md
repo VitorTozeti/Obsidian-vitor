@@ -95,6 +95,13 @@
   - [Modelagem de software](estudos/estudos-modelagem-software.md) — requisitos, UML, DER, arquitetura, padrões
   - [MTS (a confirmar)](estudos/estudos-mts.md) — placeholder até a sigla ser definida
 
+## Vida pessoal — Pessoas
+- [Kemmy — Hub](vida/pessoas/kemmy/kemmy.md) — hub da Kemmy: perfil, top 30 momentos, linha do tempo e memórias
+  - [Kemmy — Perfil](vida/pessoas/kemmy/kemmy-perfil.md) — personalidade, gostos, família, amigos e valores
+  - [Kemmy — Top 30 momentos](vida/pessoas/kemmy/kemmy-top30.md) — os 30 melhores momentos com falas e contexto
+  - [Kemmy — Linha do tempo](vida/pessoas/kemmy/kemmy-linha-do-tempo.md) — do primeiro encontro até 22/11/2026, com espaço para continuar
+  - [Kemmy — Memórias](vida/pessoas/kemmy/kemmy-memorias.md) — espaço aberto para completar com o que não está no WhatsApp
+
 ## Vida pessoal
 - [Vida pessoal — hub-mestre](vida/vida.md) — liga os hubs de gostos e hobbies (música, hobbies, jogos, filmes/séries, livros)
   - [Gostos & Cultura — hub 1](vida/gostos-cultura.md) — o que eu curto: música, jogos, filmes/séries, livros
